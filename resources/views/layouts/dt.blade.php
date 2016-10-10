@@ -51,6 +51,9 @@
     <link rel="apple-touch-startup-image" href="{{ URL::asset('img/splash/ipad-landscape.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     <link rel="apple-touch-startup-image" href="{{ URL::asset('img/splash/ipad-portrait.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="{{ URL::asset('img/splash/iphone.png') }}" media="screen and (max-device-width: 320px)">
+
+    {{--custom css--}}
+    {{--<link rel="stylesheet" href="{{ URL::asset('css/select2.min.css') }}"/>--}}
     <style>
         .select_tr{
             background: #000000!important;
@@ -150,14 +153,14 @@
     <div id="content">
 
         <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
                 <h1 class="page-title txt-color-blueDark">
                     <i class="fa fa-table fa-fw "></i>
                     @yield('widget-title')
                     <span>@yield('widget-desc')</span>
                 </h1>
             </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
                 <!-- Button trigger modal -->
                 @yield('button')
             </div>
@@ -331,6 +334,9 @@
 <script src="{{ URL::asset('js/plugin/datatables/dataTables.tableTools.min.js') }}"></script>
 <script src="{{ URL::asset('js/plugin/datatables/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ URL::asset('js/plugin/datatable-responsive/datatables.responsive.min.js') }}"></script>
+
+<!-- JQUERY SELECT2 INPUT -->
+<script src="{{ URL::asset('js/plugin/select2/select2.min.js') }}"></script>
 
 <script type="text/javascript">
 
@@ -541,6 +547,13 @@
                 }
             }
         });
+    });
+</script>
+
+{{--select2--}}
+<script>
+    $(document).ready(function(){
+        $('.live_search').select2();
     });
 </script>
 @stack('js')

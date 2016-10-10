@@ -56,5 +56,10 @@ Route::get('/home', 'HomeController@index');
 
 // System Manager
 Route::get('/routes', 'RoutesController@index');
+Route::post('/add-route', 'RoutesController@store');
+Route::get('/get-route/{route_id}', 'RoutesController@getRoute');
+Route::get('/parent-routes', 'RoutesController@getParentRoutes');
+Route::post('/edit-route', 'RoutesController@update');
 Route::get('/load-routes', 'RoutesController@loadRoutes');
 Route::get('/delete-route/{id}', 'RoutesController@destroy');
+Route::get('/menu', 'RoutesController@manageMenu');
