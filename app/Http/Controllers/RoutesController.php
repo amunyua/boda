@@ -135,8 +135,4 @@ class RoutesController extends Controller
         }
         return Response::json($return);
     }
-
-    public function manageMenu(){
-        return view('system.menu');
-    }
 }

@@ -6,7 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddFaIconsTable' => $baseDir . '/database/migrations/2016_10_12_085709_add_fa_icons_table.php',
+    'AddFaiconColumn' => $baseDir . '/database/migrations/2016_10_12_093918_add_faicon_column.php',
+    'AddFksMenu' => $baseDir . '/database/migrations/2016_10_12_163211_add_fks_menu.php',
     'AddFksMfs' => $baseDir . '/database/migrations/2016_09_27_155225_add_fks_mfs.php',
+    'AddParentmenuFieldTomenus' => $baseDir . '/database/migrations/2016_10_12_093059_add_parentmenu_field_tomenus.php',
+    'AddSequenceColumn' => $baseDir . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
     'AddStatusColumn' => $baseDir . '/database/migrations/2016_09_28_092005_add_status_column.php',
     'AddStudentsFks' => $baseDir . '/database/migrations/2016_09_28_121140_add_students_fks.php',
     'AddTeacherssDetails' => $baseDir . '/database/migrations/2016_09_28_194654_add_teacherss_details.php',
