@@ -68,3 +68,9 @@ Route::post('/arrange-menu', 'MenuController@arrangeMenu');
 Route::post('/edit-menu', 'MenuController@update');
 Route::get('/get-menu/{id}', 'MenuController@getMenuItem');
 Route::post('/remove-menu', 'MenuController@destroy');
+
+#### inventory module
+// category
+
+Route::get('/categories','CategoryController@index');
+Route::post('/add-category','CategoryController@storeCategory');
