@@ -99,7 +99,7 @@ class RoutesController extends Controller
     public function update(Request $request){
         // validation
         $validator = Validator::make($request->all(), [
-            'route_name' => 'required|unique:routes,route_name,'.$request->edit_id,
+            'route_name' => 'required|unique:routes,route_name,'.$request->id,
             'status' => 'required'
         ]);
 
@@ -109,7 +109,7 @@ class RoutesController extends Controller
                 'errors' => $validator->getMessageBag()->toArray()
             ]);
         }else{
-            Route::where('id', $request->edit_id)
+            Route::where('id', $request->id)
                 ->update([
                     'route_name' => $request->route_name,
                     'url' => $request->url,
