@@ -27,5 +27,20 @@ class RouteSeeder extends Seeder
         $analytics_dash->parent_route = $dashboard_id;
         $analytics_dash->save();
         $analytics_dash->roles()->attach($admin);
+
+        ### system
+        $system = new Route();
+        $system->route_name = 'System';
+        $system->save();
+        $system_id = $system->id;
+
+        ### system children
+        $route = new Route();
+        $route->route_name = 'Routs';
+        $route->url = 'routes';
+        $route->parent_route = $system_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
     }
 }
