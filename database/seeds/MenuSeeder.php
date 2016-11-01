@@ -132,5 +132,62 @@ class MenuSeeder extends Seeder
         $manage_service->route_id = $manage_service_route->id;
         $manage_service->parent_menu = $service->id;
         $manage_service->save();
+
+        #### system
+        $system_route = Route::where('route_name', 'System')->first();
+        $system = new Menu();
+        $system->route_id = $system_route->id;
+        $system->save();
+        $system_id = $system->id;
+
+        $routes_route = Route::where('route_name', 'System Routes')->first();
+        $routes = new Menu();
+        $routes->route_id = $routes_route->id;
+        $routes->parent_menu = $system->id;
+        $routes->save();
+
+        $menu_route = Route::where('route_name', 'System Menu')->first();
+        $menu = new Menu();
+        $menu->route_id = $menu_route->id;
+        $menu->parent_menu = $system->id;
+        $menu->save();
+
+        $sys_config_route = Route::where('route_name', 'System Configuration')->first();
+        $sys_config = new Menu();
+        $sys_config->route_id = $sys_config_route->id;
+        $sys_config->parent_menu = $system->id;
+        $sys_config->save();
+
+        $backup_route = Route::where('route_name', 'Backup')->first();
+        $backup = new Menu();
+        $backup->route_id = $backup_route->id;
+        $backup->parent_menu = $system->id;
+        $backup->save();
+
+        #### user management
+        $user_mngt_route = Route::where('route_name', 'User Management')->first();
+        $user_mngt = new Menu();
+        $user_mngt->route_id = $user_mngt_route->id;
+        $user_mngt->save();
+        $user_mngt_id = $user_mngt->id;
+
+        $all_user_route = Route::where('route_name', 'All User')->first();
+        $all_user = new Menu();
+        $all_user->route_id = $all_user_route->id;
+        $all_user->parent_menu = $user_mngt->id;
+        $all_user->save();
+
+        $role_route = Route::where('route_name', 'User Roles')->first();
+        $role = new Menu();
+        $role->route_id = $role_route->id;
+        $role->parent_menu = $user_mngt->id;
+        $role->save();
+        $all_user->save();
+
+        $audit_trail_route = Route::where('route_name', 'Audit Trail')->first();
+        $audit_trail = new Menu();
+        $audit_trail->route_id = $audit_trail_route->id;
+        $audit_trail->parent_menu = $user_mngt->id;
+        $audit_trail->save();
     }
 }
