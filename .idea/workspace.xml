@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="7f6abb49-9501-43f0-a6b1-cbc9bdfc8509" name="Default" comment="" />
+=======
     <list default="true" id="7f6abb49-9501-43f0-a6b1-cbc9bdfc8509" name="Default" comment="">
 <<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/b254c369-c9ca-4713-bfd3-98b449ee3011.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/b254c369-c9ca-4713-bfd3-98b449ee3011.xml" />
@@ -23,6 +26,7 @@
 >>>>>>> 70012d74a3372faccec962127c35f8c5f050d46a
 >>>>>>> 0c3d260b4673a1ef3e76b312101fe80f2b9a76d3
     </list>
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
     <ignored path="boda.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -77,6 +81,9 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="true">
+=======
       <file leaf-file-name="menu.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/system/menu.blade.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -272,9 +279,10 @@
         </entry>
       </file>
       <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
+            <state relative-caret-position="429">
               <caret line="69" column="25" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
               <folding />
             </state>
@@ -328,6 +336,9 @@
         <option value="$PROJECT_DIR$/public/xml/gmap/pins.xml" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RoutesController.php" />
 <<<<<<< HEAD
+        <option value="$PROJECT_DIR$/routes/web.php" />
+=======
+<<<<<<< HEAD
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/b254c369-c9ca-4713-bfd3-98b449ee3011/console.sql" />
         <option value="$PROJECT_DIR$/database/migrations/2016_10_31_114315_create_icon_seeder.php" />
         <option value="dbtable:/49fa95bf/b254c369-c9ca-4713-bfd3-98b449ee3011/ride.routes" />
@@ -339,6 +350,7 @@
 =======
 >>>>>>> 70012d74a3372faccec962127c35f8c5f050d46a
 >>>>>>> 0c3d260b4673a1ef3e76b312101fe80f2b9a76d3
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
       </list>
     </option>
   </component>
@@ -358,6 +370,12 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
 <<<<<<< HEAD
+    <option name="x" value="35" />
+    <option name="y" value="24" />
+    <option name="width" value="1331" />
+    <option name="height" value="744" />
+=======
+<<<<<<< HEAD
     <option name="y" value="24" />
     <option name="width" value="1280" />
     <option name="height" value="1000" />
@@ -371,6 +389,7 @@
     <option name="height" value="716" />
 >>>>>>> 70012d74a3372faccec962127c35f8c5f050d46a
 >>>>>>> 0c3d260b4673a1ef3e76b312101fe80f2b9a76d3
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -434,6 +453,9 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
+              <option name="myItemId" value="routes" />
+=======
 <<<<<<< HEAD
               <option name="myItemId" value="vendor" />
 =======
@@ -552,6 +574,7 @@
 =======
             <PATH_ELEMENT>
               <option name="myItemId" value="Http" />
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -565,15 +588,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -587,12 +606,16 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
+              <option name="myItemId" value="resources" />
+=======
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Console" />
 >>>>>>> 70012d74a3372faccec962127c35f8c5f050d46a
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -608,7 +631,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PHPMailer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
@@ -712,14 +735,24 @@
       <workItem from="1476782441575" duration="21000" />
       <workItem from="1476792184634" duration="53000" />
 <<<<<<< HEAD
+      <workItem from="1477912707137" duration="2320000" />
+=======
+<<<<<<< HEAD
       <workItem from="1477914218916" duration="3054000" />
 =======
 >>>>>>> 70012d74a3372faccec962127c35f8c5f050d46a
 >>>>>>> 0c3d260b4673a1ef3e76b312101fe80f2b9a76d3
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="70521000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="35" y="24" width="1331" height="744" extended-state="6" />
+=======
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="71255000" />
 =======
@@ -738,6 +771,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
     <editor active="true" />
     <layout>
 <<<<<<< HEAD
@@ -754,16 +788,24 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
 =======
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+<<<<<<< HEAD
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2367798" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23144454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 >>>>>>> 70012d74a3372faccec962127c35f8c5f050d46a
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1758509" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+=======
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32815966" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
 >>>>>>> 0c3d260b4673a1ef3e76b312101fe80f2b9a76d3
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -901,10 +943,17 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+=======
     <entry file="file://$PROJECT_DIR$/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="58" column="50" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
         </state>
       </provider>
     </entry>
@@ -919,6 +968,28 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
+<<<<<<< HEAD
+    </entry>
+    <entry file="dbDummy://dbtable:/49fa95bf/b254c369-c9ca-4713-bfd3-98b449ee3011/ride.roles">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+        </state>
+      </provider>
+=======
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/UserSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -1097,6 +1168,9 @@
 <<<<<<< HEAD
       <provider editor-type-id="text-editor">
 =======
+<<<<<<< HEAD
+      <provider editor-type-id="text-editor">
+=======
     </entry>
 <<<<<<< HEAD
     <entry file="dbDummy://dbtable:/49fa95bf/b254c369-c9ca-4713-bfd3-98b449ee3011/ride.fa_icons">
@@ -1107,11 +1181,13 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b254c369-c9ca-4713-bfd3-98b449ee3011/console.sql">
       <provider selected="true" editor-type-id="text-editor">
 >>>>>>> 0c3d260b4673a1ef3e76b312101fe80f2b9a76d3
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b254c369-c9ca-4713-bfd3-98b449ee3011/console.sql" />
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/includes/sidemenu.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1165,9 +1241,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RoutesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1656">
+          <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/system/menu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MenuController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="165" column="64" selection-start-line="165" selection-start-column="22" selection-end-line="165" selection-end-column="64" />
+          <folding>
+            <element signature="e#2910#4266#0#PHP" expanded="false" />
+            <element signature="e#4272#4829#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/custom_js/contact_types/contact.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
+        <state relative-caret-position="144">
           <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
           <folding />
         </state>
@@ -1175,7 +1278,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/my_js/system/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
+        <state relative-caret-position="18">
           <caret line="96" column="12" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="69" />
           <folding>
             <element signature="e#1514#2557#0" expanded="false" />
@@ -1184,11 +1287,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RoutesController.php">
+    <entry file="file://$PROJECT_DIR$/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="-3">
+          <caret line="97" column="20" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="20" />
+=======
         <state relative-caret-position="1380">
           <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
 >>>>>>> 70012d74a3372faccec962127c35f8c5f050d46a
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
           <folding />
         </state>
       </provider>
@@ -1220,13 +1328,15 @@
 =======
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
+        <state relative-caret-position="429">
           <caret line="69" column="25" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
           <folding />
 >>>>>>> 70012d74a3372faccec962127c35f8c5f050d46a
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MenuController.php">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -1392,5 +1502,6 @@
         </state>
       </provider>
     </entry>
+>>>>>>> df384ad244310ae948c17e5def50d9c592173d2e
   </component>
 </project>
