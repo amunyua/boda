@@ -23,6 +23,7 @@ return array(
     'CreateRoleRoutes' => $baseDir . '/database/migrations/2016_10_31_120036_create_role_routes.php',
     'CreateRolesTable' => $baseDir . '/database/migrations/2016_09_27_114253_create_roles_table.php',
     'CreateRoutesTable' => $baseDir . '/database/migrations/2016_10_07_082544_create_routes_table.php',
+    'CreateSkinsTable' => $baseDir . '/database/migrations/2016_11_01_193801_create_skins_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

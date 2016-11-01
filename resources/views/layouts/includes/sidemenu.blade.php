@@ -93,3 +93,17 @@
 			</span>
 
 </aside>
+
+@push('js')
+    <script>
+        $.ajax({
+            url: 'get-theme',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                $('body').removeAttr('class').addClass(data.theme);
+                $('input[value="'+data.theme+'"').attr('checked', 'checked');
+            }
+        });
+    </script>
+@endpush
