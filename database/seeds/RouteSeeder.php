@@ -183,7 +183,7 @@ class RouteSeeder extends Seeder
 
         #### service children
         $daily = new Route();
-        $daily->route_name = 'Daily Summary Reports';
+        $daily->route_name = 'Daily Summary Report';
         $daily->url = 'daily_summary_report';
         $daily->parent_route = $reports_id;
         $daily->save();
@@ -202,5 +202,69 @@ class RouteSeeder extends Seeder
         $monthly->parent_route = $reports_id;
         $monthly->save();
         $monthly->roles()->attach($admin);
+
+        #### system
+        $system = new Route();
+        $system->route_name = 'System';
+        $system->save();
+        $system_id = $system->id;
+
+        #### system children
+        $routes = new Route();
+        $routes->route_name = 'System Routes';
+        $routes->url = 'routes';
+        $routes->parent_route = $system_id;
+        $routes->save();
+        $routes->roles()->attach($admin);
+
+        $menu = new Route();
+        $menu->route_name = 'System Menu';
+        $menu->url = 'menu';
+        $menu->parent_route = $system_id;
+        $menu->save();
+        $menu->roles()->attach($admin);
+
+        $system_config = new Route();
+        $system_config->route_name = 'System Config';
+        $system_config->url = 'system_config';
+        $system_config->parent_route = $system_id;
+        $system_config->save();
+        $system_config->roles()->attach($admin);
+
+        $backup = new Route();
+        $backup->route_name = 'Backup';
+        $backup->url = 'backup';
+        $backup->parent_route = $system_id;
+        $backup->save();
+        $backup->roles()->attach($admin);
+
+        #### user management
+        $user_mngt = new Route();
+        $user_mngt->route_name = 'User Management';
+        $user_mngt->save();
+        $user_mngt_id = $user_mngt->id;
+
+        #### user management children
+        $all_user = new Route();
+        $all_user->route_name = 'All Users';
+        $all_user->url = 'routes';
+        $all_user->parent_route = $user_mngt_id;
+        $all_user->save();
+        $all_user->roles()->attach($admin);
+
+        $roles = new Route();
+        $roles->route_name = 'User Roles';
+        $roles->url = 'roles';
+        $roles->parent_route = $user_mngt_id;
+        $roles->save();
+        $roles->roles()->attach($admin);
+
+        $audit_trail = new Route();
+        $audit_trail->route_name = 'Audit Trail';
+        $audit_trail->url = 'audit_trail';
+        $audit_trail->parent_route = $user_mngt_id;
+        $audit_trail->save();
+        $audit_trail->roles()->attach($admin);
+
     }
 }
