@@ -15,6 +15,13 @@ return array(
     'AddSequenceColumn' => $baseDir . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
     'ContactTypeSeeder' => $baseDir . '/database/seeds/ContactTypeSeeder.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
+<<<<<<< HEAD
+    'CreateAuditTrailsTable' => $baseDir . '/database/migrations/2016_11_01_180922_create_audit_trails_table.php',
+    'CreateCategoriesTable' => $baseDir . '/database/migrations/2016_10_13_180726_create_categories_table.php',
+    'CreateClassTable' => $baseDir . '/database/migrations/2016_09_29_160151_create_class_table.php',
+    'CreateContactTypesTable' => $baseDir . '/database/migrations/2016_09_27_162746_create_contact_types_table.php',
+=======
+>>>>>>> 2729e00a53a03e5474784fcc61cc99cff0b046ed
     'CreateContactsTable' => $baseDir . '/database/migrations/2016_09_27_114536_create_contacts_table.php',
     'CreateIconSeeder' => $baseDir . '/database/migrations/2016_10_31_114315_create_icon_seeder.php',
     'CreateMasterfileTable' => $baseDir . '/database/migrations/2016_11_01_092857_create_masterfile_table.php',
@@ -23,7 +30,17 @@ return array(
     'CreateRoleRoutes' => $baseDir . '/database/migrations/2016_10_31_120036_create_role_routes.php',
     'CreateRolesTable' => $baseDir . '/database/migrations/2016_09_27_114253_create_roles_table.php',
     'CreateRoutesTable' => $baseDir . '/database/migrations/2016_10_07_082544_create_routes_table.php',
+<<<<<<< HEAD
+    'CreateSchoolsTable' => $baseDir . '/database/migrations/2016_09_27_114609_create_schools_table.php',
+    'CreateStreamsTable' => $baseDir . '/database/migrations/2016_09_27_154742_create_streams_table.php',
+    'CreateStudentsTable' => $baseDir . '/database/migrations/2016_09_27_114315_create_students_table.php',
+    'CreateSubjectsTable' => $baseDir . '/database/migrations/2016_09_29_083707_create_subjects_table.php',
+    'CreateSubordinateStaffsTable' => $baseDir . '/database/migrations/2016_09_28_194934_create_subordinate_staffs_table.php',
+    'CreateTeachersTable' => $baseDir . '/database/migrations/2016_09_27_114332_create_teachers_table.php',
+    'CreateUserRolesTable' => $baseDir . '/database/migrations/2016_11_01_154740_create_user_roles_table.php',
+=======
     'CreateSkinsTable' => $baseDir . '/database/migrations/2016_11_01_193801_create_skins_table.php',
+>>>>>>> 2729e00a53a03e5474784fcc61cc99cff0b046ed
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -154,6 +171,7 @@ return array(
     'PHPUnit_Framework_Constraint_ClassHasStaticAttribute' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/ClassHasStaticAttribute.php',
     'PHPUnit_Framework_Constraint_Composite' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/Composite.php',
     'PHPUnit_Framework_Constraint_Count' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/Count.php',
+    'PHPUnit_Framework_Constraint_DirectoryExists' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/DirectoryExists.php',
     'PHPUnit_Framework_Constraint_Exception' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/Exception.php',
     'PHPUnit_Framework_Constraint_ExceptionCode' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/ExceptionCode.php',
     'PHPUnit_Framework_Constraint_ExceptionMessage' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/ExceptionMessage.php',
@@ -171,8 +189,10 @@ return array(
     'PHPUnit_Framework_Constraint_IsJson' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/IsJson.php',
     'PHPUnit_Framework_Constraint_IsNan' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/IsNan.php',
     'PHPUnit_Framework_Constraint_IsNull' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/IsNull.php',
+    'PHPUnit_Framework_Constraint_IsReadable' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/IsReadable.php',
     'PHPUnit_Framework_Constraint_IsTrue' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/IsTrue.php',
     'PHPUnit_Framework_Constraint_IsType' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/IsType.php',
+    'PHPUnit_Framework_Constraint_IsWritable' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/IsWritable.php',
     'PHPUnit_Framework_Constraint_JsonMatches' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/JsonMatches.php',
     'PHPUnit_Framework_Constraint_JsonMatches_ErrorMessageProvider' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/JsonMatches/ErrorMessageProvider.php',
     'PHPUnit_Framework_Constraint_LessThan' => $vendorDir . '/phpunit/phpunit/src/Framework/Constraint/LessThan.php',

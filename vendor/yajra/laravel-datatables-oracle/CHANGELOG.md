@@ -8,6 +8,19 @@
 
 ##Change Log
 
+### v6.21.1 - 2016-10-25
+- Do not convert column to raw statement. Thanks to Nick Howell for pointing the issue.
+
+### v6.21.0 - 2016-10-22
+- Support to morphToMany. PR #804, credits to @pcastrotigre
+- Update fractal to ~0.14. Credits to @tyloo
+- Refactor HasOneOrMany as suggested in #733
+- Fix CS.
+
+### v6.20.0 - 2016-10-13
+- Support of using soft deletes trait in models.
+- PR #786, credits to @DDiimmkkaass.
+
 ### v6.19.0 - 2016-09-24
 - Support regex column searches when using CollectionEngine.
 - PR #765, credits to @cadenzajon.

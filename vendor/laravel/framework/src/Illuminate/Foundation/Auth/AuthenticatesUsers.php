@@ -17,7 +17,7 @@ trait AuthenticatesUsers
      */
     public function showLoginForm()
     {
-        return view('login.index');
+        return view('auth.login');
     }
 
     /**
@@ -109,7 +109,7 @@ trait AuthenticatesUsers
      * Get the failed login response instance.
      *
      * @param \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     protected function sendFailedLoginResponse(Request $request)
     {
