@@ -372,18 +372,4 @@ class Writer implements LogContract, PsrLoggerInterface
     {
         $this->dispatcher = $dispatcher;
     }
-
-    public function logAction($case_name){
-        $user = Auth::user();
-        $action = new AuditTrail();
-        $action->action_name = $case_name;
-        $action->session_id = $user->remember_token;
-        $action->user_name = $user->name;
-        $action->user_id = $user->id;
-        if($action->save()){
-            return true;
-        }else{
-            return false;
-        }
-    }
 }

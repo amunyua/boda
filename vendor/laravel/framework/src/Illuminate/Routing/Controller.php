@@ -3,9 +3,7 @@
 namespace Illuminate\Routing;
 
 use BadMethodCallException;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use App\AuditTrail;
 
 abstract class Controller
 {
@@ -82,20 +80,5 @@ abstract class Controller
     public function __call($method, $parameters)
     {
         throw new BadMethodCallException("Method [{$method}] does not exist.");
-    }
-
-    public function logAction($case_name){
-        date_default_timezone_set('Africa/Nairobi');
-        $user = Auth::user();
-        $action = new AuditTrail();
-        $action->action_name = $case_name;
-        $action->session_id = $user->remember_token;
-        $action->user_name = $user->name;
-        $action->user_id = $user->id;
-        if($action->save()){
-            return true;
-        }else{
-            return false;
-        }
     }
 }
