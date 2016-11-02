@@ -74,3 +74,12 @@ Route::post('/remove-menu', 'MenuController@destroy');
 
 Route::get('/categories','CategoryController@index');
 Route::post('/add-category','CategoryController@storeCategory');
+
+#####Database Backups
+Route::get('/backups','DatabaseBackup@index');
+
+##### User manager
+Route::get('/user_roles','UserManagerController@getIndex');
+Route::post('/add-user-role','UserManagerController@storeRole');
+Route::delete('/delete-user-role/{id}','UserManagerController@destroyRole');
+Route::get('/audit_trails','UserManagerController@auditTrails');
