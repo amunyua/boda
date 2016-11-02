@@ -14,8 +14,9 @@
 
      <div class="col-lg-offset-3">
          <br>
-         <button class="btn btn-success btn-block">Create database backup</button>
+         <a class="btn btn-success btn-block" href="{{ url('make-backup') }}">Create database backup</a>
          kjlaesjfioojvgfejvjjsjviosajojjioajkj
+
      </div>
  </div>
 @endsection

@@ -31,4 +31,9 @@ class DatabaseBackup extends Controller
         )->twiceDaily(13,21);
     }
 
+    public function runBackup(){
+        $backup = $this->manager->makeBackup();
+        print_r($backup);
+    }
+
 }

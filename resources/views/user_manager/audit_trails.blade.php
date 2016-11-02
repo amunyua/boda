@@ -12,7 +12,7 @@
 @section('content')
     @include('layouts.includes._messages')
 
-    <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+    <table id="dt_basic" class="table table-striped table-bordered table-hover audit-trails" width="100%">
         <thead>
         <tr>
             <th>ID</th>
@@ -23,17 +23,21 @@
         </tr>
         </thead>
         <tbody>
-            @if(count($audit_trails))
-                @foreach($audit_trails as $audit_trail)
-                    <tr>
-                        <td>{{ $audit_trail->id }}</td>
-                        <td>{{ $audit_trail->action_name }}</td>
-                        <td>{{ $audit_trail->created_at }}</td>
-                        <td>{{ $audit_trail->session_id }}</td>
-                        <td>{{ $audit_trail->user_name }}</td>
-                    </tr>
-                @endforeach
-                @endif
+            {{--@if(count($audit_trails))--}}
+                {{--@foreach($audit_trails as $audit_trail)--}}
+                    {{--<tr>--}}
+                        {{--<td>{{ $audit_trail->id }}</td>--}}
+                        {{--<td>{{ $audit_trail->action_name }}</td>--}}
+                        {{--<td>{{ $audit_trail->created_at }}</td>--}}
+                        {{--<td>{{ $audit_trail->session_id }}</td>--}}
+                        {{--<td>{{ $audit_trail->user_name }}</td>--}}
+                    {{--</tr>--}}
+                {{--@endforeach--}}
+                {{--@endif--}}
         </tbody>
     </table>
 @endsection
+
+@push('js')
+<script src="{{ URL::asset('custom_js/user_manager/audit-trails.js') }}"></script>
+@endpush

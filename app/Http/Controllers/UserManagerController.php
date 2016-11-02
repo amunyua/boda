@@ -6,6 +6,7 @@ use App\AuditTrail;
 use App\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Yajra\Datatables\Facades\Datatables;
 
 class UserManagerController extends Controller
 {
@@ -44,7 +45,12 @@ class UserManagerController extends Controller
     }
 
     public function auditTrails(){
-        $audit_trails = AuditTrail::all();
-        return view('user_manager.audit_trails')->withAudit_trails($audit_trails);
+//        $audit_trails = AuditTrail::all();
+        return view('user_manager.audit_trails');
     }
+    public function ajaxAuditTrails(){
+//        $audit_trails = AuditTrail::all();
+        return Datatables::of(AuditTrail::all()->make(true));
+    }
+
 }
