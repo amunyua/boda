@@ -7,7 +7,7 @@ return [
     ],
     'public' => [
         'driver' => 'local',
-        'root' => storage_path('app/public/db_backups'),
+        'root' => storage_path('app/public/db_backups/'),
         'visibility' => 'public',
     ],
     's3' => [

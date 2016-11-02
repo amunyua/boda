@@ -2,11 +2,8 @@
 
 namespace Illuminate\Http;
 
-use App\AuditTrail;
-use App\User;
 use Closure;
 use ArrayAccess;
-use Illuminate\Support\Facades\Auth;
 use SplFileInfo;
 use RuntimeException;
 use Illuminate\Support\Arr;
@@ -1088,18 +1085,4 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
 
         return $this->route($key);
     }
-
-//    public function logAction($case_name){
-//        $user = Auth::user();
-//        $action = new AuditTrail();
-//        $action->action_name = $case_name;
-//        $action->session_id = $user->remember_token;
-//        $action->user_name = $user->name;
-//        $action->user_id = $user->id;
-//        if($action->save()){
-//            return true;
-//        }else{
-//            return false;
-//        }
-//    }
 }
