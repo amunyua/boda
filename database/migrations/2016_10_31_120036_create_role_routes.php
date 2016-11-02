@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGuardiansTable extends Migration
+class CreateRoleRoutes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,18 @@ class CreateGuardiansTable extends Migration
      */
     public function up()
     {
-        Schema::create('guardians', function (Blueprint $table) {
+        Schema::create('role_route', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('masterfile_id')->unsigned();
-            $table->foreign('masterfile_id')
+            $table->integer('role_id')->unsigned();
+            $table->integer('route_id')->unsigned();
+            $table->foreign('role_id')
                 ->references('id')
-                ->on('masterfiles')
+                ->on('roles')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('route_id')
+                ->references('id')
+                ->on('routes')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->timestamps();
@@ -32,6 +38,6 @@ class CreateGuardiansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guardians');
+        Schema::dropIfExists('role_route');
     }
 }

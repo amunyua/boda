@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMasterfilesTable extends Migration
+class CreateMasterfileTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,16 +15,14 @@ class CreateMasterfilesTable extends Migration
     {
         Schema::create('masterfiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sir_name',20);
-            $table->string('first_name',20);
-            $table->string('middle_name');
-            $table->date('dob');
-            $table->string('gender');
-            $table->string('id_no', 255);
-            $table->integer('role_id')->unsigned();
-            $table->integer('school_id')->unsigned();
+            $table->string('surname');
+            $table->string('firstname');
+            $table->string('middlename');
+            $table->text('image_path')->nullable();
+            $table->string('id_no');
+            $table->date('registration_date');
+            $table->string('b_role', 50);
             $table->timestamps();
-
         });
     }
 
@@ -35,6 +33,6 @@ class CreateMasterfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('masterfiles');
+        Schema::dropIfExists('masterfile');
     }
 }

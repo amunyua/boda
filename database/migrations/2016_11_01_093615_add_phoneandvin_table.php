@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStudentsTable extends Migration
+class AddPhoneandvinTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,15 @@ class CreateStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('phone_no');
+            $table->string('vin')->nullable();
             $table->integer('masterfile_id')->unsigned();
-            $table->integer('form_id')->unsigned();
-            $table->integer('stream_id')->unsigned();
-            $table->integer('guardian_mf_id')->unsigned();
             $table->foreign('masterfile_id')
                 ->references('id')
                 ->on('masterfiles')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreign('guardian_mf_id')
-                ->references('id')
-                ->on('masterfiles')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
@@ -40,6 +32,8 @@ class CreateStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }

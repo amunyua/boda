@@ -1,15 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
     <meta charset="utf-8">
-    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-
-    <title> @yield('title') </title>
+    <title> @yield('title') | Boda Squared</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+    <!-- #CSS Links -->
     <!-- Basic Styles -->
     <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::asset('css/font-awesome.min.css') }}">
@@ -29,14 +29,15 @@
     <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
     <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::asset('css/demo.min.css') }}">
 
-    <!-- FAVICONS -->
+    <!-- #FAVICONS -->
     <link rel="shortcut icon" href="{{ URL::asset('img/favicon/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ URL::asset('img/favicon/favicon.ico') }}" type="image/x-icon">
 
-    <!-- GOOGLE FONT -->
+    <!-- #GOOGLE FONT -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 
-    <!-- Specifying a Webpage Icon for Web Clip 
+    <!-- #APP SCREEN / ICONS -->
+    <!-- Specifying a Webpage Icon for Web Clip
          Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
     <link rel="apple-touch-icon" href="{{ URL::asset('img/splash/sptouch-icon-iphone.png') }}">
     <link rel="apple-touch-icon" sizes="76x76" href="{{ URL::asset('img/splash/touch-icon-ipad.png') }}">
@@ -51,7 +52,7 @@
     <link rel="apple-touch-startup-image" href="{{ URL::asset('img/splash/ipad-landscape.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     <link rel="apple-touch-startup-image" href="{{ URL::asset('img/splash/ipad-portrait.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="{{ URL::asset('img/splash/iphone.png') }}" media="screen and (max-device-width: 320px)">
-@stack('css')
+    @stack('css')
 </head>
 
 <!--
@@ -73,12 +74,11 @@ Use search to find needed section.
 |  09. #MOBILE                   |  mobile view dropdown          |
 |  10. #SEARCH                   |  search field                  |
 |  11. #NAVIGATION               |  left panel & navigation       |
-|  12. #RIGHT PANEL              |  right panel userlist          |
-|  13. #MAIN PANEL               |  main panel                    |
-|  14. #MAIN CONTENT             |  content holder                |
-|  15. #PAGE FOOTER              |  page footer                   |
-|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
-|  17. #PLUGINS                  |  all scripts and plugins       |
+|  12. #MAIN PANEL               |  main panel                    |
+|  13. #MAIN CONTENT             |  content holder                |
+|  14. #PAGE FOOTER              |  page footer                   |
+|  15. #SHORTCUT AREA            |  dropdown shortcuts area       |
+|  16. #PLUGINS                  |  all scripts and plugins       |
 
 ===================================================================
 
@@ -98,12 +98,13 @@ Use search to find needed section.
     * 'fixed-page-footer' - Fixes footer
     * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 -->
-<body class="smart-style-1">
+<body class="">
 
-<!-- HEADER -->
+<!-- #HEADER -->
 @include('layouts.includes.header')
 <!-- END HEADER -->
 
+<!-- #NAVIGATION -->
 <!-- Left panel : Navigation area -->
 <!-- Note: This width of the aside area can be adjusted through LESS variables -->
 @include('layouts.includes.sidemenu')
@@ -115,10 +116,10 @@ Use search to find needed section.
     <!-- RIBBON -->
     <div id="ribbon">
 
-				<span class="ribbon-button-alignment"> 
+				<span class="ribbon-button-alignment">
 					<span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
 						<i class="fa fa-refresh"></i>
-					</span> 
+					</span>
 				</span>
 
         <!-- breadcrumb -->
@@ -141,92 +142,43 @@ Use search to find needed section.
     </div>
     <!-- END RIBBON -->
 
+
+
     <!-- MAIN CONTENT -->
     <div id="content">
 
+        <!-- row -->
         <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1 class="page-title txt-color-blueDark">
-                    @yield('widget-title')
-                    <span>@yield('widget-desc')</span>
+
+            <!-- col -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1 class="page-title txt-color-blueDark text-center well">
+
+                    <!-- PAGE HEADER -->
+                    Theme Configurator<br>
+                    <small class="text-primary">Don't like the default theme of the system? Not a problem! here are 6 prebuilt skins you can switch to.</small>
                 </h1>
+
             </div>
-            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-                <ul id="sparks" class="">
-{{--                    @include('layouts.includes.sparks')--}}
-                </ul>
-            </div>
+            <!-- end col -->
+
         </div>
+        <!-- end row -->
+
+        <!--
+            The ID "widget-grid" will start to initialize all widgets below
+            You do not need to use widgets if you dont want to. Simply remove
+            the <section></section> and you can use wells or panels instead
+            -->
 
         <!-- widget grid -->
         <section id="widget-grid" class="">
 
-            <!-- row -->
-            <div class="row">
-
-                <!-- NEW WIDGET START -->
-                <article class="col-sm-12">
-
-                    <!-- Widget ID (each widget will need unique ID)-->
-                    <div class="jarviswidget well" id="wid-id-0">
-                        <!-- widget options:
-                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-        
-                        data-widget-colorbutton="false"
-                        data-widget-editbutton="false"
-                        data-widget-togglebutton="false"
-                        data-widget-deletebutton="false"
-                        data-widget-fullscreenbutton="false"
-                        data-widget-custombutton="false"
-                        data-widget-collapsed="true"
-                        data-widget-sortable="false"
-        
-                        -->
-                        <header>
-                            <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-                            <h2>My Data </h2>
-
-                        </header>
-
-                        <!-- widget div-->
-                        <div>
-
-                            <!-- widget edit box -->
-                            <div class="jarviswidget-editbox">
-                                <!-- This area used as dropdown edit box -->
-
-                            </div>
-                            <!-- end widget edit box -->
-
-                            <!-- widget content -->
-                            <div class="widget-body">
-
-                                @yield('content')
-
-                            </div>
-                            <!-- end widget content -->
-
-                        </div>
-                        <!-- end widget div -->
-
-                    </div>
-                    <!-- end widget -->
-
-                </article>
-                <!-- WIDGET END -->
-
-            </div>
-
-            <!-- end row -->
-
-            <!-- row -->
-
-            @yield('output')
-
-            <!-- end row -->
+            @yield('content')
 
         </section>
         <!-- end widget grid -->
+
 
     </div>
     <!-- END MAIN CONTENT -->
@@ -324,55 +276,63 @@ you can add as many as you like
 <script src="js/smart-chat-ui/smart.chat.ui.min.js"></script>
 <script src="js/smart-chat-ui/smart.chat.manager.min.js"></script>
 
-<!-- PAGE RELATED PLUGIN(S) -->
-<script src="js/plugin/jquery-nestable/jquery.nestable.min.js"></script>
-
+<!-- PAGE RELATED PLUGIN(S)
+<script src="..."></script>-->
 
 <script type="text/javascript">
 
-    // DO NOT REMOVE : GLOBAL FUNCTIONS!
-
     $(document).ready(function() {
+
+        /* DO NOT REMOVE : GLOBAL FUNCTIONS!
+         *
+         * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+         *
+         * // activate tooltips
+         * $("[rel=tooltip]").tooltip();
+         *
+         * // activate popovers
+         * $("[rel=popover]").popover();
+         *
+         * // activate popovers with hover states
+         * $("[rel=popover-hover]").popover({ trigger: "hover" });
+         *
+         * // activate inline charts
+         * runAllCharts();
+         *
+         * // setup widgets
+         * setup_widgets_desktop();
+         *
+         * // run form elements
+         * runAllForms();
+         *
+         ********************************
+         *
+         * pageSetUp() is needed whenever you load a page.
+         * It initializes and checks for all basic elements of the page
+         * and makes rendering easier.
+         *
+         */
 
         pageSetUp();
 
-        // PAGE RELATED SCRIPTS
-
-        var updateOutput = function(e) {
-            var list = e.length ? e : $(e.target), output = list.data('output');
-            if (window.JSON) {
-                output.val(window.JSON.stringify(list.nestable('serialize')));
-                //, null, 2));
-            } else {
-                output.val('JSON browser support required for this demo.');
-            }
-        };
-
-        // activate Nestable for list 1
-//        $('#nestable').nestable({
-//            group : 1
-//        }).on('change', updateOutput);
-
-        // activate Nestable for list 2
-        $('#nestable3').nestable({
-            group : 1
-        }).on('change', updateOutput);
-
-        // output initial serialised data
-//        updateOutput($('#nestable').data('output', $('#nestable-output')));
-        updateOutput($('#nestable3').data('output', $('#nestable2-output')));
-
-        $('#nestable-menu').on('click', function(e) {
-            var target = $(e.target), action = target.data('action');
-            if (action === 'expand-all') {
-                $('.dd').nestable('expandAll');
-            }
-            if (action === 'collapse-all') {
-                $('.dd').nestable('collapseAll');
-            }
-        });
-
-        $('#nestable3').nestable();
+        /*
+         * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
+         * eg alert("my home function");
+         *
+         * var pagefunction = function() {
+         *   ...
+         * }
+         * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
+         *
+         * TO LOAD A SCRIPT:
+         * var pagefunction = function (){
+         *  loadScript(".../plugin.js", run_after_loaded);
+         * }
+         *
+         * OR
+         *
+         * loadScript(".../plugin.js", run_after_loaded);
+         */
 
     })
 
@@ -393,13 +353,6 @@ you can add as many as you like
         s.parentNode.insertBefore(ga, s);
     })();
 
-</script>
-
-{{--select2--}}
-<script>
-    $(document).ready(function(){
-        $('.live_search').select2();
-    });
 </script>
 @stack('js')
 </body>

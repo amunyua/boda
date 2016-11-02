@@ -13,27 +13,9 @@ class RolesSeeder extends Seeder
     public function run()
     {
         $student = new Role();
-        $student->role_name = 'Student';
-        $student->role_code = 'STUDENT';
+        $student->role_name = 'System Admin';
+        $student->role_code = 'SYS_ADMIN';
         $student->role_status = 1;
         $student->save();
-
-        $teacher = new Role();
-        $teacher->role_name = 'Teacher';
-        $teacher->role_code = 'TEACHER';
-        $teacher->role_status = 1;
-        $teacher->save();
-
-        $guardian = new Role();
-        $guardian->role_name = 'Guardian';
-        $guardian->role_code = 'GUARDIAN';
-        $guardian->role_status = 1;
-        $guardian->save();
-
-        $guardian = new Role();
-        $guardian->role_name = 'Subordinate Staff';
-        $guardian->role_code = 'SS';
-        $guardian->role_status = 1;
-        $guardian->save();
     }
 }

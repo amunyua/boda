@@ -53,7 +53,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-
 // System Manager
 Route::get('/routes', 'RoutesController@index');
 Route::post('/add-route', 'RoutesController@store');
@@ -68,6 +67,9 @@ Route::post('/arrange-menu', 'MenuController@arrangeMenu');
 Route::post('/edit-menu', 'MenuController@update');
 Route::get('/get-menu/{id}', 'MenuController@getMenuItem');
 Route::post('/remove-menu', 'MenuController@destroy');
+Route::get('/theme-config', 'ThemeController@index');
+Route::get('/theme-select/{theme}', 'ThemeController@saveSkin');
+Route::get('/get-theme', 'ThemeController@getTheme');
 
 #### inventory module
 // category

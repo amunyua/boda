@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
+<<<<<<< HEAD
     <data-source name="MySQL - ride@localhost" uuid="b254c369-c9ca-4713-bfd3-98b449ee3011">
       <database-info product="MySQL" version="5.7.16-0ubuntu0.16.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+=======
+    <data-source name="MySQL - ride@localhost" uuid="98e0822a-ff0c-4218-a783-b6161e0154a0">
+      <database-info product="MySQL" version="5.7.13-0ubuntu0.16.04.2" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+>>>>>>> 2729e00a53a03e5474784fcc61cc99cff0b046ed
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
-      <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
+<<<<<<< HEAD
       <resolve-scope>ride:</resolve-scope>
+=======
+>>>>>>> 2729e00a53a03e5474784fcc61cc99cff0b046ed
     </data-source>
   </component>
 </project>

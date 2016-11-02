@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStreamsTable extends Migration
+class CreateSkinsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateStreamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('streams', function (Blueprint $table) {
+        Schema::create('skins', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('stream_name');
-            $table->string('stream_code');
-            $table->boolean('stream_status')->default(1);
+            $table->string('theme');
+            $table->integer('done_by')->unsigned();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateStreamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('streams');
+        Schema::dropIfExists('skins');
     }
 }

@@ -98,7 +98,7 @@ Use search to find needed section.
     * 'fixed-page-footer' - Fixes footer
     * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 -->
-<body class="smart-style-5">
+<body class="smart-style-1">
 
 <!-- HEADER -->
 @include('layouts.includes.header')
