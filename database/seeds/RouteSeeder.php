@@ -254,7 +254,7 @@ class RouteSeeder extends Seeder
 
         $roles = new Route();
         $roles->route_name = 'User Roles';
-        $roles->url = 'roles';
+        $roles->url = 'user_roles';
         $roles->parent_route = $user_mngt_id;
         $roles->save();
         $roles->roles()->attach($admin);

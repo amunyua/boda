@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
-use App\ContactType;
+use App\ContactTypes;
+use App\County;
 use App\Masterfile;
 use App\Role;
 use App\Form;
@@ -16,10 +17,6 @@ use Illuminate\Support\Facades\Input;
 
 class MasterfileController extends Controller
 {
-    const student = 'STUDENT';
-    const teacher = 'TEACHER';
-    const guardian = 'GUARDIAN';
-    const ss = 'SS';
 
     public function __construct(){
         $this->middleware('auth');
@@ -27,15 +24,15 @@ class MasterfileController extends Controller
 
     public function index(){
         $roles = Role::all();
-        $main_ctype = ContactType::where('contact_type_code', 'MAIN')->first();
-        $forms = Form::where('class_status', 1)->get();
-        $streams = Stream::where('stream_status', 1)->get();
+        $main_ctype = ContactTypes::where('contact_type_code', 'MAIN')->first();
+        $counties = County::all();
+//        $streams = Stream::where('stream_status', 1)->get();
 
-        return view('masterfile.index', array(
+        return view('registration.index', array(
             'roles' => $roles,
             'main_ctype' => $main_ctype,
-            'forms' => $forms,
-            'streams' => $streams
+            'counties' => $counties,
+//            'streams' => $streams
         ));
     }
 
@@ -43,62 +40,103 @@ class MasterfileController extends Controller
         $rules = array(
             'role' => 'required',
             'id_no' => 'required',
-            'fname' => 'required',
+            'firstname' => 'required',
             'surname' => 'required',
             'gender' => 'required',
-            'dob' => ($request->role == self::student) ? 'required' : '',
-            'physical_address' => 'required'
+            'regdate' => 'required'
         );
         $this->validate($request, $rules);
 
         DB::transaction(function(){
             $role = Role::where('role_code', Input::get('role_code'))->first();
 
-            // create masterfile
-            $mf = Masterfile::create(array(
+            // create registration
+            $reg = Masterfile::create(array(
                 'surname' => Input::get('surname'),
-                'first_name' => Input::get('fname'),
-                'middle_name' => Input::get('mname'),
-                'dob' => Input::get('dob'),
+                'first_name' => Input::get('firstname'),
+                'middle_name' => Input::get('middlename'),
+                'regdate' => Input::get('regdate'),
                 'gender' => Input::get('gender'),
                 'id_no' => Input::get('id_no'),
-                'role_id' => 1
+                'b_role' => 'Staff',
+                'user_role' => 1
             ));
-            $mf->save();
-            $mf_id = $mf->id;
+            $reg->save();
+            $reg_id = $reg->id;
 
             // create contact
             $contact = Contact::create(array(
                 'postal_address' => Input::get('postal_address'),
                 'physical_address' => Input::get('physical_address'),
-                'masterfile_id' => $mf_id,
+                'masterfile_id' => $reg_id,
                 'telephone_no' => Input::get('tel_no'),
                 'email' => Input::get('email'),
                 'mobile_no' => Input::get('mobile_no')
             ));
             $contact->save();
 
-            switch (Input::get('role')){
-                case self::student:
-                    // create student file
+            // create user login account
+            $password = sha1(123456);
+            $login = User::create(array (
+                'masterfile_id' => $reg_id,
+                'email' => Input::get('email'),
+                'phone_no' => Input::get('phone_no'),
+                'password' => $password
+            ));
+            var_dump($login);exit;
+            $login->save();
+        });
+    }
 
-                    break;
+    public function client(Request $request){
+        $rules = array(
+            'role' => 'required',
+            'id_no' => 'required',
+            'firstname' => 'required',
+            'surname' => 'required',
+            'gender' => 'required',
+            'regdate' => 'required'
+        );
+        $this->validate($request, $rules);
 
-                case self::guardian:
-                    // create guardian file
+        DB::transaction(function(){
+            $role = Role::where('role_code', Input::get('role_code'))->first();
 
-                    break;
+            // create registration
+            $reg = Masterfile::create(array(
+                'surname' => Input::get('surname'),
+                'first_name' => Input::get('firstname'),
+                'middle_name' => Input::get('middlename'),
+                'regdate' => Input::get('regdate'),
+                'gender' => Input::get('gender'),
+                'id_no' => Input::get('id_no'),
+                'b_role' => 'Staff',
+                'user_role' => 1
+            ));
+            $reg->save();
+            $reg_id = $reg->id;
 
-                case self::teacher:
-                    // create teacher file
+            // create contact
+            $contact = Contact::create(array(
+                'postal_address' => Input::get('postal_address'),
+                'physical_address' => Input::get('physical_address'),
+                'masterfile_id' => $reg_id,
+                'telephone_no' => Input::get('tel_no'),
+                'email' => Input::get('email'),
+                'mobile_no' => Input::get('mobile_no')
+            ));
+            $contact->save();
 
-                    break;
-
-                case self::ss:
-                    // create subordinate staff file
-
-                    break;
-            }
+            // create user login account
+            $password = sha1(123456);
+            $login = User::create(array (
+                'masterfile_id' => $reg_id,
+                'email' => Input::get('email'),
+                'phone_no' => Input::get('phone_no'),
+                'password' => $password
+            ));
+            var_dump($login);exit;
+            $login->save();
         });
     }
 }

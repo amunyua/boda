@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\ContactType;
+use App\ContactTypes;
 
 class ContactTypeSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class ContactTypeSeeder extends Seeder
      */
     public function run()
     {
-        $main = new ContactType();
+        $main = new ContactTypes();
         $main->contact_type_name = 'Main';
         $main->contact_type_code = 'MAIN';
         $main->contact_type_status = 1;

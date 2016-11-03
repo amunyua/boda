@@ -1,7 +1,7 @@
 <div class="page-footer">
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <span class="txt-color-white">laravel <span class="hidden-xs"> - Learn laravel</span> © {{ date('Y') }}</span>
+            <span class="txt-color-white">Boda Squared <span class="hidden-xs"> - Terms and Condition</span> © {{ date('Y') }}</span>
         </div>
 
         <div class="col-xs-6 col-sm-6 text-right hidden-xs">

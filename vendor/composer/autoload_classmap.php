@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddCountyStatusToCountiesTable' => $baseDir . '/database/migrations/2016_11_03_061623_add_county_status_to_counties_table.php',
     'AddFaIconsTable' => $baseDir . '/database/migrations/2016_10_12_085709_add_fa_icons_table.php',
     'AddFaiconColumn' => $baseDir . '/database/migrations/2016_10_12_093918_add_faicon_column.php',
     'AddFksMenu' => $baseDir . '/database/migrations/2016_10_12_163211_add_fks_menu.php',
@@ -14,8 +15,11 @@ return array(
     'AddRouteStatus' => $baseDir . '/database/migrations/2016_11_01_094610_add_route_status.php',
     'AddSequenceColumn' => $baseDir . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
     'ContactTypeSeeder' => $baseDir . '/database/seeds/ContactTypeSeeder.php',
+    'CountyTableSeeder' => $baseDir . '/database/seeds/CountyTableSeeder.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
+    'CreateContactTypesTable' => $baseDir . '/database/migrations/2016_11_02_194657_create_contact_types_table.php',
     'CreateContactsTable' => $baseDir . '/database/migrations/2016_09_27_114536_create_contacts_table.php',
+    'CreateCountiesTable' => $baseDir . '/database/migrations/2016_11_03_055822_create_counties_table.php',
     'CreateIconSeeder' => $baseDir . '/database/migrations/2016_10_31_114315_create_icon_seeder.php',
     'CreateMasterfileTable' => $baseDir . '/database/migrations/2016_11_01_092857_create_masterfile_table.php',
     'CreateMenusTable' => $baseDir . '/database/migrations/2016_10_09_195248_create_menus_table.php',
