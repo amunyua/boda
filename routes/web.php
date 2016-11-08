@@ -17,8 +17,9 @@ Route::get('/', 'DashboardController@index');
 Route::get('/dashboard', 'DashboardController@index');
 
 // Registration Module
-Route::get('/add-masterfile', 'MasterfileController@index');
-Route::post('/save-mf', 'MasterfileController@store');
+Route::get('/staff', 'MasterfileController@index');
+Route::post('/save-staff', 'MasterfileController@store');
+Route::get('/client', 'MasterfileController@client');
 Route::post('/update-masterfile', 'MasterfileController@update');
 Route::delete('/delete-masterfile', 'MasterfileController@destroy');
 Route::get('/all-masterfiles', 'MasterfileController@allMfs');

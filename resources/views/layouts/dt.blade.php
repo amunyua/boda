@@ -106,11 +106,10 @@
 		* 'fixed-page-footer' - Fixes footer
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
-<<<<<<< HEAD
-<body class="smart-style-0">
-=======
+
+{{--<body class="smart-style-0">--}}
+
 <body class="smart-style-1">
->>>>>>> 2729e00a53a03e5474784fcc61cc99cff0b046ed
 
 <!-- HEADER -->
 @include('layouts.includes.header')

@@ -15,9 +15,9 @@ class CreateMasterfileTable extends Migration
     {
         Schema::create('masterfiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('surname');
-            $table->string('firstname');
-            $table->string('middlename');
+            $table->string('surname', 50);
+            $table->string('firstname', 50);
+            $table->string('middlename', 50);
             $table->text('image_path')->nullable();
             $table->string('id_no');
             $table->date('registration_date');
