@@ -2,16 +2,292 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7032695e-6c89-47c7-ae7a-ead5ff2d6f19" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/50f2d572-27cb-404b-b22c-0932b3363aa5.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/50f2d572-27cb-404b-b22c-0932b3363aa5.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/storage/oauth-private.key" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/storage/oauth-public.key" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/firebase/php-jwt/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/firebase/php-jwt/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/firebase/php-jwt/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/firebase/php-jwt/composer.lock" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/firebase/php-jwt/package.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/firebase/php-jwt/src/BeforeValidException.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/firebase/php-jwt/src/ExpiredException.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/firebase/php-jwt/src/JWT.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/firebase/php-jwt/src/SignatureInvalidException.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/LICENSE.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/database/migrations/2016_06_01_000001_create_oauth_auth_codes_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/database/migrations/2016_06_01_000002_create_oauth_access_tokens_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/database/migrations/2016_06_01_000003_create_oauth_refresh_tokens_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/database/migrations/2016_06_01_000004_create_oauth_clients_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/database/migrations/2016_06_01_000005_create_oauth_personal_access_clients_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/readme.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/resources/assets/js/components/AuthorizedClients.vue" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/resources/assets/js/components/Clients.vue" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/resources/assets/js/components/PersonalAccessTokens.vue" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/resources/views/authorize.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/ApiTokenCookieFactory.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/AuthCode.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/AccessToken.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/AccessTokenRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/AuthCode.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/AuthCodeRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/Client.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/ClientRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/FormatsScopesForStorage.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/PersonalAccessGrant.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/RefreshToken.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/RefreshTokenRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/Scope.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/ScopeRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/User.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Bridge/UserRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Client.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/ClientRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Console/ClientCommand.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Console/InstallCommand.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Console/KeysCommand.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Guards/TokenGuard.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/HasApiTokens.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/AccessTokenController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/ApproveAuthorizationController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/AuthorizationController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/AuthorizedAccessTokenController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/ClientController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/DenyAuthorizationController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/HandlesOAuthErrors.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/PersonalAccessTokenController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/RetrievesAuthRequestFromSession.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/ScopeController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Controllers/TransientTokenController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Middleware/CheckClientCredentials.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Middleware/CheckForAnyScope.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Middleware/CheckScopes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Http/Middleware/CreateFreshApiToken.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Passport.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/PassportServiceProvider.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/PersonalAccessClient.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/PersonalAccessTokenFactory.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/PersonalAccessTokenResult.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/RouteRegistrar.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Scope.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/Token.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/TokenRepository.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/laravel/passport/src/TransientToken.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/.scrutinizer.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/composer.lock" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/phpunit.xml.dist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Builder.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim/Basic.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim/EqualsTo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim/Factory.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim/GreaterOrEqualsTo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim/LesserOrEqualsTo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Claim/Validatable.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Parser.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Parsing/Decoder.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Parsing/Encoder.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signature.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/BaseSigner.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Ecdsa.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Ecdsa/KeyParser.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Ecdsa/Sha256.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Ecdsa/Sha384.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Ecdsa/Sha512.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Hmac.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Hmac/Sha256.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Hmac/Sha384.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Hmac/Sha512.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Key.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Keychain.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Rsa.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Rsa/Sha256.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Rsa/Sha384.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Signer/Rsa/Sha512.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/Token.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/src/ValidationData.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/EcdsaTokenTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/HmacTokenTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/Keys.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/RsaTokenTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/UnsignedTokenTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/ecdsa/private.key" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/ecdsa/private2.key" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/ecdsa/public1.key" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/ecdsa/public2.key" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/ecdsa/public3.key" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/rsa/encrypted-private.key" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/rsa/encrypted-public.key" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/rsa/private.key" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/functional/rsa/public.key" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/BuilderTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Claim/BasicTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Claim/EqualsToTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Claim/FactoryTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Claim/GreaterOrEqualsToTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Claim/LesserOrEqualsToTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/ParserTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Parsing/DecoderTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Parsing/EncoderTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/SignatureTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/BaseSignerTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Ecdsa/KeyParserTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Ecdsa/Sha256Test.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Ecdsa/Sha384Test.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Ecdsa/Sha512Test.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/EcdsaTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Hmac/Sha256Test.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Hmac/Sha384Test.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Hmac/Sha512Test.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/HmacTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/KeyTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/KeychainTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Rsa/Sha256Test.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Rsa/Sha384Test.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/Signer/Rsa/Sha512Test.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/TokenTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/lcobucci/jwt/test/unit/ValidationDataTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/LICENCE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/AbstractEvent.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/AbstractListener.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/CallbackListener.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/Emitter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/EmitterAwareInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/EmitterAwareTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/EmitterInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/EmitterTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/Event.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/EventInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/Generator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/GeneratorInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/GeneratorTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/ListenerAcceptor.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/ListenerAcceptorInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/ListenerInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/ListenerProviderInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/event/src/OneTimeListener.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/.styleci.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/CONDUCT.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/AuthorizationServer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/AuthorizationValidators/AuthorizationValidatorInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/AuthorizationValidators/BearerTokenValidator.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/CryptKey.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/CryptTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/AccessTokenEntityInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/AuthCodeEntityInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/ClientEntityInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/RefreshTokenEntityInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/ScopeEntityInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/TokenInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/Traits/AccessTokenTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/Traits/AuthCodeTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/Traits/ClientTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/Traits/EntityTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/Traits/RefreshTokenTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/Traits/TokenEntityTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Entities/UserEntityInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Exception/OAuthServerException.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Exception/UniqueTokenIdentifierConstraintViolationException.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Grant/AbstractAuthorizeGrant.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Grant/AbstractGrant.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Grant/AuthCodeGrant.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Grant/ClientCredentialsGrant.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Grant/GrantTypeInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Grant/ImplicitGrant.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Grant/PasswordGrant.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Grant/RefreshTokenGrant.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Middleware/AuthorizationServerMiddleware.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Middleware/ResourceServerMiddleware.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Repositories/AccessTokenRepositoryInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Repositories/AuthCodeRepositoryInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Repositories/ClientRepositoryInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Repositories/RefreshTokenRepositoryInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Repositories/RepositoryInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Repositories/ScopeRepositoryInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/Repositories/UserRepositoryInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/RequestEvent.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/RequestTypes/AuthorizationRequest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/ResourceServer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/ResponseTypes/AbstractResponseType.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/ResponseTypes/BearerTokenResponse.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/ResponseTypes/RedirectResponse.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/league/oauth2-server/src/ResponseTypes/ResponseTypeInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/.travis.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/CHANGELOG" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/Factory/DiactorosFactory.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/Factory/HttpFoundationFactory.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/HttpFoundationFactoryInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/HttpMessageFactoryInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/Tests/Factory/DiactorosFactoryTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/Tests/Factory/HttpFoundationFactoryTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/Tests/Fixtures/Message.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/Tests/Fixtures/Response.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/Tests/Fixtures/ServerRequest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/Tests/Fixtures/Stream.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/Tests/Fixtures/UploadedFile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/Tests/Fixtures/Uri.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge/phpunit.xml.dist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/.coveralls.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/CHANGELOG.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/CONDUCT.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/CONTRIBUTING.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/LICENSE.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/composer.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/composer.lock" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/mkdocs.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/AbstractSerializer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/CallbackStream.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Exception/DeprecatedMethodException.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Exception/ExceptionInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/HeaderSecurity.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/MessageTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/PhpInputStream.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/RelativeStream.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Request.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Request/Serializer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/RequestTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Response.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Response/EmitterInterface.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Response/EmptyResponse.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Response/HtmlResponse.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Response/InjectContentTypeTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Response/JsonResponse.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Response/RedirectResponse.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Response/SapiEmitter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Response/SapiEmitterTrait.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Response/SapiStreamEmitter.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Response/Serializer.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Response/TextResponse.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Server.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/ServerRequest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/ServerRequestFactory.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Stream.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/UploadedFile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/src/Uri.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/MasterfileController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/MasterfileController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Role.php" afterPath="$PROJECT_DIR$/app/Role.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Credentials/CredentialProvider.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Credentials/CredentialProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Sdk.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Sdk.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Ses/SesClient.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/Ses/SesClient.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/email/2010-12-01/api-2.json.php" afterPath="$PROJECT_DIR$/vendor/aws/aws-sdk-php/src/data/email/2010-12-01/api-2.json.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/auth.php" afterPath="$PROJECT_DIR$/config/auth.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/installed.json" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" />
     </list>
     <ignored path="boda.iws" />
@@ -51,11 +327,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="database.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="database.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/database.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-918">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="126">
+              <caret line="58" column="53" selection-start-line="0" selection-start-column="0" selection-end-line="57" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="autoload_classmap.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_classmap.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="131">
+              <caret line="3662" column="0" selection-start-line="3662" selection-start-column="0" selection-end-line="3662" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -87,6 +373,7 @@
         <option value="$PROJECT_DIR$/database/seeds/MenuSeeder.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MasterfileController.php" />
         <option value="$PROJECT_DIR$/app/Role.php" />
+        <option value="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" />
       </list>
     </option>
   </component>
@@ -160,7 +447,25 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="boda" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="boda" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="composer" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -237,16 +542,16 @@
       <workItem from="1478249776114" duration="13000" />
       <workItem from="1478505060084" duration="8000" />
       <workItem from="1478848881562" duration="633000" />
-      <workItem from="1479406810515" duration="1384000" />
+      <workItem from="1479406810515" duration="2942000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12796000" />
+    <option name="totallyTimeSpent" value="14354000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="35" y="24" width="1331" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2573007" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -254,7 +559,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291239" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40991735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40991735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -436,13 +741,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_classmap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_namespaces.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -586,7 +884,7 @@
         <state relative-caret-position="2985">
           <caret line="268" column="43" selection-start-line="268" selection-start-column="43" selection-end-line="268" selection-end-column="43" />
           <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
+            <element signature="e#7#38#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -604,7 +902,7 @@
         <state relative-caret-position="90">
           <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
           <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
+            <element signature="e#7#38#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -635,8 +933,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/database.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-918">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="126">
+          <caret line="58" column="53" selection-start-line="0" selection-start-column="0" selection-end-line="57" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_classmap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="3662" column="0" selection-start-line="3662" selection-start-column="0" selection-end-line="3662" selection-end-column="0" />
           <folding />
         </state>
       </provider>

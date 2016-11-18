@@ -12,7 +12,8 @@
         "yajra/laravel-datatables-oracle": "~6.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "league/flysystem-sftp": "^1.0",
-        "backup-manager/laravel": "^1.1"
+        "backup-manager/laravel": "^1.1",
+        "laravel/passport": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

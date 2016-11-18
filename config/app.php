@@ -184,6 +184,7 @@ return [
          */
         Yajra\Datatables\DatatablesServiceProvider::class,
         BackupManager\Laravel\Laravel5ServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
     ],
 
     /*
