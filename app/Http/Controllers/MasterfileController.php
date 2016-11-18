@@ -110,7 +110,7 @@ class MasterfileController extends Controller
                 'regdate' => Input::get('regdate'),
                 'gender' => Input::get('gender'),
                 'id_no' => Input::get('id_no'),
-                'b_role' => 'Staff',
+                'b_role' => 'Client',
                 'user_role' => 1
             ));
             $reg->save();
