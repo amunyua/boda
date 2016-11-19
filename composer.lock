@@ -1315,16 +1315,16 @@
         },
         {
             "name": "laravel/passport",
-            "version": "v1.0.9",
+            "version": "v1.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/passport.git",
-                "reference": "e5b96c9da0b2ee8c080a35647e01587fd8c2263b"
+                "reference": "0e8fe951996ed2a60b0b9a4012e21601a284f035"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/passport/zipball/e5b96c9da0b2ee8c080a35647e01587fd8c2263b",
-                "reference": "e5b96c9da0b2ee8c080a35647e01587fd8c2263b",
+                "url": "https://api.github.com/repos/laravel/passport/zipball/0e8fe951996ed2a60b0b9a4012e21601a284f035",
+                "reference": "0e8fe951996ed2a60b0b9a4012e21601a284f035",
                 "shasum": ""
             },
             "require": {
@@ -1375,7 +1375,7 @@
                 "oauth",
                 "passport"
             ],
-            "time": "2016-10-27 19:10:18"
+            "time": "2016-11-18 17:58:03"
         },
         {
             "name": "laravelcollective/html",
