@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\AuditTrail;
+use App\Role;
 use App\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Yajra\Datatables\Facades\Datatables;
 use App\Route;
@@ -67,9 +69,19 @@ class UserManagerController extends Controller
                 '@if(!empty($parent_route))
                 {{ App\Route::find($parent_route)->route_name }}
             @endif')
-            ->addColumn('attach_detach', function(){
-                return '<input type="checkbox" class="attach custom_checkbox"/>';
+            ->addColumn('attach_detach', function($route){
+                return '<input type="checkbox" class="attach custom_checkbox" value="'.$route->id.'" role-id=""/>';
             })
             ->make(true);
+    }
+
+    public function attachRoute(Request $request){
+        var_dump($request->route_id);exit;
+        $route = Route::find($request->route_id);
+        $route->roles()->attach($request->role_id);
+        return Response::json([
+            'success' => true,
+            'message' => 'Route has been allocated!'
+        ]);
     }
 }

@@ -3,38 +3,19 @@
 @section('widget-title', 'Manage User Roles')
 @section('widget-desc', 'System Roles')
 
-@push('js')
-    <script>
-        $('#routes-for-allocation').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: 'load-routes-allocation',
-            "aaSorting": [[ 1, 'asc' ]],
-            columns: [
-                { data: 'route_name', 'name': 'route_name' },
-                { data: 'parent_route', 'name': 'parent_route' },
-                { data: 'attach_detach', 'name': 'attach_detach' }
-            ],
-            columnDefs: [
-                { searchable: false, targets: [2] },
-                { orderable: false, targets: [2] }
-            ]
-        });
-    </script>
-@endpush
-
 @section('button')
-    <button type="button" class="btn btn-primary pull-right header-btn hidden-mobile" data-toggle="modal" data-target="#add-user-role">
+    <button class="btn btn-primary header-btn hidden-mobile" data-toggle="modal" data-target="#add-user-role">
         <i class="fa fa-plus"></i> Add User Role
     </button>
 
-    <button type="button" class="btn btn-primary pull-right header-btn hidden-mobile" data-toggle="modal" data-target="#allocate-routes">
-        <i class="fa fa-pencil"></i> Allocate Routes
+    <button class="btn btn-info header-btn hidden-mobile" id="allocate-routes-view"  data-target="#allocate-routes">
+        <i class="fa fa-paperclip"></i> Allocate Routes
     </button>
 @endsection
 
 @section('content')
     @include('layouts.includes._messages')
+    @section('table-id', '#dt_basic')
     <table id="dt_basic" class="table table-striped table-hover" width="100%">
         <thead>
         <tr>
@@ -183,8 +164,8 @@
                         Allocate Routes to <b>{{ strtoupper('Administrator') }}</b>
                     </h4>
                 </div>
-                <div class="modal-body">
-
+                <div class="modal-body" style="height: 520px; overflow-y: scroll;">
+                    {{ csrf_field() }}
                     <table id="routes-for-allocation" class="table table-striped" style="width: 100%;">
                         <thead>
                             <tr>
