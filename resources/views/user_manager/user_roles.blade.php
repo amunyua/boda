@@ -3,15 +3,39 @@
 @section('widget-title', 'Manage User Roles')
 @section('widget-desc', 'System Roles')
 
+@push('js')
+    <script>
+        $('#routes-for-allocation').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: 'load-routes-allocation',
+            "aaSorting": [[ 1, 'asc' ]],
+            columns: [
+                { data: 'route_name', 'name': 'route_name' },
+                { data: 'parent_route', 'name': 'parent_route' },
+                { data: 'attach_detach', 'name': 'attach_detach' }
+            ],
+            columnDefs: [
+                { searchable: false, targets: [2] },
+                { orderable: false, targets: [2] }
+            ]
+        });
+    </script>
+@endpush
+
 @section('button')
     <button type="button" class="btn btn-primary pull-right header-btn hidden-mobile" data-toggle="modal" data-target="#add-user-role">
         <i class="fa fa-plus"></i> Add User Role
+    </button>
+
+    <button type="button" class="btn btn-primary pull-right header-btn hidden-mobile" data-toggle="modal" data-target="#allocate-routes">
+        <i class="fa fa-pencil"></i> Allocate Routes
     </button>
 @endsection
 
 @section('content')
     @include('layouts.includes._messages')
-    <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+    <table id="dt_basic" class="table table-striped table-hover" width="100%">
         <thead>
         <tr>
             <th>ID</th>
@@ -100,9 +124,7 @@
         </div><!-- /.modal-dialog -->
     </div>
 
-
     {{--modal for delete--}}
-
     <div class="modal fade" id="delete-user-role" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -142,6 +164,36 @@
                         </footer>
                     </form>
 
+
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    {{--modal for allocation--}}
+    <div class="modal fade" id="allocate-routes" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        Allocate Routes to <b>{{ strtoupper('Administrator') }}</b>
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+                    <table id="routes-for-allocation" class="table table-striped" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Route</th>
+                                <th>Parent</th>
+                                <td><input type="checkbox" id="check-all" class="custom_checkbox"/></td>
+                            </tr>
+                        </thead>
+                    </table>
 
                 </div>
 

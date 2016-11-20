@@ -156,7 +156,7 @@ class MenuSeeder extends Seeder
         $system_route = Route::where('route_name', 'System')->first();
         $system = new Menu();
         $system->route_id = $system_route->id;
-        $system->sequence = 7;
+        $system->sequence = 8;
         $system->save();
         $system_id = $system->id;
 
@@ -181,6 +181,13 @@ class MenuSeeder extends Seeder
         $sys_config->sequence = 3;
         $sys_config->save();
 
+        $theme_route = Route::where('route_name', 'Theme Configuration')->first();
+        $theme_config = new Menu();
+        $theme_config->route_id = $theme_route->id;
+        $theme_config->parent_menu = $system->id;
+        $theme_config->sequence = 4;
+        $theme_config->save();
+
         $backup_route = Route::where('route_name', 'Backup')->first();
         $backup = new Menu();
         $backup->route_id = $backup_route->id;
@@ -192,7 +199,7 @@ class MenuSeeder extends Seeder
         $user_mngt_route = Route::where('route_name', 'User Management')->first();
         $user_mngt = new Menu();
         $user_mngt->route_id = $user_mngt_route->id;
-        $user_mngt->sequence = 8;
+        $user_mngt->sequence = 7;
         $user_mngt->save();
         $user_mngt_id = $user_mngt->id;
 
