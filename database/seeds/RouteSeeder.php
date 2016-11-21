@@ -261,7 +261,7 @@ class RouteSeeder extends Seeder
 
         $audit_trail = new Route();
         $audit_trail->route_name = 'Audit Trail';
-        $audit_trail->url = 'audit_trail';
+        $audit_trail->url = 'audit_trails';
         $audit_trail->parent_route = $user_mngt_id;
         $audit_trail->save();
         $audit_trail->roles()->attach($admin);

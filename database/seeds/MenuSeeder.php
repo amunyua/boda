@@ -13,6 +13,7 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
+        \Illuminate\Support\Facades\DB::table('menus')->delete();
         #### Dashboard
         $dashboard_route = Route::where('route_name', 'Dashboard')->first();
         $dashboard = new Menu();
@@ -72,7 +73,7 @@ class MenuSeeder extends Seeder
         $pending_application->sequence = 2;
         $pending_application->save();
 
-        $canceled_application_route = Route::where('route_name', 'Canceled Application')->first();
+        $canceled_application_route = Route::where('route_name', 'Cancelled Application')->first();
         $canceled_application = new Menu();
         $canceled_application->route_id = $canceled_application_route->id;
         $canceled_application->sequence = 3;
@@ -109,7 +110,7 @@ class MenuSeeder extends Seeder
         $category->save();
 
         #### clients
-        $clients_route = Route::where('route_name', 'Clients')->first();
+        $clients_route = Route::where('route_name', 'Client')->first();
         $clients = new Menu();
         $clients->route_id = $clients_route->id;
         $clients->sequence = 5;
@@ -174,7 +175,7 @@ class MenuSeeder extends Seeder
         $menu->sequence = 2;
         $menu->save();
 
-        $sys_config_route = Route::where('route_name', 'System Configuration')->first();
+        $sys_config_route = Route::where('route_name', 'System Config')->first();
         $sys_config = new Menu();
         $sys_config->route_id = $sys_config_route->id;
         $sys_config->parent_menu = $system->id;
@@ -196,7 +197,7 @@ class MenuSeeder extends Seeder
         $user_mngt->save();
         $user_mngt_id = $user_mngt->id;
 
-        $all_user_route = Route::where('route_name', 'All User')->first();
+        $all_user_route = Route::where('route_name', 'All Users')->first();
         $all_user = new Menu();
         $all_user->route_id = $all_user_route->id;
         $all_user->parent_menu = $user_mngt->id;
