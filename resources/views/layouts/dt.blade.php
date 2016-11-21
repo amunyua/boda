@@ -56,7 +56,13 @@
     {{--<link rel="stylesheet" href="{{ URL::asset('css/select2.min.css') }}"/>--}}
     <style>
         .select_tr{
-            background: #000000!important;
+            background: #ccc!important;
+        }
+
+        input[type="checkbox"].custom_checkbox{
+            width: 16px;
+            height: 16px;
+            margin: 0px;
         }
     </style>
 @stack('css')
@@ -65,7 +71,7 @@
 <!--
 
 	TABLE OF CONTENTS.
-	
+
 	Use search to find needed section.
 	
 	===================================================================

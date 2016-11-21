@@ -68,7 +68,7 @@ Route::post('/arrange-menu', 'MenuController@arrangeMenu');
 Route::post('/edit-menu', 'MenuController@update');
 Route::get('/get-menu/{id}', 'MenuController@getMenuItem');
 Route::post('/remove-menu', 'MenuController@destroy');
-Route::get('/theme-config', 'ThemeController@index');
+Route::get('/theme_config', 'ThemeController@index');
 Route::get('/theme-select/{theme}', 'ThemeController@saveSkin');
 Route::get('/get-theme', 'ThemeController@getTheme');
 
@@ -88,3 +88,6 @@ Route::post('/add-user-role','UserManagerController@storeRole');
 Route::delete('/delete-user-role/{id}','UserManagerController@destroyRole');
 Route::get('/audit_trails','UserManagerController@auditTrails');
 Route::get('/ajax_trails','UserManagerController@ajaxAuditTrails');
+Route::get('/load-routes-allocation', 'UserManagerController@loadRoutesForAllocation');
+Route::post('/attach-route', 'UserManagerController@attachRoute');
+Route::post('/detach-route', 'UserManagerController@detachRoute');

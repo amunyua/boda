@@ -17,7 +17,7 @@ return [
     /*
     |--------------------------------------------------------------------------
     | Application Environment
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     |
     | This value determines the "environment" your application is currently
     | running in. This may determine how you prefer to configure various
@@ -183,7 +183,7 @@ return [
          * Custom Application Service Providers
          */
         Yajra\Datatables\DatatablesServiceProvider::class,
-        BackupManager\Laravel\Laravel5ServiceProvider::class,
+//        BackupManager\Laravel\Laravel5ServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
     ],
 

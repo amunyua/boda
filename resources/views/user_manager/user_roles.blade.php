@@ -4,14 +4,19 @@
 @section('widget-desc', 'System Roles')
 
 @section('button')
-    <button type="button" class="btn btn-primary pull-right header-btn hidden-mobile" data-toggle="modal" data-target="#add-user-role">
+    <button class="btn btn-primary header-btn hidden-mobile" data-toggle="modal" data-target="#add-user-role">
         <i class="fa fa-plus"></i> Add User Role
+    </button>
+
+    <button class="btn btn-info header-btn hidden-mobile" id="allocate-routes-view"  data-target="#allocate-routes">
+        <i class="fa fa-paperclip"></i> Allocate Routes
     </button>
 @endsection
 
 @section('content')
     @include('layouts.includes._messages')
-    <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+    @section('table-id', '#dt_basic')
+    <table id="dt_basic" class="table table-striped table-hover" width="100%">
         <thead>
         <tr>
             <th>ID</th>
@@ -100,9 +105,7 @@
         </div><!-- /.modal-dialog -->
     </div>
 
-
     {{--modal for delete--}}
-
     <div class="modal fade" id="delete-user-role" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -142,6 +145,36 @@
                         </footer>
                     </form>
 
+
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    {{--modal for allocation--}}
+    <div class="modal fade" id="allocate-routes" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        Allocate Routes to <b>{{ strtoupper('Administrator') }}</b>
+                    </h4>
+                </div>
+                <div class="modal-body" style="height: 520px; overflow-y: scroll;">
+                    {{ csrf_field() }}
+                    <table id="routes-for-allocation" class="table table-striped" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Route</th>
+                                <th>Parent</th>
+                                <td><input type="checkbox" id="check-all" class="custom_checkbox"/></td>
+                            </tr>
+                        </thead>
+                    </table>
 
                 </div>
 

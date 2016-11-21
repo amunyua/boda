@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\AuditTrail;
+use App\Role;
 use App\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Yajra\Datatables\Facades\Datatables;
+use App\Route;
 
 class UserManagerController extends Controller
 {
@@ -26,7 +29,7 @@ class UserManagerController extends Controller
             'role_name'=>'required|min:3|unique:user_roles,role_name',
             'status'=>'required'
         ));
-        $this->logAction('add_user_role');
+//        $this->logAction('add_user_role');
         $user_role = new UserRole();
         $user_role->role_name = $request->role_name;
         $user_role->status = $request->status;
@@ -38,7 +41,7 @@ class UserManagerController extends Controller
 
     public function destroyRole($id){
         if(UserRole::destroy($id)){
-            $this->logAction('Delete_user_role');
+//            $this->logAction('Delete_user_role');
             Session::flash('success','Role has been deleted');
             return redirect('user_roles');
         }
@@ -53,4 +56,32 @@ class UserManagerController extends Controller
         return Datatables::of(AuditTrail::all()->make(true));
     }
 
+    public function loadRoutesForAllocation(){
+        $routes = Route::whereNotNull('parent_route')->where('route_status', 1);
+        return Datatables::of($routes)
+            ->editColumn('route_status',
+                '@if($route_status)
+                Active 
+            @else
+                Inactive
+            @endif')
+            ->editColumn('parent_route',
+                '@if(!empty($parent_route))
+                {{ App\Route::find($parent_route)->route_name }}
+            @endif')
+            ->addColumn('attach_detach', function($route){
+                return '<input type="checkbox" class="attach custom_checkbox" value="'.$route->id.'" role-id=""/>';
+            })
+            ->make(true);
+    }
+
+    public function attachRoute(Request $request){
+        var_dump($request->route_id);exit;
+        $route = Route::find($request->route_id);
+        $route->roles()->attach($request->role_id);
+        return Response::json([
+            'success' => true,
+            'message' => 'Route has been allocated!'
+        ]);
+    }
 }
