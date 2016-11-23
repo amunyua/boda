@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     {
         $admin_mf = Masterfile::where('surname', 'Admin')->first();
         $admin = new \App\User();
-        $admin->name = 'Admin';
+        $admin->name = 'Admin Admin';
         $admin->email = 'admin@admin.com';
         $admin->password = bcrypt(123456);
         $admin->phone_no = '700000000';

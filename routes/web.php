@@ -12,6 +12,9 @@
 */
 
 Route::get('/', 'DashboardController@index');
+Route::get('/home', 'HomeController@index');
+
+Auth::routes();
 
 // Dashboard
 Route::get('/dashboard', 'DashboardController@index');
@@ -19,16 +22,9 @@ Route::get('/dashboard', 'DashboardController@index');
 // Registration Module
 Route::get('/registration', 'MasterfileController@index');
 Route::post('/add-registration', 'MasterfileController@store');
-Route::get('/client', 'MasterfileController@client');
 Route::post('/update-masterfile', 'MasterfileController@update');
 Route::delete('/delete-masterfile', 'MasterfileController@destroy');
 Route::get('/all-masterfiles', 'MasterfileController@allMfs');
-Route::get('/all-teachers', 'MasterfileController@allTeachers');
-Route::get('/all-guardians', 'MasterfileController@allGuardians');
-Route::get('/all-students', 'MasterfileController@allStudents');
-Route::get('/all-ss', 'MasterfileController@allSS');
-Route::resource('contact_types','ContactTypesController');
-Route::resource('streams','StreamsController');
 
 // Contact Types Module
 Route::resource('contact_types','ContactTypesController');
@@ -49,10 +45,6 @@ Route::get('/delete-subject/{id}','SubjectController@delete');
 Route::get('/subject_data/{subject_id}', 'SubjectController@getSubjectData');
 Route::post('/update-subject/{id}','SubjectController@update');
 Route::get('/delete-subject/{id}','SubjectController@delete');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
 
 // System Manager
 Route::get('/routes', 'RoutesController@index');

@@ -29,7 +29,7 @@
         -->
         <header>
             <span class="widget-icon"> <i class="fa fa-check"></i> </span>
-            <h2> Add New Staff </h2>
+            <h2> Add New User </h2>
 
         </header>
 
@@ -46,7 +46,7 @@
             <!-- widget content -->
             <div class="widget-body">
                 <div class="row">
-                    <form action="{{ url('add-registration') }}" method="post" id="wizard-1" novalidate="novalidate">
+                    <form action="{{ url('add-registration') }}" method="post" id="wizard-1" novalidate="novalidate" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div id="bootstrap-wizard-1" class="col-sm-12">
                             <div class="form-bootstrapWizard">
@@ -102,7 +102,7 @@
                                                     <a href="javascript:void(0);" class="btn btn-lg btn-primary"> Last </a>
                                                 </li>
                                                 <li class="next">
-                                                    <a href="#" id="finish-btn" class="btn btn-lg txt-color-darken"> Next </a>
+                                                    <a id="finish-btn" class="btn btn-lg txt-color-darken"> Next </a>
                                                 </li>
                                             </ul>
                                         </div>
