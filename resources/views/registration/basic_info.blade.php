@@ -2,23 +2,19 @@
 <h3><strong>Step 1 </strong> - Basic Information</h3>
 
 <div class="row">
-
     <div class="col-sm-6">
         <div class="form-group">
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-list fa-fw"></i></span>
-                <select name="role" class="form-control" id="role">
-                    <option value="">Choose Role</option>
-                    @if(count($roles))
-                        @foreach($roles as $role)
-                            <option value="{{ $role->role_code }}" {{ (old('role') == $role->role_code) ? 'selected': '' }}>{{ $role->role_name }}</option>
-                        @endforeach
-                    @endif
+                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                <select name="b_role" id="b_role" class="form-control">
+                    <option value="">Select Buss Role</option>
+                    <option value="sys_admin" {{ (old('b_role') == 'sys_admin') ? 'selected': '' }}>System Admin</option>
+                    <option value="staff" {{ (old('b_role') == 'staff') ? 'selected': '' }}>Staff</option>
+                    <option value="client" {{ (old('b_role') == 'client') ? 'selected': '' }}>Client</option>
                 </select>
             </div>
         </div>
     </div>
-
     <div class="col-sm-6">
         <div class="form-group">
             <div class="input-group">
@@ -80,4 +76,20 @@
             </div>
         </div>
     </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-list fa-fw"></i></span>
+                <select name="role" class="form-control" id="role">
+                    <option value="">Choose Role</option>
+                    @if(count($roles))
+                        @foreach($roles as $role)
+                            <option value="{{ $role->role_code }}" {{ (old('role') == $role->role_code) ? 'selected': '' }}>{{ $role->role_name }}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </div>
+        </div>
+    </div>
 </div>
+

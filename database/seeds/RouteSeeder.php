@@ -13,6 +13,8 @@ class RouteSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('routes')->delete();
+
         $admin = Role::where('role_code', 'SYS_ADMIN')->first();
         #### Dashboard
         $dashboard = new Route();
@@ -35,19 +37,19 @@ class RouteSeeder extends Seeder
         $reg_id = $reg->id;
 
         #### registration children
-        $staff = new Route();
-        $staff->route_name = 'Staff';
-        $staff->url = 'staff';
-        $staff->parent_route = $reg_id;
-        $staff->save();
-        $staff->roles()->attach($admin);
+        $registration = new Route();
+        $registration->route_name = 'User Registration';
+        $registration->url = 'registration';
+        $registration->parent_route = $reg_id;
+        $registration->save();
+        $registration->roles()->attach($admin);
 
-        $client = new Route();
-        $client->route_name = 'Client';
-        $client->url = 'client';
-        $client->parent_route = $reg_id;
-        $client->save();
-        $client->roles()->attach($admin);
+//        $client = new Route();
+//        $client->route_name = 'Client';
+//        $client->url = 'client';
+//        $client->parent_route = $reg_id;
+//        $client->save();
+//        $client->roles()->attach($admin);
 
         #### Application
         $app = new Route();
