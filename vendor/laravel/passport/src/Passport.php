@@ -10,6 +10,20 @@ use Illuminate\Support\Facades\Route;
 class Passport
 {
     /**
+     * Indicates if the implicit grant type is enabled.
+     *
+     * @var boolean|null
+     */
+    public static $implicitGrantEnabled = false;
+
+    /**
+     * Indicates if Passport should revoke existing tokens when issuing a new one.
+     *
+     * @var bool
+     */
+    public static $revokeOtherTokens = false;
+
+    /**
      * Indicates if Passport should prune revoked tokens.
      *
      * @var bool
@@ -68,6 +82,18 @@ class Passport
     public static $runsMigrations = true;
 
     /**
+     * Enable the implicit grant type.
+     *
+     * @return static
+     */
+    public static function enableImplicitGrant()
+    {
+        static::$implicitGrantEnabled = true;
+
+        return new static;
+    }
+
+    /**
      * Get a Passport route registrar.
      *
      * @param  array  $options
@@ -89,14 +115,26 @@ class Passport
     }
 
     /**
+     * Instruct Passport to revoke other tokens when a new one is issued.
+     *
+     * @deprecated since 1.0. Listen to Passport events on token creation instead.
+     *
+     * @return static
+     */
+    public static function revokeOtherTokens()
+    {
+        return new static;
+    }
+
+    /**
      * Instruct Passport to keep revoked tokens pruned.
+     *
+     * @deprecated since 1.0. Listen to Passport events on token creation instead.
      *
      * @return static
      */
     public static function pruneRevokedTokens()
     {
-        static::$pruneRevokedTokens = true;
-
         return new static;
     }
 
@@ -185,7 +223,7 @@ class Passport
         if (is_null($date)) {
             return static::$tokensExpireAt
                             ? Carbon::now()->diff(static::$tokensExpireAt)
-                            : new DateInterval('P100Y');
+                            : new DateInterval('P1Y');
         } else {
             static::$tokensExpireAt = $date;
         }
@@ -204,7 +242,7 @@ class Passport
         if (is_null($date)) {
             return static::$refreshTokensExpireAt
                             ? Carbon::now()->diff(static::$refreshTokensExpireAt)
-                            : new DateInterval('P100Y');
+                            : new DateInterval('P1Y');
         } else {
             static::$refreshTokensExpireAt = $date;
         }

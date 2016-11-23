@@ -233,6 +233,13 @@ class RouteSeeder extends Seeder
         $system_config->save();
         $system_config->roles()->attach($admin);
 
+        $theme_config = new Route();
+        $theme_config->route_name = 'Theme Configuration';
+        $theme_config->url = 'theme_config';
+        $theme_config->parent_route = $system_id;
+        $theme_config->save();
+        $theme_config->roles()->attach($admin);
+
         $backup = new Route();
         $backup->route_name = 'Backup';
         $backup->url = 'backup';
@@ -263,10 +270,9 @@ class RouteSeeder extends Seeder
 
         $audit_trail = new Route();
         $audit_trail->route_name = 'Audit Trail';
-        $audit_trail->url = 'audit_trail';
+        $audit_trail->url = 'audit_trails';
         $audit_trail->parent_route = $user_mngt_id;
         $audit_trail->save();
         $audit_trail->roles()->attach($admin);
-
     }
 }
