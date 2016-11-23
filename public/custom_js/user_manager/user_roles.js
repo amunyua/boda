@@ -48,7 +48,7 @@ $('table').on('click', 'input:checkbox.attach', function(){
     if(checked){
         var route_id = $(this).val();
         var role_id = $(this).attr('role-id');
-        alert(role_id);
+
         if (route_id != ''){
             $.ajax({
                 url: 'attach-route',
@@ -61,9 +61,13 @@ $('table').on('click', 'input:checkbox.attach', function(){
                 dataType: 'json',
                 success: function(data){
                     if(data.success){
-
-                    }else{
-
+                        $.smallBox({
+                            title : "Attached",
+                            content : data.message,
+                            color : "green",
+                            iconSmall : "fa fa-check bounce animated",
+                            timeout : 4000
+                        });
                     }
                 }
             });

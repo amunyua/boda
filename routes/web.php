@@ -91,3 +91,7 @@ Route::get('/ajax_trails','UserManagerController@ajaxAuditTrails');
 Route::get('/load-routes-allocation', 'UserManagerController@loadRoutesForAllocation');
 Route::post('/attach-route', 'UserManagerController@attachRoute');
 Route::post('/detach-route', 'UserManagerController@detachRoute');
+
+#### Services
+Route::get('/service-cats', 'ServiceCategoryController@index');
+Route::get('/services', 'ServiceController@index');
