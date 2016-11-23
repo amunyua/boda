@@ -18,7 +18,7 @@ class UserManagerController extends Controller
         $this->middleware('auth');
     }
     public function getIndex(){
-        $roles = UserRole::all();
+        $roles = Role::all();
         return view('user_manager.user_roles')->withRoles($roles);
     }
 
@@ -30,7 +30,7 @@ class UserManagerController extends Controller
             'status'=>'required'
         ));
 //        $this->logAction('add_user_role');
-        $user_role = new UserRole();
+        $user_role = new Role();
         $user_role->role_name = $request->role_name;
         $user_role->status = $request->status;
 
@@ -40,7 +40,7 @@ class UserManagerController extends Controller
     }
 
     public function destroyRole($id){
-        if(UserRole::destroy($id)){
+        if(Role::destroy($id)){
 //            $this->logAction('Delete_user_role');
             Session::flash('success','Role has been deleted');
             return redirect('user_roles');
@@ -76,7 +76,7 @@ class UserManagerController extends Controller
     }
 
     public function attachRoute(Request $request){
-        var_dump($request->route_id);exit;
+//        var_dump($request->route_id);exit;
         $route = Route::find($request->route_id);
         $route->roles()->attach($request->role_id);
         return Response::json([

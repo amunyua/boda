@@ -13,6 +13,8 @@ class RouteSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('routes')->delete();
+
         $admin = Role::where('role_code', 'SYS_ADMIN')->first();
         #### Dashboard
         $dashboard = new Route();
@@ -35,19 +37,19 @@ class RouteSeeder extends Seeder
         $reg_id = $reg->id;
 
         #### registration children
-        $staff = new Route();
-        $staff->route_name = 'Staff';
-        $staff->url = 'staff';
-        $staff->parent_route = $reg_id;
-        $staff->save();
-        $staff->roles()->attach($admin);
+        $registration = new Route();
+        $registration->route_name = 'User Registration';
+        $registration->url = 'registration';
+        $registration->parent_route = $reg_id;
+        $registration->save();
+        $registration->roles()->attach($admin);
 
-        $client = new Route();
-        $client->route_name = 'Client';
-        $client->url = 'client';
-        $client->parent_route = $reg_id;
-        $client->save();
-        $client->roles()->attach($admin);
+//        $client = new Route();
+//        $client->route_name = 'Client';
+//        $client->url = 'client';
+//        $client->parent_route = $reg_id;
+//        $client->save();
+//        $client->roles()->attach($admin);
 
         #### Application
         $app = new Route();
@@ -268,7 +270,7 @@ class RouteSeeder extends Seeder
 
         $audit_trail = new Route();
         $audit_trail->route_name = 'Audit Trail';
-        $audit_trail->url = 'audit_trail';
+        $audit_trail->url = 'audit_trails';
         $audit_trail->parent_route = $user_mngt_id;
         $audit_trail->save();
         $audit_trail->roles()->attach($admin);

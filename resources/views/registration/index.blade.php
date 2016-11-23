@@ -1,11 +1,11 @@
 @extends('layouts.wizard')
 @section('title', 'Create Staff')
-@section('widget-title', 'Staff Registration Form')
-@section('widget-desc', 'Allows you to register Staff')
+@section('widget-title', 'User Registration Form')
+@section('widget-desc', 'Allows you to register User')
 @section('breadcrumb')
     <li><a href="{{ url('/') }}">Home</a></li>
     <li>Registration</li>
-    <li>Add Staff</li>
+    <li>User Registration</li>
 @endsection
 
 @push('js')
@@ -46,7 +46,7 @@
             <!-- widget content -->
             <div class="widget-body">
                 <div class="row">
-                    <form action="{{ url('save-staff') }}" method="post" id="wizard-1" novalidate="novalidate">
+                    <form action="{{ url('add-registration') }}" method="post" id="wizard-1" novalidate="novalidate">
                         {{ csrf_field() }}
                         <div id="bootstrap-wizard-1" class="col-sm-12">
                             <div class="form-bootstrapWizard">

@@ -7,9 +7,12 @@
     <schema id="4" name="performance_schema"/>
     <schema id="5" name="phpmyadmin"/>
     <schema id="6" name="sys"/>
-    <schema id="7" name="arrays"/>
-    <schema id="8" name="datatables"/>
-    <schema id="9" name="ps_lara"/>
-    <schema id="10" name="ride"/>
+    <schema id="7" name="ps_lara"/>
+    <schema id="8" name="ride"/>
+    <schema id="9" name="bike-old"/>
+    <schema id="10" name="bus_service"/>
+    <schema id="11" name="psv"/>
+    <schema id="12" name="psv_new"/>
+    <schema id="13" name="psv_online"/>
   </database-model>
 </dataSource>
