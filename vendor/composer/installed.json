@@ -5558,5 +5558,59 @@
         ],
         "description": "Symfony DomCrawler Component",
         "homepage": "https://symfony.com"
+    },
+    {
+        "name": "smodav/mpesa",
+        "version": "v1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/SmoDav/mpesa.git",
+            "reference": "7dc1f16056c0d8c38eef989f3317ddb3b7f9193d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/SmoDav/mpesa/zipball/7dc1f16056c0d8c38eef989f3317ddb3b7f9193d",
+            "reference": "7dc1f16056c0d8c38eef989f3317ddb3b7f9193d",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "^6.2",
+            "illuminate/support": "~5.0",
+            "nesbot/carbon": "~1.21",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "dev-master"
+        },
+        "time": "2016-08-01 05:46:46",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/Mpesa/Support/helpers.php"
+            ],
+            "psr-4": {
+                "SmoDav\\Mpesa\\": "src/Mpesa/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "SmoDav",
+                "email": "smodavprivate@gmail.com"
+            }
+        ],
+        "description": "M-Pesa API implementation",
+        "keywords": [
+            "api",
+            "laravel",
+            "mpesa",
+            "safaricom",
+            "transactions"
+        ]
     }
 ]
