@@ -20,7 +20,8 @@ class CreateMenusTable extends Migration
             $table->foreign('route_id')
                 ->references('id')
                 ->on('routes')
-                ->onUpdate('cascade');
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->boolean('menu_status')->default(1);
             $table->timestamps();
         });

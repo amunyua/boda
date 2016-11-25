@@ -376,120 +376,120 @@ you can add as many as you like
 <script src="{{ asset('js/plugin/fuelux/wizard/wizard.min.js') }}"></script>
 
 
-<script type="text/javascript">
+{{--<script type="text/javascript">--}}
 
-    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+    {{--// DO NOT REMOVE : GLOBAL FUNCTIONS!--}}
 
-    $(document).ready(function() {
+    {{--$(document).ready(function() {--}}
 
-        pageSetUp();
-
-
-
-        //Bootstrap Wizard Validations
-
-        var $validator = $("#wizard-1").validate({
-            rules: {
-                email: {
-                    email: "Your email address must be in the format of name@domain.com"
-                },
-                fname: {
-                    required: true
-                },
-                surname: {
-                    required: true
-                },
-                role: {
-                    required: true
-                },
-                gender: {
-                    required: true
-                },
-                id_no: {
-                    required: true
-                },
-                wphone: {
-                    required: true,
-                    minlength: 10
-                },
-                physical_address: {
-                    required: true
-                },
-                contact_type: {
-                    required: true
-                }
-            },
-
-            messages: {
-                fname: "Please specify your First name",
-                surname: "Please specify your Surname",
-                email: {
-                    required: "You must specify the email address",
-                    email: "The email address must be in the format of name@domain.com"
-                },
-                adm_no: "Please provide the Student's Admission No",
-                role: "You must select the Role first",
-                gender: "You must select the Gender"
-            },
-
-            highlight: function (element) {
-                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-            },
-            unhighlight: function (element) {
-                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-            },
-            errorElement: 'span',
-            errorClass: 'help-block',
-            errorPlacement: function (error, element) {
-                if (element.parent('.input-group').length) {
-                    error.insertAfter(element.parent());
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-        });
-
-        $('#bootstrap-wizard-1').bootstrapWizard({
-            'tabClass': 'form-wizard',
-            'onNext': function (tab, navigation, index) {
-                var $valid = $("#wizard-1").valid();
-                if (!$valid) {
-                    $validator.focusInvalid();
-                    return false;
-                } else {
-                    if(index == 4){
-                        $('#wizard-1').submit();
-                    }
-
-                    $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass(
-                            'complete');
-                    $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).find('.step')
-                            .html('<i class="fa fa-check"></i>');
-                }
-            }
-        });
+        {{--pageSetUp();--}}
 
 
-        // fuelux wizard
-        var wizard = $('.wizard').wizard();
 
-        wizard.on('finished', function (e, data) {
-            //$("#fuelux-wizard").submit();
-            //console.log("submitted!");
-            $.smallBox({
-                title: "Congratulations! Your form was submitted",
-                content: "<i class='fa fa-clock-o'></i> <i>1 seconds ago...</i>",
-                color: "#5F895F",
-                iconSmall: "fa fa-check bounce animated",
-                timeout: 4000
-            });
+        {{--//Bootstrap Wizard Validations--}}
 
-        });
+        {{--var $validator = $("#wizard-1").validate({--}}
+            {{--rules: {--}}
+                {{--email: {--}}
+                    {{--email: "Your email address must be in the format of name@domain.com"--}}
+                {{--},--}}
+                {{--fname: {--}}
+                    {{--required: true--}}
+                {{--},--}}
+                {{--surname: {--}}
+                    {{--required: true--}}
+                {{--},--}}
+                {{--role: {--}}
+                    {{--required: true--}}
+                {{--},--}}
+                {{--gender: {--}}
+                    {{--required: true--}}
+                {{--},--}}
+                {{--id_no: {--}}
+                    {{--required: true--}}
+                {{--},--}}
+                {{--wphone: {--}}
+                    {{--required: true,--}}
+                    {{--minlength: 10--}}
+                {{--},--}}
+                {{--physical_address: {--}}
+                    {{--required: true--}}
+                {{--},--}}
+                {{--contact_type: {--}}
+                    {{--required: true--}}
+                {{--}--}}
+            {{--},--}}
+
+            {{--messages: {--}}
+                {{--fname: "Please specify your First name",--}}
+                {{--surname: "Please specify your Surname",--}}
+                {{--email: {--}}
+                    {{--required: "You must specify the email address",--}}
+                    {{--email: "The email address must be in the format of name@domain.com"--}}
+                {{--},--}}
+                {{--adm_no: "Please provide the Student's Admission No",--}}
+                {{--role: "You must select the Role first",--}}
+                {{--gender: "You must select the Gender"--}}
+            {{--},--}}
+
+            {{--highlight: function (element) {--}}
+                {{--$(element).closest('.form-group').removeClass('has-success').addClass('has-error');--}}
+            {{--},--}}
+            {{--unhighlight: function (element) {--}}
+                {{--$(element).closest('.form-group').removeClass('has-error').addClass('has-success');--}}
+            {{--},--}}
+            {{--errorElement: 'span',--}}
+            {{--errorClass: 'help-block',--}}
+            {{--errorPlacement: function (error, element) {--}}
+                {{--if (element.parent('.input-group').length) {--}}
+                    {{--error.insertAfter(element.parent());--}}
+                {{--} else {--}}
+                    {{--error.insertAfter(element);--}}
+                {{--}--}}
+            {{--}--}}
+        {{--});--}}
+
+        {{--$('#bootstrap-wizard-1').bootstrapWizard({--}}
+            {{--'tabClass': 'form-wizard',--}}
+            {{--'onNext': function (tab, navigation, index) {--}}
+                {{--var $valid = $("#wizard-1").valid();--}}
+                {{--if (!$valid) {--}}
+                    {{--$validator.focusInvalid();--}}
+                    {{--return false;--}}
+                {{--} else {--}}
+                    {{--if(index == 4){--}}
+                        {{--$('#wizard-1').submit();--}}
+                    {{--}--}}
+
+                    {{--$('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass(--}}
+                            {{--'complete');--}}
+                    {{--$('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).find('.step')--}}
+                            {{--.html('<i class="fa fa-check"></i>');--}}
+                {{--}--}}
+            {{--}--}}
+        {{--});--}}
 
 
-    })
+        {{--// fuelux wizard--}}
+        {{--var wizard = $('.wizard').wizard();--}}
 
-</script>
+        {{--wizard.on('finished', function (e, data) {--}}
+            {{--//$("#fuelux-wizard").submit();--}}
+            {{--//console.log("submitted!");--}}
+            {{--$.smallBox({--}}
+                {{--title: "Congratulations! Your form was submitted",--}}
+                {{--content: "<i class='fa fa-clock-o'></i> <i>1 seconds ago...</i>",--}}
+                {{--color: "#5F895F",--}}
+                {{--iconSmall: "fa fa-check bounce animated",--}}
+                {{--timeout: 4000--}}
+            {{--});--}}
+
+        {{--});--}}
+
+
+    {{--})--}}
+
+{{--</script>--}}
 
 <!-- Your GOOGLE ANALYTICS CODE Below -->
 <script type="text/javascript">

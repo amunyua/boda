@@ -6,11 +6,14 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-map-marker fa-fw"></i></span>
-                <select name="county" class="form-control" id="role">
-                    <option value="">Choose Role</option>
+                <select name="county" class="form-control" id="county">
+                    <option value="">Choose County</option>
                     @if(count($counties))
                         @foreach($counties as $county)
-                            <option value="{{ $county->county_code }}" {{ (old('county') == $county->county_code) ? 'selected': '' }}>{{ $county->county_name }}</option>
+                            <option value="{{ $county->county_code }}"
+                                    {{ (old('county') == $county->county_code) ? 'selected': '' }}>
+                                {{ $county->county_name }}
+                            </option>
                         @endforeach
                     @endif
                 </select>
@@ -33,11 +36,22 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-                <input class="form-control" placeholder="Postal Address" type="text" name="postal_address" id="postal_address" value="{{ old('postal_address') }}">
+                <input class="form-control" placeholder="Postal Address" type="number" name="postal_address" id="postal_address" value="{{ old('postal_address') }}">
             </div>
         </div>
     </div>
 
+    <div class="col-sm-6">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                <input class="form-control" placeholder="Postal Code" type="number" name="postal_code" id="postal_code" value="{{ old('postal_code') }}">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-sm-6">
         <div class="form-group">
             <div class="input-group">
@@ -46,9 +60,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="row">
     <div class="col-sm-6">
         <div class="form-group">
             <div class="input-group">
@@ -57,6 +68,9 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="row">
     <div class="col-sm-6">
         <div class="form-group">
             <div class="input-group">
@@ -65,9 +79,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="row">
     <div class="col-sm-6">
         <div class="form-group">
             <div class="input-group">
@@ -76,7 +87,9 @@
             </div>
         </div>
     </div>
+</div>
 
+<div class="row">
     <div class="col-sm-6">
         <div class="form-group">
             <div class="input-group">

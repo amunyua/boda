@@ -18,7 +18,8 @@ class MasterfileSeeder extends Seeder
         $admin->middlename = 'Admin';
         $admin->id_no = '12345678';
         $admin->registration_date = date('Y-m-d H:i:s');
-        $admin->b_role = 'Staff';
+        $admin->b_role = 'System Administrator';
+        $admin->user_role = 'System Admin';
         $admin->save();
     }
 }

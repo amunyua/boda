@@ -17,6 +17,7 @@ class MenuSeeder extends Seeder
         #### Dashboard
         $dashboard_route = Route::where('route_name', 'Dashboard')->first();
         $dashboard = new Menu();
+        $dashboard->fa_icon = 'fa-home';
         $dashboard->route_id = $dashboard_route->id;
         $dashboard->sequence = 1;
         $dashboard->save();
@@ -32,28 +33,30 @@ class MenuSeeder extends Seeder
         #### registration
         $registration_route = Route::where('route_name', 'Registration')->first();
         $registration = new Menu();
+        $registration->fa_icon = 'fa-group';
         $registration->route_id = $registration_route->id;
         $registration->sequence = 2;
         $registration->save();
         $registration_id = $registration->id;
 
-        $staff_route = Route::where('route_name', 'Staff')->first();
-        $staff = new Menu();
-        $staff->route_id = $staff_route->id;
-        $staff->parent_menu = $registration->id;
-        $staff->sequence = 1;
-        $staff->save();
+        $user_reg_route = Route::where('route_name', 'User Registration')->first();
+        $user_reg = new Menu();
+        $user_reg->route_id = $user_reg_route->id;
+        $user_reg->parent_menu = $registration->id;
+        $user_reg->sequence = 1;
+        $user_reg->save();
 
-        $client_route = Route::where('route_name', 'Client')->first();
-        $client = new Menu();
-        $client->route_id = $client_route->id;
-        $client->parent_menu = $registration->id;
-        $client->sequence = 2;
-        $client->save();
+//        $client_route = Route::where('route_name', 'Client')->first();
+//        $client = new Menu();
+//        $client->route_id = $client_route->id;
+//        $client->parent_menu = $registration->id;
+//        $client->sequence = 2;
+//        $client->save();
 
         #### application
         $application_route = Route::where('route_name', 'Application')->first();
         $application = new Menu();
+        $application->fa_icon = 'fa-folder';
         $application->route_id = $application_route->id;
         $application->sequence = 3;
         $application->save();
@@ -90,6 +93,7 @@ class MenuSeeder extends Seeder
         #### inventory
         $inventory_route = Route::where('route_name', 'Inventory')->first();
         $inventory = new Menu();
+        $inventory->fa_icon = 'fa-book';
         $inventory->route_id = $inventory_route->id;
         $inventory->sequence = 4;
         $inventory->save();
@@ -112,6 +116,7 @@ class MenuSeeder extends Seeder
         #### clients
         $clients_route = Route::where('route_name', 'Client')->first();
         $clients = new Menu();
+        $clients->fa_icon = 'fa-user';
         $clients->route_id = $clients_route->id;
         $clients->sequence = 5;
         $clients->save();
@@ -134,6 +139,7 @@ class MenuSeeder extends Seeder
         #### service
         $service_route = Route::where('route_name', 'Service')->first();
         $service = new Menu();
+        $service->fa_icon = 'fa-exchange';
         $service->route_id = $service_route->id;
         $service->sequence = 6;
         $service->save();
@@ -156,6 +162,7 @@ class MenuSeeder extends Seeder
         #### system
         $system_route = Route::where('route_name', 'System')->first();
         $system = new Menu();
+        $system->fa_icon = 'fa-cogs';
         $system->route_id = $system_route->id;
         $system->sequence = 8;
         $system->save();
@@ -199,6 +206,7 @@ class MenuSeeder extends Seeder
         #### user management
         $user_mngt_route = Route::where('route_name', 'User Management')->first();
         $user_mngt = new Menu();
+        $user_mngt->fa_icon = 'fa-group';
         $user_mngt->route_id = $user_mngt_route->id;
         $user_mngt->sequence = 7;
         $user_mngt->save();
