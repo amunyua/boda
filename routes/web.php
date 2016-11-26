@@ -89,3 +89,8 @@ Route::post('/detach-route', 'UserManagerController@detachRoute');
 #### Services
 Route::get('/service-cats', 'ServiceCategoryController@index');
 Route::get('/services', 'ServiceController@index');
+
+#### Access Denied
+Route::get('/access-denied', function(){
+    return view('pages.access_denied');
+});

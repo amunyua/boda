@@ -9,4 +9,8 @@ class Masterfile extends Model
     protected $fillable = array(
         'surname', 'first_name', 'middle_name', 'dob', 'gender', 'id_no', 'role_id', 'school_id'
     );
+
+    public function user(){
+        return $this->hasOne('App\User');
+    }
 }
