@@ -14,6 +14,8 @@ class CountyTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('counties')->delete();
+
         $baringo = new County;
         $baringo->county_name = 'Baringo';
         $baringo->county_code = 'BARINGO';
