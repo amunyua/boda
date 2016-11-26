@@ -154,7 +154,7 @@ class MenuSeeder extends Seeder
         $service_category->sequence = 1;
         $service_category->save();
 
-        $manage_service_route = Route::where('route_name', 'Manage Service')->first();
+        $manage_service_route = Route::where('route_name', 'Manage Services')->first();
         $manage_service = new Menu();
         $manage_service->route_id = $manage_service_route->id;
         $manage_service->parent_menu = $service->id;
