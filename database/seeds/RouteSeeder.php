@@ -149,6 +149,13 @@ class RouteSeeder extends Seeder
         $route->save();
         $route->roles()->attach($admin);
 
+        $route = new Route();
+        $route->route_name = 'Get Service Category';
+        $route->url = 'get-scat-details/{id}';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
         $manage_service = new Route();
         $manage_service->route_name = 'Manage Services';
         $manage_service->url = 'manage_services';

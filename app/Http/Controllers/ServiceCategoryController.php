@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ServiceCategory;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class ServiceCategoryController extends Controller
 {
@@ -42,10 +43,31 @@ class ServiceCategoryController extends Controller
             // redirection
             return redirect('/service_category');
         }catch (QueryException $qe){
-            // get the exception message and flash it out as an error
+            // get the exception message and flash it out as an error or just pass a user friendly error
             $request->session()->flash('error', 'Encoutered a system error!'); // a user friendly error
 
             // redirection
+            return redirect('/service_category');
+        }
+    }
+
+    public function getScat(Request $request){
+        $scat_id = $request->id;
+        $scat = ServiceCategory::find($scat_id);
+        return Response::json([$scat]);
+    }
+
+    public function update(Request $request){
+        $this->validate($request, [
+            'service_category_name' => 'required|unique:service_categories',
+            'service_category_code' => 'required|unique:service_categories',
+            'status' => 'required|boolean'
+        ]);
+
+        try{
+
+        }catch (QueryException $qe){
+            $request->session()->flash('error', 'Encoutered a system error!'); // a user friendly error
             return redirect('/service_category');
         }
     }
