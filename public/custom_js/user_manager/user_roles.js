@@ -1,6 +1,29 @@
 /**
  * Created by alex on 01/11/16.
  */
+var UserRole = {
+    checkAllocatedRoute: function(role_id){
+        $(this).attr('data-toggle', 'modal');
+        $('#allocate-routes').modal('show');
+
+        if(role_id != ''){
+            $.ajax({
+                url: 'check-allocated-route/'+role_id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var count = data.length,
+                        route_id;
+                    // get the allocated routes and loop while checking them
+                    for (var i = 0; i < count; i++){
+                        route_id = data[i].route_id;
+                        $(document).find('input.custom_checkbox[value="'+route_id+'"]').attr('checked', 'checked');
+                    }
+                }
+            });
+        }
+    }
+}
 
 $('.del_role').on('click', function () {
     var delete_id = $(this).attr('del-id');
@@ -10,30 +33,34 @@ $('.del_role').on('click', function () {
     $('#delete-role').attr('action', new_action);
 });
 
-$('#routes-for-allocation').DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: 'load-routes-allocation',
-    "aaSorting": [[ 1, 'asc' ]],
-    columns: [
-        { data: 'route_name', 'name': 'route_name' },
-        { data: 'parent_route', 'name': 'parent_route' },
-        { data: 'attach_detach', 'name': 'attach_detach' }
-    ],
+$('#routes-for-allocation').DataTable(
+{
+    // processing: true,
+    // serverSide: false,
+    // ajax: 'load-routes-allocation',
+    // "aaSorting": [[ 1, 'asc' ]],
+    // columns: [
+    //     { data: 'route_name', 'name': 'route_name' },
+    //     { data: 'parent_route', 'name': 'parent_route' },
+    //     { data: 'attach_detach', 'name': 'attach_detach' }
+    // ],
     columnDefs: [
         { searchable: false, targets: [2] },
         { orderable: false, targets: [2] }
-    ]
-});
+    ],
+    iDisplayLength: 1000
+}
+);
 
 $('#allocate-routes-view').on('click', function(){
     var selected = $('table#dt_basic > tbody > tr.select_tr').length;
 
     if(selected){
         if(selected == 1) {
-            $(this).attr('data-toggle', 'modal');
             var role_id = $('#dt_basic > tbody > tr.select_tr').find('td:first').text();
             $('input:checkbox.attach').attr('role-id', role_id);
+
+            UserRole.checkAllocatedRoute(role_id);
         }else if(selected > 1){
             alert('You can only allocate routes to one role at a time!');
         }

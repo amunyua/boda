@@ -20,7 +20,7 @@
 
 @section('content')
     @include('layouts.includes._messages')
-
+    @section('table-id', '#dt_basic')
     <table id="dt_basic" class="table table-striped table-hover" width="100%">
         <thead>
         <tr>
@@ -267,6 +267,20 @@
                                 <td><input type="checkbox" id="check-all" class="custom_checkbox"/></td>
                             </tr>
                         </thead>
+                        <tbody>
+                            @if(count($routes))
+                                @foreach($routes as $route)
+                                    @php
+                                        $parent_route = \App\Route::find($route->parent_route)->route_name;
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $route->route_name }}</td>
+                                        <td>{{ $parent_route }}</td>
+                                        <td><input type="checkbox" class="attach custom_checkbox" value="{{ $route->id }}" role-id=""/></td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
                     </table>
 
                 </div>

@@ -240,6 +240,13 @@ class RouteSeeder extends Seeder
         $theme_config->save();
         $theme_config->roles()->attach($admin);
 
+        $get_theme = new Route();
+        $get_theme->route_name = 'Get Theme';
+        $get_theme->url = 'get-theme';
+        $get_theme->parent_route = $system_id;
+        $get_theme->save();
+        $get_theme->roles()->attach($admin);
+
         $backup = new Route();
         $backup->route_name = 'Backup';
         $backup->url = 'backup';
@@ -274,5 +281,36 @@ class RouteSeeder extends Seeder
         $audit_trail->parent_route = $user_mngt_id;
         $audit_trail->save();
         $audit_trail->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Load Routes Allocation';
+        $route->url = 'load-routes-allocation';
+        $route->parent_route = $system_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'is Route Allocated';
+        $route->url = 'check-allocated-route/{id}';
+        $route->parent_route = $system_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name= 'Attach Route';
+        $route->url = 'attach-route';
+        $route->parent_route = $system_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name= 'Detach Route';
+        $route->url = 'detach-route';
+        $route->parent_route = $system_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        #### Services
+
     }
 }
