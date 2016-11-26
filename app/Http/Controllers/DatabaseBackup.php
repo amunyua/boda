@@ -16,6 +16,9 @@ class DatabaseBackup extends Controller
 
     public function __construct(Manager $manager) {
         $this->manager = $manager;
+
+        $this->middleware('auth');
+        $this->middleware('validateroutes');
     }
     /**
      * Define the application's command schedule.

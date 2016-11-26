@@ -14,8 +14,8 @@ class RoutesController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('auth');
-//        $this->middleware('auth:api');
+        $this->middleware('auth');
+        $this->middleware('validateroutes');
     }
 
     public function index(){
