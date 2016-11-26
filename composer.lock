@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c4608b5b096dcb2b854a7c0cb478f9b3",
-    "content-hash": "31e19f9f7d8b9d99f579e22aab697f11",
+    "hash": "5b9b770944ede7be802f850f65894220",
+    "content-hash": "09b355b42f33d263a4e65ce312e19d16",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2710,6 +2710,58 @@
                 "uuid"
             ],
             "time": "2016-10-02 15:51:17"
+        },
+        {
+            "name": "smodav/mpesa",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SmoDav/mpesa.git",
+                "reference": "7dc1f16056c0d8c38eef989f3317ddb3b7f9193d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SmoDav/mpesa/zipball/7dc1f16056c0d8c38eef989f3317ddb3b7f9193d",
+                "reference": "7dc1f16056c0d8c38eef989f3317ddb3b7f9193d",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2",
+                "illuminate/support": "~5.0",
+                "nesbot/carbon": "~1.21",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Mpesa/Support/helpers.php"
+                ],
+                "psr-4": {
+                    "SmoDav\\Mpesa\\": "src/Mpesa/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "SmoDav",
+                    "email": "smodavprivate@gmail.com"
+                }
+            ],
+            "description": "M-Pesa API implementation",
+            "keywords": [
+                "api",
+                "laravel",
+                "mpesa",
+                "safaricom",
+                "transactions"
+            ],
+            "time": "2016-08-01 05:46:46"
         },
         {
             "name": "swiftmailer/swiftmailer",

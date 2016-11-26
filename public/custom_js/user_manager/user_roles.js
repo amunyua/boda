@@ -98,3 +98,19 @@ $('table').on('click', 'input:checkbox.attach', function(){
         }
     }
 });
+
+$('.edit-role-btn').on('click', function () {
+    var action = $(this).attr('action');
+    var edit_id = $(this).attr('edit-id');
+    $('#edit-userrole-form').attr('action',action);
+
+    $.ajax({
+        url: 'get-role-edit-details/'+edit_id,
+        dataType: 'json',
+        success: function (data) {
+            $('#role_name').val(data['role_name']);
+            $('#role_code').val(data['role_code']);
+            $('#status').val(data['role_status']);
+        }
+    })
+});

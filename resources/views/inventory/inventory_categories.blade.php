@@ -33,19 +33,7 @@
         </tr>
         </thead>
         <tbody>
-        @if(count($roles))
-            @foreach($roles as $role)
-                <tr>
-                    <td>{{ $role->id }}</td>
-                    <td>{{ $role->role_name }}</td>
-                    <td>{{ $role->role_code }}</td>
-                    <td><?php echo ($role->role_status == 1)? '<span class="label label-success"> Active </span>':'<span class="label label-danger">Blocked</span>' ?></td>
-                    <td><a href="#edit-role-modal" edit-id="{{ $role->id }}" action="{{ url('edit-user-role/'.$role->id) }}" data-toggle="modal" class="btn btn-success btn-xs edit-role-btn">Edit</a> </td>
 
-                    <td> <a href="#delete-user-role" class="btn btn-danger btn-xs del_role" data-toggle="modal" del-id="{{ $role->id }}">Delete </a> </td>
-                </tr>
-            @endforeach
-            @endif
         </tbody>
     </table>
 @endsection
@@ -261,11 +249,11 @@
                     {{ csrf_field() }}
                     <table id="routes-for-allocation" class="table table-striped" style="width: 100%;">
                         <thead>
-                            <tr>
-                                <th>Route</th>
-                                <th>Parent</th>
-                                <td><input type="checkbox" id="check-all" class="custom_checkbox"/></td>
-                            </tr>
+                        <tr>
+                            <th>Route</th>
+                            <th>Parent</th>
+                            <td><input type="checkbox" id="check-all" class="custom_checkbox"/></td>
+                        </tr>
                         </thead>
                     </table>
 
@@ -274,7 +262,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
-    @endsection
+@endsection
 
 @push('js')
 <script src="{{ URL::asset('custom_js/user_manager/user_roles.js') }}"></script>
