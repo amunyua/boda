@@ -13,6 +13,8 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('menus')->delete();
+
         \Illuminate\Support\Facades\DB::table('menus')->delete();
         #### Dashboard
         $dashboard_route = Route::where('route_name', 'Dashboard')->first();

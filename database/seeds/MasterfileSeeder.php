@@ -12,6 +12,8 @@ class MasterfileSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('masterfiles')->delete();
+
         $admin = new Masterfile();
         $admin->surname = 'Admin';
         $admin->firstname = 'Admin';
