@@ -52,7 +52,10 @@
     <link rel="apple-touch-startup-image" href="{{ asset('img/splash/ipad-landscape.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     <link rel="apple-touch-startup-image" href="{{ asset('img/splash/ipad-portrait.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="{{ asset('img/splash/iphone.png') }}" media="screen and (max-device-width: 320px)">
-    
+
+    {{-- image upload--}}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('css/bootstrap-fileupload.css') }}">
+
     @stack('css')
 </head>
 
@@ -374,6 +377,9 @@ you can add as many as you like
 <!-- PAGE RELATED PLUGIN(S) -->
 <script src="{{ asset('js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"></script>
 <script src="{{ asset('js/plugin/fuelux/wizard/wizard.min.js') }}"></script>
+
+{{--image upload js--}}
+<script src="{{ asset('js/plugin/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
 
 
 {{--<script type="text/javascript">--}}
