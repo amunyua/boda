@@ -10,15 +10,24 @@ $('.regdate').datepicker({
 });
 
 $('#b_role').on('change', function(){
-    var role = $(this).val();
+    var brole = $(this).val();
     // alert('working');
 
-    if(role == 'Administrator'){
-        $('#role').attr('readonly', 'readonly').val(1);
-    }else if(role == 'Staff'){
-        $('#role').attr('readonly', 'readonly').val(2);
-    }else if(role == 'Client'){
-        $('#role').attr('readonly', 'readonly').val(3);
+    if(brole == 'Administrator'){
+        // select the option that has role code administrator
+        $('select#role option[role-code="SYS_ADMIN"]').attr('selected', 'selected');
+        var role_id = $('select#role option:selected').val();
+        $('input#selected_role').val(role_id);
+    }else if(brole == 'Staff'){
+        $('select#role option[role-code="STAFF"]').attr('selected', 'selected');
+        var role_id = $('select#role option:selected').val();
+        $('input#selected_role').val(role_id);
+    }else if(brole == 'Client'){
+        $('select#role option[role-code="CLIENT"]').attr('selected', 'selected');
+        var role_id = $('select#role option:selected').val();
+        $('input#selected_role').val(role_id);
+    }else if(brole == ''){
+        $('#role').val('');
     }
 });
 

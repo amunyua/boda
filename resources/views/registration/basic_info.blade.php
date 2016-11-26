@@ -86,14 +86,15 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-list fa-fw"></i></span>
-                <select name="role" class="form-control" id="role">
+                <select class="form-control" id="role" disabled>
                     <option value="">Choose Role</option>
                     @if(count($roles))
                         @foreach($roles as $role)
-                            <option value="{{ $role->id }}" {{ (old('role') == $role->id) ? 'selected': '' }}>{{ $role->role_name }}</option>
+                            <option role-code="{{ $role->role_code }}" value="{{ $role->id }}" {{ (old('role') == $role->id) ? 'selected': '' }}>{{ $role->role_name }}</option>
                         @endforeach
                     @endif
                 </select>
+                <input type="hidden" name="role" id="selected_role"/>
             </div>
         </div>
     </div>

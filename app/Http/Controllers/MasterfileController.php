@@ -168,7 +168,7 @@ class MasterfileController extends Controller
                 'image_path' => $path,
                 'status' => 1
             ));
-            print_r($mf);exit;
+            var_dump('firstname');exit;
             $mf->save();
             $mf_id = $mf->id;
 
@@ -184,6 +184,7 @@ class MasterfileController extends Controller
                 'postal_code' => Input::get('postal_code'),
                 'physical_address' => Input::get('physical_address')
             ));
+            var_dump($address);exit;
             $address->save();
 
             // create user login account

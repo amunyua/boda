@@ -44,12 +44,13 @@ class RouteSeeder extends Seeder
         $registration->save();
         $registration->roles()->attach($admin);
 
-//        $client = new Route();
-//        $client->route_name = 'Client';
-//        $client->url = 'client';
-//        $client->parent_route = $reg_id;
-//        $client->save();
-//        $client->roles()->attach($admin);
+        // adding a user
+        $add_reg = new Route();
+        $add_reg->route_name = 'Add Registration';
+        $add_reg->url = 'add-registration';
+        $add_reg->parent_route = $reg_id;
+        $add_reg->save();
+        $add_reg->roles()->attach($admin);
 
         #### Application
         $app = new Route();

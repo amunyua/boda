@@ -23,6 +23,7 @@ class CreateMasterfileTable extends Migration
             $table->date('registration_date');
             $table->string('b_role', 50);
             $table->string('user_role', 50);
+            $table->boolean('gender');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
