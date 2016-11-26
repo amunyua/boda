@@ -138,11 +138,13 @@ $(document).ready(function() {
                     $('#finish-btn').submit();
                 }
 
-                $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass(
-                    'complete');
+                $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass('complete');
                 $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).find('.step')
                     .html('<i class="fa fa-check"></i>');
             }
+        },
+        'onLast': function(){
+             $('#wizard-1').submit();
         }
     });
 
