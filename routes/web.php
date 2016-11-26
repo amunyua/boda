@@ -88,8 +88,8 @@ Route::post('/detach-route', 'UserManagerController@detachRoute');
 Route::get('/check-allocated-route/{id}', 'UserManagerController@isRouteAllocated');
 
 #### Services
-Route::get('/service-cats', 'ServiceCategoryController@index');
-Route::get('/services', 'ServiceController@index');
+Route::get('/service_category', 'ServiceCategoryController@index');
+Route::get('/manage_services', 'ServiceController@index');
 
 #### Access Denied
 Route::get('/access-denied', function(){

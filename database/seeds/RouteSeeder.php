@@ -143,8 +143,8 @@ class RouteSeeder extends Seeder
         $service_category->roles()->attach($admin);
 
         $manage_service = new Route();
-        $manage_service->route_name = 'Manage Service';
-        $manage_service->url = 'manage_service';
+        $manage_service->route_name = 'Manage Services';
+        $manage_service->url = 'manage_services';
         $manage_service->parent_route = $service_id;
         $manage_service->save();
         $manage_service->roles()->attach($admin);
@@ -309,8 +309,5 @@ class RouteSeeder extends Seeder
         $route->parent_route = $system_id;
         $route->save();
         $route->roles()->attach($admin);
-
-        #### Services
-
     }
 }
