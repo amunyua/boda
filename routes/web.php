@@ -77,6 +77,8 @@ Route::get('/make-backup','DatabaseBackup@runBackup');
 ##### User manager
 Route::get('/user_roles','UserManagerController@getIndex');
 Route::post('/add-user-role','UserManagerController@storeRole');
+Route::get('get-role-edit-details/{id}','UserManagerController@getRoleEditDetails');
+Route::post('edit-user-role/{id}','UserManagerController@updateUserRoleDetails');
 Route::delete('/delete-user-role/{id}','UserManagerController@destroyRole');
 Route::get('/audit_trails','UserManagerController@auditTrails');
 Route::get('/ajax_trails','UserManagerController@ajaxAuditTrails');

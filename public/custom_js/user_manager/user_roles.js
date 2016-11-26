@@ -45,10 +45,10 @@ $('#allocate-routes-view').on('click', function(){
 $('table').on('click', 'input:checkbox.attach', function(){
     // check if the checkbox is checked
     var checked = $(this).is(':checked');
-    if(checked){
-        var route_id = $(this).val();
-        var role_id = $(this).attr('role-id');
+    var route_id = $(this).val();
+    var role_id = $(this).attr('role-id');
 
+    if(checked){
         if (route_id != ''){
             $.ajax({
                 url: 'attach-route',
@@ -72,5 +72,45 @@ $('table').on('click', 'input:checkbox.attach', function(){
                 }
             });
         }
+    }else{
+        if (route_id != ''){
+            $.ajax({
+                url: 'detach-route',
+                type: 'POST',
+                data: {
+                    'route_id': route_id,
+                    '_token': $('input[name="_token"]').val(),
+                    'role_id': role_id
+                },
+                dataType: 'json',
+                success: function(data){
+                    if(data.success){
+                        $.smallBox({
+                            title : "Detached",
+                            content : data.message,
+                            color : "orange",
+                            iconSmall : "fa fa-remove bounce animated",
+                            timeout : 4000
+                        });
+                    }
+                }
+            });
+        }
     }
+});
+
+$('.edit-role-btn').on('click', function () {
+    var action = $(this).attr('action');
+    var edit_id = $(this).attr('edit-id');
+    $('#edit-userrole-form').attr('action',action);
+
+    $.ajax({
+        url: 'get-role-edit-details/'+edit_id,
+        dataType: 'json',
+        success: function (data) {
+            $('#role_name').val(data['role_name']);
+            $('#role_code').val(data['role_code']);
+            $('#status').val(data['role_status']);
+        }
+    })
 });

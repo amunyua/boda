@@ -4,9 +4,9 @@
 @section('widget-desc', 'User Actions')
 
 @section('button')
-    {{--<button type="button" class="btn btn-primary pull-right header-btn hidden-mobile" data-toggle="modal" data-target="#add-user-role">--}}
-        {{--<i class="fa fa-plus"></i> Add User Role--}}
-    {{--</button>--}}
+    <button type="button" class="btn btn-primary pull-right header-btn hidden-mobile mpesa">
+        <i class="fa fa-plus"></i> Add User Role
+    </button>
 @endsection
 
 @section('content')

@@ -8,6 +8,7 @@ use App\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+use SmoDav\Mpesa\Native\Mpesa;
 use Yajra\Datatables\Facades\Datatables;
 use App\Route;
 
@@ -16,6 +17,11 @@ class UserManagerController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function mpesaPayment(){
+        $repsonse = mpesa(10, 254715862938)->usingReferenceId('Alex Muunyua')->transact();
+        return Guz::json($repsonse);
     }
     public function getIndex(){
         $roles = Role::all();
@@ -26,16 +32,23 @@ class UserManagerController extends Controller
 //        var_dump($_POST);
 
         $this->validate($request,array(
-            'role_name'=>'required|min:3|unique:user_roles,role_name',
+            'role_name'=>'required|min:3|unique:roles,role_name',
+            'role_code'=>'required|min:3|unique:roles,role_code',
             'status'=>'required'
         ));
-//        $this->logAction('add_user_role');
-        $user_role = new Role();
-        $user_role->role_name = $request->role_name;
-        $user_role->status = $request->status;
-
-        $user_role->save();
-        Session::flash('success','User Role ('.$request->role_name.') has been added');
+        try {
+            $user_role = new Role();
+            $user_role->role_name = $request->role_name;
+            $user_role->role_code = strtoupper($request->role_code);
+            $user_role->role_status = $request->status;
+            $user_role->save();
+            Session::flash('success','User Role ('.$request->role_name.') has been added');
+        } catch (\Illuminate\Database\QueryException $e) {
+             $message =  $this->handleException($e);
+//            var_dump($message);
+            Session::flash('warning', $message);
+//            return redirect()->back()->withInput();
+        }
         return redirect('user_roles');
     }
 
@@ -83,5 +96,32 @@ class UserManagerController extends Controller
             'success' => true,
             'message' => 'Route has been allocated!'
         ]);
+    }
+
+    public function getRoleEditDetails($id){
+        $role = Role::find($id);
+        return Response::json($role);
+    }
+
+    public function updateUserRoleDetails(Request $request, $id){
+        $this->validate($request, array(
+            'role_name'=>'required',
+            'role_code'=>'required',
+            'status'=>'required'
+        ));
+
+        $role = Role::find($id);
+        $role->role_name = $request->role_name;
+        $role->role_code = $request->role_code;
+        $role->role_status = $request->status;
+
+        try{
+            $role->save();
+            Session::flash('success','The user role has been updated');
+        } catch (\Illuminate\Database\QueryException $e){
+            $message = $this->handleException($e);
+            Session::flash('warning',$message);
+        }
+        return redirect('user_roles');
     }
 }

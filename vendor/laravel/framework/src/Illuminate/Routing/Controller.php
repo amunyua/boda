@@ -4,6 +4,7 @@ namespace Illuminate\Routing;
 
 use BadMethodCallException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use \Illuminate\Database\QueryException as Exception;
 
 abstract class Controller
 {
@@ -80,5 +81,10 @@ abstract class Controller
     public function __call($method, $parameters)
     {
         throw new BadMethodCallException("Method [{$method}] does not exist.");
+    }
+
+    public function handleException($e)
+    {
+        return $e->errorInfo[2];
     }
 }
