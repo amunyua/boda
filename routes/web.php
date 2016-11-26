@@ -89,7 +89,8 @@ Route::get('/check-allocated-route/{id}', 'UserManagerController@isRouteAllocate
 
 #### Services
 Route::get('/service_category', 'ServiceCategoryController@index');
-Route::get('/manage_services', 'ServiceController@index');
+Route::post('/add-sc-cats', 'ServiceCategoryController@store');
+Route::post('/edit-sc-cats', 'ServiceController@index');
 
 #### Access Denied
 Route::get('/access-denied', function(){
