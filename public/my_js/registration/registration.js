@@ -14,11 +14,11 @@ $('#b_role').on('change', function(){
     // alert('working');
 
     if(role == 'Administrator'){
-        $('#role').attr('readonly', 'readonly').val('SYS_ADMIN');
+        $('#role').attr('readonly', 'readonly').val(1);
     }else if(role == 'Staff'){
-        $('#role').attr('readonly', 'readonly').val('STAFF');
+        $('#role').attr('readonly', 'readonly').val(2);
     }else if(role == 'Client'){
-        $('#role').attr('readonly', 'readonly').val('CLIENT');
+        $('#role').attr('readonly', 'readonly').val(3);
     }
 });
 
@@ -31,10 +31,10 @@ $(document).ready(function() {
 
     var $validator = $("#wizard-1").validate({
         rules: {
-            email: {
-                required: true,
-                email: true
-            },
+            // email: {
+            //     required: true,
+            //     email: true
+            // },
             b_role: {
                 required: true
             },
@@ -49,6 +49,9 @@ $(document).ready(function() {
                 maxlength: 15
             },
             role: {
+                required: true
+            },
+            gender: {
                 required: true
             },
             id_no: {
@@ -93,10 +96,10 @@ $(document).ready(function() {
                 minlength:  "Minimum characters 8",
                 maxlength:  "Maximum characters 15"
             },
-            email: {
-                required: "You must specify the email address",
-                email: "The email address must be in the format of name@domain.com"
-            },
+            // email: {
+            //     required: "You must specify the email address",
+            //     email: "The email address must be in the format of name@domain.com"
+            // },
             county: "Please provide county location",
             city: "Please provide city name",
             postal_address: "Please provide postal address",
@@ -106,6 +109,7 @@ $(document).ready(function() {
                 minlength: "Minimum characters 10 e.g 0700 000 000",
                 maxlength: "Maximum characters 10 e.g 254 700 000 000",
             },
+            gender: "You must select the Role first",
             role: "You must select the Role first"
         },
 
@@ -154,7 +158,7 @@ $(document).ready(function() {
 
     wizard.on('finished', function (e, data) {
         //$("#fuelux-wizard").submit();
-        //console.log("submitted!");
+        // console.log("submitted!");
         $.smallBox({
             title: "Congratulations! Your form was submitted",
             content: "<i class='fa fa-clock-o'></i> <i>1 seconds ago...</i>",

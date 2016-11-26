@@ -197,6 +197,15 @@ class MasterfileController extends Controller
             ));
 //            var_dump($login);exit;
             $login->save();
+
+            // get user role
+            $role_id = Input::get('user_role');
+
+            // find the the instance of the role
+            $user_role = Role::find($role_id);
+
+            // attach the user role
+            $login->roles()->attach($user_role);
         });
 
         Session::flash('success', 'Staff '.$_POST['surname'].' '.$_POST['firstname'].' has been added');
