@@ -23,15 +23,17 @@
         <i class="fa fa-edit"></i> Edit Service Category
     </a>
 
-    <a id="delete-scat" class="btn btn-danger btn-sm header-btn hidden-mobile">
+    <button data-target="#delete-scat" id="delete-scat-btn" class="btn btn-danger btn-sm header-btn hidden-mobile">
         <i class="fa fa-trash"></i> Delete
-    </a>
+    </button>
     {{--</span>--}}
 @endsection
 
 @section('content')
     @include('common.success')
     @include('common.error')
+    @include('common.warnings')
+
     @section('table-id', '#dt_basic')
     <table id="dt_basic" class="table table-striped table-bordered table-hover">
         <thead>
@@ -145,7 +147,7 @@
                 </div>
                 <div class="modal-body no-padding">
 
-                    <form id="edit-route-form" class="smart-form" action="{{ url('edit-service-cat') }}" method="post">
+                    <form class="smart-form" action="{{ url('edit-sc-cats') }}" method="post">
                         {{ csrf_field() }}
                         <fieldset>
                             <section>
@@ -153,7 +155,7 @@
                                     <label class="label col col-2">Name</label>
                                     <div class="col col-10">
                                         <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="sc_name" id="sc_name">
+                                            <input type="text" name="service_category_name" id="sc_name">
                                         </label>
                                     </div>
                                 </div>
@@ -164,7 +166,7 @@
                                     <label class="label col col-2">Code</label>
                                     <div class="col col-10">
                                         <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="sc_code" id="sc_code">
+                                            <input type="text" name="service_category_code" id="sc_code">
                                         </label>
                                     </div>
                                 </div>
@@ -206,4 +208,40 @@
         </div><!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
+    <div class="modal fade" id="delete-scat" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        Delete Service Category
+                    </h4>
+                </div>
+                <div class="modal-body no-padding">
+                    <form class="smart-form" action="{{ url('delete-scats') }}" method="post">
+                        <p>Are you sure you want to delete the selected records?</p>
+                        {{ csrf_field() }}
+
+                        {{--hidden fields--}}
+                        <input type="hidden" id="edit_ids" name="edit_ids"/>
+                        <footer>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i> Yes
+                            </button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                <i class="fa fa-remove"></i> No
+                            </button>
+
+                        </footer>
+                    </form>
+
+
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 @endsection

@@ -52,10 +52,15 @@ var Common = {
     },
     onDeleteValidateSelection: function () {
         var selected = $('tr.select_tr').length;
+        var edit_ids = [];
         if (selected){
-            return true;
+            $('tr.select_tr').each(function(){
+                edit_ids.push($(this).find('td:first').text());
+            });
+            return edit_ids;
         }else{
             alert('You must select at least one record!');
+            return false;
         }
         return false;
     }

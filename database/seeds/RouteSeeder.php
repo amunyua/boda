@@ -157,6 +157,20 @@ class RouteSeeder extends Seeder
         $route->save();
         $route->roles()->attach($admin);
 
+        $route = new Route();
+        $route->route_name = 'Update Service Category';
+        $route->url = 'edit-sc-cats';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Delete Service Category';
+        $route->url = 'delete-scats';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
         $manage_service = new Route();
         $manage_service->route_name = 'Manage Services';
         $manage_service->url = 'manage_services';

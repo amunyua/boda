@@ -1,9 +1,6 @@
 /**
  * Created by erico on 11/26/16.
  */
-var Services = {
-
-};
 
 $('#edit-scat-btn').on('click', function(){
     var edit_id = Common.onEditValidateSelection();
@@ -23,8 +20,21 @@ $('#edit-scat-btn').on('click', function(){
                     $('#sc_name').val(data[0].service_category_name);
                     $('#sc_code').val(data[0].service_category_code);
                     $('#status').val(data[0].service_category_status);
+                    $('#edit_id').val(data[0].id);
                 }
             }
         });
+    }
+});
+
+$('#delete-scat-btn').on('click', function(){
+    var edit_ids = Common.onDeleteValidateSelection();
+
+    if(edit_ids != false){
+        // open modal
+        $('#delete-scat').modal('show');
+
+        // populate the selected ids
+        $('#edit_ids').val(edit_ids);
     }
 });
