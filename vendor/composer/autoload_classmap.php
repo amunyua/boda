@@ -17,6 +17,7 @@ return array(
     'ContactTypeSeeder' => $baseDir . '/database/seeds/ContactTypeSeeder.php',
     'CountyTableSeeder' => $baseDir . '/database/seeds/CountyTableSeeder.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
+    'CreateAddressesTable' => $baseDir . '/database/migrations/2016_11_26_145922_create_addresses_table.php',
     'CreateAuditTrailsTable' => $baseDir . '/database/migrations/2016_11_01_180922_create_audit_trails_table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2016_10_13_180726_create_categories_table.php',
     'CreateContactTypesTable' => $baseDir . '/database/migrations/2016_11_02_194657_create_contact_types_table.php',
