@@ -1,45 +1,47 @@
-@extends('layouts.dt')
-@section('title', 'User Roles')
-@section('widget-title', 'Manage User Roles')
-@section('widget-desc', 'System Roles')
+@extends('layouts.tree_view')
+@section('title', 'Inventory Categories')
+@section('widget-title', 'Inventory Categories')
+@section('widget-desc', 'Categories & subcategories')
 
 @section('button')
-    <ul class="list-inline pull-right">
-        <li>
-            <button class="btn btn-primary btn-sm header-btn hidden-mobile" data-toggle="modal" data-target="#add-user-role">
-                <i class="fa fa-plus"></i> Add User Role
-            </button>
-        </li>
-        <li>
-            <button class="btn btn-info btn-sm header-btn hidden-mobile" id="allocate-routes-view"  data-target="#allocate-routes">
-                <i class="fa fa-paperclip"></i> Allocate Routes
-            </button>
-        </li>
-    </ul>
+    {{--<ul class="list-inline pull-right">--}}
+        {{--<li>--}}
+            {{--<button class="btn btn-primary btn-sm header-btn hidden-mobile" data-toggle="modal" data-target="#add-user-role">--}}
+                {{--<i class="fa fa-plus"></i> Add User Role--}}
+            {{--</button>--}}
+        {{--</li>--}}
+        {{--<li>--}}
+            {{--<button class="btn btn-info btn-sm header-btn hidden-mobile" id="allocate-routes-view"  data-target="#allocate-routes">--}}
+                {{--<i class="fa fa-paperclip"></i> Allocate Routes--}}
+            {{--</button>--}}
+        {{--</li>--}}
+    {{--</ul>--}}
 @endsection
-
+@section('tree_header','Inventory Categories')
 @section('content')
     @include('layouts.includes._messages')
+    <div class="row">
+        <div class="col-sm-12 col-md-12 text-align-right pull-right">
 
-    <table id="dt_basic" class="table table-striped table-hover" width="100%">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Role Name</th>
-            <th>Role code</th>
-            <th>Status</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
-        <tbody>
+            <a href="#add-category" class="btn btn-primary btn-xs" style="margin-right: 10px" data-toggle="modal"><i class="fa fa-plus"> </i> Add Category</a>
+            <a class="btn btn-success btn-xs" style="margin-right: 10px" data-toggle="modal"><i class="fa fa-edit"> Edit Category </i> </a>
+            <a  class="btn btn-danger btn-xs" style="margin-right: 10px" data-toggle="modal"><i class="fa fa-remove"> </i> Delete Category</a>
 
-        </tbody>
-    </table>
+        </div>
+
+    </div>
+    <div class="tree smart-form">
+
+            <?php
+            $categories = new \App\Http\Controllers\InventoryController();
+            $categories->arrangeTree(NULL);
+            ?>
+
+    </div>
 @endsection
 
 @section('modals')
-    <div class="modal fade" id="add-user-role" role="dialog">
+    <div class="modal fade" id="add-category" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -47,50 +49,53 @@
                         &times;
                     </button>
                     <h4 class="modal-title">
-                        Add User Role
+                        Add Category
                     </h4>
                 </div>
                 <div class="modal-body no-padding">
 
-                    <form id="add-menu-form" class="smart-form" action="{{ url('add-user-role') }}" method="post">
+                    <form id="add-menu-form" class="smart-form" action="{{ url('add-inventory-category') }}" method="post">
                         {{ csrf_field() }}
                         <fieldset>
                             <section>
                                 <div class="row">
-                                    <label class="label col col-2">Role Name</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="role_name" value="{{ old('role_name') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="row">
-                                    <label class="label col col-2">Role Code</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="role_code" value="{{ old('role_code') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="row">
-                                    <label class="label col col-2">Status</label>
+                                    <label class="label col col-2">Parent Category</label>
                                     <div class="col col-10">
                                         <label class="input">
-                                            <select name="status" class="form-control">
-                                                <option value="1">Active</option>
-                                                <option value="0">Inactive</option>
+                                            <select name="parent_category" class="form-control select2" required>
+                                                <option value="">Choose Parent Category</option>
+                                                <option value="Null">No Parent</option>
+                                                @if(count($parent_categories))
+                                                    @foreach($parent_categories as $parent_category)
+                                                        <option value="{{ $parent_category->id }}">{{ $parent_category->category_name }}</option>
+                                                        @endforeach
+                                                    @endif
                                             </select>
                                         </label>
                                     </div>
                                 </div>
                             </section>
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Category Name</label>
+                                    <div class="col col-10">
+                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
+                                            <input type="text" name="category_name" value="{{ old('category_name') }}">
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
 
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Category Code</label>
+                                    <div class="col col-10">
+                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
+                                            <input type="text" name="code" value="{{ old('role_code') }}">
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
 
                         </fieldset>
 

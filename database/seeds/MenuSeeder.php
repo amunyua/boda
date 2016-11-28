@@ -106,7 +106,7 @@ class MenuSeeder extends Seeder
         $item->sequence = 1;
         $item->save();
 
-        $category_route = Route::where('route_name', 'Categories')->first();
+        $category_route = Route::where('route_name', 'Manage Categories')->first();
         $category = new Menu();
         $category->route_id = $category_route->id;
         $category->parent_menu = $inventory->id;

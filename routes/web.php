@@ -89,3 +89,8 @@ Route::post('/detach-route', 'UserManagerController@detachRoute');
 #### Services
 Route::get('/service-cats', 'ServiceCategoryController@index');
 Route::get('/services', 'ServiceController@index');
+
+#### Inventory
+Route::get('inventory-categories','InventoryController@getCategories');
+Route::post('/add-inventory-category','InventoryController@storeCategory');
+Route::get('/manage_inventory','InventoryController@allInventoryItems');
