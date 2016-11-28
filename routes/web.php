@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'DashboardController@index');
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'DashboardController@index');
 
 Auth::routes();
 
@@ -90,7 +90,9 @@ Route::get('/check-allocated-route/{id}', 'UserManagerController@isRouteAllocate
 #### Services
 Route::get('/service_category', 'ServiceCategoryController@index');
 Route::post('/add-sc-cats', 'ServiceCategoryController@store');
-Route::post('/edit-sc-cats', 'ServiceController@index');
+Route::post('/edit-sc-cats', 'ServiceCategoryController@update');
+Route::post('/delete-scats', 'ServiceCategoryController@destroy');
+Route::get('/get-scat-details/{id}', 'ServiceCategoryController@getScat');
 
 #### Access Denied
 Route::get('/access-denied', function(){
