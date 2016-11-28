@@ -12,6 +12,8 @@ class MasterfileSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('masterfiles')->delete();
+
         $admin = new Masterfile();
         $admin->surname = 'Admin';
         $admin->firstname = 'Admin';
@@ -20,6 +22,7 @@ class MasterfileSeeder extends Seeder
         $admin->registration_date = date('Y-m-d H:i:s');
         $admin->b_role = 'System Administrator';
         $admin->user_role = 'System Admin';
+        $admin->gender = 1;
         $admin->save();
     }
 }

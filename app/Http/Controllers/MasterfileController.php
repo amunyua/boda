@@ -3,23 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use Illuminate\Database\QueryException;
 use App\ContactTypes;
 use App\County;
 use App\Masterfile;
 use App\Role;
-use App\Form;
-use App\Stream;
+use Address;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 
 class MasterfileController extends Controller
 {
 
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('validateroutes');
     }
 
     public function index(){
@@ -67,7 +70,7 @@ class MasterfileController extends Controller
                 $this->addClient($request);
                 break;
         }
-        return redirect('registration');
+//        return redirect('registration');
     }
 
     public function addAdmin(){
@@ -138,65 +141,92 @@ class MasterfileController extends Controller
 
     public function addStaff(){
         DB::transaction(function(){
-            // upload image if exists
-            $path = '';
-            if(Input::hasFile('image_path')){
-                $prefix = uniqid();
-                $image = Input::file('image_path');
-                $filename = $image->getClientOriginalName();
-                $new_name = $prefix.$filename;
+            try{
+                // upload image if exists
+                $path = '';
+                if(Input::hasFile('image_path')){
+                    $prefix = uniqid();
+                    $image = Input::file('image_path');
+                    $filename = $image->getClientOriginalName();
+                    $new_name = $prefix.$filename;
 
-                if($image->isValid()) {
-                    $image->move('uploads/images', $new_name);
-                    $path = 'uploads/images/'.$new_name;
+                    if($image->isValid()) {
+                        $image->move('uploads/images', $new_name);
+                        $path = 'uploads/images/'.$new_name;
+                    }
                 }
+
+                Log::info($path);
+
+                Log::info('Creating Masterfile...', $_POST);
+                $reg_date = date('Y-m-d', strtotime(Input::get('registration_date')));
+
+                // add to db
+                $mf = Masterfile::create(array(
+                    'surname' => Input::get('surname'),
+                    'firstname' => Input::get('firstname'),
+                    'middlename' => Input::get('middlename'),
+                    'email' => Input::get('email'),
+                    'id_no' => Input::get('id_no'),
+                    'b_role' => Input::get('b_role'),
+                    'gender' => Input::get('gender'),
+                    'user_role' => Input::get('role'),
+                    'registration_date' => $reg_date,
+                    'image_path' => $path,
+                    'status' => 1
+                ));
+                $mf->save();
+                Log::info('Created Masterfile');
+
+                $mf_id = $mf->id;
+                Log::info('Returned MF#: '.$mf_id);
+
+                Log::info('Creating Address...');
+                // add address details
+                $address = Address::create(array(
+                    'county' => Input::get('county'),
+                    'city' => Input::get('city'),
+                    'masterfile_id' => $mf_id,
+                    'email' => Input::get('email'),
+                    'mobile_no' => Input::get('phone_no'),
+                    'phone_no' => Input::get('tel_no'),
+                    'postal_address' => Input::get('postal_address'),
+                    'postal_code' => Input::get('postal_code'),
+                    'physical_address' => Input::get('physical_address')
+                ));
+                $address->save();
+                Log::info('Created Address');
+
+                Log::info('Creating Login Account');
+                // create user login account
+                $password = sha1(123456);
+                $full_name = $mf->surname.' '.$mf->firstname;
+                $login = User::create(array (
+                    'masterfile_id' => $mf_id,
+                    'email' => Input::get('email'),
+                    'mobile_no' => Input::get('phone_no'),
+                    'password' => $password,
+                    'name' => $full_name
+                ));
+                //var_dump($login);exit;
+                $login->save();
+                Log::info('Created Login Account');
+
+                // get user role
+                $role_id = Input::get('user_role');
+
+                // find the the instance of the role
+                $user_role = Role::find($role_id);
+
+                Log::info('Attaching User Role...');
+                // attach the user role
+                $login->roles()->attach($user_role);
+                Log::info('Attached User Role');
+
+            }catch (QueryException $qe){
+                // get the exception message and flash it out as an error
+                Session::flash('error', $qe->getMessage()); // a user friendly error
             }
-            //var_dump($path);exit;
-
-            // add to db
-            $mf = Masterfile::create(array(
-                'surname' => Input::get('surname'),
-                'firstname' => Input::get('firstname'),
-                'middlename' => Input::get('middlename'),
-                'email' => Input::get('email'),
-                'id_no' => Input::get('id_no'),
-                'b_role' => Input::get('b_role'),
-                'gender' => Input::get('gender'),
-                'user_role' => Input::get('user_role'),
-                'registration_date' => Input::get('registration_date'),
-                'image_path' => $path,
-                'status' => 1
-            ));
-            print_r($mf);exit;
-            $mf->save();
-            $mf_id = $mf->id;
-
-            // add address details
-            $address = Address::create(array(
-                'county' => Input::get('county'),
-                'city' => Input::get('city'),
-                'masterfile_id' => $mf_id,
-                'email' => Input::get('email'),
-                'mobile_no' => Input::get('phone_no'),
-                'phone_no' => Input::get('tel_no'),
-                'postal_address' => Input::get('postal_address'),
-                'postal_code' => Input::get('postal_code'),
-                'physical_address' => Input::get('physical_address')
-            ));
-            $address->save();
-
-            // create user login account
-            $password = sha1(123456);
-            $full_name = $mf->surname.' '.$mf->firstname;
-            $login = User::create(array (
-                'masterfile_id' => $mf_id,
-                'email' => Input::get('email'),
-                'mobile_no' => Input::get('phone_no'),
-                'password' => $password,
-                'name' => $full_name
-            ));
-//            var_dump($login);exit;
-            $login->save();
         });
 
         Session::flash('success', 'Staff '.$_POST['surname'].' '.$_POST['firstname'].' has been added');

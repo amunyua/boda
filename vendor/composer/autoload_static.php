@@ -23,6 +23,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'a6d9d34f8d5ee671bb9e16e38c4999f4' => __DIR__ . '/..' . '/smodav/mpesa/src/Mpesa/Support/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -71,6 +72,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
             'SuperClosure\\' => 13,
+            'SmoDav\\Mpesa\\' => 13,
         ),
         'R' => 
         array (
@@ -247,6 +249,10 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'SuperClosure\\' => 
         array (
             0 => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src',
+        ),
+        'SmoDav\\Mpesa\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/smodav/mpesa/src/Mpesa',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -478,6 +484,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'ContactTypeSeeder' => __DIR__ . '/../..' . '/database/seeds/ContactTypeSeeder.php',
         'CountyTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CountyTableSeeder.php',
         'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
+        'CreateAddressesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_26_145922_create_addresses_table.php',
         'CreateAuditTrailsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_180922_create_audit_trails_table.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_13_180726_create_categories_table.php',
         'CreateContactTypesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_02_194657_create_contact_types_table.php',
@@ -488,12 +495,12 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'CreateMenusTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_09_195248_create_menus_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateRoleRoutes' => __DIR__ . '/../..' . '/database/migrations/2016_10_31_120036_create_role_routes.php',
+        'CreateRoleUserTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_26_082019_create_role_user_table.php',
         'CreateRolesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_27_114253_create_roles_table.php',
         'CreateRoutesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_07_082544_create_routes_table.php',
         'CreateServiceCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_22_185100_create_service_categories_table.php',
         'CreateServicesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_22_185109_create_services_table.php',
         'CreateSkinsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_193801_create_skins_table.php',
-        'CreateUserRolesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_154740_create_user_roles_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',

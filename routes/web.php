@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'DashboardController@index');
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'DashboardController@index');
 
 Auth::routes();
 
@@ -85,6 +85,7 @@ Route::get('/ajax_trails','UserManagerController@ajaxAuditTrails');
 Route::get('/load-routes-allocation', 'UserManagerController@loadRoutesForAllocation');
 Route::post('/attach-route', 'UserManagerController@attachRoute');
 Route::post('/detach-route', 'UserManagerController@detachRoute');
+Route::get('/check-allocated-route/{id}', 'UserManagerController@isRouteAllocated');
 
 #### Services
 Route::get('/service-cats', 'ServiceCategoryController@index');
@@ -94,3 +95,13 @@ Route::get('/services', 'ServiceController@index');
 Route::get('inventory-categories','InventoryController@getCategories');
 Route::post('/add-inventory-category','InventoryController@storeCategory');
 Route::get('/manage_inventory','InventoryController@allInventoryItems');
+Route::get('/service_category', 'ServiceCategoryController@index');
+Route::post('/add-sc-cats', 'ServiceCategoryController@store');
+Route::post('/edit-sc-cats', 'ServiceCategoryController@update');
+Route::post('/delete-scats', 'ServiceCategoryController@destroy');
+Route::get('/get-scat-details/{id}', 'ServiceCategoryController@getScat');
+
+#### Access Denied
+Route::get('/access-denied', function(){
+    return view('pages.access_denied');
+});

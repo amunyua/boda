@@ -17,13 +17,14 @@ class CreateMasterfileTable extends Migration
             $table->increments('id');
             $table->string('surname', 50);
             $table->string('firstname', 50);
-            $table->string('middlename', 50);
+            $table->string('middlename', 50)->nullable();
             $table->text('image_path')->nullable();
-            $table->string('id_no');
+            $table->string('id_no')->nullable();
             $table->date('registration_date');
             $table->string('b_role', 50);
             $table->string('user_role', 50);
-            $table->boolean('status')->default('TRUE');
+            $table->boolean('gender');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

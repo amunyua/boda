@@ -49,7 +49,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                <input class="form-control" placeholder="Middle Name" type="text" name="middlename" id="mname" value="{{ old('middlename') }}">
+                <input class="form-control" placeholder="Middle Name" type="text" name="middlename" id="middlename" value="{{ old('middlename') }}">
             </div>
         </div>
     </div>
@@ -76,8 +76,8 @@
                 <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                 <select name="gender" id="gender" class="form-control">
                     <option value="">Choose Gender</option>
-                    <option value="Male" {{ (old('gender') == 'Male') ? 'selected': '' }}>Male</option>
-                    <option value="Female" {{ (old('gender') == 'Female') ? 'selected': '' }}>Female</option>
+                    <option value="0" {{ (old('0') == 'Male') ? 'selected' : '' }}>Male</option>
+                    <option value="1" {{ (old('1') == 'Female') ? 'selected' : '' }}>Female</option>
                 </select>
             </div>
         </div>
@@ -86,14 +86,36 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-list fa-fw"></i></span>
-                <select name="role" class="form-control" id="role">
+                <select class="form-control" id="role" disabled>
                     <option value="">Choose Role</option>
                     @if(count($roles))
                         @foreach($roles as $role)
-                            <option value="{{ $role->role_code }}" {{ (old('role') == $role->role_code) ? 'selected': '' }}>{{ $role->role_name }}</option>
+                            <option role-code="{{ $role->role_code }}" value="{{ $role->id }}" {{ (old('role') == $role->id) ? 'selected': '' }}>{{ $role->role_name }}</option>
                         @endforeach
                     @endif
                 </select>
+                <input type="hidden" name="role" id="selected_role"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid" style="margin-left: 20%">
+    <div class="span6">
+        {{--<label class="control-label">Profile Pic</label>--}}
+        <div class="controls">
+            <div class="fileupload fileupload-new" data-provides="fileupload">
+                <div class="fileupload-new thumbnail" style="width: 100px; height: 100px;">
+                    <img src="{{asset('img/avatars/photo.jpg')}}" alt="" />
+                </div>
+                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 100px; max-height: 100px; line-height: 20px;"></div>
+                <div>
+                    <label class="btn btn-file"><span class="fileupload-new">Select image</span>
+                        <span class="fileupload-exists">Change</span>
+                        <input class="span12" type="file" name="image_path"/>
+                    </label>
+                    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                </div>
             </div>
         </div>
     </div>

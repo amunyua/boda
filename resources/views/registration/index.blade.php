@@ -99,10 +99,10 @@
                                                     <a href="javascript:void(0);" class="btn btn-lg btn-default"> Previous </a>
                                                 </li>
                                                 <li class="next last">
-                                                    <a href="javascript:void(0);" class="btn btn-lg btn-primary"> Last </a>
+                                                    <a href="javascript:void(0);" class="btn btn-lg btn-primary"> Submit </a>
                                                 </li>
                                                 <li class="next">
-                                                    <a id="finish-btn" class="btn btn-lg txt-color-darken"> Next </a>
+                                                    <a id="finish-btn" class="btn btn-lg txt-color-darken button-next"> Next </a>
                                                 </li>
                                             </ul>
                                         </div>

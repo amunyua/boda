@@ -13,4 +13,8 @@ class Role extends Model
     public function routes(){
         return $this->belongsToMany("App\Route");
     }
+
+    public function users(){
+        return $this->belongsToMany('App\User');
+    }
 }

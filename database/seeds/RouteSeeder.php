@@ -44,12 +44,13 @@ class RouteSeeder extends Seeder
         $registration->save();
         $registration->roles()->attach($admin);
 
-//        $client = new Route();
-//        $client->route_name = 'Client';
-//        $client->url = 'client';
-//        $client->parent_route = $reg_id;
-//        $client->save();
-//        $client->roles()->attach($admin);
+        // adding a user
+        $add_reg = new Route();
+        $add_reg->route_name = 'Add Registration';
+        $add_reg->url = 'add-registration';
+        $add_reg->parent_route = $reg_id;
+        $add_reg->save();
+        $add_reg->roles()->attach($admin);
 
         #### Application
         $app = new Route();
@@ -142,9 +143,37 @@ class RouteSeeder extends Seeder
         $service_category->save();
         $service_category->roles()->attach($admin);
 
+        $route = new Route();
+        $route->route_name = 'Add Service Category';
+        $route->url = 'add-sc-cats';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Get Service Category';
+        $route->url = 'get-scat-details/{id}';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Update Service Category';
+        $route->url = 'edit-sc-cats';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Delete Service Category';
+        $route->url = 'delete-scats';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
         $manage_service = new Route();
-        $manage_service->route_name = 'Manage Service';
-        $manage_service->url = 'manage_service';
+        $manage_service->route_name = 'Manage Services';
+        $manage_service->url = 'manage_services';
         $manage_service->parent_route = $service_id;
         $manage_service->save();
         $manage_service->roles()->attach($admin);
@@ -240,6 +269,13 @@ class RouteSeeder extends Seeder
         $theme_config->save();
         $theme_config->roles()->attach($admin);
 
+        $get_theme = new Route();
+        $get_theme->route_name = 'Get Theme';
+        $get_theme->url = 'get-theme';
+        $get_theme->parent_route = $system_id;
+        $get_theme->save();
+        $get_theme->roles()->attach($admin);
+
         $backup = new Route();
         $backup->route_name = 'Backup';
         $backup->url = 'backup';
@@ -274,5 +310,33 @@ class RouteSeeder extends Seeder
         $audit_trail->parent_route = $user_mngt_id;
         $audit_trail->save();
         $audit_trail->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Load Routes Allocation';
+        $route->url = 'load-routes-allocation';
+        $route->parent_route = $system_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'is Route Allocated';
+        $route->url = 'check-allocated-route/{id}';
+        $route->parent_route = $system_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name= 'Attach Route';
+        $route->url = 'attach-route';
+        $route->parent_route = $system_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name= 'Detach Route';
+        $route->url = 'detach-route';
+        $route->parent_route = $system_id;
+        $route->save();
+        $route->roles()->attach($admin);
     }
 }

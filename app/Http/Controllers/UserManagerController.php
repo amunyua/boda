@@ -6,6 +6,7 @@ use App\AuditTrail;
 use App\Role;
 use App\UserRole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use SmoDav\Mpesa\Native\Mpesa;
@@ -17,6 +18,7 @@ class UserManagerController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('validateroutes');
     }
 
     public function mpesaPayment(){
@@ -25,7 +27,11 @@ class UserManagerController extends Controller
     }
     public function getIndex(){
         $roles = Role::all();
-        return view('user_manager.user_roles')->withRoles($roles);
+        $routes = Route::whereNotNull('parent_route')->get();
+        return view('user_manager.user_roles', [
+            'routes' => $routes,
+            'roles' => $roles
+        ]);
     }
 
     public function storeRole(Request $request){
@@ -98,6 +104,16 @@ class UserManagerController extends Controller
         ]);
     }
 
+    public function detachRoute(Request $request){
+//        var_dump($request->route_id);exit;
+        $route = Route::find($request->route_id);
+        $route->roles()->detach($request->role_id);
+        return Response::json([
+            'success' => true,
+            'message' => 'Route has been detached!'
+        ]);
+    }
+
     public function getRoleEditDetails($id){
         $role = Role::find($id);
         return Response::json($role);
@@ -123,5 +139,14 @@ class UserManagerController extends Controller
             Session::flash('warning',$message);
         }
         return redirect('user_roles');
+    }
+
+    public function isRouteAllocated(Request $request){
+        $role = $request->id;
+
+        // get routes allocated to the role
+        $routes = DB::table('role_route')->where('role_id', $role)->get();
+
+        return Response::json($routes);
     }
 }

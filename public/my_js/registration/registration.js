@@ -10,15 +10,24 @@ $('.regdate').datepicker({
 });
 
 $('#b_role').on('change', function(){
-    var role = $(this).val();
+    var brole = $(this).val();
     // alert('working');
 
-    if(role == 'Administrator'){
-        $('#role').attr('readonly', 'readonly').val('SYS_ADMIN');
-    }else if(role == 'Staff'){
-        $('#role').attr('readonly', 'readonly').val('STAFF');
-    }else if(role == 'Client'){
-        $('#role').attr('readonly', 'readonly').val('CLIENT');
+    if(brole == 'Administrator'){
+        // select the option that has role code administrator
+        $('select#role option[role-code="SYS_ADMIN"]').attr('selected', 'selected');
+        var role_id = $('select#role option:selected').val();
+        $('input#selected_role').val(role_id);
+    }else if(brole == 'Staff'){
+        $('select#role option[role-code="STAFF"]').attr('selected', 'selected');
+        var role_id = $('select#role option:selected').val();
+        $('input#selected_role').val(role_id);
+    }else if(brole == 'Client'){
+        $('select#role option[role-code="CLIENT"]').attr('selected', 'selected');
+        var role_id = $('select#role option:selected').val();
+        $('input#selected_role').val(role_id);
+    }else if(brole == ''){
+        $('#role').val('');
     }
 });
 
@@ -31,10 +40,10 @@ $(document).ready(function() {
 
     var $validator = $("#wizard-1").validate({
         rules: {
-            email: {
-                required: true,
-                email: true
-            },
+            // email: {
+            //     required: true,
+            //     email: true
+            // },
             b_role: {
                 required: true
             },
@@ -49,6 +58,9 @@ $(document).ready(function() {
                 maxlength: 15
             },
             role: {
+                required: true
+            },
+            gender: {
                 required: true
             },
             id_no: {
@@ -93,10 +105,10 @@ $(document).ready(function() {
                 minlength:  "Minimum characters 8",
                 maxlength:  "Maximum characters 15"
             },
-            email: {
-                required: "You must specify the email address",
-                email: "The email address must be in the format of name@domain.com"
-            },
+            // email: {
+            //     required: "You must specify the email address",
+            //     email: "The email address must be in the format of name@domain.com"
+            // },
             county: "Please provide county location",
             city: "Please provide city name",
             postal_address: "Please provide postal address",
@@ -106,6 +118,7 @@ $(document).ready(function() {
                 minlength: "Minimum characters 10 e.g 0700 000 000",
                 maxlength: "Maximum characters 10 e.g 254 700 000 000",
             },
+            gender: "You must select the Role first",
             role: "You must select the Role first"
         },
 
@@ -138,11 +151,13 @@ $(document).ready(function() {
                     $('#finish-btn').submit();
                 }
 
-                $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass(
-                    'complete');
+                $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass('complete');
                 $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).find('.step')
                     .html('<i class="fa fa-check"></i>');
             }
+        },
+        'onLast': function(){
+             $('#wizard-1').submit();
         }
     });
 
@@ -152,7 +167,7 @@ $(document).ready(function() {
 
     wizard.on('finished', function (e, data) {
         //$("#fuelux-wizard").submit();
-        //console.log("submitted!");
+        // console.log("submitted!");
         $.smallBox({
             title: "Congratulations! Your form was submitted",
             content: "<i class='fa fa-clock-o'></i> <i>1 seconds ago...</i>",

@@ -565,6 +565,7 @@
         $('.live_search').select2();
     });
 </script>
+<script src="{{ URL::asset('my_js/common.js') }}"></script>
 @stack('js')
 </body>
 
