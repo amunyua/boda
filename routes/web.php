@@ -93,6 +93,9 @@ Route::post('/add-sc-cats', 'ServiceCategoryController@store');
 Route::post('/edit-sc-cats', 'ServiceCategoryController@update');
 Route::post('/delete-scats', 'ServiceCategoryController@destroy');
 Route::get('/get-scat-details/{id}', 'ServiceCategoryController@getScat');
+Route::get('/manage_services', 'ServiceController@index');
+Route::post('/add-service', 'ServiceController@store');
+Route::post('/delete-service', 'ServiceController@destroy');
 
 #### Access Denied
 Route::get('/access-denied', function(){
