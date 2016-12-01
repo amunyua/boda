@@ -5,13 +5,14 @@
     <div class="col-sm-6">
         <div class="form-group">
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                <select name="b_role" id="b_role" class="form-control">
-                    <option value="">Select Buss Role</option>
-                    <option value="Administrator" {{ (old('b_role') == 'Administrator') ? 'selected': '' }}>System Admin</option>
-                    <option value="Staff" {{ (old('b_role') == 'Staff') ? 'selected': '' }}>Staff</option>
-                    <option value="Client" {{ (old('b_role') == 'Client') ? 'selected': '' }}>Client</option>
-                </select>
+                <label class="input"> <i class="icon-append fa fa-user"></i>
+                    <select name="b_role" id="b_role" class="form-control">
+                        <option value="">Select Buss Role</option>
+                        <option value="Administrator" {{ (old('b_role') == 'Administrator') ? 'selected': '' }}>System Admin</option>
+                        <option value="Staff" {{ (old('b_role') == 'Staff') ? 'selected': '' }}>Staff</option>
+                        <option value="Client" {{ (old('b_role') == 'Client') ? 'selected': '' }}>Client</option>
+                    </select>
+                </label>
             </div>
         </div>
     </div>

@@ -8,7 +8,8 @@ use App\ContactTypes;
 use App\County;
 use App\Masterfile;
 use App\Role;
-use Address;
+use App\Address;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -67,73 +68,78 @@ class MasterfileController extends Controller
 
             case 'Client':
                 //var_dump($_POST);exit;
-                $this->addClient($request);
+                $this->addClient();
                 break;
         }
-//        return redirect('registration');
+        return redirect('registration');
     }
 
     public function addAdmin(){
         DB::transaction(function(){
-            // upload image if exists
-            $path = '';
-            if(Input::hasFile('image_path')){
-                $prefix = uniqid();
-                $image = Input::file('image_path');
-                $filename = $image->getClientOriginalName();
-                $new_name = $prefix.$filename;
+            try{
+                // upload image if exists
+                $path = '';
+                if(Input::hasFile('image_path')){
+                    $prefix = uniqid();
+                    $image = Input::file('image_path');
+                    $filename = $image->getClientOriginalName();
+                    $new_name = $prefix.$filename;
 
-                if($image->isValid()) {
-                    $image->move('uploads/images', $new_name);
-                    $path = 'uploads/images/'.$new_name;
+                    if($image->isValid()) {
+                        $image->move('uploads/images', $new_name);
+                        $path = 'uploads/images/'.$new_name;
+                    }
                 }
-            }
-            //var_dump($path);exit;
+                //var_dump($path);exit;
 
-            // add to db
-            $mf = Masterfile::create(array(
-                'surname' => Input::get('surname'),
-                'firstname' => Input::get('firstname'),
-                'middlename' => Input::get('middlename'),
-                'email' => Input::get('email'),
-                'id_no' => Input::get('id_no'),
-                'b_role' => Input::get('b_role'),
-                'gender' => Input::get('gender'),
-                'user_role' => Input::get('user_role'),
-                'registration_date' => Input::get('registration_date'),
-                'image_path' => $path,
-                'status' => 1
-            ));
-            //var_dump($mf);exit;
-            $mf->save();
-            $mf_id = $mf->id;
+                // add to db
+                $mf = Masterfile::create(array(
+                    'surname' => Input::get('surname'),
+                    'firstname' => Input::get('firstname'),
+                    'middlename' => Input::get('middlename'),
+                    'email' => Input::get('email'),
+                    'id_no' => Input::get('id_no'),
+                    'b_role' => Input::get('b_role'),
+                    'gender' => Input::get('gender'),
+                    'user_role' => Input::get('user_role'),
+                    'registration_date' => Input::get('registration_date'),
+                    'image_path' => $path,
+                    'status' => 1
+                ));
+                //var_dump($mf);exit;
+                $mf->save();
+                $mf_id = $mf->id;
 
-            // add address details
-            $address = Address::create(array(
-                'county' => Input::get('county'),
-                'city' => Input::get('city'),
-                'masterfile_id' => $mf_id,
-                'email' => Input::get('email'),
-                'mobile_no' => Input::get('phone_no'),
-                'phone_no' => Input::get('tel_no'),
-                'postal_address' => Input::get('postal_address'),
-                'postal_code' => Input::get('postal_code'),
-                'physical_address' => Input::get('physical_address')
-            ));
-            $address->save();
+                // add address details
+                $address = Address::create(array(
+                    'county' => Input::get('county'),
+                    'city' => Input::get('city'),
+                    'masterfile_id' => $mf_id,
+                    'email' => Input::get('email'),
+                    'phone_no' => Input::get('phone_no'),
+                    'tel_no' => Input::get('tel_no'),
+                    'postal_address' => Input::get('postal_address'),
+                    'postal_code' => Input::get('postal_code'),
+                    'physical_address' => Input::get('physical_address')
+                ));
+                $address->save();
 
-            // create user login account
-            $password = sha1(123456);
-            $full_name = $mf->surname.' '.$mf->firstname;
-            $login = User::create(array (
-                'masterfile_id' => $mf_id,
-                'email' => Input::get('email'),
-                'mobile_no' => Input::get('phone_no'),
-                'password' => $password,
-                'name' => $full_name
-            ));
+                // create user login account
+                $password = sha1(123456);
+                $full_name = $mf->surname.' '.$mf->firstname;
+                $login = User::create(array (
+                    'masterfile_id' => $mf_id,
+                    'email' => Input::get('email'),
+                    'mobile_no' => Input::get('phone_no'),
+                    'password' => $password,
+                    'name' => $full_name
+                ));
 //            var_dump($login);exit;
-            $login->save();
+                $login->save();
+            }catch (QueryException $qe){
+                // get the exception message and flash it out as an error
+                Session::flash('error', $qe->getMessage()); // a user friendly error
+            }
         });
 
         Session::flash('success', 'Administrator '.$_POST['surname'].' '.$_POST['firstname'].' has been added');
@@ -141,7 +147,7 @@ class MasterfileController extends Controller
 
     public function addStaff(){
         DB::transaction(function(){
-            try{
+           try{
                 // upload image if exists
                 $path = '';
                 if(Input::hasFile('image_path')){
@@ -188,12 +194,13 @@ class MasterfileController extends Controller
                     'city' => Input::get('city'),
                     'masterfile_id' => $mf_id,
                     'email' => Input::get('email'),
-                    'mobile_no' => Input::get('phone_no'),
-                    'phone_no' => Input::get('tel_no'),
+                    'phone_no' => Input::get('phone_no'),
+                    'tel_no' => Input::get('tel_no'),
                     'postal_address' => Input::get('postal_address'),
                     'postal_code' => Input::get('postal_code'),
                     'physical_address' => Input::get('physical_address')
                 ));
+
                 $address->save();
                 Log::info('Created Address');
 
@@ -202,13 +209,13 @@ class MasterfileController extends Controller
                 $password = sha1(123456);
                 $full_name = $mf->surname.' '.$mf->firstname;
                 $login = User::create(array (
-                    'masterfile_id' => $mf_id,
+                    'name' => $full_name,
                     'email' => Input::get('email'),
-                    'mobile_no' => Input::get('phone_no'),
                     'password' => $password,
-                    'name' => $full_name
+                    'masterfile_id' => $mf_id,
+                    'phone_no' => Input::get('phone_no')
                 ));
-                //var_dump($login);exit;
+                //print_r($login);exit;
                 $login->save();
                 Log::info('Created Login Account');
 
@@ -234,68 +241,136 @@ class MasterfileController extends Controller
 
     public function addClient(){
         DB::transaction(function(){
-            // upload image if exists
-            $path = '';
-            if(Input::hasFile('image_path')){
-                $prefix = uniqid();
-                $image = Input::file('image_path');
-                $filename = $image->getClientOriginalName();
-                $new_name = $prefix.$filename;
+            try{
+                // upload image if exists
+                $path = '';
+                if(Input::hasFile('image_path')){
+                    $prefix = uniqid();
+                    $image = Input::file('image_path');
+                    $filename = $image->getClientOriginalName();
+                    $new_name = $prefix.$filename;
 
-                if($image->isValid()) {
-                    $image->move('uploads/images', $new_name);
-                    $path = 'uploads/images/'.$new_name;
+                    if($image->isValid()) {
+                        $image->move('uploads/images', $new_name);
+                        $path = 'uploads/images/'.$new_name;
+                    }
                 }
-            }
-            //var_dump($path);exit;
+                //var_dump($path);exit;
 
-            // add to db
-            $mf = Masterfile::create(array(
-                'surname' => Input::get('surname'),
-                'firstname' => Input::get('firstname'),
-                'middlename' => Input::get('middlename'),
-                'email' => Input::get('email'),
-                'id_no' => Input::get('id_no'),
-                'b_role' => Input::get('b_role'),
-                'gender' => Input::get('gender'),
-                'user_role' => Input::get('user_role'),
-                'registration_date' => Input::get('registration_date'),
-                'image_path' => $path,
-                'status' => 1
-            ));
-            //var_dump($mf);exit;
-            $mf->save();
-            $mf_id = $mf->id;
+                // add to db
+                $mf = Masterfile::create(array(
+                    'surname' => Input::get('surname'),
+                    'firstname' => Input::get('firstname'),
+                    'middlename' => Input::get('middlename'),
+                    'email' => Input::get('email'),
+                    'id_no' => Input::get('id_no'),
+                    'b_role' => Input::get('b_role'),
+                    'gender' => Input::get('gender'),
+                    'user_role' => Input::get('user_role'),
+                    'registration_date' => Input::get('registration_date'),
+                    'image_path' => $path,
+                    'status' => 1
+                ));
+                //var_dump($mf);exit;
+                $mf->save();
+                $mf_id = $mf->id;
 
-            // add address details
-            $address = Address::create(array(
-                'county' => Input::get('county'),
-                'city' => Input::get('city'),
-                'masterfile_id' => $mf_id,
-                'email' => Input::get('email'),
-                'mobile_no' => Input::get('phone_no'),
-                'phone_no' => Input::get('tel_no'),
-                'postal_address' => Input::get('postal_address'),
-                'postal_code' => Input::get('postal_code'),
-                'physical_address' => Input::get('physical_address')
-            ));
-            $address->save();
+                // add address details
+                $address = Address::create(array(
+                    'county' => Input::get('county'),
+                    'city' => Input::get('city'),
+                    'masterfile_id' => $mf_id,
+                    'email' => Input::get('email'),
+                    'phone_no' => Input::get('phone_no'),
+                    'tel_no' => Input::get('tel_no'),
+                    'postal_address' => Input::get('postal_address'),
+                    'postal_code' => Input::get('postal_code'),
+                    'physical_address' => Input::get('physical_address')
+                ));
+                $address->save();
 
-            // create user login account
-            $password = sha1(123456);
-            $full_name = $mf->surname.' '.$mf->firstname;
-            $login = User::create(array (
-                'masterfile_id' => $mf_id,
-                'email' => Input::get('email'),
-                'mobile_no' => Input::get('phone_no'),
-                'password' => $password,
-                'name' => $full_name
-            ));
+                // create user login account
+                $password = sha1(123456);
+                $full_name = $mf->surname.' '.$mf->firstname;
+                $login = User::create(array (
+                    'masterfile_id' => $mf_id,
+                    'email' => Input::get('email'),
+                    'phone_no' => Input::get('phone_no'),
+                    'password' => $password,
+                    'name' => $full_name
+                ));
 //            var_dump($login);exit;
-            $login->save();
+                $login->save();
+            }catch (QueryException $qe){
+                // get the exception message and flash it out as an error
+                Session::flash('error', $qe->getMessage()); // a user friendly error
+            }
         });
 
         Session::flash('success', 'Client '.$_POST['surname'].' '.$_POST['firstname'].' has been added');
+    }
+
+    public function allMfs(){
+        $mfs = DB::table('all_masterfile')->where('status', '=', 1)->get();
+        return view('registration.all_mfs')->withMfs($mfs);
+    }
+
+    public function getMf(Request $request){
+        $mf_id = $request->id;
+        $mf = Masterfile::find($mf_id);
+
+        $roles = Role::all();
+        return view('registration.edit_mf', array(
+            'mf' => $mf,
+            'roles' => $roles,
+            'mf_id' => $mf_id
+        ));
+    }
+
+    public function updateMf(Request $request, $id){
+        // validate
+        $this->validate($request, array(
+            'surname' => 'required',
+            'firstname' => 'required',
+            'registration_date' => 'required|date',
+            'id_' => 'required|date',
+            'gender' => 'required'
+        ));
+
+
+        // upload image if exists
+        $path = '';
+        if(Input::hasFile('image_path')){
+            $prefix = uniqid();
+            $image = Input::file('image_path');
+            $filename = $image->getClientOriginalName();
+            $new_name = $prefix.$filename;
+
+            if($image->isValid()) {
+                $image->move('uploads/images', $new_name);
+                $path = 'uploads/images/'.$new_name;
+            }
+        }
+        // var_dump($path);exit;
+
+        // update db record
+        Masterfile::where('id', $id)
+            ->update(array(
+                'b_role' => $request->b_role,
+                'surname' => $request->surname,
+                'firstname' => $request->firstname,
+                'middlename' => $request->middlename,
+                'email' => $request->email,
+                'gender' => $request->gender,
+                'image_path' => $path,
+                'id_passport' => $request->id_passport,
+                'customer_type_name' => $request->customer_type_name,
+                'user_role' => $request->user_role
+            ));
+
+
+        $request->session()->flash('success', 'Masterfile Channel has been updated');
+        return redirect('edit_mf/'.$id);
     }
 
 }

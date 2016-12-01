@@ -75,7 +75,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-mobile-phone fa-fw"></i></span>
-                <input class="form-control" placeholder="Mobile Number" type="text" name="phone_no" id="phone_no" value="{{ old('phone_no') }}">
+                <input class="form-control" placeholder="Mobile Number" type="number" name="phone_no" id="phone_no" value="{{ old('phone_no') }}">
             </div>
         </div>
     </div>
@@ -83,7 +83,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
-                <input class="form-control" placeholder="Telephone Number" type="text" name="tel_no" id="tel_no" value="{{ old('tel_no') }}">
+                <input class="form-control" placeholder="Telephone Number" type="number" name="tel_no" id="tel_no" value="{{ old('tel_no') }}">
             </div>
         </div>
     </div>

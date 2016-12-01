@@ -48,12 +48,13 @@ class MenuSeeder extends Seeder
         $user_reg->sequence = 1;
         $user_reg->save();
 
-//        $client_route = Route::where('route_name', 'Client')->first();
-//        $client = new Menu();
-//        $client->route_id = $client_route->id;
-//        $client->parent_menu = $registration->id;
-//        $client->sequence = 2;
-//        $client->save();
+        //all Registration
+        $all_registration_route = Route::where('route_name', 'All Registration')->first();
+        $all_mfs = new Menu();
+        $all_mfs->route_id = $all_registration_route->id;
+        $all_mfs->parent_menu = $registration->id;
+        $all_mfs->sequence = 2;
+        $all_mfs->save();
 
         #### application
         $application_route = Route::where('route_name', 'Application')->first();

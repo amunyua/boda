@@ -44,6 +44,30 @@ class RouteSeeder extends Seeder
         $registration->save();
         $registration->roles()->attach($admin);
 
+        //all Registration
+        $all_mfs = new Route();
+        $all_mfs->route_name = 'All Registration';
+        $all_mfs->url = 'all-mfs';
+        $all_mfs->parent_route = $reg_id;
+        $all_mfs->save();
+        $all_mfs->roles()->attach($admin);
+
+        //all staff
+        $all_staff = new Route();
+        $all_staff->route_name = 'All Staff';
+        $all_staff->url = 'all-staffs';
+        $all_staff->parent_route = $reg_id;
+        $all_staff->save();
+        $all_staff->roles()->attach($admin);
+
+        //all clients
+        $all_clients = new Route();
+        $all_clients->route_name = 'All Clients';
+        $all_clients->url = 'all-clients';
+        $all_clients->parent_route = $reg_id;
+        $all_clients->save();
+        $all_clients->roles()->attach($admin);
+
         // adding a user
         $add_reg = new Route();
         $add_reg->route_name = 'Add Registration';
@@ -51,6 +75,14 @@ class RouteSeeder extends Seeder
         $add_reg->parent_route = $reg_id;
         $add_reg->save();
         $add_reg->roles()->attach($admin);
+
+        // edit user
+        $edit_user = new Route();
+        $edit_user->route_name = 'Edit User Registration';
+        $edit_user->url = 'edit-mf/{id}';
+        $edit_user->parent_route = $reg_id;
+        $edit_user->save();
+        $edit_user->roles()->attach($admin);
 
         #### Application
         $app = new Route();

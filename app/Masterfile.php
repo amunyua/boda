@@ -11,11 +11,11 @@ class Masterfile extends Model
         'image_path', 'status'
     );
 
-    public function user(){
-        return $this->hasOne('App\User');
+    public function address(){
+        return $this->belongsTo('App\Address');
     }
 
-    public function addresses(){
-        return $this->hasMany('App\Address');
+    public function addressType(){
+        return $this->belongsTo('App\AddressType');
     }
 }

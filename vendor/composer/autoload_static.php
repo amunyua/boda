@@ -481,6 +481,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'AddPhoneandvinTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_093615_add_phoneandvin_table.php',
         'AddRouteStatus' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_094610_add_route_status.php',
         'AddSequenceColumn' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
+        'AllMfs' => __DIR__ . '/../..' . '/database/migrations/2016_11_29_195201_all_mfs.php',
         'ContactTypeSeeder' => __DIR__ . '/../..' . '/database/seeds/ContactTypeSeeder.php',
         'CountyTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CountyTableSeeder.php',
         'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',

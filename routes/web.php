@@ -22,29 +22,15 @@ Route::get('/dashboard', 'DashboardController@index');
 // Registration Module
 Route::get('/registration', 'MasterfileController@index');
 Route::post('/add-registration', 'MasterfileController@store');
-Route::post('/update-masterfile', 'MasterfileController@update');
+Route::get('edit-mf/{id}', 'MasterfileController@getMf');
+Route::post('edit-mf/{id}', 'MasterfileController@update');
 Route::delete('/delete-masterfile', 'MasterfileController@destroy');
-Route::get('/all-masterfiles', 'MasterfileController@allMfs');
+Route::get('/all-clients', 'MasterfileController@allClients');
+Route::get('/all-staffs', 'MasterfileController@allStaffs');
+Route::get('/all-mfs', 'MasterfileController@allMfs');
 
 // Contact Types Module
 Route::resource('contact_types','ContactTypesController');
-
-// Classes Module
-Route::get('/class', 'FormsController@index');
-Route::post('/add_class', 'FormsController@store');
-Route::post('/manage_stream/{id}', 'FormsController@update');
-Route::delete('/manage_stream/{id}', 'FormsController@destroy');
-
-Route::resource('contact_types','ContactTypesController');
-
-// subject module
-Route::get('/subject', 'SubjectController@index');
-Route::post('/add-subject','SubjectController@store');
-Route::post('/update-subject','SubjectController@update');
-Route::get('/delete-subject/{id}','SubjectController@delete');
-Route::get('/subject_data/{subject_id}', 'SubjectController@getSubjectData');
-Route::post('/update-subject/{id}','SubjectController@update');
-Route::get('/delete-subject/{id}','SubjectController@delete');
 
 // System Manager
 Route::get('/routes', 'RoutesController@index');
