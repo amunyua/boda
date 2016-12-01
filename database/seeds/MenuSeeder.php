@@ -13,7 +13,7 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('menus')->delete();
+//        DB::table('menus')->delete();
 
         \Illuminate\Support\Facades\DB::table('menus')->delete();
         #### Dashboard
