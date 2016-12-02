@@ -185,6 +185,20 @@ class RouteSeeder extends Seeder
         $manage_service->save();
         $manage_service->roles()->attach($admin);
 
+        $route = new Route();
+        $route->route_name = 'Add Service';
+        $route->url = 'add-service';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Delete Service';
+        $route->url = 'delete-service';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
         #### bills and payments
         $bp = new Route();
         $bp->route_name = 'Bills and Payment';
