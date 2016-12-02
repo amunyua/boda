@@ -108,6 +108,13 @@ class RouteSeeder extends Seeder
         $category->save();
         $category->roles()->attach($admin);
 
+        $category = new Route();
+        $category->route_name = 'get make';
+        $category->url = '/subcats/{id}';
+        $category->parent_route = $inventory_id;
+        $category->save();
+        $category->roles()->attach($admin);
+
         #### client
         $client = new Route();
         $client->route_name = 'Client';
@@ -338,5 +345,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $system_id;
         $route->save();
         $route->roles()->attach($admin);
+
+
     }
 }

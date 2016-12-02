@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
 //         $this->call(MenuSeeder::class);
 //         $this->call(CountyTableSeeder::class);
 //         $this->call(ContactTypeSeeder::class);
+        $this->call(InventoryCategorySeeder::class);
     }
 }
