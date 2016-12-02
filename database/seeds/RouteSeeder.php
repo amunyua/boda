@@ -102,8 +102,8 @@ class RouteSeeder extends Seeder
         $item->roles()->attach($admin);
 
         $category = new Route();
-        $category->route_name = 'Categories';
-        $category->url = 'categories';
+        $category->route_name = 'Manage Categories';
+        $category->url = 'inventory-categories';
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);

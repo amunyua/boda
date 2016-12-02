@@ -13,19 +13,19 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-//        Schema::create('categories', function (Blueprint $table) {
-//            $table->increments('id');
-//            $table->integer('parent_category')->nullable();
-//            $table->foreign('parent_category')
-//                ->references('id')
-//                ->on('categories')
-//                ->onUpdate('cascade');
-//            $table->string('category_name');
-//            $table->string('code');
-//            $table->boolean('status');
-//
-//            $table->timestamps();
-//        });
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id')->index();
+            $table->integer('parent_category')->nullable()->index()->unsigned();
+            $table->foreign('parent_category')
+                ->references('id')
+                ->on('categories')
+                ->onUpdate('cascade');
+            $table->string('category_name');
+            $table->string('code');
+            $table->boolean('status');
+
+            $table->timestamps();
+        });
     }
 
     /**
