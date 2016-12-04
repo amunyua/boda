@@ -103,6 +103,8 @@ Route::get('/get-scat-details/{id}', 'ServiceCategoryController@getScat');
 Route::get('/manage_services', 'ServiceController@index');
 Route::post('/add-service', 'ServiceController@store');
 Route::post('/delete-service', 'ServiceController@destroy');
+Route::post('/update-service', 'ServiceController@update');
+Route::get('/get-service/{id}', 'ServiceController@getService');
 
 #### Access Denied
 Route::get('/access-denied', function(){

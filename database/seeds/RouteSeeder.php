@@ -22,6 +22,20 @@ class RouteSeeder extends Seeder
         $dashboard->save();
         $dashboard_id = $dashboard->id;
 
+        $home = new Route();
+        $home->route_name = 'Home';
+        $home->url = 'home';
+        $home->parent_route = $dashboard_id;
+        $home->save();
+        $home->roles()->attach($admin);
+
+        $home = new Route();
+        $home->route_name = 'Home';
+        $home->url = '/';
+        $home->parent_route = $dashboard_id;
+        $home->save();
+        $home->roles()->attach($admin);
+
         #### Dashboard child
         $analytics_dash = new Route();
         $analytics_dash->route_name = 'Analytics Dashboard';
@@ -186,6 +200,20 @@ class RouteSeeder extends Seeder
         $route->roles()->attach($admin);
 
         $route = new Route();
+        $route->route_name = 'Update Service';
+        $route->url = 'update-service';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Get Service';
+        $route->url = 'get-service/{id}';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
         $route->route_name = 'Delete Service';
         $route->url = 'delete-service';
         $route->parent_route = $service_id;
@@ -262,6 +290,13 @@ class RouteSeeder extends Seeder
         $routes->save();
         $routes->roles()->attach($admin);
 
+        $routes = new Route();
+        $routes->route_name = 'Load System Routes';
+        $routes->url = 'load-routes';
+        $routes->parent_route = $system_id;
+        $routes->save();
+        $routes->roles()->attach($admin);
+
         $menu = new Route();
         $menu->route_name = 'System Menu';
         $menu->url = 'menu';
@@ -279,6 +314,13 @@ class RouteSeeder extends Seeder
         $theme_config = new Route();
         $theme_config->route_name = 'Theme Configuration';
         $theme_config->url = 'theme_config';
+        $theme_config->parent_route = $system_id;
+        $theme_config->save();
+        $theme_config->roles()->attach($admin);
+
+        $theme_config = new Route();
+        $theme_config->route_name = 'Theme Select';
+        $theme_config->url = 'theme-select/{theme}';
         $theme_config->parent_route = $system_id;
         $theme_config->save();
         $theme_config->roles()->attach($admin);
