@@ -105,19 +105,13 @@ Route::post('/add-sc-cats', 'ServiceCategoryController@store');
 Route::post('/edit-sc-cats', 'ServiceCategoryController@update');
 Route::post('/delete-scats', 'ServiceCategoryController@destroy');
 Route::get('/get-scat-details/{id}', 'ServiceCategoryController@getScat');
-<<<<<<< HEAD
 Route::get('/subcats/{id}','InventoryController@getSubCat');
 Route::get('/get-inventory-edit-details/{id}','InventoryController@getIEditDetails');
-=======
 Route::get('/manage_services', 'ServiceController@index');
 Route::post('/add-service', 'ServiceController@store');
 Route::post('/delete-service', 'ServiceController@destroy');
-<<<<<<< HEAD
 Route::post('/update-service', 'ServiceController@update');
 Route::get('/get-service/{id}', 'ServiceController@getService');
-=======
->>>>>>> d1db4f6d8494313d2a79e7fa64e3b9ed84a58804
->>>>>>> ea9f93d411a6f1b604f3a5821024df9638f2020d
 
 #### Access Denied
 Route::get('/access-denied', function(){
