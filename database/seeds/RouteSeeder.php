@@ -123,6 +123,13 @@ class RouteSeeder extends Seeder
         $category->roles()->attach($admin);
 
         $category = new Route();
+        $category->route_name = 'Arrange Menu';
+        $category->url = 'arrange-menu';
+        $category->parent_route = $inventory_id;
+        $category->save();
+        $category->roles()->attach($admin);
+
+        $category = new Route();
         $category->route_name = 'get make';
         $category->url = '/subcats/{id}';
         $category->parent_route = $inventory_id;
