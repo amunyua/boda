@@ -14,6 +14,7 @@ return array(
     'AddPhoneandvinTable' => $baseDir . '/database/migrations/2016_11_01_093615_add_phoneandvin_table.php',
     'AddRouteStatus' => $baseDir . '/database/migrations/2016_11_01_094610_add_route_status.php',
     'AddSequenceColumn' => $baseDir . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
+    'AddressSeeder' => $baseDir . '/database/seeds/AddressSeeder.php',
     'AllMfs' => $baseDir . '/database/migrations/2016_11_29_195201_all_mfs.php',
     'ContactTypeSeeder' => $baseDir . '/database/seeds/ContactTypeSeeder.php',
     'CountyTableSeeder' => $baseDir . '/database/seeds/CountyTableSeeder.php',

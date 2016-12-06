@@ -5,14 +5,13 @@
     <div class="col-sm-6">
         <div class="form-group">
             <div class="input-group">
-                <label class="input"> <i class="icon-append fa fa-user"></i>
-                    <select name="b_role" id="b_role" class="form-control">
-                        <option value="">Select Buss Role</option>
-                        <option value="Administrator" {{ (old('b_role') == 'Administrator') ? 'selected': '' }}>System Admin</option>
-                        <option value="Staff" {{ (old('b_role') == 'Staff') ? 'selected': '' }}>Staff</option>
-                        <option value="Client" {{ (old('b_role') == 'Client') ? 'selected': '' }}>Client</option>
-                    </select>
-                </label>
+                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                <select name="b_role" id="b_role" class="form-control">
+                    <option value="">Select Buss Role</option>
+                    <option value="Administrator" {{ (old('b_role') == 'Administrator') ? 'selected': '' }}>System Admin</option>
+                    <option value="Staff" {{ (old('b_role') == 'Staff') ? 'selected': '' }}>Staff</option>
+                    <option value="Client" {{ (old('b_role') == 'Client') ? 'selected': '' }}>Client</option>
+                </select>
             </div>
         </div>
     </div>
@@ -77,8 +76,8 @@
                 <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                 <select name="gender" id="gender" class="form-control">
                     <option value="">Choose Gender</option>
-                    <option value="0" {{ (old('0') == 'Male') ? 'selected' : '' }}>Male</option>
-                    <option value="1" {{ (old('1') == 'Female') ? 'selected' : '' }}>Female</option>
+                    <option value="1" {{ (old('1') == 'Male') ? 'selected' : '' }}>Male</option>
+                    <option value="0" {{ (old('0') == 'Female') ? 'selected' : '' }}>Female</option>
                 </select>
             </div>
         </div>

@@ -56,6 +56,14 @@ class MenuSeeder extends Seeder
         $all_mfs->sequence = 2;
         $all_mfs->save();
 
+        //all inactive users
+        $all_inactive_users = Route::where('route_name', 'Inactive Users')->first();
+        $inactive_users = new Menu();
+        $inactive_users->route_id = $all_inactive_users->id;
+        $inactive_users->parent_menu = $registration->id;
+        $inactive_users->sequence = 3;
+        $inactive_users->save();
+
         #### application
         $application_route = Route::where('route_name', 'Application')->first();
         $application = new Menu();

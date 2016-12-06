@@ -21,13 +21,21 @@ class AllMfs extends Migration
                 m.id_no,
                 m.gender,
                 m.b_role,
+                m.user_role,
                 r.role_name,
                 m.status,
                 m.registration_date,
-                a.email
+                ad.email,
+                ad.phone_no,
+                ad.postal_address,
+                ad.postal_code,
+                ad.physical_address,
+                ad.county,
+                ad.city
               FROM masterfiles m
             LEFT JOIN addresses a ON m.id = a.masterfile_id
-            LEFT JOIN roles r ON r.id = m.user_role"
+            LEFT JOIN roles r ON r.id = m.user_role
+            LEFT JOIN addresses ad ON ad.masterfile_id = m.id"
         );
     }
 

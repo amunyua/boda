@@ -23,6 +23,11 @@ class CreateAddressesTable extends Migration
                 ->on('masterfiles')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->integer('contact_type_id')->unsigned();
+            $table->foreign('contact_type_id')
+                ->references('id')
+                ->on('contact_types')
+                ->onUpdate('cascade');
             $table->string('email');
             $table->string('phone_no');
             $table->string('tel_no');

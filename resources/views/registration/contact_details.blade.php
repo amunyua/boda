@@ -94,7 +94,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-keyboard-o fa-fw"></i></span>
-                <select name="contact_type" id="contact_type" class="form-control" readonly="readonly">
+                <select name="contact_type_id" id="contact_type" class="form-control" readonly="readonly">
                     <option value="{{ $main_ctype->id }}">{{ $main_ctype->contact_type_name }}</option>
                 </select>
             </div>

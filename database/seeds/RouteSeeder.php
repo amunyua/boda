@@ -84,6 +84,46 @@ class RouteSeeder extends Seeder
         $edit_user->save();
         $edit_user->roles()->attach($admin);
 
+        ### soft delete user registration
+        $soft_del = new Route();
+        $soft_del->route_name = 'Soft Delete Masterfile';
+        $soft_del->url = 'soft-delete-mf/{id}';
+        $soft_del->parent_route = $reg_id;
+        $soft_del->save();
+        $soft_del->roles()->attach($admin);
+
+        ### inactive users
+        $inactive_users = new Route();
+        $inactive_users->route_name = 'Inactive Users';
+        $inactive_users->url = 'inactive-users';
+        $inactive_users->parent_route = $reg_id;
+        $inactive_users->save();
+        $inactive_users->roles()->attach($admin);
+
+        ### permanently delete user
+        $delete = new Route();
+        $delete->route_name = 'Delete Users Details';
+        $delete->url = 'delete-masterfile';
+        $delete->parent_route = $reg_id;
+        $delete->save();
+        $delete->roles()->attach($admin);
+
+        ### restore inactive users
+        $restore = new Route();
+        $restore->route_name = 'Restore Inactive Users';
+        $restore->url = 'restore-mf/{id}';
+        $restore->parent_route = $reg_id;
+        $restore->save();
+        $restore->roles()->attach($admin);
+
+        ### users profile
+        $profile = new Route();
+        $profile->route_name = 'Users Profile';
+        $profile->url = 'mf-profile/{id}';
+        $profile->parent_route = $reg_id;
+        $profile->save();
+        $profile->roles()->attach($admin);
+
         #### Application
         $app = new Route();
         $app->route_name = 'Application';

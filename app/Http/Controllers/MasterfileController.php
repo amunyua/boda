@@ -115,6 +115,7 @@ class MasterfileController extends Controller
                     'county' => Input::get('county'),
                     'city' => Input::get('city'),
                     'masterfile_id' => $mf_id,
+                    'contact_type_id' => Input::get('contact_type_id'),
                     'email' => Input::get('email'),
                     'phone_no' => Input::get('phone_no'),
                     'tel_no' => Input::get('tel_no'),
@@ -193,6 +194,7 @@ class MasterfileController extends Controller
                     'county' => Input::get('county'),
                     'city' => Input::get('city'),
                     'masterfile_id' => $mf_id,
+                    'contact_type_id' => Input::get('contact_type_id'),
                     'email' => Input::get('email'),
                     'phone_no' => Input::get('phone_no'),
                     'tel_no' => Input::get('tel_no'),
@@ -280,6 +282,7 @@ class MasterfileController extends Controller
                     'county' => Input::get('county'),
                     'city' => Input::get('city'),
                     'masterfile_id' => $mf_id,
+                    'contact_type_id' => Input::get('contact_type_id'),
                     'email' => Input::get('email'),
                     'phone_no' => Input::get('phone_no'),
                     'tel_no' => Input::get('tel_no'),
@@ -312,65 +315,134 @@ class MasterfileController extends Controller
 
     public function allMfs(){
         $mfs = DB::table('all_masterfile')->where('status', '=', 1)->get();
-        return view('registration.all_mfs')->withMfs($mfs);
+        return view('registration.all_mfs', [
+            'mfs' => $mfs
+        ]);
     }
 
     public function getMf(Request $request){
         $mf_id = $request->id;
-        $mf = Masterfile::find($mf_id);
+        $masterfile_id = $mf_id;
+        $mf =  Masterfile::find($mf_id);
+        $ad =  Address::find($masterfile_id);
 
-        $roles = Role::all();
-        return view('registration.edit_mf', array(
+        return view('registration.edit_mf', [
             'mf' => $mf,
-            'roles' => $roles,
-            'mf_id' => $mf_id
-        ));
+            'ad' => $ad
+        ]);
     }
 
     public function updateMf(Request $request, $id){
-        // validate
-        $this->validate($request, array(
-            'surname' => 'required',
-            'firstname' => 'required',
-            'registration_date' => 'required|date',
-            'id_' => 'required|date',
-            'gender' => 'required'
-        ));
+            try {
+                // validate
+                $this->validate($request, array(
+                    'postal_address' => 'required',
+                    'postal_code' => 'required',
+                    'physical_address' => 'required'
+                ));
 
+                // upload image if exists
+                $path = '';
+                if (Input::hasFile('image_path')) {
+                    $prefix = uniqid();
+                    $image = Input::file('image_path');
+                    $filename = $image->getClientOriginalName();
+                    $new_name = $prefix . $filename;
 
-        // upload image if exists
-        $path = '';
-        if(Input::hasFile('image_path')){
-            $prefix = uniqid();
-            $image = Input::file('image_path');
-            $filename = $image->getClientOriginalName();
-            $new_name = $prefix.$filename;
+                    if ($image->isValid()) {
+                        $image->move('uploads/images', $new_name);
+                        $path = 'uploads/images/' . $new_name;
+                    }
+                }
+                // var_dump($path);exit;
+                Log::info($path);
 
-            if($image->isValid()) {
-                $image->move('uploads/images', $new_name);
-                $path = 'uploads/images/'.$new_name;
+                Log::info('updating masterfile...', $_POST);
+                // update masterfile record
+                $mf = Masterfile::where('id', $id)
+                    ->update(array(
+                        'b_role' => $request->b_role,
+                        'surname' => $request->surname,
+                        'firstname' => $request->firstname,
+                        'middlename' => $request->middlename,
+                        'gender' => $request->gender,
+                        'image_path' => $path,
+                        'id_no' => $request->id_no,
+                        'user_role' => $request->user_role
+                    ));
+                $mf->save();
+
+                Log::info('updated masterfile');
+                $mf_id = $mf->id;
+
+                Log::info('updating address');
+                // update address record
+                $address = Address::where('id', $mf_id)
+                    ->update(array(
+                        'postal_address' => $request->postal_address,
+                        'postal_code' => $request->postal_code,
+                        'physical_address' => $request->physical_address,
+                        'tel_no' => $request->tel_no
+                    ));
+                $address->save();
+                Log::info('completed address');
+            }catch (QueryException $msg){
+                Session::flash('error', $msg->getMessage());
             }
-        }
-        // var_dump($path);exit;
 
+        $request->session()->flash('success', 'User Registration has been updated');
+        return redirect('edit-mf/'.$id);
+    }
+
+    public function softDeleteMf(Request $request, $id){
         // update db record
-        Masterfile::where('id', $id)
-            ->update(array(
-                'b_role' => $request->b_role,
-                'surname' => $request->surname,
-                'firstname' => $request->firstname,
-                'middlename' => $request->middlename,
-                'email' => $request->email,
-                'gender' => $request->gender,
-                'image_path' => $path,
-                'id_passport' => $request->id_passport,
-                'customer_type_name' => $request->customer_type_name,
-                'user_role' => $request->user_role
-            ));
+        $mf = Masterfile::find($id);
+        $mf->status = 0;
+        $mf->save();
+        Session::flash('success', 'User Registration record has been deleted');
+        return redirect('all-mfs');
+    }
 
+    public function loadDelMfs(){
+        $mfs = DB::table('all_masterfile')->where('status', '=', 0)->get();
+        return view('registration.all_inactive_users', [
+            'mfs' => $mfs
+        ]);
+    }
 
-        $request->session()->flash('success', 'Masterfile Channel has been updated');
-        return redirect('edit_mf/'.$id);
+    public function restoreMf(Request $request, $id){
+        $mf = Masterfile::find($id);
+        $mf->status = 1;
+        $mf->save();
+        Session::flash('success', 'User Registration Record has been RESTORED!');
+        Return redirect('inactive-users');
+    }
+
+    public function destroy(Request $request, $id){
+        //var_dump($_POST);exit;
+        if(Masterfile::destroy($id)){
+            Session::flash('success','User Registration Details Has Been Permanently DELETED!');
+            return redirect('all-mfs');
+        }
+    }
+
+    public function getMfProfile(Request $request){
+        // get mf_id
+        $mf_id = $request->id;
+        $masterfile_id = $mf_id;
+
+        $mf = Masterfile::find($mf_id);
+        $ad =  Address::find($masterfile_id);
+        $role_id = $mf->user_role;
+        $role =  Role::find($role_id);
+        $addresses =  Address::all();
+
+        return view('registration.mf_profile')->with(array(
+            'mf' => $mf,
+            'ad' => $ad,
+            'role' => $role,
+            'addresses' => $addresses,
+        ));
     }
 
 }

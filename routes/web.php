@@ -23,11 +23,15 @@ Route::get('/dashboard', 'DashboardController@index');
 Route::get('/registration', 'MasterfileController@index');
 Route::post('/add-registration', 'MasterfileController@store');
 Route::get('edit-mf/{id}', 'MasterfileController@getMf');
-Route::post('edit-mf/{id}', 'MasterfileController@update');
+Route::post('edit-mf/{id}', 'MasterfileController@updateMf');
+Route::get('soft-delete-mf/{id}', 'MasterfileController@softDeleteMf');
+Route::get('restore-mf/{id}', 'MasterfileController@restoreMf');
 Route::delete('/delete-masterfile', 'MasterfileController@destroy');
 Route::get('/all-clients', 'MasterfileController@allClients');
 Route::get('/all-staffs', 'MasterfileController@allStaffs');
 Route::get('/all-mfs', 'MasterfileController@allMfs');
+Route::get('/inactive-users', 'MasterfileController@loadDelMfs');
+Route::get('mf-profile/{id}', 'MasterfileController@getMfProfile');
 
 // Contact Types Module
 Route::resource('contact_types','ContactTypesController');
