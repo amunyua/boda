@@ -22,6 +22,7 @@ return array(
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2016_11_26_145922_create_addresses_table.php',
     'CreateAuditTrailsTable' => $baseDir . '/database/migrations/2016_11_01_180922_create_audit_trails_table.php',
+    'CreateBikesTable' => $baseDir . '/database/migrations/2016_12_06_115701_create_bikes_table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2016_10_13_180726_create_categories_table.php',
     'CreateContactTypesTable' => $baseDir . '/database/migrations/2016_11_02_194657_create_contact_types_table.php',
     'CreateContactsTable' => $baseDir . '/database/migrations/2016_09_27_114536_create_contacts_table.php',
