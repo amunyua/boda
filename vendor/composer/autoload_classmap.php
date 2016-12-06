@@ -6,16 +6,22 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddColumnsToInventoryItemsTable' => $baseDir . '/database/migrations/2016_12_01_190442_add_columns_to_inventory_items_table.php',
     'AddCountyStatusToCountiesTable' => $baseDir . '/database/migrations/2016_11_03_061623_add_county_status_to_counties_table.php',
     'AddFaIconsTable' => $baseDir . '/database/migrations/2016_10_12_085709_add_fa_icons_table.php',
     'AddFaiconColumn' => $baseDir . '/database/migrations/2016_10_12_093918_add_faicon_column.php',
     'AddFksMenu' => $baseDir . '/database/migrations/2016_10_12_163211_add_fks_menu.php',
     'AddParentmenuFieldTomenus' => $baseDir . '/database/migrations/2016_10_12_093059_add_parentmenu_field_tomenus.php',
     'AddPhoneandvinTable' => $baseDir . '/database/migrations/2016_11_01_093615_add_phoneandvin_table.php',
+    'AddQuantityToInventory' => $baseDir . '/database/migrations/2016_12_02_084242_add_quantity_to_inventory.php',
     'AddRouteStatus' => $baseDir . '/database/migrations/2016_11_01_094610_add_route_status.php',
     'AddSequenceColumn' => $baseDir . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
+<<<<<<< HEAD
     'AddressSeeder' => $baseDir . '/database/seeds/AddressSeeder.php',
     'AllMfs' => $baseDir . '/database/migrations/2016_11_29_195201_all_mfs.php',
+=======
+    'AddServicecodeToServices' => $baseDir . '/database/migrations/2016_11_29_175435_add_servicecode_to_services.php',
+>>>>>>> 3024c3e48efc613ed0900b77bc253b2db77add02
     'ContactTypeSeeder' => $baseDir . '/database/seeds/ContactTypeSeeder.php',
     'CountyTableSeeder' => $baseDir . '/database/seeds/CountyTableSeeder.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
@@ -26,6 +32,7 @@ return array(
     'CreateContactsTable' => $baseDir . '/database/migrations/2016_09_27_114536_create_contacts_table.php',
     'CreateCountiesTable' => $baseDir . '/database/migrations/2016_11_03_055822_create_counties_table.php',
     'CreateIconSeeder' => $baseDir . '/database/migrations/2016_10_31_114315_create_icon_seeder.php',
+    'CreateInventoryItemsTable' => $baseDir . '/database/migrations/2016_11_25_121830_create_inventory_items_table.php',
     'CreateMasterfileTable' => $baseDir . '/database/migrations/2016_11_01_092857_create_masterfile_table.php',
     'CreateMenusTable' => $baseDir . '/database/migrations/2016_10_09_195248_create_menus_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
@@ -114,6 +121,7 @@ return array(
     'Hamcrest\\Type\\IsString' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
     'Hamcrest\\Util' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
     'Hamcrest\\Xml\\HasXPath' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+    'InventoryCategorySeeder' => $baseDir . '/database/seeds/InventoryCategorySeeder.php',
     'Maatwebsite\\Excel\\Classes\\Cache' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Classes/Cache.php',
     'Maatwebsite\\Excel\\Classes\\FormatIdentifier' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Classes/FormatIdentifier.php',
     'Maatwebsite\\Excel\\Classes\\LaravelExcelWorksheet' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Classes/LaravelExcelWorksheet.php',

@@ -62,6 +62,5 @@ var Common = {
             alert('You must select at least one record!');
             return false;
         }
-        return false;
     }
 }

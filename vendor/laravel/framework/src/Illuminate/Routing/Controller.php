@@ -3,6 +3,7 @@
 namespace Illuminate\Routing;
 
 use BadMethodCallException;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use \Illuminate\Database\QueryException as Exception;
 
@@ -86,5 +87,11 @@ abstract class Controller
     public function handleException($e)
     {
         return $e->errorInfo[2];
+    }
+
+    public function handleException2($e)
+    {
+        return  Session::flash('warning',$e->errorInfo[2]);
+
     }
 }

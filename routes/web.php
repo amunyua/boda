@@ -78,11 +78,30 @@ Route::post('/detach-route', 'UserManagerController@detachRoute');
 Route::get('/check-allocated-route/{id}', 'UserManagerController@isRouteAllocated');
 
 #### Services
+Route::get('/service-cats', 'ServiceCategoryController@index');
+Route::get('/services', 'ServiceController@index');
+
+#### Inventory
+Route::get('/load-inventory-items','InventoryController@loadInventoryItems');
+Route::get('inventory-categories','InventoryController@getCategories');
+Route::post('/add-inventory-category','InventoryController@storeCategory');
+Route::get('/manage_inventory','InventoryController@allInventoryItems');
+Route::post('/create-inventory-item','InventoryController@storeInventory');
+Route::post('/delete-inventory-item', 'InventoryController@deleteInventory');
+
+
 Route::get('/service_category', 'ServiceCategoryController@index');
 Route::post('/add-sc-cats', 'ServiceCategoryController@store');
 Route::post('/edit-sc-cats', 'ServiceCategoryController@update');
 Route::post('/delete-scats', 'ServiceCategoryController@destroy');
 Route::get('/get-scat-details/{id}', 'ServiceCategoryController@getScat');
+Route::get('/subcats/{id}','InventoryController@getSubCat');
+Route::get('/get-inventory-edit-details/{id}','InventoryController@getIEditDetails');
+Route::get('/manage_services', 'ServiceController@index');
+Route::post('/add-service', 'ServiceController@store');
+Route::post('/delete-service', 'ServiceController@destroy');
+Route::post('/update-service', 'ServiceController@update');
+Route::get('/get-service/{id}', 'ServiceController@getService');
 
 #### Access Denied
 Route::get('/access-denied', function(){
