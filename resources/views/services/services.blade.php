@@ -19,7 +19,7 @@
         <i class="fa fa-plus"></i> Add Service
     </a>
 
-    <a href="#edit-service" id="edit-service-btn" class="btn btn-warning btn-sm header-btn hidden-mobile">
+    <a href="#update-service" id="edit-service-btn" class="btn btn-warning btn-sm header-btn hidden-mobile">
         <i class="fa fa-edit"></i> Edit Service
     </a>
 
@@ -189,7 +189,125 @@
     <!-- /.modal -->
 
     <!-- Modal -->
+    <div class="modal fade" id="update-service" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        Update Service
+                    </h4>
+                </div>
+                <div class="modal-body no-padding">
 
+                    <form class="smart-form" action="{{ url('update-service') }}" method="post">
+                        {{ csrf_field() }}
+                        <fieldset>
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Service Category</label>
+                                    <div class="col col-10">
+                                        <label class="input">
+                                            <select name="service_category" id="service_category" class="form-control" required>
+                                                <option value="">--Choose Category--</option>
+                                                @if(count($scs))
+                                                    @foreach($scs as $sc)
+                                                        <option value="{{ $sc->id }}">{{ $sc->service_category_name }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Service Name</label>
+                                    <div class="col col-10">
+                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
+                                            <input type="text" name="service_name" id="service_name" required>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Service Code</label>
+                                    <div class="col col-10">
+                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
+                                            <input type="text" name="service_code" id="service_code" required>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Price</label>
+                                    <div class="col col-10">
+                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
+                                            <input type="number" name="price" id="price" step="any" required/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Status</label>
+                                    <div class="col col-10">
+                                        <label class="input">
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="1">Active</option>
+                                                <option value="0">Inactive</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Parent Service</label>
+                                    <div class="col col-10">
+                                        <label class="input">
+                                            <select name="parent_service" id="parent_service" class="form-control">
+                                                <option value="">--Choose Parent--</option>
+                                                @if(count($services))
+                                                    @foreach($services as $service)
+                                                        <option value="{{ $service->id }}">{{ $sc->service_name }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                        </fieldset>
+
+                        {{--hidden fields--}}
+                        <input type="hidden" name="edit_id" id="edit-id"/>
+                        <footer>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i> Save
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                <i class="fa fa-remove"></i> Cancel
+                            </button>
+
+                        </footer>
+                    </form>
+
+
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
     <!-- /.modal -->
 
     <div class="modal fade" id="delete-service" role="dialog">

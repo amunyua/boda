@@ -6,6 +6,7 @@ use App\Service;
 use App\ServiceCategory;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class ServiceController extends Controller
 {
@@ -44,10 +45,45 @@ class ServiceController extends Controller
             $service->save();
 
             $request->session()->flash('status', 'Service has been added');
+            return redirect('/manage_services');
         } catch (QueryException $qe){
             $request->session()->flash('error', $qe->getMessage());
+            return redirect('/manage_services');
         }
-        return redirect('/manage_services');
+    }
+
+    public function getService(Request $request){
+        $id = $request->id;
+        $service = Service::find($id);
+        return Response::json($service);
+    }
+
+    public function update(Request $request){
+        $this->validate($request, [
+            'service_category' => 'required',
+            'service_name' => 'required|unique:services,service_name,'.$request->edit_id,
+            'service_code' => 'required|unique:services,service_code,'.$request->edit_id,
+            'price' => 'required|numeric',
+            'status' => 'required|boolean'
+        ]);
+
+        try{
+            Service::where('id', $request->edit_id)
+                ->update([
+                    'service_category_id' => $request->service_category,
+                    'service_name' => $request->service_name,
+                    'service_code' => $request->service_code,
+                    'price' => $request->price,
+                    'parent_service' => (!empty($request->parent_service)) ? $request->parent_service : NULL,
+                    'service_status' => $request->status
+                ]);
+
+            $request->session()->flash('status', 'Service has been updated');
+            return redirect('/manage_services');
+        } catch (QueryException $qe) {
+            $request->session()->flash('error', $qe->getMessage());
+            return redirect('/manage_services');
+        }
     }
 
     public function destroy(Request $request){

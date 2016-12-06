@@ -76,8 +76,8 @@
                 <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                 <select name="gender" id="gender" class="form-control">
                     <option value="">Choose Gender</option>
-                    <option value="0" {{ (old('0') == 'Male') ? 'selected' : '' }}>Male</option>
-                    <option value="1" {{ (old('1') == 'Female') ? 'selected' : '' }}>Female</option>
+                    <option value="1" {{ (old('1') == 'Male') ? 'selected' : '' }}>Male</option>
+                    <option value="0" {{ (old('0') == 'Female') ? 'selected' : '' }}>Female</option>
                 </select>
             </div>
         </div>

@@ -22,29 +22,19 @@ Route::get('/dashboard', 'DashboardController@index');
 // Registration Module
 Route::get('/registration', 'MasterfileController@index');
 Route::post('/add-registration', 'MasterfileController@store');
-Route::post('/update-masterfile', 'MasterfileController@update');
+Route::get('edit-mf/{id}', 'MasterfileController@getMf');
+Route::post('edit-mf/{id}', 'MasterfileController@updateMf');
+Route::get('soft-delete-mf/{id}', 'MasterfileController@softDeleteMf');
+Route::get('restore-mf/{id}', 'MasterfileController@restoreMf');
 Route::delete('/delete-masterfile', 'MasterfileController@destroy');
-Route::get('/all-masterfiles', 'MasterfileController@allMfs');
+Route::get('/all-clients', 'MasterfileController@allClients');
+Route::get('/all-staffs', 'MasterfileController@allStaffs');
+Route::get('/all-mfs', 'MasterfileController@allMfs');
+Route::get('/inactive-users', 'MasterfileController@loadDelMfs');
+Route::get('mf-profile/{id}', 'MasterfileController@getMfProfile');
 
 // Contact Types Module
 Route::resource('contact_types','ContactTypesController');
-
-// Classes Module
-Route::get('/class', 'FormsController@index');
-Route::post('/add_class', 'FormsController@store');
-Route::post('/manage_stream/{id}', 'FormsController@update');
-Route::delete('/manage_stream/{id}', 'FormsController@destroy');
-
-Route::resource('contact_types','ContactTypesController');
-
-// subject module
-Route::get('/subject', 'SubjectController@index');
-Route::post('/add-subject','SubjectController@store');
-Route::post('/update-subject','SubjectController@update');
-Route::get('/delete-subject/{id}','SubjectController@delete');
-Route::get('/subject_data/{subject_id}', 'SubjectController@getSubjectData');
-Route::post('/update-subject/{id}','SubjectController@update');
-Route::get('/delete-subject/{id}','SubjectController@delete');
 
 // System Manager
 Route::get('/routes', 'RoutesController@index');
@@ -110,6 +100,8 @@ Route::get('/get-inventory-edit-details/{id}','InventoryController@getIEditDetai
 Route::get('/manage_services', 'ServiceController@index');
 Route::post('/add-service', 'ServiceController@store');
 Route::post('/delete-service', 'ServiceController@destroy');
+Route::post('/update-service', 'ServiceController@update');
+Route::get('/get-service/{id}', 'ServiceController@getService');
 
 #### Access Denied
 Route::get('/access-denied', function(){

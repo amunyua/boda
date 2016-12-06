@@ -22,6 +22,20 @@ class RouteSeeder extends Seeder
         $dashboard->save();
         $dashboard_id = $dashboard->id;
 
+        $home = new Route();
+        $home->route_name = 'Home';
+        $home->url = 'home';
+        $home->parent_route = $dashboard_id;
+        $home->save();
+        $home->roles()->attach($admin);
+
+        $home = new Route();
+        $home->route_name = 'Home';
+        $home->url = '/';
+        $home->parent_route = $dashboard_id;
+        $home->save();
+        $home->roles()->attach($admin);
+
         #### Dashboard child
         $analytics_dash = new Route();
         $analytics_dash->route_name = 'Analytics Dashboard';
@@ -44,6 +58,30 @@ class RouteSeeder extends Seeder
         $registration->save();
         $registration->roles()->attach($admin);
 
+        //all Registration
+        $all_mfs = new Route();
+        $all_mfs->route_name = 'All Registration';
+        $all_mfs->url = 'all-mfs';
+        $all_mfs->parent_route = $reg_id;
+        $all_mfs->save();
+        $all_mfs->roles()->attach($admin);
+
+        //all staff
+        $all_staff = new Route();
+        $all_staff->route_name = 'All Staff';
+        $all_staff->url = 'all-staffs';
+        $all_staff->parent_route = $reg_id;
+        $all_staff->save();
+        $all_staff->roles()->attach($admin);
+
+        //all clients
+        $all_clients = new Route();
+        $all_clients->route_name = 'All Clients';
+        $all_clients->url = 'all-clients';
+        $all_clients->parent_route = $reg_id;
+        $all_clients->save();
+        $all_clients->roles()->attach($admin);
+
         // adding a user
         $add_reg = new Route();
         $add_reg->route_name = 'Add Registration';
@@ -51,6 +89,54 @@ class RouteSeeder extends Seeder
         $add_reg->parent_route = $reg_id;
         $add_reg->save();
         $add_reg->roles()->attach($admin);
+
+        // edit user
+        $edit_user = new Route();
+        $edit_user->route_name = 'Edit User Registration';
+        $edit_user->url = 'edit-mf/{id}';
+        $edit_user->parent_route = $reg_id;
+        $edit_user->save();
+        $edit_user->roles()->attach($admin);
+
+        ### soft delete user registration
+        $soft_del = new Route();
+        $soft_del->route_name = 'Soft Delete Masterfile';
+        $soft_del->url = 'soft-delete-mf/{id}';
+        $soft_del->parent_route = $reg_id;
+        $soft_del->save();
+        $soft_del->roles()->attach($admin);
+
+        ### inactive users
+        $inactive_users = new Route();
+        $inactive_users->route_name = 'Inactive Users';
+        $inactive_users->url = 'inactive-users';
+        $inactive_users->parent_route = $reg_id;
+        $inactive_users->save();
+        $inactive_users->roles()->attach($admin);
+
+        ### permanently delete user
+        $delete = new Route();
+        $delete->route_name = 'Delete Users Details';
+        $delete->url = 'delete-masterfile';
+        $delete->parent_route = $reg_id;
+        $delete->save();
+        $delete->roles()->attach($admin);
+
+        ### restore inactive users
+        $restore = new Route();
+        $restore->route_name = 'Restore Inactive Users';
+        $restore->url = 'restore-mf/{id}';
+        $restore->parent_route = $reg_id;
+        $restore->save();
+        $restore->roles()->attach($admin);
+
+        ### users profile
+        $profile = new Route();
+        $profile->route_name = 'Users Profile';
+        $profile->url = 'mf-profile/{id}';
+        $profile->parent_route = $reg_id;
+        $profile->save();
+        $profile->roles()->attach($admin);
 
         #### Application
         $app = new Route();
@@ -104,6 +190,13 @@ class RouteSeeder extends Seeder
         $category = new Route();
         $category->route_name = 'Manage Categories';
         $category->url = 'inventory-categories';
+        $category->parent_route = $inventory_id;
+        $category->save();
+        $category->roles()->attach($admin);
+
+        $category = new Route();
+        $category->route_name = 'Arrange Menu';
+        $category->url = 'arrange-menu';
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
@@ -193,6 +286,20 @@ class RouteSeeder extends Seeder
         $route->roles()->attach($admin);
 
         $route = new Route();
+        $route->route_name = 'Update Service';
+        $route->url = 'update-service';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Get Service';
+        $route->url = 'get-service/{id}';
+        $route->parent_route = $service_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
         $route->route_name = 'Delete Service';
         $route->url = 'delete-service';
         $route->parent_route = $service_id;
@@ -269,6 +376,13 @@ class RouteSeeder extends Seeder
         $routes->save();
         $routes->roles()->attach($admin);
 
+        $routes = new Route();
+        $routes->route_name = 'Load System Routes';
+        $routes->url = 'load-routes';
+        $routes->parent_route = $system_id;
+        $routes->save();
+        $routes->roles()->attach($admin);
+
         $menu = new Route();
         $menu->route_name = 'System Menu';
         $menu->url = 'menu';
@@ -286,6 +400,13 @@ class RouteSeeder extends Seeder
         $theme_config = new Route();
         $theme_config->route_name = 'Theme Configuration';
         $theme_config->url = 'theme_config';
+        $theme_config->parent_route = $system_id;
+        $theme_config->save();
+        $theme_config->roles()->attach($admin);
+
+        $theme_config = new Route();
+        $theme_config->route_name = 'Theme Select';
+        $theme_config->url = 'theme-select/{theme}';
         $theme_config->parent_route = $system_id;
         $theme_config->save();
         $theme_config->roles()->attach($admin);

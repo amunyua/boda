@@ -16,7 +16,12 @@ return array(
     'AddQuantityToInventory' => $baseDir . '/database/migrations/2016_12_02_084242_add_quantity_to_inventory.php',
     'AddRouteStatus' => $baseDir . '/database/migrations/2016_11_01_094610_add_route_status.php',
     'AddSequenceColumn' => $baseDir . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
+<<<<<<< HEAD
+    'AddressSeeder' => $baseDir . '/database/seeds/AddressSeeder.php',
+    'AllMfs' => $baseDir . '/database/migrations/2016_11_29_195201_all_mfs.php',
+=======
     'AddServicecodeToServices' => $baseDir . '/database/migrations/2016_11_29_175435_add_servicecode_to_services.php',
+>>>>>>> 3024c3e48efc613ed0900b77bc253b2db77add02
     'ContactTypeSeeder' => $baseDir . '/database/seeds/ContactTypeSeeder.php',
     'CountyTableSeeder' => $baseDir . '/database/seeds/CountyTableSeeder.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',

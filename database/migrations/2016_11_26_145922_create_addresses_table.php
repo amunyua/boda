@@ -16,12 +16,18 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('county');
+            $table->string('city');
             $table->integer('masterfile_id')->unsigned();
             $table->foreign('masterfile_id')
                 ->references('id')
                 ->on('masterfiles')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->integer('contact_type_id')->unsigned();
+            $table->foreign('contact_type_id')
+                ->references('id')
+                ->on('contact_types')
+                ->onUpdate('cascade');
             $table->string('email');
             $table->string('phone_no');
             $table->string('tel_no');

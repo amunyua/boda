@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Masterfile;
+use App\Role;
 
 class MasterfileSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class MasterfileSeeder extends Seeder
     public function run()
     {
         DB::table('masterfiles')->delete();
+        $user_role = Role::where('role_code', 'SYS_ADMIN')->first();
 
         $admin = new Masterfile();
         $admin->surname = 'Admin';
@@ -21,7 +23,7 @@ class MasterfileSeeder extends Seeder
         $admin->id_no = '12345678';
         $admin->registration_date = date('Y-m-d H:i:s');
         $admin->b_role = 'System Administrator';
-        $admin->user_role = 'System Admin';
+        $admin->user_role = $user_role->id;
         $admin->gender = 1;
         $admin->save();
     }
