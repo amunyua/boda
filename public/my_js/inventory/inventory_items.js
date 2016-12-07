@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    show_hide('motorbike');
+    show_hide('others');
 });
 function show_hide(inv_type) {
     if(inv_type == 'motorbike'){
@@ -70,10 +70,8 @@ var DT = $('#inventory-items').DataTable({
         { data: 'id', name: 'id'},
         { data: 'inventory_type', name: 'inventory_type'},
         { data: 'parent_category_id', name: 'parent_category_id'},
-        { data: 'subcategory_id', name: 'subcategory_id'},
-        { data: 'vin', name: 'vin'},
         { data: 'status', name: 'status'},
-        { data: 'quantity', name: 'quantity'},
+        { data: 'available_stock', name: 'available_stock'},
         { data: 'cost_price', name: 'cost_price'}
     ]
 });
@@ -114,4 +112,37 @@ $('#edit-inventory-btn').on('click',function () {
             }
         });
     }
+});
+
+var DT = $('#motorbikes').DataTable({
+    serverSide: true,
+    processing: true,
+    "aaSorting": [[ 0, 'desc' ]],
+    ajax: 'load-bikes',
+    columns: [
+        { data: 'id', name: 'id'},
+        { data: 'vin', name: 'vin'},
+        { data: 'chassis_number', name: 'chassis_number'},
+        { data: 'make', name: 'make'},
+        { data: 'model', name: 'model'},
+        { data: 'status', name: 'status'},
+        { data: 'price', name: 'price'}
+    ]
+});
+
+
+var DT = $('#stock-transactions').DataTable({
+    serverSide: true,
+    processing: true,
+    "aaSorting": [[ 0, 'desc' ]],
+    ajax: 'load-stock-transactions',
+    columns: [
+        { data: 'id', name: 'id'},
+        { data: 'item_id', name: 'item_id'},
+        { data: 'transaction_category', name: 'transaction_category'},
+        { data: 'transaction_type', name: 'transaction_type'},
+        { data: 'quantity', name: 'quantity'},
+        { data: 'new_level', name: 'new_level'},
+        { data: 'created_by', name: 'created_by'}
+    ]
 });

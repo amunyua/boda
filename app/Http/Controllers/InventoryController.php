@@ -6,6 +6,7 @@ use App\Category;
 use App\InventoryItem;
 use Illuminate\Database\QueryException as e;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\Types\Null_;
@@ -164,6 +165,8 @@ class InventoryController extends Controller
             $item->code = $category->code;
             $item->quantity = $request->quantity;
             $item->cost_price = $request->cost_price;
+            $item->initial_stock = $request->quantity;
+            $item->available_stock = $request->quantity;
 
             try {
                 $item->save();
@@ -231,5 +234,13 @@ class InventoryController extends Controller
             'inventory_details'=>$inv
         );
         return Response::json($response);
+    }
+
+    public function stockTransactions(){
+        $items = InventoryItem::all();
+
+        return view('inventory.stock_transactions',array(
+            'items'=>$items
+        ));
     }
 }

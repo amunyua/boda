@@ -124,6 +124,20 @@ class MenuSeeder extends Seeder
         $category->sequence = 2;
         $category->save();
 
+        $category_route = Route::where('route_name', 'Stock Transactions')->first();
+        $category = new Menu();
+        $category->route_id = $category_route->id;
+        $category->parent_menu = $inventory->id;
+        $category->sequence = 4;
+        $category->save();
+
+        $category_route = Route::where('route_name', 'All Motorbikes')->first();
+        $category = new Menu();
+        $category->route_id = $category_route->id;
+        $category->parent_menu = $inventory->id;
+        $category->sequence = 3;
+        $category->save();
+
         #### clients
         $clients_route = Route::where('route_name', 'Client')->first();
         $clients = new Menu();
@@ -133,7 +147,7 @@ class MenuSeeder extends Seeder
         $clients->save();
         $clients_id = $clients->id;
 
-        $client_acc_route = Route::where('route_name', 'Client Account')->first();
+        $client_acc_route = Route::where('route_name', 'Client Accounts')->first();
         $client_acc = new Menu();
         $client_acc->route_id = $client_acc_route->id;
         $client_acc->parent_menu = $clients->id;

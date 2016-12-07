@@ -93,6 +93,16 @@ Route::get('/manage_inventory','InventoryController@allInventoryItems');
 Route::post('/create-inventory-item','InventoryController@storeInventory');
 Route::post('/delete-inventory-item', 'InventoryController@deleteInventory');
 
+Route::get('/bikes','BikeController@index');
+Route::post('/store-bike','BikeController@store');
+Route::get('/load-bikes','BikeController@getBikes');
+Route::post('/delete-bike','BikeController@destroy');
+
+//stock transactions
+Route::get('/stock-transactions','InventoryController@stockTransactions');
+Route::post('/create-transaction','StockTransactionController@createTransaction');
+Route::get('/load-stock-transactions','StockTransactionController@loadTransactions');
+
 
 Route::get('/service_category', 'ServiceCategoryController@index');
 Route::post('/add-sc-cats', 'ServiceCategoryController@store');
@@ -107,6 +117,11 @@ Route::post('/delete-service', 'ServiceController@destroy');
 Route::post('/update-service', 'ServiceController@update');
 Route::get('/get-service/{id}', 'ServiceController@getService');
 
+
+#### Client Accounts
+Route::get('/client_account','ClientAccountController@clientAccounts');
+Route::post('/create-client-account','ClientAccountController@createAccount');
+Route::get('/load-accounts','ClientAccountController@loadAccounts');
 #### Access Denied
 Route::get('/access-denied', function(){
     return view('pages.access_denied');

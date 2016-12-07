@@ -1,9 +1,9 @@
 @extends('layouts.dt')
-@section('title', 'Inventory')
-@section('page-title', 'Manage Inventory')
-@section('widget-title', 'Manage Inventory')
-@section('widget-desc', 'Manage All the Inventory Items')
-@section('table-title', 'Inventory Items')
+@section('title', 'Stock Transactions')
+@section('page-title', 'Manage Transactions')
+@section('widget-title', 'Manage Stock Transactions')
+@section('widget-desc', 'All Stock Transactions')
+@section('table-title', 'Stock Transactions')
 
 @push('js')
 <script src="{{ URL::asset('my_js/inventory/inventory_items.js') }}"></script>
@@ -12,38 +12,33 @@
 @section('breadcrumb')
     <li><a href="{{ url('/') }}"> Home</a></li>
     <li>Inventory</li>
-    <li>Manage Inventory</li>
+    <li>Stock Transactions</li>
 @endsection
 
 @section('button')
     {{--<span class="actions">--}}
-    <a data-toggle="modal" href="#create-inventory" id="add-route-btn" class="btn btn-success btn-sm header-btn hidden-mobile">
-        <i class="fa fa-plus"></i> Add Inventory
+    <a data-toggle="modal" href="#create-inventory" id="add-route-btn" class="btn btn-success btn-sm header-btn hidden-mobile pull-right">
+        <i class="fa fa-plus"></i> Create Stock Transaction
     </a>
 
-    <a href="#edit-inventory" id="edit-inventory-btn" class="btn btn-warning btn-sm header-btn hidden-mobile">
-        <i class="fa fa-edit"></i> Edit Inventory
-    </a>
-    <a href="#delete-inventory-item" id="delete-inventory-btn" class="btn btn-danger btn-sm header-btn hidden-mobile">
-        <i class="fa fa-trash"></i> Delete Inventory
-    </a>
 
     {{--</span>--}}
 @endsection
 
 @section('content')
-@include('layouts.includes._messages')
-@section('table-id', '#inventory-items')
+    @include('layouts.includes._messages')
+@section('table-id', '#stock-transactions')
 
-<table id="inventory-items" class="table table-striped table-bordered table-hover">
+<table id="stock-transactions" class="table table-striped table-bordered table-hover">
     <thead>
     <tr>
         <th>Id#</th>
-        <th>Inventory type</th>
-        <th>Inventory Name</th>
-        <th>Status</th>
+        <th>Inventory item</th>
+        <th>Transaction Category</th>
+        <th>Transaction Type</th>
         <th>Quantity</th>
-        <th>Cost Price</th>
+        <th>New Stock</th>
+        <th>Transacted by</th>
     </tr>
     </thead>
 </table>
@@ -60,129 +55,75 @@
                         &times;
                     </button>
                     <h4 class="modal-title">
-                        Create inventory item
+                        Create Stock Transaction
                     </h4>
                 </div>
                 <div class="modal-body no-padding">
 
-                    <form id="create-inventory" class="smart-form" action="{{ url('create-inventory-item') }}" method="post">
+                    <form id="create-inventory" class="smart-form" action="{{ url('create-transaction') }}" method="post">
                         {{ csrf_field() }}
                         <fieldset>
                             <section>
                                 <div class="row">
-                                    <label class="label col col-2">Inventory Type</label>
+                                    <label class="label col col-2">Inventory Item</label>
                                     <div class="col col-10">
                                         <label class="input">
-                                            <select name="inventory_type" class="form-control" id="inventory_type" required>
-                                                <option value="">Please select inventory type</option>
-                                                @if(count($non_bikes_cats))
-                                                    @foreach($non_bikes_cats as $non_bikes_cat)
-                                                        <option value="{{ $non_bikes_cat->id }}">{{ $non_bikes_cat->category_name }}</option>
-                                                        @endforeach
-                                                    @endif
+                                            <select name="inventory_item" class="form-control select2" id="" required>
+                                                <option value="">Please select inventory item</option>
+                                                @if(count($items))
+                                                    @foreach($items as $item)
+                                                        <?php
+                                                        $item_name = App\Category::find($item->parent_category_id)->category_name;
+                                                        ?>
+                                                        <option value="{{ $item->id }}">{{ $item_name}}</option>
+                                                    @endforeach
+                                                @endif
 
                                             </select>
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="row others">
-                                    <label class="label col col-2">Category</label>
-                                    <div class="col col-10">
-                                        <label class="input">
-                                            <select name="parent_category" class="form-control" id="other-inventory-cats">
-                                                <option value="">Please select a category</option>
-
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">Make</label>
-                                    <div class="col col-10">
-                                        <label class="input">
-                                            <select name="make" class="form-control" id="inventory-make">
-                                                <option value="">Please select a category</option>
-                                                @if(count($categories))
-                                                    @foreach($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                                        @endforeach
-                                                    @endif
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">Model</label>
-                                    <div class="col col-10">
-                                        <label class="input">
-                                            <select name="model" class="form-control" id="inventory-model">
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">VIN</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="vin" autocomplete="off"  value="{{ old('item_name') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">Chassis Number</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="chassis_number" autocomplete="off"  value="{{ old('item_name') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="row others">
-                                    <label class="label col col-2">Item Code</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="code" autocomplete="off"  value="{{ old('code') }}">
                                         </label>
                                     </div>
                                 </div>
                             </section>
                             <section>
                                 <div class="row others">
+                                    <label class="label col col-2">Transaction Category</label>
+                                    <div class="col col-10">
+                                        <label class="input">
+                                            <select name="transaction_category" class="form-control" id="">
+                                                <option value="">Please select transaction Category</option>
+                                                <option value="purchase">Purchase</option>
+                                                <option value="reconciliation">Reconciliation</option>
+
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <div class="row others">
+                                    <label class="label col col-2">Transaction type</label>
+                                    <div class="col col-10">
+                                        <label class="input">
+                                            <select name="transaction_type" class="form-control" id="">
+                                                <option value="">Please select transaction type</option>
+                                                <option value="add">Add</option>
+                                                <option value="subtract">Subtact</option>
+
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <div class="row">
                                     <label class="label col col-2">Quantity</label>
                                     <div class="col col-10">
                                         <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="number" name="quantity" autocomplete="off" value="{{ old('quantity') }}">
+                                            <input type="text" name="quantity" autocomplete="off"  value="{{ old('quantity') }}">
                                         </label>
                                     </div>
                                 </div>
                             </section>
-                            <section>
-                                <div class="row ">
-                                    <label class="label col col-2">Cost price</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="number" name="cost_price" autocomplete="off" value="{{ old('cost_price') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-
-
-
                         </fieldset>
 
                         <footer>
@@ -228,11 +169,11 @@
                                         <label class="input">
                                             <select name="make" class="form-control inventory-make" id="mk-cat">
                                                 <option value="">Please select a category</option>
-                                                @if(count($categories))
-                                                    @foreach($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                                    @endforeach
-                                                @endif
+                                                {{--@if(count($categories))--}}
+                                                    {{--@foreach($categories as $category)--}}
+                                                        {{--<option value="{{ $category->id }}">{{ $category->category_name }}</option>--}}
+                                                    {{--@endforeach--}}
+                                                {{--@endif--}}
                                             </select>
                                         </label>
                                     </div>

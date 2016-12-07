@@ -6,6 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddColumnInventotyItems' => $baseDir . '/database/migrations/2016_12_06_150751_add_columnInventotyItems.php',
+    'AddColumnStockTransactions' => $baseDir . '/database/migrations/2016_12_07_092347_add_columnStockTransactions.php',
+    'AddColumnnsToInventory' => $baseDir . '/database/migrations/2016_12_07_061500_addColumnnsToInventory.php',
     'AddColumnsToInventoryItemsTable' => $baseDir . '/database/migrations/2016_12_01_190442_add_columns_to_inventory_items_table.php',
     'AddCountyStatusToCountiesTable' => $baseDir . '/database/migrations/2016_11_03_061623_add_county_status_to_counties_table.php',
     'AddFaIconsTable' => $baseDir . '/database/migrations/2016_10_12_085709_add_fa_icons_table.php',
@@ -17,17 +20,25 @@ return array(
     'AddRouteStatus' => $baseDir . '/database/migrations/2016_11_01_094610_add_route_status.php',
     'AddSequenceColumn' => $baseDir . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
     'AddServicecodeToServices' => $baseDir . '/database/migrations/2016_11_29_175435_add_servicecode_to_services.php',
+<<<<<<< HEAD
     'AddStatusToUsersTable' => $baseDir . '/database/migrations/2016_12_07_152223_add_status_to_users_table.php',
+=======
+>>>>>>> bf967ad2b9ad262c250d7a8fa81c9c5e363f5ee2
     'AddressSeeder' => $baseDir . '/database/seeds/AddressSeeder.php',
     'AddressTypes' => $baseDir . '/database/migrations/2016_12_06_123945_addressTypes.php',
     'AllMfs' => $baseDir . '/database/migrations/2016_11_29_195201_all_mfs.php',
+<<<<<<< HEAD
     'AllUsers' => $baseDir . '/database/migrations/2016_12_07_104829_all_users.php',
+=======
+>>>>>>> bf967ad2b9ad262c250d7a8fa81c9c5e363f5ee2
     'ContactTypeSeeder' => $baseDir . '/database/seeds/ContactTypeSeeder.php',
     'CountyTableSeeder' => $baseDir . '/database/seeds/CountyTableSeeder.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2016_11_26_145922_create_addresses_table.php',
     'CreateAuditTrailsTable' => $baseDir . '/database/migrations/2016_11_01_180922_create_audit_trails_table.php',
+    'CreateBikesTable' => $baseDir . '/database/migrations/2016_12_06_115701_create_bikes_table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2016_10_13_180726_create_categories_table.php',
+    'CreateClientAccountsTable' => $baseDir . '/database/migrations/2016_12_07_110805_create_client_accounts_table.php',
     'CreateContactTypesTable' => $baseDir . '/database/migrations/2016_11_02_194657_create_contact_types_table.php',
     'CreateContactsTable' => $baseDir . '/database/migrations/2016_09_27_114536_create_contacts_table.php',
     'CreateCountiesTable' => $baseDir . '/database/migrations/2016_11_03_055822_create_counties_table.php',
@@ -43,6 +54,7 @@ return array(
     'CreateServiceCategoriesTable' => $baseDir . '/database/migrations/2016_11_22_185100_create_service_categories_table.php',
     'CreateServicesTable' => $baseDir . '/database/migrations/2016_11_22_185109_create_services_table.php',
     'CreateSkinsTable' => $baseDir . '/database/migrations/2016_11_01_193801_create_skins_table.php',
+    'CreateStockTransactionsTable' => $baseDir . '/database/migrations/2016_12_06_145935_create_stock_transactions_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
