@@ -90,7 +90,11 @@ class MasterfileController extends Controller
                         $path = 'uploads/images/'.$new_name;
                     }
                 }
-                //var_dump($path);exit;
+
+                Log::info($path);
+
+                Log::info('Creating Masterfile...', $_POST);
+                $reg_date = date('Y-m-d', strtotime(Input::get('registration_date')));
 
                 // add to db
                 $mf = Masterfile::create(array(
@@ -101,15 +105,18 @@ class MasterfileController extends Controller
                     'id_no' => Input::get('id_no'),
                     'b_role' => Input::get('b_role'),
                     'gender' => Input::get('gender'),
-                    'user_role' => Input::get('user_role'),
-                    'registration_date' => Input::get('registration_date'),
+                    'user_role' => Input::get('role'),
+                    'registration_date' => $reg_date,
                     'image_path' => $path,
                     'status' => 1
                 ));
-                //var_dump($mf);exit;
                 $mf->save();
-                $mf_id = $mf->id;
+                Log::info('Created Masterfile');
 
+                $mf_id = $mf->id;
+                Log::info('Returned MF#: '.$mf_id);
+
+                Log::info('Creating Address...');
                 // add address details
                 $address = Address::create(array(
                     'county' => Input::get('county'),
@@ -123,27 +130,43 @@ class MasterfileController extends Controller
                     'postal_code' => Input::get('postal_code'),
                     'physical_address' => Input::get('physical_address')
                 ));
-                $address->save();
 
+                $address->save();
+                Log::info('Created Address');
+
+                Log::info('Creating Login Account');
                 // create user login account
                 $password = sha1(123456);
                 $full_name = $mf->surname.' '.$mf->firstname;
                 $login = User::create(array (
-                    'masterfile_id' => $mf_id,
+                    'name' => $full_name,
                     'email' => Input::get('email'),
-                    'mobile_no' => Input::get('phone_no'),
                     'password' => $password,
-                    'name' => $full_name
+                    'masterfile_id' => $mf_id,
+                    'phone_no' => Input::get('phone_no')
                 ));
-//            var_dump($login);exit;
+                //print_r($login);exit;
                 $login->save();
+                Log::info('Created Login Account');
+
+                // get user role
+                $role_id = Input::get('role');
+
+                // find the the instance of the role
+                $user_role = Role::find($role_id);
+
+                Log::info('Attaching User Role...');
+                // attach the user role
+                $login->roles()->attach($user_role);
+                Log::info('Attached User Role');
+
             }catch (QueryException $qe){
                 // get the exception message and flash it out as an error
                 Session::flash('error', $qe->getMessage()); // a user friendly error
             }
         });
 
-        Session::flash('success', 'Administrator '.$_POST['surname'].' '.$_POST['firstname'].' has been added');
+        Session::flash('success', 'System Administrator '.$_POST['surname'].' '.$_POST['firstname'].' has been added');
     }
 
     public function addStaff(){
@@ -217,12 +240,12 @@ class MasterfileController extends Controller
                     'masterfile_id' => $mf_id,
                     'phone_no' => Input::get('phone_no')
                 ));
-                //print_r($login);exit;
+//                var_dump($login);exit;
                 $login->save();
                 Log::info('Created Login Account');
 
                 // get user role
-                $role_id = Input::get('user_role');
+                $role_id = Input::get('role');
 
                 // find the the instance of the role
                 $user_role = Role::find($role_id);
@@ -257,7 +280,11 @@ class MasterfileController extends Controller
                         $path = 'uploads/images/'.$new_name;
                     }
                 }
-                //var_dump($path);exit;
+
+                Log::info($path);
+
+                Log::info('Creating Masterfile...', $_POST);
+                $reg_date = date('Y-m-d', strtotime(Input::get('registration_date')));
 
                 // add to db
                 $mf = Masterfile::create(array(
@@ -268,15 +295,18 @@ class MasterfileController extends Controller
                     'id_no' => Input::get('id_no'),
                     'b_role' => Input::get('b_role'),
                     'gender' => Input::get('gender'),
-                    'user_role' => Input::get('user_role'),
-                    'registration_date' => Input::get('registration_date'),
+                    'user_role' => Input::get('role'),
+                    'registration_date' => $reg_date,
                     'image_path' => $path,
                     'status' => 1
                 ));
-                //var_dump($mf);exit;
                 $mf->save();
-                $mf_id = $mf->id;
+                Log::info('Created Masterfile');
 
+                $mf_id = $mf->id;
+                Log::info('Returned MF#: '.$mf_id);
+
+                Log::info('Creating Address...');
                 // add address details
                 $address = Address::create(array(
                     'county' => Input::get('county'),
@@ -290,20 +320,36 @@ class MasterfileController extends Controller
                     'postal_code' => Input::get('postal_code'),
                     'physical_address' => Input::get('physical_address')
                 ));
-                $address->save();
 
+                $address->save();
+                Log::info('Created Address');
+
+                Log::info('Creating Login Account');
                 // create user login account
                 $password = sha1(123456);
                 $full_name = $mf->surname.' '.$mf->firstname;
                 $login = User::create(array (
-                    'masterfile_id' => $mf_id,
+                    'name' => $full_name,
                     'email' => Input::get('email'),
-                    'phone_no' => Input::get('phone_no'),
                     'password' => $password,
-                    'name' => $full_name
+                    'masterfile_id' => $mf_id,
+                    'phone_no' => Input::get('phone_no')
                 ));
-//            var_dump($login);exit;
+                //print_r($login);exit;
                 $login->save();
+                Log::info('Created Login Account');
+
+                // get user role
+                $role_id = Input::get('role');
+
+                // find the the instance of the role
+                $user_role = Role::find($role_id);
+
+                Log::info('Attaching User Role...');
+                // attach the user role
+                $login->roles()->attach($user_role);
+                Log::info('Attached User Role');
+
             }catch (QueryException $qe){
                 // get the exception message and flash it out as an error
                 Session::flash('error', $qe->getMessage()); // a user friendly error
@@ -422,27 +468,47 @@ class MasterfileController extends Controller
         //var_dump($_POST);exit;
         if(Masterfile::destroy($id)){
             Session::flash('success','User Registration Details Has Been Permanently DELETED!');
-            return redirect('all-mfs');
+            return redirect('inactive-users');
         }
     }
 
     public function getMfProfile(Request $request){
         // get mf_id
         $mf_id = $request->id;
-        $masterfile_id = $mf_id;
 
         $mf = Masterfile::find($mf_id);
-        $ad =  Address::find($masterfile_id);
+        $ad = Address::find($mf_id);
         $role_id = $mf->user_role;
         $role =  Role::find($role_id);
         $addresses =  Address::all();
+        $counties =  County::all();
+        $contact_type_id = $ad->contact_type_id;
+        $c_type = ContactTypes::find($contact_type_id);
 
         return view('registration.mf_profile')->with(array(
             'mf' => $mf,
             'ad' => $ad,
             'role' => $role,
             'addresses' => $addresses,
+            'c_type' => $c_type,
+            'counties' => $counties,
         ));
+    }
+
+
+    public function getAllUsers(){
+        $mfs = DB::select('select * from all_users where status = 1', [1]);
+
+        return view('user_manager.all_users', ['mfs' => $mfs]);
+    }
+
+    public function deleteAddress(Request $request, $id){
+        //var_dump($_POST);exit;
+        if(Address::destroy($id)){
+            Session::flash('success','Address Details has been deleted');
+            return redirect('mf-profile/'.+$request->masterfile_id);
+//            return redirect('mf-profile/'.+$request->masterfile_id)->with('status', 'Address Details has been deleted!');
+        }
     }
 
 }

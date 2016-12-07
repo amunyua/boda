@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\AuditTrail;
+use App\Masterfile;
 use App\Role;
+use App\User;
 use App\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,12 +27,19 @@ class UserManagerController extends Controller
         $repsonse = mpesa(10, 254715862938)->usingReferenceId('Alex Muunyua')->transact();
         return Guz::json($repsonse);
     }
+
+    public function getAllUsers(){
+        $mfs = DB::select('select * from all_users where status = 1', [1]);
+
+        return view('user_manager.all_users', ['mfs' => $mfs]);
+    }
+
     public function getIndex(){
-        $roles = Role::all();
+        $mfs = Role::all();
         $routes = Route::whereNotNull('parent_route')->get();
         return view('user_manager.user_roles', [
             'routes' => $routes,
-            'roles' => $roles
+            'mfs' => $mfs
         ]);
     }
 
@@ -58,18 +67,19 @@ class UserManagerController extends Controller
         return redirect('user_roles');
     }
 
-    public function destroyRole($id){
-        if(Role::destroy($id)){
-//            $this->logAction('Delete_user_role');
-            Session::flash('success','Role has been deleted');
-            return redirect('user_roles');
-        }
+    public function destroyRole($user_id){
+        DB::table('role_user')->where('id', $user_id)->delete();
+        DB::table('masterfiles')->where('id', $user_id)->delete();
+
+        Session::flash('success','user has been deleted');
+        return redirect('all_users');
     }
 
     public function auditTrails(){
 //        $audit_trails = AuditTrail::all();
         return view('user_manager.audit_trails');
     }
+
     public function ajaxAuditTrails(){
 //        $audit_trails = AuditTrail::all();
         return Datatables::of(AuditTrail::all()->make(true));
@@ -149,4 +159,21 @@ class UserManagerController extends Controller
 
         return Response::json($routes);
     }
+
+    public function blockUser(Request $request){
+        $id = $request->id;
+        // update db record
+        $user = DB::table('users')->whereIn('id', $id)->update(array('status' => 0));
+        $user->save();
+        Session::flash('success', 'User has been BLOCKED!');
+        return redirect('all_users');
+    }
+
+//    public function inBlockUser(Request $request, $id){
+//        // update db record
+//        $user = DB::table('users')->whereIn('id', $id)->update(array('status' => 1));
+//        $user->save();
+//        Session::flash('success', 'User has been UNBLOCKED!');
+//        return redirect('all_users');
+//    }
 }

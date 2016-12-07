@@ -26,12 +26,13 @@ Route::get('edit-mf/{id}', 'MasterfileController@getMf');
 Route::post('edit-mf/{id}', 'MasterfileController@updateMf');
 Route::get('soft-delete-mf/{id}', 'MasterfileController@softDeleteMf');
 Route::get('restore-mf/{id}', 'MasterfileController@restoreMf');
-Route::delete('/delete-masterfile', 'MasterfileController@destroy');
+Route::get('delete-masterfile/{id}', 'MasterfileController@destroy');
 Route::get('/all-clients', 'MasterfileController@allClients');
 Route::get('/all-staffs', 'MasterfileController@allStaffs');
 Route::get('/all-mfs', 'MasterfileController@allMfs');
 Route::get('/inactive-users', 'MasterfileController@loadDelMfs');
 Route::get('mf-profile/{id}', 'MasterfileController@getMfProfile');
+Route::delete('delete-address/{id}', 'MasterfileController@deleteAddress');
 
 // Contact Types Module
 Route::resource('contact_types','ContactTypesController');
@@ -66,16 +67,19 @@ Route::get('/make-backup','DatabaseBackup@runBackup');
 
 ##### User manager
 Route::get('/user_roles','UserManagerController@getIndex');
+Route::get('/all_users','UserManagerController@getAllUsers');
 Route::post('/add-user-role','UserManagerController@storeRole');
 Route::get('get-role-edit-details/{id}','UserManagerController@getRoleEditDetails');
 Route::post('edit-user-role/{id}','UserManagerController@updateUserRoleDetails');
-Route::delete('/delete-user-role/{id}','UserManagerController@destroyRole');
+Route::get('/delete-user/{id}','UserManagerController@destroyRole');
 Route::get('/audit_trails','UserManagerController@auditTrails');
 Route::get('/ajax_trails','UserManagerController@ajaxAuditTrails');
 Route::get('/load-routes-allocation', 'UserManagerController@loadRoutesForAllocation');
 Route::post('/attach-route', 'UserManagerController@attachRoute');
 Route::post('/detach-route', 'UserManagerController@detachRoute');
 Route::get('/check-allocated-route/{id}', 'UserManagerController@isRouteAllocated');
+Route::post('block-user/{id}','UserManagerController@blockUser');
+Route::post('unblock-user/{id}','UserManagerController@unBlockUser');
 
 #### Services
 Route::get('/service-cats', 'ServiceCategoryController@index');

@@ -8,10 +8,10 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
         '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
@@ -155,8 +155,8 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Zend\\Diactoros\\' => 
         array (
@@ -473,16 +473,22 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
     );
 
     public static $classMap = array (
+        'AddColumnsToInventoryItemsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_01_190442_add_columns_to_inventory_items_table.php',
         'AddCountyStatusToCountiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_03_061623_add_county_status_to_counties_table.php',
         'AddFaIconsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_085709_add_fa_icons_table.php',
         'AddFaiconColumn' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_093918_add_faicon_column.php',
         'AddFksMenu' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_163211_add_fks_menu.php',
         'AddParentmenuFieldTomenus' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_093059_add_parentmenu_field_tomenus.php',
         'AddPhoneandvinTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_093615_add_phoneandvin_table.php',
+        'AddQuantityToInventory' => __DIR__ . '/../..' . '/database/migrations/2016_12_02_084242_add_quantity_to_inventory.php',
         'AddRouteStatus' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_094610_add_route_status.php',
         'AddSequenceColumn' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
+        'AddServicecodeToServices' => __DIR__ . '/../..' . '/database/migrations/2016_11_29_175435_add_servicecode_to_services.php',
+        'AddStatusToUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_07_152223_add_status_to_users_table.php',
         'AddressSeeder' => __DIR__ . '/../..' . '/database/seeds/AddressSeeder.php',
+        'AddressTypes' => __DIR__ . '/../..' . '/database/migrations/2016_12_06_123945_addressTypes.php',
         'AllMfs' => __DIR__ . '/../..' . '/database/migrations/2016_11_29_195201_all_mfs.php',
+        'AllUsers' => __DIR__ . '/../..' . '/database/migrations/2016_12_07_104829_all_users.php',
         'ContactTypeSeeder' => __DIR__ . '/../..' . '/database/seeds/ContactTypeSeeder.php',
         'CountyTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CountyTableSeeder.php',
         'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
@@ -493,6 +499,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'CreateContactsTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_27_114536_create_contacts_table.php',
         'CreateCountiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_03_055822_create_counties_table.php',
         'CreateIconSeeder' => __DIR__ . '/../..' . '/database/migrations/2016_10_31_114315_create_icon_seeder.php',
+        'CreateInventoryItemsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_25_121830_create_inventory_items_table.php',
         'CreateMasterfileTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_092857_create_masterfile_table.php',
         'CreateMenusTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_09_195248_create_menus_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
@@ -581,6 +588,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'InventoryCategorySeeder' => __DIR__ . '/../..' . '/database/seeds/InventoryCategorySeeder.php',
         'Maatwebsite\\Excel\\Classes\\Cache' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Classes/Cache.php',
         'Maatwebsite\\Excel\\Classes\\FormatIdentifier' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Classes/FormatIdentifier.php',
         'Maatwebsite\\Excel\\Classes\\LaravelExcelWorksheet' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Classes/LaravelExcelWorksheet.php',
@@ -611,7 +619,10 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'Maatwebsite\\Excel\\Writers\\LaravelExcelWriter' => __DIR__ . '/..' . '/maatwebsite/excel/src/Maatwebsite/Excel/Writers/LaravelExcelWriter.php',
         'MasterfileSeeder' => __DIR__ . '/../..' . '/database/seeds/MasterfileSeeder.php',
         'MenuSeeder' => __DIR__ . '/../..' . '/database/seeds/MenuSeeder.php',
+        'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
+        'PHPUnit\\Framework\\BaseTestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
         'PHPUnit\\Framework\\TestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
+        'PHPUnit\\Framework\\TestListener' => __DIR__ . '/..' . '/phpunit/phpunit/src/ForwardCompatibility/TestListener.php',
         'PHPUnit_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit_Extensions_GroupTestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
         'PHPUnit_Extensions_PhptTestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',

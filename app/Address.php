@@ -14,4 +14,8 @@ class Address extends Model
     public function masterfile(){
         return $this->belongsTo('App\Masterfile');
     }
+
+    public function contactTypes(){
+        return $this->belongsTo('App\Address');
+    }
 }

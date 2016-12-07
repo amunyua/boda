@@ -16,12 +16,12 @@ return array(
     'AddQuantityToInventory' => $baseDir . '/database/migrations/2016_12_02_084242_add_quantity_to_inventory.php',
     'AddRouteStatus' => $baseDir . '/database/migrations/2016_11_01_094610_add_route_status.php',
     'AddSequenceColumn' => $baseDir . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
-<<<<<<< HEAD
-    'AddressSeeder' => $baseDir . '/database/seeds/AddressSeeder.php',
-    'AllMfs' => $baseDir . '/database/migrations/2016_11_29_195201_all_mfs.php',
-=======
     'AddServicecodeToServices' => $baseDir . '/database/migrations/2016_11_29_175435_add_servicecode_to_services.php',
->>>>>>> 3024c3e48efc613ed0900b77bc253b2db77add02
+    'AddStatusToUsersTable' => $baseDir . '/database/migrations/2016_12_07_152223_add_status_to_users_table.php',
+    'AddressSeeder' => $baseDir . '/database/seeds/AddressSeeder.php',
+    'AddressTypes' => $baseDir . '/database/migrations/2016_12_06_123945_addressTypes.php',
+    'AllMfs' => $baseDir . '/database/migrations/2016_11_29_195201_all_mfs.php',
+    'AllUsers' => $baseDir . '/database/migrations/2016_12_07_104829_all_users.php',
     'ContactTypeSeeder' => $baseDir . '/database/seeds/ContactTypeSeeder.php',
     'CountyTableSeeder' => $baseDir . '/database/seeds/CountyTableSeeder.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
@@ -152,7 +152,10 @@ return array(
     'Maatwebsite\\Excel\\Writers\\LaravelExcelWriter' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Writers/LaravelExcelWriter.php',
     'MasterfileSeeder' => $baseDir . '/database/seeds/MasterfileSeeder.php',
     'MenuSeeder' => $baseDir . '/database/seeds/MenuSeeder.php',
+    'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
+    'PHPUnit\\Framework\\BaseTestListener' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
     'PHPUnit\\Framework\\TestCase' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
+    'PHPUnit\\Framework\\TestListener' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/TestListener.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
     'PHPUnit_Extensions_PhptTestCase' => $vendorDir . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',

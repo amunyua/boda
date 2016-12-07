@@ -180,3 +180,12 @@ $(document).ready(function() {
 
 
 })
+
+//delete masterfile
+$('.del_mf').on('click', function(){
+    if(confirm('Are you sure you want to delete the selected User Details?')){
+        return true;
+    }else{
+        return false;
+    }
+});

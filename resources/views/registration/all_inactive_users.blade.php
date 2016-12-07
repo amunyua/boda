@@ -39,7 +39,7 @@
                     <td>{{ $mf->role_name }}</td>
                     <td>{{ $mf->email }}</td>
                     <td><a href="{{ url('restore-mf/'.$mf->id) }}" class="btn btn-warning btn-xs edit_cat"><i class="fa fa-edit"></i> Restore</a> </td>
-                    <td><a href="{{ url('delete-masterfile/'.$mf->id) }}" class="btn btn-danger btn-xs edit_cat" ><i class="fa fa-user"></i> Delete</a> </td>
+                    <td><a href="{{ url('delete-masterfile/'.$mf->id) }}" class="btn btn-danger btn-xs del_mf" ><i class="fa fa-user"></i> Delete</a> </td>
 
                 </tr>
             @endforeach
@@ -49,5 +49,5 @@
 @endsection
 
 @push('js')
-
+    <script src="{{ URL::asset('my_js/registration/registration.js') }}"></script>
 @endpush

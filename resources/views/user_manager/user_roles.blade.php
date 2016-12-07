@@ -33,16 +33,16 @@
         </tr>
         </thead>
         <tbody>
-        @if(count($roles))
-            @foreach($roles as $role)
+        @if(count($mfs))
+            @foreach($mfs as $mf)
                 <tr>
-                    <td>{{ $role->id }}</td>
-                    <td>{{ $role->role_name }}</td>
-                    <td>{{ $role->role_code }}</td>
-                    <td><?php echo ($role->role_status == 1)? '<span class="label label-success"> Active </span>':'<span class="label label-danger">Blocked</span>' ?></td>
-                    <td><a href="#edit-role-modal" edit-id="{{ $role->id }}" action="{{ url('edit-user-role/'.$role->id) }}" data-toggle="modal" class="btn btn-success btn-xs edit-role-btn">Edit</a> </td>
+                    <td>{{ $mf->id }}</td>
+                    <td>{{ $mf->role_name }}</td>
+                    <td>{{ $mf->role_code }}</td>
+                    <td><?php echo ($mf->status == 0)? '<span class="btn btn-success btn-xs "> Active </span>':'<span class="label label-danger">Blocked</span>' ?></td>
+                    <td><a href="#edit-role-modal" edit-id="{{ $mf->id }}" action="{{ url('edit-user-role/'.$mf->id) }}" data-toggle="modal" class="btn btn-success btn-xs edit-role-btn">Edit</a> </td>
 
-                    <td> <a href="#delete-user-role" class="btn btn-danger btn-xs del_role" data-toggle="modal" del-id="{{ $role->id }}">Delete </a> </td>
+                    <td> <a href="#delete-user-role" class="btn btn-danger btn-xs del_role" data-toggle="modal" del-id="{{ $mf->id }}">Delete </a> </td>
                 </tr>
             @endforeach
             @endif
@@ -245,6 +245,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+
     {{--modal for allocation--}}
     <div class="modal fade" id="allocate-routes" role="dialog">
         <div class="modal-dialog">

@@ -20,10 +20,9 @@
     <li><span href="#">User Profile</span></li>
 @endsection
 
-@section('content')
-
-@endsection
 @section('tab-content')
+    {{ csrf_field() }}
+    @include('layouts.includes._messages')
     <div class="row">
         <div class="col-sm-12">
             <div class="well well-sm">
@@ -67,13 +66,13 @@
                                             <img src="{{ URL::asset(empty($mf->image_path) ? 'img/avatars/photo.jpg' : $mf->image_path) }}" alt="" />
                                             {{--<img src="{{ URL::asset('img/avatars/sunny-big.png') }}" alt="demo user">--}}
                                             <div class="padding-10">
-                                                <h4 class="font-md"><strong>1,543</strong>
-                                                    <br>
-                                                    <small>Followers</small></h4>
-                                                <br>
-                                                <h4 class="font-md"><strong>419</strong>
-                                                    <br>
-                                                    <small>Connections</small></h4>
+                                                {{--<h4 class="font-md"><strong>1,543</strong>--}}
+                                                    {{--<br>--}}
+                                                    {{--<small>Followers</small></h4>--}}
+                                                {{--<br>--}}
+                                                {{--<h4 class="font-md"><strong>419</strong>--}}
+                                                    {{--<br>--}}
+                                                    {{--<small>Connections</small></h4>--}}
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -166,9 +165,6 @@
                                             </li>
                                             <li>
                                                 <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-envelope"></i> Manage Addresses</a>
-                                            </li>
-                                            <li>
-                                                <a href="#s6" data-toggle="tab"><i class="fa fa-fw fa-lg fa-book"></i> Manage Addresses</a>
                                             </li>
                                             <li class="dropdown">
                                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Accounts Info <b class="caret"></b></a>
