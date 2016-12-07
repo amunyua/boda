@@ -3,11 +3,8 @@
 namespace Illuminate\Routing;
 
 use BadMethodCallException;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
->>>>>>> bf967ad2b9ad262c250d7a8fa81c9c5e363f5ee2
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 abstract class Controller
@@ -86,8 +83,6 @@ abstract class Controller
     {
         throw new BadMethodCallException("Method [{$method}] does not exist.");
     }
-<<<<<<< HEAD
-=======
 
     public function handleException($e)
     {
@@ -103,5 +98,4 @@ abstract class Controller
     public function user(){
         return Auth::user();
     }
->>>>>>> bf967ad2b9ad262c250d7a8fa81c9c5e363f5ee2
 }

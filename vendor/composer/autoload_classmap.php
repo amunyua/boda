@@ -20,17 +20,11 @@ return array(
     'AddRouteStatus' => $baseDir . '/database/migrations/2016_11_01_094610_add_route_status.php',
     'AddSequenceColumn' => $baseDir . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
     'AddServicecodeToServices' => $baseDir . '/database/migrations/2016_11_29_175435_add_servicecode_to_services.php',
-<<<<<<< HEAD
     'AddStatusToUsersTable' => $baseDir . '/database/migrations/2016_12_07_152223_add_status_to_users_table.php',
-=======
->>>>>>> bf967ad2b9ad262c250d7a8fa81c9c5e363f5ee2
     'AddressSeeder' => $baseDir . '/database/seeds/AddressSeeder.php',
     'AddressTypes' => $baseDir . '/database/migrations/2016_12_06_123945_addressTypes.php',
     'AllMfs' => $baseDir . '/database/migrations/2016_11_29_195201_all_mfs.php',
-<<<<<<< HEAD
     'AllUsers' => $baseDir . '/database/migrations/2016_12_07_104829_all_users.php',
-=======
->>>>>>> bf967ad2b9ad262c250d7a8fa81c9c5e363f5ee2
     'ContactTypeSeeder' => $baseDir . '/database/seeds/ContactTypeSeeder.php',
     'CountyTableSeeder' => $baseDir . '/database/seeds/CountyTableSeeder.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',

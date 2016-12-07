@@ -55,9 +55,6 @@ Route::get('/theme_config', 'ThemeController@index');
 Route::get('/theme-select/{theme}', 'ThemeController@saveSkin');
 Route::get('/get-theme', 'ThemeController@getTheme');
 
-#### inventory module
-// category
-
 Route::get('/categories','CategoryController@index');
 Route::post('/add-category','CategoryController@storeCategory');
 
@@ -122,6 +119,7 @@ Route::get('/get-service/{id}', 'ServiceController@getService');
 Route::get('/client_account','ClientAccountController@clientAccounts');
 Route::post('/create-client-account','ClientAccountController@createAccount');
 Route::get('/load-accounts','ClientAccountController@loadAccounts');
+
 #### Access Denied
 Route::get('/access-denied', function(){
     return view('pages.access_denied');
