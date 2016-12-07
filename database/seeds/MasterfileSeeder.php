@@ -26,5 +26,16 @@ class MasterfileSeeder extends Seeder
         $admin->user_role = $user_role->id;
         $admin->gender = 1;
         $admin->save();
+
+        $admin = new Masterfile();
+        $admin->surname = 'Munyua';
+        $admin->firstname = 'Alex';
+        $admin->middlename = 'Kinuthia';
+        $admin->id_no = '2345678';
+        $admin->registration_date = date('Y-m-d H:i:s');
+        $admin->b_role = 'Client';
+        $admin->user_role = $user_role->id;
+        $admin->gender = 1;
+        $admin->save();
     }
 }

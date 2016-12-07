@@ -147,7 +147,7 @@ class MenuSeeder extends Seeder
         $clients->save();
         $clients_id = $clients->id;
 
-        $client_acc_route = Route::where('route_name', 'Client Account')->first();
+        $client_acc_route = Route::where('route_name', 'Client Accounts')->first();
         $client_acc = new Menu();
         $client_acc->route_id = $client_acc_route->id;
         $client_acc->parent_menu = $clients->id;

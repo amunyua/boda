@@ -230,7 +230,7 @@ class RouteSeeder extends Seeder
 
         #### client children
         $acc = new Route();
-        $acc->route_name = 'Client Account';
+        $acc->route_name = 'Client Accounts';
         $acc->url = 'client_account';
         $acc->parent_route = $client_id;
         $acc->save();
