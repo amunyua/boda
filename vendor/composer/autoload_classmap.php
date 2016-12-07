@@ -6,6 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddColumnInventotyItems' => $baseDir . '/database/migrations/2016_12_06_150751_add_columnInventotyItems.php',
+    'AddColumnStockTransactions' => $baseDir . '/database/migrations/2016_12_07_092347_add_columnStockTransactions.php',
+    'AddColumnnsToInventory' => $baseDir . '/database/migrations/2016_12_07_061500_addColumnnsToInventory.php',
     'AddColumnsToInventoryItemsTable' => $baseDir . '/database/migrations/2016_12_01_190442_add_columns_to_inventory_items_table.php',
     'AddCountyStatusToCountiesTable' => $baseDir . '/database/migrations/2016_11_03_061623_add_county_status_to_counties_table.php',
     'AddFaIconsTable' => $baseDir . '/database/migrations/2016_10_12_085709_add_fa_icons_table.php',
@@ -16,12 +19,9 @@ return array(
     'AddQuantityToInventory' => $baseDir . '/database/migrations/2016_12_02_084242_add_quantity_to_inventory.php',
     'AddRouteStatus' => $baseDir . '/database/migrations/2016_11_01_094610_add_route_status.php',
     'AddSequenceColumn' => $baseDir . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
-<<<<<<< HEAD
+    'AddServicecodeToServices' => $baseDir . '/database/migrations/2016_11_29_175435_add_servicecode_to_services.php',
     'AddressSeeder' => $baseDir . '/database/seeds/AddressSeeder.php',
     'AllMfs' => $baseDir . '/database/migrations/2016_11_29_195201_all_mfs.php',
-=======
-    'AddServicecodeToServices' => $baseDir . '/database/migrations/2016_11_29_175435_add_servicecode_to_services.php',
->>>>>>> 3024c3e48efc613ed0900b77bc253b2db77add02
     'ContactTypeSeeder' => $baseDir . '/database/seeds/ContactTypeSeeder.php',
     'CountyTableSeeder' => $baseDir . '/database/seeds/CountyTableSeeder.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
@@ -44,6 +44,7 @@ return array(
     'CreateServiceCategoriesTable' => $baseDir . '/database/migrations/2016_11_22_185100_create_service_categories_table.php',
     'CreateServicesTable' => $baseDir . '/database/migrations/2016_11_22_185109_create_services_table.php',
     'CreateSkinsTable' => $baseDir . '/database/migrations/2016_11_01_193801_create_skins_table.php',
+    'CreateStockTransactionsTable' => $baseDir . '/database/migrations/2016_12_06_145935_create_stock_transactions_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
