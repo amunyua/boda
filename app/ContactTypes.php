@@ -9,4 +9,8 @@ class ContactTypes extends Model
     protected $fillable = array(
         'contact_type_name', 'contact_type_code', 'contact_type_status'
     );
+
+    public function addresses(){
+        return $this->hasMany('App\ContactType');
+    }
 }
