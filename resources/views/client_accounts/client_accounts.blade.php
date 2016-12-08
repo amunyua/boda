@@ -22,10 +22,10 @@
             <i class="fa fa-plus"></i> Create Account
         </a>
 
-        <a href="#edit-inventory" id="edit-inventory-btn" class="btn btn-warning btn-sm header-btn hidden-mobile">
+        <a href="#edit-inventory" id="edit-account-btn" class="btn btn-warning btn-sm header-btn hidden-mobile">
             <i class="fa fa-edit"></i> Edit Account
         </a>
-        <a href="#delete-inventory-item" id="delete-inventory-btn" class="btn btn-danger btn-sm header-btn hidden-mobile">
+        <a href="#delete-inventory-item" id="delete-account-btn" class="btn btn-danger btn-sm header-btn hidden-mobile">
             <i class="fa fa-trash"></i> Delete Account
         </a>
     </div>
@@ -125,7 +125,7 @@
     <!-- /.modal -->
 
     <!-- Modal -->
-    <div class="modal fade" id="edit-inventory" role="dialog">
+    <div class="modal fade" id="edit-account-modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -133,97 +133,27 @@
                         &times;
                     </button>
                     <h4 class="modal-title">
-                        Edit inventory item
+                        Edit Client Account
                     </h4>
                 </div>
                 <div class="modal-body no-padding">
 
-                    <form id="create-inventory" class="smart-form" action="{{ url('edit-inventory-item') }}" method="post">
+                    <form id="create-inventory" class="smart-form" action="{{ url('edit-client-account') }}" method="post">
                         {{ csrf_field() }}
                         <fieldset>
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">Make</label>
-                                    <div class="col col-10">
-                                        <label class="input">
-                                            <select name="make" class="form-control inventory-make" id="mk-cat">
-                                                <option value="">Please select a category</option>
-                                                {{--@if(count($categories))--}}
-                                                    {{--@foreach($categories as $category)--}}
-                                                        {{--<option value="{{ $category->id }}">{{ $category->category_name }}</option>--}}
-                                                    {{--@endforeach--}}
-                                                {{--@endif--}}
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">Model</label>
-                                    <div class="col col-10">
-                                        <label class="input">
-                                            <select name="model" class="form-control inventory-model" id="e-model">
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">VIN</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="vin" autocomplete="off"  id="vin" value="{{ old('item_name') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">Chassis Number</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="chassis_number" id="chassis_number" autocomplete="off"  value="{{ old('item_name') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="row others">
-                                    <label class="label col col-2">Quantity</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="number" name="quantity" id="quantity" autocomplete="off" value="{{ old('quantity') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <div class="row ">
-                                    <label class="label col col-2">Cost price</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="number" name="cost_price" id="cost_price" autocomplete="off" value="{{ old('cost_price') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-
                             <section>
                                 <div class="row ">
                                     <label class="label col col-2">status</label>
                                     <div class="col col-10">
                                         <label class="input">
-                                            <select name="status" class="form-control" id="inventory-status">
+                                            <select name="status" class="form-control" id="account-status">
                                                 <option value="1">Active</option>
                                                 <option value="0">Inactive</option>
                                             </select>
                                         </label>
                                     </div>
                                 </div>
+                                <input type="hidden" name="edit_id" id="edit-account-id">
                             </section>
 
                         </fieldset>
@@ -248,7 +178,7 @@
     <!-- /.modal -->
 
     {{--modal for delete--}}
-    <div class="modal fade" id="delete-inventory-item" role="dialog">
+    <div class="modal fade" id="delete-account-item" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -256,11 +186,11 @@
                         &times;
                     </button>
                     <h4 class="modal-title">
-                        Delete Inventory Item
+                        Delete Client Account
                     </h4>
                 </div>
                 <div class="modal-body no-padding">
-                    <form class="smart-form" action="{{ url('delete-inventory-item') }}" method="post">
+                    <form class="smart-form" action="{{ url('delete-client-account') }}" method="post">
                         <p>Are you sure you want to delete the selected records?</p>
                         {{ csrf_field() }}
 

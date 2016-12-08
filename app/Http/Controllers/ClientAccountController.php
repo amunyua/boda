@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Bike;
 use App\ClientAccount;
 use App\Masterfile;
-use Illuminate\Database\QueryException;
+use Illuminate\Database\QueryException as e;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Yajra\Datatables\Facades\Datatables;
 
@@ -82,17 +83,22 @@ class ClientAccountController extends Controller
             'bike_id'=>'required',
             'masterfile_id'=>'required'
         ));
-
-        $account = new ClientAccount();
-        $account->bike_id = $request->bike_id;
-        $account->masterfile_id = $request->masterfile_id;
-        $account->created_by = $this->user()->id;
-        $account->client_account_status = '1';
-        try{
-            $account->save();
-            Session::flash('success','The Client Account has been created');
-        }catch (QueryException $e){
-            $this->handleException2($e);
+        $results = $this->checkWhetherBikeAttached($request);
+//        var_dump($results);die;
+        if(count($results->toArray())){
+            Session::flash('warning','The client is already attached to another bike');
+        }else {
+            $account = new ClientAccount();
+            $account->bike_id = $request->bike_id;
+            $account->masterfile_id = $request->masterfile_id;
+            $account->created_by = $this->user()->id;
+            $account->client_account_status = '1';
+            try {
+                $account->save();
+                Session::flash('success', 'The Client Account has been created');
+            } catch (QueryException $e) {
+                $this->handleException2($e);
+            }
         }
         return redirect()->back();
     }
@@ -120,5 +126,62 @@ class ClientAccountController extends Controller
                 {{ App\Bike::find($bike_id)->vin}}
                 ')
             ->make(true);
+    }
+
+    public function destroyClientAccount(Request $request){
+        $delete_ids = [$request->edit_ids];
+        try{
+            ClientAccount::destroy($delete_ids);
+            Session::flash('success','The Client Account has been deleted');
+        }catch (e $e){
+            $this->handleException2($e);
+        }
+        return redirect()->back();
+    }
+
+    public function getEditDetails($id){
+        $records = ClientAccount::find($id);
+        return Response::json($records);
+    }
+
+    public function editClientAccount(Request $request){
+//        var_dump($_POST);die;
+        $this->validate($request, array(
+           'status'=>'required'
+        ));
+
+        $record = ClientAccount::find($request->edit_id);
+        if($request->status == 1){
+            $results_set = ClientAccount::where([
+                ['bike_id',$record->bike_id],
+                ['client_account_status',true]
+            ])->get();
+            $results = $results_set->toArray();
+        }else{
+            $results = 0;
+        }
+//        var_dump($results);die;
+        if($results){
+            Session::flash('failed','Client account details not updated, The motorbike is already active');
+        }else {
+            $record->client_account_status = $request->status;
+
+            try {
+                $record->save();
+                Session::flash('success', 'The Client Account has been updated');
+            } catch (e $e) {
+                Session::flash('failed', 'Encountered An Error ');
+            }
+        }
+        return redirect()->back();
+    }
+
+    public function checkWhetherBikeAttached($request){
+        $account = ClientAccount::where([
+            ['masterfile_id',$request->masterfile_id],
+            ['bike_id',$request->bike_id],
+            ['client_account_status',true]
+        ])->get();
+        return $account;
     }
 }
