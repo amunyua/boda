@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         $admin = new \App\User();
         $admin->name = 'Admin Admin';
         $admin->email = 'admin@admin.com';
-        $admin->password = sha1(123456);
+        $admin->password = bcrypt(123456);
         $admin->phone_no = '700000000';
         $admin->masterfile_id = $admin_mf->id;
         $admin->save();

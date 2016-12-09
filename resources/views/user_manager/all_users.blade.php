@@ -41,7 +41,7 @@
         <td>{{ $mf->role_name }}</td>
         <td><?php echo ($mf->status == 1)? '<span class="btn btn-success btn-xs "> Active </span>':'<span class="btn btn-success btn-xs">Inactive</span>' ?></td>
         <td><a href="{{ url('block-user/'.$mf->id) }}" edit-id="{{ $mf->id }}" data-toggle="modal"></a>
-            <?php echo ($mf->status == 1)? '<span class="btn btn-warning btn-xs "> Block </span>':'<span class="btn btn-success btn-xs">Unlock</span>' ?>
+            {!! ($mf->status == 1)? '<span class="btn btn-warning btn-xs "> Block </span>' : '<span class="btn btn-success btn-xs">Unblock</span>' !!}
         </td>
         <td> <a href="{{ url('delete-user/'.$mf->user_id) }}" class="btn btn-danger btn-xs delete_user" data-toggle="modal" del-id="{{ $mf->user_id }}">Delete </a> </td>
     </tr>

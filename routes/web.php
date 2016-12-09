@@ -45,12 +45,18 @@ Route::get('/parent-routes', 'RoutesController@getParentRoutes');
 Route::post('/edit-route', 'RoutesController@update');
 Route::get('/load-routes', 'RoutesController@loadRoutes');
 Route::get('/delete-route/{id}', 'RoutesController@destroy');
+
 Route::get('/menu', 'MenuController@index');
 Route::post('/add-menu', 'MenuController@store');
 Route::post('/arrange-menu', 'MenuController@arrangeMenu');
 Route::post('/edit-menu', 'MenuController@update');
 Route::get('/get-menu/{id}', 'MenuController@getMenuItem');
 Route::post('/remove-menu', 'MenuController@destroy');
+
+//system config
+Route::post('/system-config', 'ThemeController@updateSystemConfig');
+
+//theme configuration
 Route::get('/theme_config', 'ThemeController@index');
 Route::get('/theme-select/{theme}', 'ThemeController@saveSkin');
 Route::get('/get-theme', 'ThemeController@getTheme');
