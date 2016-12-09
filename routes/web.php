@@ -125,7 +125,9 @@ Route::get('/get-service/{id}', 'ServiceController@getService');
 Route::get('/client_account','ClientAccountController@clientAccounts');
 Route::post('/create-client-account','ClientAccountController@createAccount');
 Route::get('/load-accounts','ClientAccountController@loadAccounts');
-
+Route::post('/delete-client-account','ClientAccountController@destroyClientAccount');
+Route::get('/get-client-account-details/{id}','ClientAccountController@getEditDetails');
+Route::post('/edit-client-account','ClientAccountController@editClientAccount');
 #### Access Denied
 Route::get('/access-denied', function(){
     return view('pages.access_denied');

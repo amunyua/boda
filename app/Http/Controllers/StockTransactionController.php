@@ -89,8 +89,10 @@ class StockTransactionController extends Controller
         return Datatables::of($transactions)
             ->editColumn('item_id',
                 '<?php
+                if(!empty($item_id)){
                 $inventory_cat = App\InventoryItem::find($item_id)->parent_category_id;
                 echo $item_name = App\Category::find($inventory_cat)->category_name;
+                }
                 ?>')
             ->editColumn('transaction_category',
                 '{{ ucfirst($transaction_category) }}')
@@ -98,7 +100,11 @@ class StockTransactionController extends Controller
                 '{{ ucfirst($transaction_type) }}')
             ->editColumn('created_by',
                 '@if(!empty($created_by))
-                    {{ App\User::find($created_by)->name}}
+                    <?php $name = App\User::find($created_by);
+                        if(!empty($name)){
+                            echo $name->name;
+                        }
+                     ?>
                 @endif
                 ')
             ->make(true);

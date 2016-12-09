@@ -118,7 +118,7 @@ class BikeController extends Controller
             Bike::destroy($delete_ids);
             Session::flash('success','The Motorbike has been deleted');
         }catch (e $e){
-            $this->handleException2($e);
+            Session::flash('failed','Can not delete this record for it\'s being used somewhere else');
         }
         return redirect()->back();
     }
