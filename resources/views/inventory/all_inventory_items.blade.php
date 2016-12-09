@@ -40,9 +40,7 @@
     <tr>
         <th>Id#</th>
         <th>Inventory type</th>
-        <th>Parent Category</th>
-        <th>Subcategory</th>
-        <th>VIN</th>
+        <th>Inventory Name</th>
         <th>Status</th>
         <th>Quantity</th>
         <th>Cost Price</th>
@@ -77,7 +75,6 @@
                                         <label class="input">
                                             <select name="inventory_type" class="form-control" id="inventory_type" required>
                                                 <option value="">Please select inventory type</option>
-                                                <option value="motorbike">Motorbike</option>
                                                 @if(count($non_bikes_cats))
                                                     @foreach($non_bikes_cats as $non_bikes_cat)
                                                         <option value="{{ $non_bikes_cat->id }}">{{ $non_bikes_cat->category_name }}</option>

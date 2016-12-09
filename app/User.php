@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phone_no', 'vin', 'masterfile_id',
     ];
 
     /**
@@ -54,9 +54,5 @@ class User extends Authenticatable
             return true;
         }
         return false;
-    }
-
-    public function user(){
-        return $this->belongsTo('App\Masterfile');
     }
 }

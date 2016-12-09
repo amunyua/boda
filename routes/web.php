@@ -22,29 +22,20 @@ Route::get('/dashboard', 'DashboardController@index');
 // Registration Module
 Route::get('/registration', 'MasterfileController@index');
 Route::post('/add-registration', 'MasterfileController@store');
-Route::post('/update-masterfile', 'MasterfileController@update');
-Route::delete('/delete-masterfile', 'MasterfileController@destroy');
-Route::get('/all-masterfiles', 'MasterfileController@allMfs');
+Route::get('edit-mf/{id}', 'MasterfileController@getMf');
+Route::post('edit-mf/{id}', 'MasterfileController@updateMf');
+Route::get('soft-delete-mf/{id}', 'MasterfileController@softDeleteMf');
+Route::get('restore-mf/{id}', 'MasterfileController@restoreMf');
+Route::get('delete-masterfile/{id}', 'MasterfileController@destroy');
+Route::get('/all-clients', 'MasterfileController@allClients');
+Route::get('/all-staffs', 'MasterfileController@allStaffs');
+Route::get('/all-mfs', 'MasterfileController@allMfs');
+Route::get('/inactive-users', 'MasterfileController@loadDelMfs');
+Route::get('mf-profile/{id}', 'MasterfileController@getMfProfile');
+Route::delete('delete-address/{id}', 'MasterfileController@deleteAddress');
 
 // Contact Types Module
 Route::resource('contact_types','ContactTypesController');
-
-// Classes Module
-Route::get('/class', 'FormsController@index');
-Route::post('/add_class', 'FormsController@store');
-Route::post('/manage_stream/{id}', 'FormsController@update');
-Route::delete('/manage_stream/{id}', 'FormsController@destroy');
-
-Route::resource('contact_types','ContactTypesController');
-
-// subject module
-Route::get('/subject', 'SubjectController@index');
-Route::post('/add-subject','SubjectController@store');
-Route::post('/update-subject','SubjectController@update');
-Route::get('/delete-subject/{id}','SubjectController@delete');
-Route::get('/subject_data/{subject_id}', 'SubjectController@getSubjectData');
-Route::post('/update-subject/{id}','SubjectController@update');
-Route::get('/delete-subject/{id}','SubjectController@delete');
 
 // System Manager
 Route::get('/routes', 'RoutesController@index');
@@ -64,9 +55,6 @@ Route::get('/theme_config', 'ThemeController@index');
 Route::get('/theme-select/{theme}', 'ThemeController@saveSkin');
 Route::get('/get-theme', 'ThemeController@getTheme');
 
-#### inventory module
-// category
-
 Route::get('/categories','CategoryController@index');
 Route::post('/add-category','CategoryController@storeCategory');
 
@@ -76,16 +64,19 @@ Route::get('/make-backup','DatabaseBackup@runBackup');
 
 ##### User manager
 Route::get('/user_roles','UserManagerController@getIndex');
+Route::get('/all_users','UserManagerController@getAllUsers');
 Route::post('/add-user-role','UserManagerController@storeRole');
 Route::get('get-role-edit-details/{id}','UserManagerController@getRoleEditDetails');
 Route::post('edit-user-role/{id}','UserManagerController@updateUserRoleDetails');
-Route::delete('/delete-user-role/{id}','UserManagerController@destroyRole');
+Route::get('/delete-user/{id}','UserManagerController@destroyRole');
 Route::get('/audit_trails','UserManagerController@auditTrails');
 Route::get('/ajax_trails','UserManagerController@ajaxAuditTrails');
 Route::get('/load-routes-allocation', 'UserManagerController@loadRoutesForAllocation');
 Route::post('/attach-route', 'UserManagerController@attachRoute');
 Route::post('/detach-route', 'UserManagerController@detachRoute');
 Route::get('/check-allocated-route/{id}', 'UserManagerController@isRouteAllocated');
+Route::post('block-user/{id}','UserManagerController@blockUser');
+Route::post('unblock-user/{id}','UserManagerController@unBlockUser');
 
 #### Services
 Route::get('/service-cats', 'ServiceCategoryController@index');
@@ -98,6 +89,16 @@ Route::post('/add-inventory-category','InventoryController@storeCategory');
 Route::get('/manage_inventory','InventoryController@allInventoryItems');
 Route::post('/create-inventory-item','InventoryController@storeInventory');
 Route::post('/delete-inventory-item', 'InventoryController@deleteInventory');
+
+Route::get('/bikes','BikeController@index');
+Route::post('/store-bike','BikeController@store');
+Route::get('/load-bikes','BikeController@getBikes');
+Route::post('/delete-bike','BikeController@destroy');
+
+//stock transactions
+Route::get('/stock-transactions','InventoryController@stockTransactions');
+Route::post('/create-transaction','StockTransactionController@createTransaction');
+Route::get('/load-stock-transactions','StockTransactionController@loadTransactions');
 
 
 Route::get('/service_category', 'ServiceCategoryController@index');
@@ -113,6 +114,14 @@ Route::post('/delete-service', 'ServiceController@destroy');
 Route::post('/update-service', 'ServiceController@update');
 Route::get('/get-service/{id}', 'ServiceController@getService');
 
+
+#### Client Accounts
+Route::get('/client_account','ClientAccountController@clientAccounts');
+Route::post('/create-client-account','ClientAccountController@createAccount');
+Route::get('/load-accounts','ClientAccountController@loadAccounts');
+Route::post('/delete-client-account','ClientAccountController@destroyClientAccount');
+Route::get('/get-client-account-details/{id}','ClientAccountController@getEditDetails');
+Route::post('/edit-client-account','ClientAccountController@editClientAccount');
 #### Access Denied
 Route::get('/access-denied', function(){
     return view('pages.access_denied');

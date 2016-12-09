@@ -3,7 +3,10 @@
 @section('widget-title', 'User Registration Form')
 @section('widget-desc', 'Allows you to register User')
 @section('breadcrumb')
-    <li><a href="{{ url('/') }}">Home</a></li>
+    <li>
+        <i class="fa fa-home"></i>
+        <a href="{{ url('/') }}">Home</a>
+    </li>
     <li>Registration</li>
     <li>User Registration</li>
 @endsection
@@ -70,6 +73,7 @@
                             <br/>
                             @include('common.warnings')
                             <div class="tab-content">
+                                @include('layouts.includes._messages')
                                 <div class="tab-pane active" id="tab1">
                                     @include('registration.basic_info')
                                 </div>

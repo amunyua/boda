@@ -48,12 +48,21 @@ class MenuSeeder extends Seeder
         $user_reg->sequence = 1;
         $user_reg->save();
 
-//        $client_route = Route::where('route_name', 'Client')->first();
-//        $client = new Menu();
-//        $client->route_id = $client_route->id;
-//        $client->parent_menu = $registration->id;
-//        $client->sequence = 2;
-//        $client->save();
+        //all Registration
+        $all_registration_route = Route::where('route_name', 'All Registration')->first();
+        $all_mfs = new Menu();
+        $all_mfs->route_id = $all_registration_route->id;
+        $all_mfs->parent_menu = $registration->id;
+        $all_mfs->sequence = 2;
+        $all_mfs->save();
+
+        //all inactive users
+        $all_inactive_users = Route::where('route_name', 'Inactive Users')->first();
+        $inactive_users = new Menu();
+        $inactive_users->route_id = $all_inactive_users->id;
+        $inactive_users->parent_menu = $registration->id;
+        $inactive_users->sequence = 3;
+        $inactive_users->save();
 
         #### application
         $application_route = Route::where('route_name', 'Application')->first();
@@ -115,6 +124,20 @@ class MenuSeeder extends Seeder
         $category->sequence = 2;
         $category->save();
 
+        $category_route = Route::where('route_name', 'Stock Transactions')->first();
+        $category = new Menu();
+        $category->route_id = $category_route->id;
+        $category->parent_menu = $inventory->id;
+        $category->sequence = 4;
+        $category->save();
+
+        $category_route = Route::where('route_name', 'All Motorbikes')->first();
+        $category = new Menu();
+        $category->route_id = $category_route->id;
+        $category->parent_menu = $inventory->id;
+        $category->sequence = 3;
+        $category->save();
+
         #### clients
         $clients_route = Route::where('route_name', 'Client')->first();
         $clients = new Menu();
@@ -124,7 +147,7 @@ class MenuSeeder extends Seeder
         $clients->save();
         $clients_id = $clients->id;
 
-        $client_acc_route = Route::where('route_name', 'Client Account')->first();
+        $client_acc_route = Route::where('route_name', 'Client Accounts')->first();
         $client_acc = new Menu();
         $client_acc->route_id = $client_acc_route->id;
         $client_acc->parent_menu = $clients->id;

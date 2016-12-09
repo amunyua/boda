@@ -7,11 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Address extends Model
 {
     protected $fillable = array(
-        'surname', 'city', 'masterfile_id', 'postal_code', 'email', 'phone_no', 'tel_no', 'postal_address',
-        'postal_code', 'physical_address'
+        'county', 'city', 'masterfile_id', 'postal_code', 'email', 'phone_no', 'tel_no', 'postal_address',
+        'postal_code', 'physical_address', 'contact_type_id'
     );
 
     public function masterfile(){
         return $this->belongsTo('App\Masterfile');
+    }
+
+    public function contactTypes(){
+        return $this->belongsTo('App\Address');
     }
 }

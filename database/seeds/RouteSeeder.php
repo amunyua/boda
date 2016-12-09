@@ -58,6 +58,30 @@ class RouteSeeder extends Seeder
         $registration->save();
         $registration->roles()->attach($admin);
 
+        //all Registration
+        $all_mfs = new Route();
+        $all_mfs->route_name = 'All Registration';
+        $all_mfs->url = 'all-mfs';
+        $all_mfs->parent_route = $reg_id;
+        $all_mfs->save();
+        $all_mfs->roles()->attach($admin);
+
+        //all staff
+        $all_staff = new Route();
+        $all_staff->route_name = 'All Staff';
+        $all_staff->url = 'all-staffs';
+        $all_staff->parent_route = $reg_id;
+        $all_staff->save();
+        $all_staff->roles()->attach($admin);
+
+        //all clients
+        $all_clients = new Route();
+        $all_clients->route_name = 'All Clients';
+        $all_clients->url = 'all-clients';
+        $all_clients->parent_route = $reg_id;
+        $all_clients->save();
+        $all_clients->roles()->attach($admin);
+
         // adding a user
         $add_reg = new Route();
         $add_reg->route_name = 'Add Registration';
@@ -65,6 +89,62 @@ class RouteSeeder extends Seeder
         $add_reg->parent_route = $reg_id;
         $add_reg->save();
         $add_reg->roles()->attach($admin);
+
+        // edit user
+        $edit_user = new Route();
+        $edit_user->route_name = 'Edit User Registration';
+        $edit_user->url = 'edit-mf/{id}';
+        $edit_user->parent_route = $reg_id;
+        $edit_user->save();
+        $edit_user->roles()->attach($admin);
+
+        ### soft delete user registration
+        $soft_del = new Route();
+        $soft_del->route_name = 'Soft Delete Masterfile';
+        $soft_del->url = 'soft-delete-mf/{id}';
+        $soft_del->parent_route = $reg_id;
+        $soft_del->save();
+        $soft_del->roles()->attach($admin);
+
+        ### inactive users
+        $inactive_users = new Route();
+        $inactive_users->route_name = 'Inactive Users';
+        $inactive_users->url = 'inactive-users';
+        $inactive_users->parent_route = $reg_id;
+        $inactive_users->save();
+        $inactive_users->roles()->attach($admin);
+
+        ### permanently delete user
+        $delete = new Route();
+        $delete->route_name = 'Delete Masterfile Details';
+        $delete->url = 'delete-masterfile/{id}';
+        $delete->parent_route = $reg_id;
+        $delete->save();
+        $delete->roles()->attach($admin);
+
+        ### restore inactive users
+        $restore = new Route();
+        $restore->route_name = 'Restore Inactive Users';
+        $restore->url = 'restore-mf/{id}';
+        $restore->parent_route = $reg_id;
+        $restore->save();
+        $restore->roles()->attach($admin);
+
+        ### users profile
+        $profile = new Route();
+        $profile->route_name = 'Users Profile';
+        $profile->url = 'mf-profile/{id}';
+        $profile->parent_route = $reg_id;
+        $profile->save();
+        $profile->roles()->attach($admin);
+
+        ### permanently delete user address
+        $del_addr = new Route();
+        $del_addr->route_name = 'Delete Users Address Details';
+        $del_addr->url = 'delete-address/{id}';
+        $del_addr->parent_route = $reg_id;
+        $del_addr->save();
+        $del_addr->roles()->attach($admin);
 
         #### Application
         $app = new Route();
@@ -135,7 +215,21 @@ class RouteSeeder extends Seeder
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
+        //bikes
+        $category = new Route();
+        $category->route_name = 'All Motorbikes';
+        $category->url = '/bikes';
+        $category->parent_route = $inventory_id;
+        $category->save();
+        $category->roles()->attach($admin);
 
+
+        $category = new Route();
+        $category->route_name = 'Stock Transactions';
+        $category->url = '/stock-transactions';
+        $category->parent_route = $inventory_id;
+        $category->save();
+        $category->roles()->attach($admin);
         #### client
         $client = new Route();
         $client->route_name = 'Client';
@@ -144,7 +238,7 @@ class RouteSeeder extends Seeder
 
         #### client children
         $acc = new Route();
-        $acc->route_name = 'Client Account';
+        $acc->route_name = 'Client Accounts';
         $acc->url = 'client_account';
         $acc->parent_route = $client_id;
         $acc->save();
@@ -362,7 +456,7 @@ class RouteSeeder extends Seeder
         #### user management children
         $all_user = new Route();
         $all_user->route_name = 'All Users';
-        $all_user->url = 'routes';
+        $all_user->url = 'all_users';
         $all_user->parent_route = $user_mngt_id;
         $all_user->save();
         $all_user->roles()->attach($admin);
@@ -373,6 +467,28 @@ class RouteSeeder extends Seeder
         $roles->parent_route = $user_mngt_id;
         $roles->save();
         $roles->roles()->attach($admin);
+
+        $role = new Route();
+        $role->route_name = 'Delete User';
+        $role->url = 'delete-user/{id}';
+        $role->parent_route = $user_mngt_id;
+        $role->save();
+        $role->roles()->attach($admin);
+
+        $role = new Route();
+        $role->route_name = 'Block User';
+        $role->url = 'block-user/{id}';
+        $role->parent_route = $user_mngt_id;
+        $role->save();
+        $role->roles()->attach($admin);
+
+        $role = new Route();
+        $role->route_name = 'Unblock User';
+        $role->url = 'unblock-user/{id}';
+        $role->parent_route = $user_mngt_id;
+        $role->save();
+        $role->roles()->attach($admin);
+
 
         $audit_trail = new Route();
         $audit_trail->route_name = 'Audit Trail';
