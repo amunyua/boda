@@ -443,7 +443,7 @@ class RouteSeeder extends Seeder
 
         $system_config = new Route();
         $system_config->route_name = 'System Config';
-        $system_config->url = 'system_config';
+        $system_config->url = 'system-config';
         $system_config->parent_route = $system_id;
         $system_config->save();
         $system_config->roles()->attach($admin);
