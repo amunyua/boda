@@ -160,9 +160,23 @@ class RouteSeeder extends Seeder
         $all_app->save();
         $all_app->roles()->attach($admin);
 
+        $all_app = new Route();
+        $all_app->route_name = 'Load All Applications';
+        $all_app->url = 'all_applications/fas';
+        $all_app->parent_route = $app_id;
+        $all_app->save();
+        $all_app->roles()->attach($admin);
+
         $pend_app = new Route();
         $pend_app->route_name = 'Pending Application';
         $pend_app->url = 'pending_applications';
+        $pend_app->parent_route = $app_id;
+        $pend_app->save();
+        $pend_app->roles()->attach($admin);
+
+        $pend_app = new Route();
+        $pend_app->route_name = 'Loading Pending Application';
+        $pend_app->url = 'pending_applications/pending';
         $pend_app->parent_route = $app_id;
         $pend_app->save();
         $pend_app->roles()->attach($admin);
@@ -174,9 +188,24 @@ class RouteSeeder extends Seeder
         $canc_app->save();
         $canc_app->roles()->attach($admin);
 
+        $canc_app = new Route();
+        $canc_app->route_name = 'Cancelled Application';
+        $canc_app->url = 'canceled_applications/canceled';
+        $canc_app->parent_route = $app_id;
+        $canc_app->save();
+        $canc_app->roles()->attach($admin);
+
         $appr_app = new Route();
         $appr_app->route_name = 'Approved Application';
         $appr_app->url = 'approved_applications';
+        $appr_app->parent_route = $app_id;
+        $appr_app->save();
+        $appr_app->roles()->attach($admin);
+
+
+        $appr_app = new Route();
+        $appr_app->route_name = 'Load Approved Application';
+        $appr_app->url = 'approved_applications/approved';
         $appr_app->parent_route = $app_id;
         $appr_app->save();
         $appr_app->roles()->attach($admin);
@@ -277,7 +306,7 @@ class RouteSeeder extends Seeder
         $route->url = 'get-scat-details/{id}';
         $route->parent_route = $service_id;
         $route->save();
-        $route->roles()->attach($admin);
+        $route->roles()-> attach($admin);
 
         $route = new Route();
         $route->route_name = 'Update Service Category';

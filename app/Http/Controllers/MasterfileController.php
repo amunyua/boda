@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\FirstApplication;
 use Illuminate\Database\QueryException;
 use App\ContactTypes;
 use App\County;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
+use Yajra\Datatables\Facades\Datatables;
 
 class MasterfileController extends Controller
 {
@@ -511,4 +513,75 @@ class MasterfileController extends Controller
         }
     }
 
+    public function allFirstApplications(){
+        return view('registration.firstapplications');
+    }
+
+    public function pendingApplications(){
+        return view('registration.pending-apps');
+    }
+
+    public function canceledApps(){
+        return view('registration.canceled-apps');
+    }
+
+    public function approvedApps(){
+        return view('registration.approved-apps');
+    }
+
+    public function firstApplications(){
+        $fas = FirstApplication::query();
+        return Datatables::of($fas)
+            ->editColumn('approval_status', function ($fa){
+                if($fa->approval_status == 1)
+                    return '<span class="label label-success">Approved</span>';
+                else if($fa->approval_status == 0)
+                    return '<span class="label label-warning">Pending</span>';
+                else
+                    return '<span class="label label-danger">Rejected</span>';
+            })
+            ->make(true);
+    }
+
+    public function loadPendingApps(){
+        $fas = FirstApplication::where('approval_status', 0);
+        return Datatables::of($fas)
+            ->editColumn('approval_status', function ($fa){
+                if($fa->approval_status == 1)
+                    return '<span class="label label-success">Approved</span>';
+                else if($fa->approval_status == 0)
+                    return '<span class="label label-warning">Pending</span>';
+                else
+                    return '<span class="label label-danger">Rejected</span>';
+            })
+            ->make(true);
+    }
+
+    public function loadCanceledApps(){
+        $fas = FirstApplication::where('approval_status', 5);
+        return Datatables::of($fas)
+            ->editColumn('approval_status', function ($fa){
+                if($fa->approval_status == 1)
+                    return '<span class="label label-success">Approved</span>';
+                else if($fa->approval_status == 0)
+                    return '<span class="label label-warning">Pending</span>';
+                else
+                    return '<span class="label label-danger">Rejected</span>';
+            })
+            ->make(true);
+    }
+
+    public function loadApprovedApps(){
+        $fas = FirstApplication::where('approval_status', 1);
+        return Datatables::of($fas)
+            ->editColumn('approval_status', function ($fa){
+                if($fa->approval_status == 1)
+                    return '<span class="label label-success">Approved</span>';
+                else if($fa->approval_status == 0)
+                    return '<span class="label label-warning">Pending</span>';
+                else
+                    return '<span class="label label-danger">Rejected</span>';
+            })
+            ->make(true);
+    }
 }

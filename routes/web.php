@@ -33,6 +33,14 @@ Route::get('/all-mfs', 'MasterfileController@allMfs');
 Route::get('/inactive-users', 'MasterfileController@loadDelMfs');
 Route::get('mf-profile/{id}', 'MasterfileController@getMfProfile');
 Route::delete('delete-address/{id}', 'MasterfileController@deleteAddress');
+Route::get('all_applications', 'MasterfileController@allFirstApplications');
+Route::get('all_applications/fas', 'MasterfileController@firstApplications');
+Route::get('pending_applications', 'MasterfileController@pendingApplications');
+Route::get('pending_applications/pending', 'MasterfileController@loadPendingApps');
+Route::get('canceled_applications', 'MasterfileController@canceledApps');
+Route::get('canceled_applications/canceled', 'MasterfileController@loadCanceledApps');
+Route::get('approved_applications', 'MasterfileController@approvedApps');
+Route::get('approved_applications/approved', 'MasterfileController@loadApprovedApps');
 
 // Contact Types Module
 Route::resource('contact_types','ContactTypesController');
