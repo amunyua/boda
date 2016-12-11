@@ -148,14 +148,28 @@ class RouteSeeder extends Seeder
 
         #### Application
         $app = new Route();
-        $app->route_name = 'Application';
+        $app->route_name = 'First Applications';
         $app->save();
         $app_id = $app->id;
 
         #### Application children
         $all_app = new Route();
-        $all_app->route_name = 'All Application';
+        $all_app->route_name = 'All First Applications';
         $all_app->url = 'all_applications';
+        $all_app->parent_route = $app_id;
+        $all_app->save();
+        $all_app->roles()->attach($admin);
+
+        $all_app = new Route();
+        $all_app->route_name = 'Approve Applications';
+        $all_app->url = 'approve-applications';
+        $all_app->parent_route = $app_id;
+        $all_app->save();
+        $all_app->roles()->attach($admin);
+
+        $all_app = new Route();
+        $all_app->route_name = 'Reject Applications';
+        $all_app->url = 'reject-applications';
         $all_app->parent_route = $app_id;
         $all_app->save();
         $all_app->roles()->attach($admin);
@@ -234,6 +248,13 @@ class RouteSeeder extends Seeder
         $category = new Route();
         $category->route_name = 'Arrange Menu';
         $category->url = 'arrange-menu';
+        $category->parent_route = $inventory_id;
+        $category->save();
+        $category->roles()->attach($admin);
+
+        $category = new Route();
+        $category->route_name = 'Get Menu Menu';
+        $category->url = 'get-menu/{id}';
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
@@ -448,6 +469,20 @@ class RouteSeeder extends Seeder
         $system_config->save();
         $system_config->roles()->attach($admin);
 
+        $system_config = new Route();
+        $system_config->route_name = 'Get Route Data';
+        $system_config->url = 'get-route/{route_id}';
+        $system_config->parent_route = $system_id;
+        $system_config->save();
+        $system_config->roles()->attach($admin);
+
+        $system_config = new Route();
+        $system_config->route_name = 'Update Route';
+        $system_config->url = 'edit-route';
+        $system_config->parent_route = $system_id;
+        $system_config->save();
+        $system_config->roles()->attach($admin);
+
         $theme_config = new Route();
         $theme_config->route_name = 'Theme Configuration';
         $theme_config->url = 'theme_config';
@@ -554,6 +589,25 @@ class RouteSeeder extends Seeder
         $route->save();
         $route->roles()->attach($admin);
 
+        #### Bills and Payments
 
+        $route = new Route();
+        $route->route_name = 'Bills And Payments';
+        $route->save();
+        $bps_parent = $route->id;
+
+        $route = new Route();
+        $route->route_name= 'Customer Bills';
+        $route->url = 'customer-bills';
+        $route->parent_route = $bps_parent;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name= 'Load Customer Bills';
+        $route->url = 'load-customer-bills';
+        $route->parent_route = $bps_parent;
+        $route->save();
+        $route->roles()->attach($admin);
     }
 }

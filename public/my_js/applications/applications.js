@@ -85,3 +85,64 @@ var ApprovedApps = $('#approved-apps').DataTable({
 setInterval(function(){
     ApprovedApps.ajax.reload();
 }, 60000);
+
+
+$('#approve-application').on('click', function(){
+    var ids = Common.onDeleteValidateSelection();
+
+    if(ids != false){
+        if(!confirm('Are you sure you want to approve the selected application(s)?'))
+            return false;
+        console.log(ids);
+        $.ajax({
+            url: 'approve-applications',
+            type: 'POST',
+            data: {
+                app_no: ids,
+                _token: $('input[name="_token"]').val()
+            },
+            dataType: 'json',
+            success: function (data) {
+                if(data.success){
+                    Common.splash('success', data.message, '#no-modal');
+                    Fas.ajax.reload();
+                }else if(!data.success){
+                    if(data.type == 'warning')
+                        Common.splash('warning', data.warnings, '#no-modal');
+                    else
+                        Common.splash('success', data.message, '#no-modal');
+                }
+            }
+        })
+    }
+});
+
+$('#reject-application').on('click', function(){
+    var ids = Common.onDeleteValidateSelection();
+
+    if(ids != false){
+        if(!confirm('Are you sure you want to reject the selected application(s)?'))
+            return false;
+        console.log(ids);
+        $.ajax({
+            url: 'reject-applications',
+            type: 'POST',
+            data: {
+                app_no: ids,
+                _token: $('input[name="_token"]').val()
+            },
+            dataType: 'json',
+            success: function (data) {
+                if(data.success){
+                    Common.splash('success', data.message, '#no-modal');
+                    Fas.ajax.reload();
+                }else if(!data.success){
+                    if(data.type == 'warning')
+                        Common.splash('warning', data.warnings, '#no-modal');
+                    else
+                        Common.splash('success', data.message, '#no-modal');
+                }
+            }
+        })
+    }
+});

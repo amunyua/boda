@@ -7,7 +7,20 @@
     <script src="{{ URL::asset('my_js/applications/applications.js') }}"></script>
 @endpush
 
+@section('button')
+    <button id="approve-application" class="btn btn-success btn-sm header-btn">
+        <i class="fa fa-check"></i> Approve Application
+    </button>
+
+    <button id="reject-application" class="btn btn-danger btn-sm header-btn">
+        <i class="fa fa-remove"></i> Reject Application
+    </button>
+@endsection
+
 @section('content')
+    <div id="feedback"></div>
+    {{ csrf_field() }}
+    @section('table-id', '#fas')
     <table id="fas" class="table table-bordered">
         <thead>
             <tr>

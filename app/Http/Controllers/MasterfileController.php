@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
 use Yajra\Datatables\Facades\Datatables;
@@ -583,5 +584,75 @@ class MasterfileController extends Controller
                     return '<span class="label label-danger">Rejected</span>';
             })
             ->make(true);
+    }
+
+    public function approveApplication(Request $request){
+        $ids = $request->app_no;
+        $return = [];
+        try {
+            foreach ($ids as $id){
+                FirstApplication::where('id', $id)
+                    ->update([
+                        'approval_status' => 1
+                    ]);
+
+                $candidate = FirstApplication::find($id);
+
+                // send a email
+                if(!empty($candidate->email)){
+
+                }
+
+                // send sms
+            }
+
+            $return = [
+                'success' => true,
+                'message' => 'The Application has been approved',
+                'type' => 'success'
+            ];
+        } catch (QueryException $qe){
+            $return = [
+                'success' => false,
+                'message' => $qe->getMessage(),
+                'type' => 'error'
+            ];
+        }
+        return Response::json($return);
+    }
+
+    public function rejectApplication(Request $request){
+        $ids = $request->app_no;
+        $return = [];
+        try {
+            foreach ($ids as $id){
+                FirstApplication::where('id', $id)
+                    ->update([
+                        'approval_status' => 5
+                    ]);
+
+                $candidate = FirstApplication::find($id);
+
+                // send a email
+                if(!empty($candidate->email)){
+
+                }
+
+                // send sms
+            }
+
+            $return = [
+                'success' => true,
+                'message' => 'The Application has been canceled!',
+                'type' => 'success'
+            ];
+        } catch (QueryException $qe){
+            $return = [
+                'success' => false,
+                'message' => $qe->getMessage(),
+                'type' => 'error'
+            ];
+        }
+        return Response::json($return);
     }
 }

@@ -41,6 +41,8 @@ Route::get('canceled_applications', 'MasterfileController@canceledApps');
 Route::get('canceled_applications/canceled', 'MasterfileController@loadCanceledApps');
 Route::get('approved_applications', 'MasterfileController@approvedApps');
 Route::get('approved_applications/approved', 'MasterfileController@loadApprovedApps');
+Route::post('/approve-applications', 'MasterfileController@approveApplication');
+Route::post('/reject-applications', 'MasterfileController@rejectApplication');
 
 // Contact Types Module
 Route::resource('contact_types','ContactTypesController');
@@ -140,3 +142,7 @@ Route::post('/edit-client-account','ClientAccountController@editClientAccount');
 Route::get('/access-denied', function(){
     return view('pages.access_denied');
 });
+
+#### Bills and Payments
+Route::get('/customer-bills', 'CustomerBillsController@index');
+Route::get('/load-customer-bills', 'CustomerBillsController@loadBills');

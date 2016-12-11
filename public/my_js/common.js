@@ -11,7 +11,7 @@ var Common = {
                 html += '<strong>Success!</strong> '+message;
                 html += '</div>';
                 $('div#feedback').html(html);
-                Obj.closeModal(modal);
+                // Common.closeModal(modal);
                 break;
 
             case 'warnings':
@@ -32,7 +32,7 @@ var Common = {
                 html += '<strong>Error!</strong> '+message;
                 html += '</div>';
                 $('div#feedback').html(html);
-                Obj.closeModal(modal);
+                // Common.closeModal(modal);
                 break;
         }
     },
