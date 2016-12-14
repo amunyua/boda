@@ -114,6 +114,9 @@ Route::post('/delete-service', 'ServiceController@destroy');
 Route::post('/update-service', 'ServiceController@update');
 Route::get('/get-service/{id}', 'ServiceController@getService');
 
+//inventory allocation
+Route::get('/all-allocations','InventoryAllocationController@inventoryAllocations');
+
 
 #### Client Accounts
 Route::get('/client_account','ClientAccountController@clientAccounts');

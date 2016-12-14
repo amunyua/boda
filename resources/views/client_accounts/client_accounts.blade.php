@@ -103,6 +103,16 @@
                                     </div>
                                 </div>
                             </section>
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Start Date</label>
+                                    <div class="col col-10">
+                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
+                                            <input type="date" name="billing_start_date" autocomplete="off"  value="{{ date('Y-m-d') }}">
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
                         </fieldset>
 
                         <footer>

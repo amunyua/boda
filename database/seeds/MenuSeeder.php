@@ -116,6 +116,14 @@ class MenuSeeder extends Seeder
         $item->parent_menu = $inventory->id;
         $item->sequence = 1;
         $item->save();
+        //stock allocations
+
+        $item_route = Route::where('route_name', 'Inventory Allocation')->first();
+        $item = new Menu();
+        $item->route_id = $item_route->id;
+        $item->parent_menu = $inventory->id;
+        $item->sequence = 5;
+        $item->save();
 
         $category_route = Route::where('route_name', 'Manage Categories')->first();
         $category = new Menu();
@@ -128,14 +136,14 @@ class MenuSeeder extends Seeder
         $category = new Menu();
         $category->route_id = $category_route->id;
         $category->parent_menu = $inventory->id;
-        $category->sequence = 4;
+        $category->sequence = 3;
         $category->save();
 
         $category_route = Route::where('route_name', 'All Motorbikes')->first();
         $category = new Menu();
         $category->route_id = $category_route->id;
         $category->parent_menu = $inventory->id;
-        $category->sequence = 3;
+        $category->sequence = 4;
         $category->save();
 
         #### clients
