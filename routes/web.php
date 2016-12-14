@@ -33,6 +33,16 @@ Route::get('/all-mfs', 'MasterfileController@allMfs');
 Route::get('/inactive-users', 'MasterfileController@loadDelMfs');
 Route::get('mf-profile/{id}', 'MasterfileController@getMfProfile');
 Route::delete('delete-address/{id}', 'MasterfileController@deleteAddress');
+Route::get('all_applications', 'MasterfileController@allFirstApplications');
+Route::get('all_applications/fas', 'MasterfileController@firstApplications');
+Route::get('pending_applications', 'MasterfileController@pendingApplications');
+Route::get('pending_applications/pending', 'MasterfileController@loadPendingApps');
+Route::get('canceled_applications', 'MasterfileController@canceledApps');
+Route::get('canceled_applications/canceled', 'MasterfileController@loadCanceledApps');
+Route::get('approved_applications', 'MasterfileController@approvedApps');
+Route::get('approved_applications/approved', 'MasterfileController@loadApprovedApps');
+Route::post('/approve-applications', 'MasterfileController@approveApplication');
+Route::post('/reject-applications', 'MasterfileController@rejectApplication');
 
 // Contact Types Module
 Route::resource('contact_types','ContactTypesController');
@@ -45,12 +55,18 @@ Route::get('/parent-routes', 'RoutesController@getParentRoutes');
 Route::post('/edit-route', 'RoutesController@update');
 Route::get('/load-routes', 'RoutesController@loadRoutes');
 Route::get('/delete-route/{id}', 'RoutesController@destroy');
+
 Route::get('/menu', 'MenuController@index');
 Route::post('/add-menu', 'MenuController@store');
 Route::post('/arrange-menu', 'MenuController@arrangeMenu');
 Route::post('/edit-menu', 'MenuController@update');
 Route::get('/get-menu/{id}', 'MenuController@getMenuItem');
 Route::post('/remove-menu', 'MenuController@destroy');
+
+//system config
+Route::post('/system-config', 'ThemeController@updateSystemConfig');
+
+//theme configuration
 Route::get('/theme_config', 'ThemeController@index');
 Route::get('/theme-select/{theme}', 'ThemeController@saveSkin');
 Route::get('/get-theme', 'ThemeController@getTheme');
@@ -129,3 +145,7 @@ Route::post('/edit-client-account','ClientAccountController@editClientAccount');
 Route::get('/access-denied', function(){
     return view('pages.access_denied');
 });
+
+#### Bills and Payments
+Route::get('/customer-bills', 'CustomerBillsController@index');
+Route::get('/load-customer-bills', 'CustomerBillsController@loadBills');

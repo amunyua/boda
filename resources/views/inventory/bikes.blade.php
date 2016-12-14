@@ -27,7 +27,6 @@
     <a href="#delete-inventory-item" id="delete-inventory-btn" class="btn btn-danger btn-sm header-btn hidden-mobile">
         <i class="fa fa-trash"></i> Delete Bike
     </a>
-
     {{--</span>--}}
 @endsection
 

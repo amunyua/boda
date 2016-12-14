@@ -2,8 +2,13 @@
 
 namespace App\Console;
 
+use App\ClientAccount;
+use App\CustomerBill;
+use App\Journal;
+use App\Service;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -26,6 +31,43 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->call(function () {
+            DB::transaction(function (){
+                // get all client accounts
+                $accounts = ClientAccount::where('client_account_status', 1)->get();
+
+                // get service required for billing
+                $service = Service::where('service_code', 'BRCIC')->first();
+
+                // bill them all
+                if(count($accounts)){
+                    foreach ($accounts as $acc){
+                        if($service) {
+                            // raise a bill for each account
+                            $cb = new CustomerBill();
+                            $cb->client_account_id = $acc->id;
+                            $cb->bill_amount = $service->price;
+                            $cb->bill_balance = $service->price;
+                            $cb->masterfile_id = $acc->masterfile_id;
+                            $cb->service_id = $service->id;
+                            $cb->bill_date = date('Y-m-d'); // should change to timestamp
+                            $cb->bill_due_date = date('Y-m-d'); // should change to timestamp
+                            $cb->save();
+
+                            // raise a debit journal
+                            $journal = new Journal();
+                            $journal->client_account_id = $acc->id;
+                            $journal->particulars = $service->service_name;
+                            $journal->masterfile_id = $acc->masterfile_id;
+                            $journal->amount = $service->price;
+                            $journal->dr_cr = 'DR';
+                            $journal->customer_bill_id = $cb->id;
+                            $journal->save();
+                        }
+                    }
+                }
+            });
+        });
     }
 
     /**

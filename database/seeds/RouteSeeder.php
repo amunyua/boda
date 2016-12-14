@@ -148,14 +148,35 @@ class RouteSeeder extends Seeder
 
         #### Application
         $app = new Route();
-        $app->route_name = 'Application';
+        $app->route_name = 'First Applications';
         $app->save();
         $app_id = $app->id;
 
         #### Application children
         $all_app = new Route();
-        $all_app->route_name = 'All Application';
+        $all_app->route_name = 'All First Applications';
         $all_app->url = 'all_applications';
+        $all_app->parent_route = $app_id;
+        $all_app->save();
+        $all_app->roles()->attach($admin);
+
+        $all_app = new Route();
+        $all_app->route_name = 'Approve Applications';
+        $all_app->url = 'approve-applications';
+        $all_app->parent_route = $app_id;
+        $all_app->save();
+        $all_app->roles()->attach($admin);
+
+        $all_app = new Route();
+        $all_app->route_name = 'Reject Applications';
+        $all_app->url = 'reject-applications';
+        $all_app->parent_route = $app_id;
+        $all_app->save();
+        $all_app->roles()->attach($admin);
+
+        $all_app = new Route();
+        $all_app->route_name = 'Load All Applications';
+        $all_app->url = 'all_applications/fas';
         $all_app->parent_route = $app_id;
         $all_app->save();
         $all_app->roles()->attach($admin);
@@ -167,6 +188,13 @@ class RouteSeeder extends Seeder
         $pend_app->save();
         $pend_app->roles()->attach($admin);
 
+        $pend_app = new Route();
+        $pend_app->route_name = 'Loading Pending Application';
+        $pend_app->url = 'pending_applications/pending';
+        $pend_app->parent_route = $app_id;
+        $pend_app->save();
+        $pend_app->roles()->attach($admin);
+
         $canc_app = new Route();
         $canc_app->route_name = 'Cancelled Application';
         $canc_app->url = 'canceled_applications';
@@ -174,9 +202,24 @@ class RouteSeeder extends Seeder
         $canc_app->save();
         $canc_app->roles()->attach($admin);
 
+        $canc_app = new Route();
+        $canc_app->route_name = 'Cancelled Application';
+        $canc_app->url = 'canceled_applications/canceled';
+        $canc_app->parent_route = $app_id;
+        $canc_app->save();
+        $canc_app->roles()->attach($admin);
+
         $appr_app = new Route();
         $appr_app->route_name = 'Approved Application';
         $appr_app->url = 'approved_applications';
+        $appr_app->parent_route = $app_id;
+        $appr_app->save();
+        $appr_app->roles()->attach($admin);
+
+
+        $appr_app = new Route();
+        $appr_app->route_name = 'Load Approved Application';
+        $appr_app->url = 'approved_applications/approved';
         $appr_app->parent_route = $app_id;
         $appr_app->save();
         $appr_app->roles()->attach($admin);
@@ -213,6 +256,13 @@ class RouteSeeder extends Seeder
         $category = new Route();
         $category->route_name = 'Arrange Menu';
         $category->url = 'arrange-menu';
+        $category->parent_route = $inventory_id;
+        $category->save();
+        $category->roles()->attach($admin);
+
+        $category = new Route();
+        $category->route_name = 'Get Menu Menu';
+        $category->url = 'get-menu/{id}';
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
@@ -285,7 +335,7 @@ class RouteSeeder extends Seeder
         $route->url = 'get-scat-details/{id}';
         $route->parent_route = $service_id;
         $route->save();
-        $route->roles()->attach($admin);
+        $route->roles()-> attach($admin);
 
         $route = new Route();
         $route->route_name = 'Update Service Category';
@@ -422,7 +472,21 @@ class RouteSeeder extends Seeder
 
         $system_config = new Route();
         $system_config->route_name = 'System Config';
-        $system_config->url = 'system_config';
+        $system_config->url = 'system-config';
+        $system_config->parent_route = $system_id;
+        $system_config->save();
+        $system_config->roles()->attach($admin);
+
+        $system_config = new Route();
+        $system_config->route_name = 'Get Route Data';
+        $system_config->url = 'get-route/{route_id}';
+        $system_config->parent_route = $system_id;
+        $system_config->save();
+        $system_config->roles()->attach($admin);
+
+        $system_config = new Route();
+        $system_config->route_name = 'Update Route';
+        $system_config->url = 'edit-route';
         $system_config->parent_route = $system_id;
         $system_config->save();
         $system_config->roles()->attach($admin);
@@ -533,6 +597,25 @@ class RouteSeeder extends Seeder
         $route->save();
         $route->roles()->attach($admin);
 
+        #### Bills and Payments
 
+        $route = new Route();
+        $route->route_name = 'Bills And Payments';
+        $route->save();
+        $bps_parent = $route->id;
+
+        $route = new Route();
+        $route->route_name= 'Customer Bills';
+        $route->url = 'customer-bills';
+        $route->parent_route = $bps_parent;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name= 'Load Customer Bills';
+        $route->url = 'load-customer-bills';
+        $route->parent_route = $bps_parent;
+        $route->save();
+        $route->roles()->attach($admin);
     }
 }

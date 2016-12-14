@@ -17,4 +17,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::get('/get-route/{route_id}', 'RoutesController@getRoute');
+Route::post('/first-applications', 'FirstApplicationsController@store');

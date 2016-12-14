@@ -473,6 +473,9 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
     );
 
     public static $classMap = array (
+        'AddColumnInventotyItems' => __DIR__ . '/../..' . '/database/migrations/2016_12_06_150751_add_columnInventotyItems.php',
+        'AddColumnStockTransactions' => __DIR__ . '/../..' . '/database/migrations/2016_12_07_092347_add_columnStockTransactions.php',
+        'AddColumnnsToInventory' => __DIR__ . '/../..' . '/database/migrations/2016_12_07_061500_addColumnnsToInventory.php',
         'AddColumnsToInventoryItemsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_01_190442_add_columns_to_inventory_items_table.php',
         'AddCountyStatusToCountiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_03_061623_add_county_status_to_counties_table.php',
         'AddFaIconsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_085709_add_fa_icons_table.php',
@@ -484,7 +487,6 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'AddRouteStatus' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_094610_add_route_status.php',
         'AddSequenceColumn' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_100959_add_sequence_column.php',
         'AddServicecodeToServices' => __DIR__ . '/../..' . '/database/migrations/2016_11_29_175435_add_servicecode_to_services.php',
-        'AddStatusToUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_07_152223_add_status_to_users_table.php',
         'AddressSeeder' => __DIR__ . '/../..' . '/database/seeds/AddressSeeder.php',
         'AddressTypes' => __DIR__ . '/../..' . '/database/migrations/2016_12_06_123945_addressTypes.php',
         'AllMfs' => __DIR__ . '/../..' . '/database/migrations/2016_11_29_195201_all_mfs.php',
@@ -494,7 +496,9 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'CreateAddressesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_26_145922_create_addresses_table.php',
         'CreateAuditTrailsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_180922_create_audit_trails_table.php',
+        'CreateBikesTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_06_115701_create_bikes_table.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_13_180726_create_categories_table.php',
+        'CreateClientAccountsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_07_110805_create_client_accounts_table.php',
         'CreateContactTypesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_02_194657_create_contact_types_table.php',
         'CreateContactsTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_27_114536_create_contacts_table.php',
         'CreateCountiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_03_055822_create_counties_table.php',
@@ -510,6 +514,8 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'CreateServiceCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_22_185100_create_service_categories_table.php',
         'CreateServicesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_22_185109_create_services_table.php',
         'CreateSkinsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_193801_create_skins_table.php',
+        'CreateStockTransactionsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_06_145935_create_stock_transactions_table.php',
+        'CreateSystemConfigsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_09_182203_create_system_configs_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',

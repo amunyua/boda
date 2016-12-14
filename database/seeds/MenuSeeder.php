@@ -65,7 +65,7 @@ class MenuSeeder extends Seeder
         $inactive_users->save();
 
         #### application
-        $application_route = Route::where('route_name', 'Application')->first();
+        $application_route = Route::where('route_name', 'First Applications')->first();
         $application = new Menu();
         $application->fa_icon = 'fa-folder';
         $application->route_id = $application_route->id;
@@ -73,7 +73,7 @@ class MenuSeeder extends Seeder
         $application->save();
         $application_id = $application->id;
 
-        $all_application_route = Route::where('route_name', 'All Application')->first();
+        $all_application_route = Route::where('route_name', 'All First Applications')->first();
         $all_application = new Menu();
         $all_application->route_id = $all_application_route->id;
         $all_application->parent_menu = $application->id;
@@ -266,5 +266,20 @@ class MenuSeeder extends Seeder
         $audit_trail->parent_menu = $user_mngt->id;
         $audit_trail->sequence = 3;
         $audit_trail->save();
+
+        #### Bills and Payments
+        $cb_route = Route::where('route_name', 'Bills And Payments')->first();
+        $bps = new Menu();
+        $bps->fa_icon = 'fa-money';
+        $bps->route_id = $cb_route->id;
+        $bps->sequence = 8;
+        $bps->save();
+
+        $cb_route = Route::where('route_name', 'Customer Bills')->first();
+        $menu = new Menu();
+        $menu->route_id = $cb_route->id;
+        $menu->parent_menu = $bps->id;
+        $menu->sequence = 8;
+        $menu->save();
     }
 }

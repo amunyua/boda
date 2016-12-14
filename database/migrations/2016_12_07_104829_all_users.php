@@ -19,10 +19,12 @@ class AllUsers extends Migration
               SELECT ru.user_id,
                 r.role_name,
                 concat(m.surname,' ',m.firstname,' ',m.middlename) AS full_name,
-                m.status
+                u.status,
+                u.id
               FROM role_user ru
                 LEFT JOIN masterfiles m ON m.id = ru.user_id
-                LEFT JOIN roles r ON r.id = ru.role_id"
+                LEFT JOIN roles r ON r.id = ru.role_id
+            LEFT JOIN users u ON u.id = m.id"
         );
     }
 

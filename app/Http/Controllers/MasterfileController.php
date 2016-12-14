@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\FirstApplication;
 use Illuminate\Database\QueryException;
 use App\ContactTypes;
 use App\County;
@@ -15,8 +16,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
+use Yajra\Datatables\Facades\Datatables;
 
 class MasterfileController extends Controller
 {
@@ -511,4 +514,145 @@ class MasterfileController extends Controller
         }
     }
 
+    public function allFirstApplications(){
+        return view('registration.firstapplications');
+    }
+
+    public function pendingApplications(){
+        return view('registration.pending-apps');
+    }
+
+    public function canceledApps(){
+        return view('registration.canceled-apps');
+    }
+
+    public function approvedApps(){
+        return view('registration.approved-apps');
+    }
+
+    public function firstApplications(){
+        $fas = FirstApplication::query();
+        return Datatables::of($fas)
+            ->editColumn('approval_status', function ($fa){
+                if($fa->approval_status == 1)
+                    return '<span class="label label-success">Approved</span>';
+                else if($fa->approval_status == 0)
+                    return '<span class="label label-warning">Pending</span>';
+                else
+                    return '<span class="label label-danger">Rejected</span>';
+            })
+            ->make(true);
+    }
+
+    public function loadPendingApps(){
+        $fas = FirstApplication::where('approval_status', 0);
+        return Datatables::of($fas)
+            ->editColumn('approval_status', function ($fa){
+                if($fa->approval_status == 1)
+                    return '<span class="label label-success">Approved</span>';
+                else if($fa->approval_status == 0)
+                    return '<span class="label label-warning">Pending</span>';
+                else
+                    return '<span class="label label-danger">Rejected</span>';
+            })
+            ->make(true);
+    }
+
+    public function loadCanceledApps(){
+        $fas = FirstApplication::where('approval_status', 5);
+        return Datatables::of($fas)
+            ->editColumn('approval_status', function ($fa){
+                if($fa->approval_status == 1)
+                    return '<span class="label label-success">Approved</span>';
+                else if($fa->approval_status == 0)
+                    return '<span class="label label-warning">Pending</span>';
+                else
+                    return '<span class="label label-danger">Rejected</span>';
+            })
+            ->make(true);
+    }
+
+    public function loadApprovedApps(){
+        $fas = FirstApplication::where('approval_status', 1);
+        return Datatables::of($fas)
+            ->editColumn('approval_status', function ($fa){
+                if($fa->approval_status == 1)
+                    return '<span class="label label-success">Approved</span>';
+                else if($fa->approval_status == 0)
+                    return '<span class="label label-warning">Pending</span>';
+                else
+                    return '<span class="label label-danger">Rejected</span>';
+            })
+            ->make(true);
+    }
+
+    public function approveApplication(Request $request){
+        $ids = $request->app_no;
+        $return = [];
+        try {
+            foreach ($ids as $id){
+                FirstApplication::where('id', $id)
+                    ->update([
+                        'approval_status' => 1
+                    ]);
+
+                $candidate = FirstApplication::find($id);
+
+                // send a email
+                if(!empty($candidate->email)){
+
+                }
+
+                // send sms
+            }
+
+            $return = [
+                'success' => true,
+                'message' => 'The Application has been approved',
+                'type' => 'success'
+            ];
+        } catch (QueryException $qe){
+            $return = [
+                'success' => false,
+                'message' => $qe->getMessage(),
+                'type' => 'error'
+            ];
+        }
+        return Response::json($return);
+    }
+
+    public function rejectApplication(Request $request){
+        $ids = $request->app_no;
+        $return = [];
+        try {
+            foreach ($ids as $id){
+                FirstApplication::where('id', $id)
+                    ->update([
+                        'approval_status' => 5
+                    ]);
+
+                $candidate = FirstApplication::find($id);
+
+                // send a email
+                if(!empty($candidate->email)){
+
+                }
+
+                // send sms
+            }
+
+            $return = [
+                'success' => true,
+                'message' => 'The Application has been canceled!',
+                'type' => 'success'
+            ];
+        } catch (QueryException $qe){
+            $return = [
+                'success' => false,
+                'message' => $qe->getMessage(),
+                'type' => 'error'
+            ];
+        }
+        return Response::json($return);
+    }
 }
