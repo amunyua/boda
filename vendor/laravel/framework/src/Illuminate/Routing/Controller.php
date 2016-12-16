@@ -2,10 +2,14 @@
 
 namespace Illuminate\Routing;
 
+use App\AuditTrail;
 use BadMethodCallException;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Support\Facades\Route;
+
 
 abstract class Controller
 {
@@ -97,5 +101,15 @@ abstract class Controller
 
     public function user(){
         return Auth::user();
+    }
+
+    public function recordAuditTrail(){
+        $route_name = Route::getFacadeRoot()->current()->uri();
+        $audit_trail = new AuditTrail();
+        $audit_trail->action_name = $route_name;
+        $audit_trail->user_name = $this->user()->name;
+        $audit_trail->user_id = $this->user()->id;
+        $audit_trail->session_id = $this->user()->remember_token;
+        $audit_trail->save();
     }
 }

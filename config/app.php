@@ -120,7 +120,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
@@ -185,7 +185,7 @@ return [
          * Custom Application Service Providers
          */
         Yajra\Datatables\DatatablesServiceProvider::class,
-//        BackupManager\Laravel\Laravel5ServiceProvider::class,
+        BackupManager\Laravel\Laravel5ServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
     ],
 

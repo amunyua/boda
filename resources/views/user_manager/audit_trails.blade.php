@@ -4,15 +4,12 @@
 @section('widget-desc', 'User Actions')
 
 @section('button')
-    <button type="button" class="btn btn-primary pull-right header-btn hidden-mobile mpesa">
-        <i class="fa fa-plus"></i> Add User Role
-    </button>
 @endsection
 
 @section('content')
     @include('layouts.includes._messages')
 
-    <table id="dt_basic" class="table table-striped table-bordered table-hover audit-trails" width="100%">
+    <table id="audit-trails" class="table table-striped table-bordered table-hover" width="100%">
         <thead>
         <tr>
             <th>ID</th>

@@ -1,5 +1,5 @@
 
- var audit_trails =    $('.audit-trails').DataTable({
+ var audit_trails =$('#audit-trails').DataTable({
         processing: true,
         serverSide: true,
         ajax: 'ajax_trails',

@@ -20,7 +20,7 @@ class UserManagerController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('validateroutes');
+//        $this->middleware('validateroutes');
     }
 
     public function mpesaPayment(){
@@ -82,7 +82,7 @@ class UserManagerController extends Controller
 
     public function ajaxAuditTrails(){
 //        $audit_trails = AuditTrail::all();
-        return Datatables::of(AuditTrail::all()->make(true));
+        return Datatables::of(AuditTrail::all())->make(true);
     }
 
     public function loadRoutesForAllocation(){

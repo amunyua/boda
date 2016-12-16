@@ -14,6 +14,11 @@ use Yajra\Datatables\Facades\Datatables;
 
 class ClientAccountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function clientAccounts(){
         $unassigned_clients = array();
         $unassigned_bikes = array();
@@ -81,7 +86,8 @@ class ClientAccountController extends Controller
 //        var_dump($_POST);die;
         $this->validate($request,array(
             'bike_id'=>'required',
-            'masterfile_id'=>'required'
+            'masterfile_id'=>'required',
+            'billing_start_date'=>'required'
         ));
         $results = $this->checkWhetherBikeAttached($request);
 //        var_dump($results);die;
@@ -93,6 +99,7 @@ class ClientAccountController extends Controller
             $account->masterfile_id = $request->masterfile_id;
             $account->created_by = $this->user()->id;
             $account->client_account_status = '1';
+            $account->billing_start_date = $request->billing_start_date;
             try {
                 $account->save();
                 Session::flash('success', 'The Client Account has been created');
@@ -125,6 +132,9 @@ class ClientAccountController extends Controller
                 '
                 {{ App\Bike::find($bike_id)->vin}}
                 ')
+//            ->editColumn('billing_start_date',
+//                "{{date('D M Y',strtotime($billing_start_date)}}"
+//                )
             ->make(true);
     }
 
@@ -145,6 +155,7 @@ class ClientAccountController extends Controller
     }
 
     public function editClientAccount(Request $request){
+//        print_r($this->user());die;
 //        var_dump($_POST);die;
         $this->validate($request, array(
            'status'=>'required'
@@ -167,10 +178,11 @@ class ClientAccountController extends Controller
             $record->client_account_status = $request->status;
 
             try {
+                $this->recordAuditTrail();
                 $record->save();
                 Session::flash('success', 'The Client Account has been updated');
             } catch (e $e) {
-                Session::flash('failed', 'Encountered An Error ');
+                Session::flash('failed', 'Encountered an error');
             }
         }
         return redirect()->back();

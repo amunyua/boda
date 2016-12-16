@@ -130,6 +130,9 @@ Route::post('/delete-service', 'ServiceController@destroy');
 Route::post('/update-service', 'ServiceController@update');
 Route::get('/get-service/{id}', 'ServiceController@getService');
 
+//inventory allocation
+Route::get('/all-allocations','InventoryAllocationController@inventoryAllocations');
+
 
 #### Client Accounts
 Route::get('/client_account','ClientAccountController@clientAccounts');
@@ -146,3 +149,7 @@ Route::get('/access-denied', function(){
 #### Bills and Payments
 Route::get('/customer-bills', 'CustomerBillsController@index');
 Route::get('/load-customer-bills', 'CustomerBillsController@loadBills');
+
+#### Broadcast messages
+Route::get('send-sms','BroadcastController@sendSms');
+Route::get('message','BroadcastController@addJob');
