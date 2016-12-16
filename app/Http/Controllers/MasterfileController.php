@@ -495,7 +495,6 @@ class MasterfileController extends Controller
         ));
     }
 
-
     public function getAllUsers(){
         $mfs = DB::select('select * from all_users where status = 1', [1]);
 

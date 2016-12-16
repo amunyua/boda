@@ -49,19 +49,4 @@ class ThemeController extends Controller
         return Response::json($skin);
     }
 
-    public function updateSystemConfig(Request $request){
-        $this->validate($request, [
-            'company_name' => 'required',
-            'company_logo' => 'required'
-        ]);
-
-        $system = new SystemConfig();
-        $system->company_name = $request->company_name;
-        $system->company_logo = $request->company_logo;
-        $system->save();
-
-        $request->session()->flash('status', 'System Configurations have been updated');
-        return redirect('system-config');
-    }
-
 }

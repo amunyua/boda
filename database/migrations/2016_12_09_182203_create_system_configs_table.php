@@ -15,8 +15,14 @@ class CreateSystemConfigsTable extends Migration
     {
         Schema::create('system_configs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('company_name');
+            $table->string('company_name',50);
             $table->string('company_logo');
+            $table->string('tel_one', 20);
+            $table->string('tel_two', 20);
+            $table->string('tel_three', 20);
+            $table->string('email', 50);
+            $table->string('box_office', 20);
+            $table->string('physical_address', 50);
             $table->timestamps();
         });
     }

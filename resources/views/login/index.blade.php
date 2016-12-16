@@ -1,4 +1,4 @@
-         @extends('layouts.login')
+@extends('layouts.login')
 @section('title', 'Login')
 @section('system_name', 'BODA SQUARED')
 

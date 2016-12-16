@@ -7,6 +7,8 @@ use App\Masterfile;
 use App\Role;
 use App\User;
 use App\UserRole;
+use App\SystemConfig;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -29,8 +31,7 @@ class UserManagerController extends Controller
     }
 
     public function getAllUsers(){
-        $mfs = DB::select('select * from all_users where status = 1', [1]);
-
+        $mfs = DB::table('all_users')->get();
         return view('user_manager.all_users', ['mfs' => $mfs]);
     }
 
@@ -161,19 +162,81 @@ class UserManagerController extends Controller
     }
 
     public function blockUser(Request $request){
-        $id = $request->id;
-        // update db record
-        $user = DB::table('users')->whereIn('id', $id)->update(array('status' => 0));
-        $user->save();
-        Session::flash('success', 'User has been BLOCKED!');
-        return redirect('all_users');
+        $id = $request->user_id;
+        $return = [];
+
+        try {
+            // update db record
+            User::where('id', $id)
+                ->update(['status' => 0]);
+
+            $return = [
+                'success' => true,
+                'message' => 'User has been BLOCKED!',
+                'type' => 'success'
+            ];
+        } catch (QueryException $qe){
+            $return = [
+                'success' => false,
+                'message' => $qe->getMessage(),
+                'type' => 'success'
+            ];
+        }
+
+        return Response::json($return);
     }
 
-//    public function inBlockUser(Request $request, $id){
-//        // update db record
-//        $user = DB::table('users')->whereIn('id', $id)->update(array('status' => 1));
-//        $user->save();
-//        Session::flash('success', 'User has been UNBLOCKED!');
-//        return redirect('all_users');
-//    }
+    public function unblockUser(Request $request){
+        $id = $request->user_id;
+        $return = [];
+
+        try {
+            // update db record
+            User::where('id', $id)
+                ->update(['status' => 1]);
+
+            $return = [
+                'success' => true,
+                'message' => 'User has been UNBLOCKED!',
+                'type' => 'success'
+            ];
+        } catch (QueryException $qe){
+            $return = [
+                'success' => false,
+                'message' => $qe->getMessage(),
+                'type' => 'success'
+            ];
+        }
+
+        return Response::json($return);
+    }
+
+    public function updateSystemConfig(Request $request){
+        $this->validate($request, [
+            'company_name' => 'required',
+            'company_logo' => 'required',
+            'tel_one' => 'required',
+            'tel_two' => 'required',
+            'tel_three' => 'required',
+            'email' => 'required',
+            'physical_address' => 'required'
+        ]);
+
+        $system = new SystemConfig();
+        $system->company_name = $request->company_name;
+        $system->company_logo = $request->company_logo;
+        $system->tel_one = $request->tel_one;
+        $system->tel_two = $request->tel_two;
+        $system->tel_three = $request->tel_three;
+        $system->email = $request->email;
+        $system->physical_address = $request->physical_address;
+        $system->save();
+
+        $request->session()->flash('status', 'System Configurations have been updated');
+        return redirect('sys-config');
+    }
+
+    public function loadSystemConfig(Request $request){
+        return view('system.system_config');
+    }
 }
