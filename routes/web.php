@@ -149,3 +149,7 @@ Route::get('/access-denied', function(){
 #### Bills and Payments
 Route::get('/customer-bills', 'CustomerBillsController@index');
 Route::get('/load-customer-bills', 'CustomerBillsController@loadBills');
+
+#### Broadcast messages
+Route::get('send-sms','BroadcastController@sendSms');
+Route::get('message','BroadcastController@addJob');
