@@ -1,12 +1,16 @@
 <aside id="left-panel">
-
+    @php
+        $user = Auth::user();
+        $image_path = \App\Masterfile::find($user->masterfile_id)->image_path;
+        $user_prof_pic = (!empty($image_path)) ? $image_path : 'img/avatars/photo.jpg';
+    @endphp
     <!-- User info -->
     <div class="login-info">
         <span> <!-- User image size is adjusted inside CSS, it should stay as it -->
             <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-                <img src="{{ URL::asset('img/avatars/sunny.png') }}" alt="me" class="online" />
+                <img src="{{ URL::asset($user_prof_pic) }}" alt="me" class="online" />
                 <span>
-                    john.doe
+                    {{ $user->name }}
                 </span>
                 <i class="fa fa-angle-down"></i>
             </a>

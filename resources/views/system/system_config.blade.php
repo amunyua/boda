@@ -20,10 +20,12 @@
 @section('form-name', 'Manage System Configurations')
 
 @section('content')
-    <form action="{{ url('sys-config') }}" method="post" id="order-form" class="smart-form" enctype="multipart/form-data">
+    <form action="{{ url('/sys-config') }}" method="post" id="order-form" class="smart-form" enctype="multipart/form-data">
 
         {{ csrf_field() }}
-        @include('layouts.includes._messages')
+        @include('common.success')
+        @include('common.warnings')
+        @include('common.error')
 
         <header>Edit/Update System Configuration's</header>
         <fieldset>
@@ -111,7 +113,7 @@
                                     <div>
                                         <label class="btn btn-file"><span class="fileupload-new">Company Logo</span>
                                             <span class="fileupload-exists">Change</span>
-                                            <input class="span12" type="file" name="image_path"/>
+                                            <input class="span12" type="file" name="company_logo"/>
                                         </label>
                                         <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
                                     </div>

@@ -4,7 +4,7 @@
             $sys = \App\SystemConfig::whereNotNull('id')->first();
         @endphp
         <!-- PLACE YOUR LOGO HERE -->
-        <span id="logo"> <img src="{{ $sys->company_logo }}" style="width: 80px; height: 30px" alt="BODA SQUARED"> </span>
+        <span id="logo"> <img src="{{ URL::asset($sys->company_logo) }}" style="width: 80px; height: 30px" alt="BODA SQUARED"> </span>
         <!-- END LOGO PLACEHOLDER -->
 
         <!-- Note: The activity badge color changes when clicked and resets the number to 0
