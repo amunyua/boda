@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Route;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
@@ -100,7 +101,7 @@ class RoutesController extends Controller
     public function update(Request $request){
         // validation
         $validator = Validator::make($request->all(), [
-            'route_name' => 'required|unique:routes,route_name,'.$request->id,
+            'route_name' => 'required|unique:routes,route_name,'.$request->edit_id,
             'status' => 'required'
         ]);
 
@@ -110,17 +111,23 @@ class RoutesController extends Controller
                 'errors' => $validator->getMessageBag()->toArray()
             ]);
         }else{
-            Route::where('id', $request->id)
-                ->update([
-                    'route_name' => $request->route_name,
-                    'url' => $request->url,
-                    'route_status' => $request->status,
-                    'parent_route' => (!empty($request->parent)) ? $request->parent : NULL
-                ]);
+            try {
+                Route::where('id', $request->edit_id)
+                    ->update([
+                        'route_name' => $request->route_name,
+                        'url' => $request->url,
+                        'route_status' => $request->status,
+                        'parent_route' => (!empty($request->parent)) ? $request->parent : NULL
+                    ]);
 
-            return Response::json([
-                'success' => true
-            ]);
+                return Response::json([
+                    'success' => true
+                ]);
+            } catch (QueryException $qe) {
+                return Response::json([
+                    'false' => false
+                ]);
+            }
         }
     }
 

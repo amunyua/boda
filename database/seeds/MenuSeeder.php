@@ -65,7 +65,7 @@ class MenuSeeder extends Seeder
         $inactive_users->save();
 
         #### application
-        $application_route = Route::where('route_name', 'Application')->first();
+        $application_route = Route::where('route_name', 'First Applications')->first();
         $application = new Menu();
         $application->fa_icon = 'fa-folder';
         $application->route_id = $application_route->id;
@@ -73,7 +73,7 @@ class MenuSeeder extends Seeder
         $application->save();
         $application_id = $application->id;
 
-        $all_application_route = Route::where('route_name', 'All Application')->first();
+        $all_application_route = Route::where('route_name', 'All First Applications')->first();
         $all_application = new Menu();
         $all_application->route_id = $all_application_route->id;
         $all_application->parent_menu = $application->id;
@@ -116,6 +116,14 @@ class MenuSeeder extends Seeder
         $item->parent_menu = $inventory->id;
         $item->sequence = 1;
         $item->save();
+        //stock allocations
+
+        $item_route = Route::where('route_name', 'Inventory Allocation')->first();
+        $item = new Menu();
+        $item->route_id = $item_route->id;
+        $item->parent_menu = $inventory->id;
+        $item->sequence = 5;
+        $item->save();
 
         $category_route = Route::where('route_name', 'Manage Categories')->first();
         $category = new Menu();
@@ -128,14 +136,14 @@ class MenuSeeder extends Seeder
         $category = new Menu();
         $category->route_id = $category_route->id;
         $category->parent_menu = $inventory->id;
-        $category->sequence = 4;
+        $category->sequence = 3;
         $category->save();
 
         $category_route = Route::where('route_name', 'All Motorbikes')->first();
         $category = new Menu();
         $category->route_id = $category_route->id;
         $category->parent_menu = $inventory->id;
-        $category->sequence = 3;
+        $category->sequence = 4;
         $category->save();
 
         #### clients
@@ -258,5 +266,20 @@ class MenuSeeder extends Seeder
         $audit_trail->parent_menu = $user_mngt->id;
         $audit_trail->sequence = 3;
         $audit_trail->save();
+
+        #### Bills and Payments
+        $cb_route = Route::where('route_name', 'Bills And Payments')->first();
+        $bps = new Menu();
+        $bps->fa_icon = 'fa-money';
+        $bps->route_id = $cb_route->id;
+        $bps->sequence = 8;
+        $bps->save();
+
+        $cb_route = Route::where('route_name', 'Customer Bills')->first();
+        $menu = new Menu();
+        $menu->route_id = $cb_route->id;
+        $menu->parent_menu = $bps->id;
+        $menu->sequence = 8;
+        $menu->save();
     }
 }

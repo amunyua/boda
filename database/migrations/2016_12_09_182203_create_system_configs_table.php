@@ -21,8 +21,11 @@ class CreateSystemConfigsTable extends Migration
             $table->string('tel_two', 20);
             $table->string('tel_three', 20);
             $table->string('email', 50);
+            $table->string('email_two', 50);
             $table->string('box_office', 20);
             $table->string('physical_address', 50);
+            $table->string('paybill_no', 20)->nulluble();
+            $table->string('service_pin', 20)->nulluble();
             $table->timestamps();
         });
     }

@@ -22,7 +22,7 @@ class UserManagerController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('validateroutes');
+//        $this->middleware('validateroutes');
     }
 
     public function mpesaPayment(){
@@ -83,7 +83,7 @@ class UserManagerController extends Controller
 
     public function ajaxAuditTrails(){
 //        $audit_trails = AuditTrail::all();
-        return Datatables::of(AuditTrail::all()->make(true));
+        return Datatables::of(AuditTrail::all())->make(true);
     }
 
     public function loadRoutesForAllocation(){
@@ -212,6 +212,7 @@ class UserManagerController extends Controller
     }
 
     public function updateSystemConfig(Request $request){
+
         $this->validate($request, [
             'company_name' => 'required',
             'company_logo' => 'required',
@@ -222,14 +223,34 @@ class UserManagerController extends Controller
             'physical_address' => 'required'
         ]);
 
-        $system = new SystemConfig();
-        $system->company_name = $request->company_name;
-        $system->company_logo = $request->company_logo;
-        $system->tel_one = $request->tel_one;
-        $system->tel_two = $request->tel_two;
-        $system->tel_three = $request->tel_three;
-        $system->email = $request->email;
-        $system->physical_address = $request->physical_address;
+        // upload image if exists
+        $path = '';
+        if(Input::hasFile('company_logo')){
+            $prefix = uniqid();
+            $image = Input::file('company_logo');
+            $filename = $image->getClientOriginalName();
+            $new_name = $prefix.$filename;
+
+            if($image->isValid()) {
+                $image->move('uploads/images', $new_name);
+                $path = 'uploads/images/'.$new_name;
+            }
+        }
+
+        $system = SystemConfig::where('id', 1)
+            ->update(array(
+                'company_name' => $request->company_name,
+                'company_logo' => $path,
+                'tel_one' => $request->tel_one,
+                'tel_two' => $request->tel_two,
+                'tel_three' => $request->tel_three,
+                'email' => $request->email,
+                'email_two' => $request->email_two,
+                'box_office' => $request->box_office,
+                'physical_address' => $request->physical_address,
+                'paybill_no' => $request->paybill_no,
+                'service_pin' => $request->service_pin
+            ));
         $system->save();
 
         $request->session()->flash('status', 'System Configurations have been updated');
@@ -237,6 +258,11 @@ class UserManagerController extends Controller
     }
 
     public function loadSystemConfig(Request $request){
-        return view('system.system_config');
+        $id = 1;
+        $sys = SystemConfig::find($id);
+
+        return view('system.system_config', array(
+            'sys' => $sys
+        ));
     }
 }

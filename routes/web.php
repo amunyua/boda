@@ -32,7 +32,18 @@ Route::get('/all-staffs', 'MasterfileController@allStaffs');
 Route::get('/all-mfs', 'MasterfileController@allMfs');
 Route::get('/inactive-users', 'MasterfileController@loadDelMfs');
 Route::get('mf-profile/{id}', 'MasterfileController@getMfProfile');
+Route::post('add-address/{id}', 'MasterfileController@addAddress');
 Route::delete('delete-address/{id}', 'MasterfileController@deleteAddress');
+Route::get('all_applications', 'MasterfileController@allFirstApplications');
+Route::get('all_applications/fas', 'MasterfileController@firstApplications');
+Route::get('pending_applications', 'MasterfileController@pendingApplications');
+Route::get('pending_applications/pending', 'MasterfileController@loadPendingApps');
+Route::get('canceled_applications', 'MasterfileController@canceledApps');
+Route::get('canceled_applications/canceled', 'MasterfileController@loadCanceledApps');
+Route::get('approved_applications', 'MasterfileController@approvedApps');
+Route::get('approved_applications/approved', 'MasterfileController@loadApprovedApps');
+Route::post('/approve-applications', 'MasterfileController@approveApplication');
+Route::post('/reject-applications', 'MasterfileController@rejectApplication');
 
 // Contact Types Module
 Route::resource('contact_types','ContactTypesController');
@@ -68,7 +79,7 @@ Route::get('/make-backup','DatabaseBackup@runBackup');
 ##### User manager
 Route::get('/user_roles','UserManagerController@getIndex');
 Route::get('/all_users','UserManagerController@getAllUsers');
-Route::get('/sys-config', 'UserManagerController@updateSystemConfig');
+Route::post('/sys-config', 'UserManagerController@updateSystemConfig');
 Route::get('/load-config', 'UserManagerController@loadSystemConfig');
 Route::post('/add-user-role','UserManagerController@storeRole');
 Route::get('get-role-edit-details/{id}','UserManagerController@getRoleEditDetails');
@@ -118,6 +129,10 @@ Route::post('/delete-service', 'ServiceController@destroy');
 Route::post('/update-service', 'ServiceController@update');
 Route::get('/get-service/{id}', 'ServiceController@getService');
 
+//inventory allocation
+Route::get('/all-allocations','InventoryAllocationController@inventoryAllocations');
+
+
 #### Client Accounts
 Route::get('/client_account','ClientAccountController@clientAccounts');
 Route::post('/create-client-account','ClientAccountController@createAccount');
@@ -129,3 +144,11 @@ Route::post('/edit-client-account','ClientAccountController@editClientAccount');
 Route::get('/access-denied', function(){
     return view('pages.access_denied');
 });
+
+#### Bills and Payments
+Route::get('/customer-bills', 'CustomerBillsController@index');
+Route::get('/load-customer-bills', 'CustomerBillsController@loadBills');
+
+#### Broadcast messages
+Route::get('send-sms','BroadcastController@sendSms');
+Route::get('message','BroadcastController@addJob');

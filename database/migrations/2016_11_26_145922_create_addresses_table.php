@@ -28,9 +28,9 @@ class CreateAddressesTable extends Migration
                 ->references('id')
                 ->on('contact_types')
                 ->onUpdate('cascade');
-            $table->string('email');
+            $table->string('email')->nulluble();
             $table->string('phone_no');
-            $table->string('tel_no');
+            $table->string('tel_no')->nulluble();
             $table->string('postal_address');
             $table->integer('postal_code');
             $table->string('physical_address');

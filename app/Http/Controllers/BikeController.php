@@ -49,7 +49,7 @@ class BikeController extends Controller
 //        var_dump($_POST);die;
         $this->validate($request,array(
            'make'=>'required',
-            'model'=>'required',
+//            'model'=>'required',
             'vin'=>'required',
             'chassis_number'=>'required',
             'cost_price'=>'required'
@@ -57,7 +57,7 @@ class BikeController extends Controller
         $bike = new Bike();
         $bike->vin = strtoupper($request->vin);
         $bike->price = $request->cost_price;
-        $bike->model = $request->model;
+        $bike->model = $request->make;
         $bike->make = $request->make;
         $bike->chassis_number = $request->chassis_number;
 
