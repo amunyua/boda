@@ -104,20 +104,17 @@
                                                     </p>
                                                 </li>
                                             </ul>
-                                            <br>
-                                            <p class="font-md">
-                                                <i>A little about me...</i>
-                                            </p>
-                                            <p>
-
-                                                Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-                                                cumque nihil impedit quo minus id quod maxime placeat facere
-
-                                            </p>
-                                            <br>
+                                            {{--<br>--}}
+                                            {{--<p class="font-md">--}}
+                                                {{--<i>A little about me...</i>--}}
+                                            {{--</p>--}}
+                                            {{--<p>--}}
+                                                {{--Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio--}}
+                                                {{--cumque nihil impedit quo minus id quod maxime placeat facere--}}
+                                            {{--</p>--}}
+                                            {{--<br>--}}
                                             {{--<a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i> Send Message</a>--}}
-                                            <br>
-                                            <br>
+                                            {{--<br>--}}
 
                                         </div>
                                         <div class="col-sm-3">
@@ -161,12 +158,19 @@
                                     <!-- widget content -->
                                     <div class="widget-body">
                                         <ul id="myTab1" class="nav nav-tabs bordered">
+                                            @php
+                                                $user = Auth::user();
+                                                $b_role = \App\Masterfile::find($user->masterfile_id)->b_role;
+                                            @endphp
                                             <li class="active">
                                                 <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-user"></i>Basic Details</a>
                                             </li>
                                             <li>
                                                 <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-envelope"></i> Manage Addresses</a>
                                             </li>
+                                            @php
+                                                if($b_role == 'Client'){
+                                            @endphp
                                             <li class="dropdown">
                                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Accounts Info <b class="caret"></b></a>
                                                 <ul class="dropdown-menu">
@@ -181,6 +185,7 @@
                                                     </li>
                                                 </ul>
                                             </li>
+                                            @php } @endphp
                                             <li class="pull-right">
                                                 <a href="javascript:void(0);">
                                                     <div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7">

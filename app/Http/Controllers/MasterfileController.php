@@ -139,7 +139,7 @@ class MasterfileController extends Controller
 
                 Log::info('Creating Login Account');
                 // create user login account
-                $password = sha1(123456);
+                $password = bcrypt(123456);
                 $full_name = $mf->surname.' '.$mf->firstname;
                 $login = User::create(array (
                     'name' => $full_name,
@@ -234,7 +234,7 @@ class MasterfileController extends Controller
 
                 Log::info('Creating Login Account');
                 // create user login account
-                $password = sha1(123456);
+                $password = bcrypt(123456);
                 $full_name = $mf->surname.' '.$mf->firstname;
                 $login = User::create(array (
                     'name' => $full_name,
@@ -329,7 +329,7 @@ class MasterfileController extends Controller
 
                 Log::info('Creating Login Account');
                 // create user login account
-                $password = sha1(123456);
+                $password = bcrypt(123456);
                 $full_name = $mf->surname.' '.$mf->firstname;
                 $login = User::create(array (
                     'name' => $full_name,

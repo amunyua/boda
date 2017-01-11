@@ -487,7 +487,7 @@ class RouteSeeder extends Seeder
         $system_config->roles()->attach($admin);
 
         $system_config = new Route();
-        $system_config->route_name = 'Load System Configuration';
+        $system_config->route_name = 'System Settings';
         $system_config->url = 'load-config';
         $system_config->parent_route = $system_id;
         $system_config->save();
