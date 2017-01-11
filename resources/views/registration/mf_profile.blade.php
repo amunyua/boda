@@ -36,7 +36,7 @@
                                             {{--<a href="javascript:void(0);" class="btn txt-color-white bg-color-teal btn-sm"><i class="fa fa-check"></i> Follow</a>&nbsp; <a href="javascript:void(0);" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-link"></i> Connect</a>--}}
                                         </div>
                                         <div class="air air-top-left padding-10">
-                                            <h4 class="txt-color-white font-md"><?php echo date('j M Y')?></h4>
+                                            <h4 class="txt-color-white font-md"><?php echo date('j M Y'); ?></h4>
                                         </div>
                                         <ol class="carousel-indicators">
                                             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -76,19 +76,20 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <h1>{{ $mf->surname }} <span class="semi-bold">{{ $mf->firstname }}</span>
+                                            <h1>{{ $mf->surname }} <span class="semi-bold">{{ $mf->firstname }}</span> {{ $mf->middlename }}
                                                 <br>
-                                                <small> {{ $mf->b_role }}</small></h1>
+                                                <small class="semi-bold"> {{ $mf->b_role }}</small>
+                                            </h1>
 
                                             <ul class="list-unstyled">
                                                 <li>
                                                     <p class="text-muted">
-                                                        <i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken">{{ $ad->phone_no }}</span>
+                                                        <i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken">{{ $addr->phone_no }}</span>
                                                     </p>
                                                 </li>
                                                 <li>
                                                     <p class="text-muted">
-                                                        <i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:simmons@smartadmin">{{ $ad->email }}</a>
+                                                        <i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:simmons@smartadmin">{{ $addr->email }}</a>
                                                     </p>
                                                 </li>
                                                 {{--<li>--}}

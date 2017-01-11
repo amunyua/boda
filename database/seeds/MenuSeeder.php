@@ -215,9 +215,9 @@ class MenuSeeder extends Seeder
         $menu->sequence = 2;
         $menu->save();
 
-        $sys_config_route = Route::where('route_name', 'System Config')->first();
+        $config_route = Route::where('route_name', 'Load System Configuration')->first();
         $sys_config = new Menu();
-        $sys_config->route_id = $sys_config_route->id;
+        $sys_config->route_id = $config_route->id;
         $sys_config->parent_menu = $system->id;
         $sys_config->sequence = 3;
         $sys_config->save();
@@ -233,7 +233,7 @@ class MenuSeeder extends Seeder
         $backup = new Menu();
         $backup->route_id = $backup_route->id;
         $backup->parent_menu = $system->id;
-        $backup->sequence = 4;
+        $backup->sequence = 5;
         $backup->save();
 
         #### user management

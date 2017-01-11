@@ -476,33 +476,58 @@ class MasterfileController extends Controller
     }
 
     public function getMfProfile(Request $request){
-        // get mf_id
         $mf_id = $request->id;
-
         $mf = Masterfile::find($mf_id);
-        $ad = Address::find($mf_id);
-        $role_id = $mf->user_role;
-        $role =  Role::find($role_id);
-        $addresses =  Address::all();
-        $counties =  County::all();
-        $contact_type_id = $ad->contact_type_id;
-        $c_type = ContactTypes::find($contact_type_id);
-
-        return view('registration.mf_profile')->with(array(
+        $address_id = $mf_id;
+        $addr = Address::where('masterfile_id', $address_id)->first();
+        $addresses = Address::where('masterfile_id', $address_id)->get();
+        $ctype_id = $addr->contact_type_id;
+        $ctype = ContactTypes::find($ctype_id)->first();
+        //var_dump($ctype);die;
+        $counties = County::all();
+        $ctypes = ContactTypes::all();
+        return view('registration.mf_profile', [
             'mf' => $mf,
-            'ad' => $ad,
-            'role' => $role,
             'addresses' => $addresses,
-            'c_type' => $c_type,
             'counties' => $counties,
-        ));
+            'addr' => $addr,
+            'ctype' => $ctype,
+            'ctypes' => $ctypes,
+        ]);
     }
-
 
     public function getAllUsers(){
         $mfs = DB::select('select * from all_users where status = 1', [1]);
 
         return view('user_manager.all_users', ['mfs' => $mfs]);
+    }
+
+    public function addAddress(Request $request){
+        $this->validate($request, array(
+            'county'=> 'required',
+            'city'=> 'required',
+            'id'=> 'required',
+            'postal_address'=> 'required',
+            'physical_address'=> 'required',
+            'postal_code'=> 'required',
+            'phone_no'=> 'required'
+        ));
+
+        $address = new Address();
+
+        $address->masterfile_id = $request->masterfile_id;
+        $address->county = $request->county;
+        $address->city = $request->city;
+        $address->contact_type_id =$request->id;
+        $address->postal_address =$request->postal_address;
+        $address->postal_code =$request->postal_code;
+        $address->phone_no =$request->phone_no;
+        $address->physical_address =$request->physical_address;
+        //print_r($address);die;
+        $address->save();
+
+        $request->session()->flash('success', 'New Address has been added');
+        return redirect('mf-profile/'.$request->masterfile_id);
     }
 
     public function deleteAddress(Request $request, $id){

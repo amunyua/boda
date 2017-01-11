@@ -49,6 +49,8 @@ return array(
     'CreateJournalsTable' => $baseDir . '/database/migrations/2016_12_11_100108_create_journals_table.php',
     'CreateMasterfileTable' => $baseDir . '/database/migrations/2016_11_01_092857_create_masterfile_table.php',
     'CreateMenusTable' => $baseDir . '/database/migrations/2016_10_09_195248_create_menus_table.php',
+    'CreateMessageTypesTable' => $baseDir . '/database/migrations/2016_12_14_062149_create_message_types_table.php',
+    'CreateMessagesTable' => $baseDir . '/database/migrations/2016_12_14_065137_create_messages_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateRoleRoutes' => $baseDir . '/database/migrations/2016_10_31_120036_create_role_routes.php',
     'CreateRoleUserTable' => $baseDir . '/database/migrations/2016_11_26_082019_create_role_user_table.php',
@@ -170,6 +172,7 @@ return array(
     'Maatwebsite\\Excel\\Writers\\LaravelExcelWriter' => $vendorDir . '/maatwebsite/excel/src/Maatwebsite/Excel/Writers/LaravelExcelWriter.php',
     'MasterfileSeeder' => $baseDir . '/database/seeds/MasterfileSeeder.php',
     'MenuSeeder' => $baseDir . '/database/seeds/MenuSeeder.php',
+    'MessageTypesSeeder' => $baseDir . '/database/seeds/MessageTypesSeeder.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',
     'PHPUnit\\Framework\\BaseTestListener' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/BaseTestListener.php',
     'PHPUnit\\Framework\\TestCase' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/TestCase.php',
@@ -629,8 +632,12 @@ return array(
     'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => $vendorDir . '/sebastian/recursion-context/src/InvalidArgumentException.php',
     'SebastianBergmann\\ResourceOperations\\ResourceOperations' => $vendorDir . '/sebastian/resource-operations/src/ResourceOperations.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
+<<<<<<< HEAD
     'ServiceCategorySeeder' => $baseDir . '/database/seeds/ServiceCategorySeeder.php',
     'ServiceSeeder' => $baseDir . '/database/seeds/ServiceSeeder.php',
+=======
+    'SystemConfigSeeder' => $baseDir . '/database/seeds/SystemConfigSeeder.php',
+>>>>>>> 9d31fb5654a6cb129a35392d2b4fc6c28d89031a
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'UserSeeder' => $baseDir . '/database/seeds/UserSeeder.php',

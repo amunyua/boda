@@ -7,6 +7,8 @@ use App\Masterfile;
 use App\Role;
 use App\User;
 use App\UserRole;
+use App\SystemConfig;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -14,6 +16,7 @@ use Illuminate\Support\Facades\Session;
 use SmoDav\Mpesa\Native\Mpesa;
 use Yajra\Datatables\Facades\Datatables;
 use App\Route;
+use Illuminate\Support\Facades\Input;
 
 class UserManagerController extends Controller
 {
@@ -30,8 +33,7 @@ class UserManagerController extends Controller
     }
 
     public function getAllUsers(){
-        $mfs = DB::select('select * from all_users where status = 1', [1]);
-
+        $mfs = DB::table('all_users')->get();
         return view('user_manager.all_users', ['mfs' => $mfs]);
     }
 
@@ -162,19 +164,111 @@ class UserManagerController extends Controller
     }
 
     public function blockUser(Request $request){
-        $id = $request->id;
-        // update db record
-        $user = DB::table('users')->whereIn('id', $id)->update(array('status' => 0));
-        $user->save();
-        Session::flash('success', 'User has been BLOCKED!');
-        return redirect('all_users');
+        $id = $request->user_id;
+        $return = [];
+
+        try {
+            // update db record
+            User::where('id', $id)
+                ->update(['status' => 0]);
+
+            $return = [
+                'success' => true,
+                'message' => 'User has been BLOCKED!',
+                'type' => 'success'
+            ];
+        } catch (QueryException $qe){
+            $return = [
+                'success' => false,
+                'message' => $qe->getMessage(),
+                'type' => 'success'
+            ];
+        }
+
+        return Response::json($return);
     }
 
-//    public function inBlockUser(Request $request, $id){
-//        // update db record
-//        $user = DB::table('users')->whereIn('id', $id)->update(array('status' => 1));
-//        $user->save();
-//        Session::flash('success', 'User has been UNBLOCKED!');
-//        return redirect('all_users');
-//    }
+    public function unblockUser(Request $request){
+        $id = $request->user_id;
+        $return = [];
+
+        try {
+            // update db record
+            User::where('id', $id)
+                ->update(['status' => 1]);
+
+            $return = [
+                'success' => true,
+                'message' => 'User has been UNBLOCKED!',
+                'type' => 'success'
+            ];
+        } catch (QueryException $qe){
+            $return = [
+                'success' => false,
+                'message' => $qe->getMessage(),
+                'type' => 'success'
+            ];
+        }
+
+        return Response::json($return);
+    }
+
+    public function updateSystemConfig(Request $request){
+
+        $this->validate($request, [
+            'company_name' => 'required',
+            'tel_one' => 'required',
+            'tel_two' => 'required',
+            'tel_three' => 'required',
+            'email' => 'required',
+            'physical_address' => 'required',
+//            'company_logo' => 'image|dimensions:min_width=246,min_height=52'
+        ]);
+
+        // upload image if exists
+        $path = '';
+        if(Input::hasFile('company_logo')){
+            $prefix = uniqid();
+            $image = Input::file('company_logo');
+            $filename = $image->getClientOriginalName();
+            $new_name = $prefix.$filename;
+
+            if($image->isValid()) {
+                $image->move('uploads/images', $new_name);
+                $path = 'uploads/images/'.$new_name;
+            }
+        }
+        try{
+            $current_image = SystemConfig::find(1)->company_logo;
+            $system = SystemConfig::where('id', 1)
+                ->update(array(
+                    'company_name' => $request->company_name,
+                    'company_logo' => (!empty($path)) ? $path : $current_image,
+                    'tel_one' => $request->tel_one,
+                    'tel_two' => $request->tel_two,
+                    'tel_three' => $request->tel_three,
+                    'email' => $request->email,
+                    'email_two' => $request->email_two,
+                    'box_office' => $request->box_office,
+                    'physical_address' => $request->physical_address,
+                    'paybill_no' => $request->paybill_no,
+                    'service_pin' => $request->service_pin
+                ));
+
+            $request->session()->flash('status', 'System Configurations have been updated');
+        } catch(QueryException $qe) {
+            $request->session()->flash('error', 'Encountered an error: '.$qe->getMessage());
+        }
+
+        return redirect('load-config');
+    }
+
+    public function loadSystemConfig(Request $request){
+        $id = 1;
+        $sys = SystemConfig::find($id);
+
+        return view('system.system_config', array(
+            'sys' => $sys
+        ));
+    }
 }

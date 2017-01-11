@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
 //        $this->call(RolesSeeder::class);
 //        $this->call(MasterfileSeeder::class);
 //        $this->call(ContactTypeSeeder::class);
@@ -24,5 +25,20 @@ class DatabaseSeeder extends Seeder
 //        $this->call(ServiceSeeder::class);
         #### Test Data
         $this->call(CategorySeeder::class);
+=======
+
+        $this->call(RolesSeeder::class);
+        $this->call(MasterfileSeeder::class);
+        $this->call(ContactTypeSeeder::class);
+        $this->call(AddressSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(RouteSeeder::class);
+        $this->call(MenuSeeder::class);
+        $this->call(CountyTableSeeder::class);
+        $this->call(InventoryCategorySeeder::class);
+        $this->call(SystemConfigSeeder::class);
+
+
+>>>>>>> 9d31fb5654a6cb129a35392d2b4fc6c28d89031a
     }
 }
