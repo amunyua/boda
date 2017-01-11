@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FirstApplication;
+use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -36,6 +37,15 @@ class FirstApplicationsController extends Controller
                 $fa->gender = $request->gender;
                 $fa->email = $request->email;
                 $fa->save();
+
+                // create rider's login account
+                $user = new User();
+                $user->name = $request->surname.' '.$request->firstname;
+                $user->email = $request->email;
+                $user->password = 123456;
+                $user->status = 1;
+                $user->phone_no = $request->phone_no;
+                $user->save();
 
                 if(!empty($request->email)){
                     // save email

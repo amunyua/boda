@@ -153,3 +153,4 @@ Route::get('/load-customer-bills', 'CustomerBillsController@loadBills');
 #### Broadcast messages
 Route::get('send-sms','BroadcastController@sendSms');
 Route::get('message','BroadcastController@addJob');
+Route::get('mpesa','UserManagerController@mpesaPayment');

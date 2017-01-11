@@ -24,8 +24,9 @@ class UserManagerController extends Controller
     }
 
     public function mpesaPayment(){
-        $repsonse = mpesa(10, 254715862938)->usingReferenceId('Alex Muunyua')->transact();
-        return Guz::json($repsonse);
+        $response = mpesa(10, 254718513948)->usingReferenceId(115445)->transact();
+        dd($response);
+        return Response::json($response);
     }
 
     public function getAllUsers(){
