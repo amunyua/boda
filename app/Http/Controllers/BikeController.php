@@ -20,7 +20,7 @@ class BikeController extends Controller
      */
     public function index()
     {
-        $mk = Category::where('category_name','Motorbike')->first();
+        $mk = Category::where('code','BIKE')->first();
         $categories = Category::where('parent_category','=',$mk->id)->get();
         return view('inventory.bikes',array(
             'categories'=>$categories
