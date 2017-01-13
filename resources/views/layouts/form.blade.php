@@ -294,7 +294,7 @@ you can add as many as you like
             $b_role = \App\Masterfile::find($user->masterfile_id)->b_role;
         @endphp
         <li>
-            <a href="profile.html" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
+            <a href="#" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
         </li>
         @php
             if($b_role == 'Client'){
@@ -302,9 +302,9 @@ you can add as many as you like
         <li>
             <a href="inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Bills <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
         </li>
-        <li>
-            <a href="calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
-        </li>
+        {{--<li>--}}
+            {{--<a href="calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>--}}
+        {{--</li>--}}
         <li>
             <a href="gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Transactions</span> </span> </a>
         </li>
