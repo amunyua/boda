@@ -297,6 +297,7 @@ class RouteSeeder extends Seeder
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
+
         #### client
         $client = new Route();
         $client->route_name = 'Client';
@@ -331,6 +332,14 @@ class RouteSeeder extends Seeder
         $service_category->parent_route = $service_id;
         $service_category->save();
         $service_category->roles()->attach($admin);
+
+        ### rider wallet Profile
+        $wallet = new Route();
+        $wallet->route_name = 'Manage My Wallet';
+        $wallet->url = 'my-wallet';
+        $wallet->parent_route = $reg_id;
+        $wallet->save();
+        $wallet->roles()->attach($admin);
 
         $route = new Route();
         $route->route_name = 'Add Service Category';
@@ -503,6 +512,13 @@ class RouteSeeder extends Seeder
         $system_config = new Route();
         $system_config->route_name = 'Update Route';
         $system_config->url = 'edit-route';
+        $system_config->parent_route = $system_id;
+        $system_config->save();
+        $system_config->roles()->attach($admin);
+
+        $system_config = new Route();
+        $system_config->route_name = 'Load System Configuration';
+        $system_config->url = 'load-config';
         $system_config->parent_route = $system_id;
         $system_config->save();
         $system_config->roles()->attach($admin);

@@ -2,29 +2,89 @@
 
 namespace App\Http\Controllers;
 
-use Doctrine\DBAL\Query\QueryException;
+use App\SystemConfig;
+use App\WalletJournal;
+use GuzzleHttp\Client;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\ClientWallet;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Jobs\TestQueues;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 
 class WalletController extends Controller
 {
-    public function creditWallet(Request $request){
-        Log::info('Crediting Wallet!');
-        // dispatch the job
-        dispatch(new TestQueues());
+    public function depositToWallet(Request $request){
+        // validate
+        $validator = Validator::make($request->all(), [
+            'deposit_amount' => 'required|numeric|min:10'
+        ]);
 
-//        try{
-//            $client_wallet = new ClientWallet();
-//            $client_wallet->wallet_balance = 50;
-//            $client_wallet->client_account_id = $request->client_account_id;
-//            $client_wallet->save();
-//
-//            // dispatch job to deposit the deposited amount to the client's Wallet
-//
-//        } catch (QueryException $qe) {
-//            Log::info('Credit Wallet Fail: '. $qe->getMessage());
-//        }
+        $return = [];
+        if($validator->fails()){
+            $return = [
+                'success' => false,
+                'warnings' => $validator->getMessageBag()->toArray(),
+                'type' => 'warning'
+            ];
+        } else {
+            $deposit_amount = $request->deposit_amount;
+            $user = Auth::user();
+            $cw_data = DB::table('wallet_view')->where('masterfile_id', $user->masterfile)->first();
+
+            // get company paybill no
+            $paybill_no = SystemConfig::find(1)->paybill_no;
+            $response = mpesa($deposit_amount, $user->phone_no)->usingReferenceId($paybill_no)->transact();
+            dd($response);
+
+            // get current client's wallet
+            $current_balance = DB::table('wallet_view')
+                ->where('masterfile_id', $user->masterfile_id)
+                ->first()
+                ->wallet_balance;
+            $new_balance = $current_balance + $deposit_amount;
+
+            // deposit the funds to client Wallets
+            try{
+                ClientWallet::where('masterfile_id', $user->masterfile_id)
+                    ->update([
+                        'wallet_balance' => $new_balance
+                    ]);
+            } catch (QueryException $qe) {
+                $return = [
+                    'success' => false,
+                    'response' => $qe->getMessage(),
+                    'type' => 'error'
+                ];
+            }
+
+            try{
+                // credit the wallet journal
+                $wj = new WalletJournal();
+                $wj->client_account_id = $cw_data->client_account_id;
+                $wj->client_wallet_id = $cw_data->id;
+                $wj->particulars = 'Deposited '.$deposit_amount;
+                $wj->masterfile_id = $cw_data->masterfile_id;
+                $wj->amount = $deposit_amount;
+                $wj->dr_cr = 'CR';
+                $wj->save();
+
+                $return = [
+                    'success' => true,
+                    'response' => $response,
+                    'type' => 'success'
+                ];
+            } catch (QueryException $qe) {
+                $return = [
+                    'success' => false,
+                    'response' => $qe->getMessage(),
+                    'type' => 'error'
+                ];
+            }
+        }
+        return Response::json($return);
     }
 }

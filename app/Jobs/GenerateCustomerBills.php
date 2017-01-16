@@ -39,7 +39,7 @@ class GenerateCustomerBills implements ShouldQueue
             // get all client accounts
             $accounts = ClientAccount::where([
                 ['client_account_status', '=', 1],
-                ['billing_start_date', '>=', date('Y-m-d')]
+                ['billing_start_date', '<=', date('Y-m-d')]
             ])->get();
 
             Log::info('Accounts: ' . $accounts);

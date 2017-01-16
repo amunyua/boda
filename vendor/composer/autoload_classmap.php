@@ -64,6 +64,8 @@ return array(
     'CreateTransactionsTable' => $baseDir . '/database/migrations/2016_12_11_100826_create_transactions_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateWalletJournalsTable' => $baseDir . '/database/migrations/2016_12_29_105035_create_wallet_journals_table.php',
+    'CreateWalletsProfileView' => $baseDir . '/database/migrations/2017_01_16_133745_create_wallets_profile_view.php',
+    'CreateWalletsView' => $baseDir . '/database/migrations/2017_01_16_124419_create_wallets_view.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
@@ -632,12 +634,9 @@ return array(
     'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => $vendorDir . '/sebastian/recursion-context/src/InvalidArgumentException.php',
     'SebastianBergmann\\ResourceOperations\\ResourceOperations' => $vendorDir . '/sebastian/resource-operations/src/ResourceOperations.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
-<<<<<<< HEAD
     'ServiceCategorySeeder' => $baseDir . '/database/seeds/ServiceCategorySeeder.php',
     'ServiceSeeder' => $baseDir . '/database/seeds/ServiceSeeder.php',
-=======
     'SystemConfigSeeder' => $baseDir . '/database/seeds/SystemConfigSeeder.php',
->>>>>>> 9d31fb5654a6cb129a35392d2b4fc6c28d89031a
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'UserSeeder' => $baseDir . '/database/seeds/UserSeeder.php',

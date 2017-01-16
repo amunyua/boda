@@ -135,11 +135,16 @@ Route::get('/all-allocations','InventoryAllocationController@inventoryAllocation
 
 #### Client Accounts
 Route::get('/client_account','ClientAccountController@clientAccounts');
+Route::get('/client_wallet','ClientAccountController@clientWallets');
+Route::get('/load-client-wallets','ClientAccountController@loadClientWallets');
 Route::post('/create-client-account','ClientAccountController@createAccount');
 Route::get('/load-accounts','ClientAccountController@loadAccounts');
 Route::post('/delete-client-account','ClientAccountController@destroyClientAccount');
 Route::get('/get-client-account-details/{id}','ClientAccountController@getEditDetails');
 Route::post('/edit-client-account','ClientAccountController@editClientAccount');
+Route::get('my-wallet', 'ClientAccountController@myWallet');
+Route::post('/deposit-to-wallet', 'WalletController@depositToWallet');
+
 #### Access Denied
 Route::get('/access-denied', function(){
     return view('pages.access_denied');

@@ -26,6 +26,5 @@ class MasterfileSeeder extends Seeder
         $admin->user_role = $user_role->id;
         $admin->gender = 1;
         $admin->save();
-
     }
 }

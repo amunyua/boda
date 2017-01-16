@@ -11,11 +11,7 @@ var Common = {
                 html += '<strong>Success!</strong> '+message;
                 html += '</div>';
                 $('div#feedback').html(html);
-<<<<<<< HEAD
                 Common.closeModal(modal);
-=======
-                // Common.closeModal(modal);
->>>>>>> 599a1abd144cdfaa040aebc6caca1b8eb3808d6e
                 break;
 
             case 'warnings':
@@ -36,11 +32,7 @@ var Common = {
                 html += '<strong>Error!</strong> '+message;
                 html += '</div>';
                 $('div#feedback').html(html);
-<<<<<<< HEAD
                 Common.closeModal(modal);
-=======
-                // Common.closeModal(modal);
->>>>>>> 599a1abd144cdfaa040aebc6caca1b8eb3808d6e
                 break;
         }
     },

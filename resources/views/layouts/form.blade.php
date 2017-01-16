@@ -234,7 +234,7 @@ Use search to find needed section.
             <div class="txt-color-white inline-block">
                 @php
                     use Carbon\Carbon;
-                    $current = Carbon::now(new DateTimeZone('Indian/Antananarivo'));
+                    $current = Carbon::now();
                 @endphp
                 <i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>{{ $current }} &nbsp;</strong> </i>
 
@@ -433,6 +433,7 @@ you can add as many as you like
 
 </script>
 
+@stack('js')
 </body>
 
 </html>
