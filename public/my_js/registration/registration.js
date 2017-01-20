@@ -103,7 +103,7 @@ $(document).ready(function() {
             id_no: {
                 required: "Please specify National id or Phone Number",
                 minlength:  "Minimum characters 8",
-                maxlength:  "Maximum characters 15"
+                maxlength:  "Maximum characters 8"
             },
             // email: {
             //     required: "You must specify the email address",
@@ -115,8 +115,8 @@ $(document).ready(function() {
             physical_address: "Please provide physical address",
             phone_no: {
                 required: "Please provide mobile number",
-                minlength: "Minimum characters 10 e.g 0700 000 000",
-                maxlength: "Maximum characters 10 e.g 254 700 000 000",
+                minlength: "Minimum characters 12 e.g 254 700 000 000",
+                maxlength: "Maximum characters 12 e.g 254 700 000 000",
             },
             gender: "You must select the Role first",
             role: "You must select the Role first"

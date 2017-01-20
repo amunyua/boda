@@ -90,9 +90,8 @@
                                 <div class="row">
                                     <label class="label col col-2">Model</label>
                                     <div class="col col-10">
-                                        <label class="input">
-                                            <select name="model" class="form-control" id="inventory-model">
-                                            </select>
+                                        <label class="input"><i class="icon-append fa fa-gears"></i>
+                                            <input type="text" name="model" value="{{ old('model') }}">
                                         </label>
                                     </div>
                                 </div>
@@ -121,15 +120,12 @@
                                 <div class="row">
                                     <label class="label col col-2">Cost price</label>
                                     <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
+                                        <label class="input"> <i class="icon-append fa fa-money"></i>
                                             <input type="number" name="cost_price" autocomplete="off" value="{{ old('cost_price') }}">
                                         </label>
                                     </div>
                                 </div>
                             </section>
-
-
-
                         </fieldset>
 
                         <footer>
@@ -139,13 +135,9 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">
                                 <i class="fa fa-remove"></i> Cancel
                             </button>
-
                         </footer>
                     </form>
-
-
                 </div>
-
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>

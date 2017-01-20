@@ -284,12 +284,19 @@ class RouteSeeder extends Seeder
 
         //bikes
         $category = new Route();
-        $category->route_name = 'All Motorbikes';
+        $category->route_name = 'Manage Motorbikes';
         $category->url = '/bikes';
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
 
+        //bikes models
+        $model = new Route();
+        $model->route_name = 'Manage Motorbikes Models';
+        $model->url = '/bikes-model';
+        $model->parent_route = $inventory_id;
+        $model->save();
+        $model->roles()->attach($admin);
 
         $category = new Route();
         $category->route_name = 'Stock Transactions';
