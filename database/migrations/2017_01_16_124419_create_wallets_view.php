@@ -21,7 +21,8 @@ class CreateWalletsView extends Migration
                       concat(m.surname,' ',m.firstname,' ',m.middlename) as rider,
                       if(cw.status = 1, 'Active', 'Inactive') as wallet_status,
                       ca.bike_id,
-                      ca.masterfile_id
+                      ca.masterfile_id,
+                      m.phone_no
                     from client_wallets cw
                     left join client_accounts ca on cw.client_account_id = ca.id
                     left join masterfiles m on ca.masterfile_id = m.id

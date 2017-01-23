@@ -84,6 +84,8 @@ class WalletController extends Controller
                     'type' => 'error'
                 ];
             }
+
+            $this->dispatch();
         }
         return Response::json($return);
     }

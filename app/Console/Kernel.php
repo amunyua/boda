@@ -2,16 +2,10 @@
 
 namespace App\Console;
 
-use App\ClientAccount;
-use App\CustomerBill;
 use App\Jobs\GenerateCustomerBills;
-use App\Journal;
-use App\Service;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
@@ -37,9 +31,7 @@ class Kernel extends ConsoleKernel
 //                  ->hourly();
 
         //schedule for database backup
-//        $this->databaseBackup($schedule);
-//
-//        $schedule->command()
+        $this->databaseBackup($schedule);
 
 
         $schedule->call(function () {
@@ -65,6 +57,6 @@ class Kernel extends ConsoleKernel
             "db:backup --database=mysql --destination=local --destinationPath=`date +\%Y/%d-%m-%Y`.sql --compression=gzip
 "
             // "db:backup --database=mysql --destination=local --destinationPath=/{$environment}/projectname_{$environment}_{$date} --compression=sql"
-        )->everyMinute();
+        )->dailyAt('22:00');
     }
 }
