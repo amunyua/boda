@@ -16,6 +16,7 @@ class DashboardController extends Controller
     {
         $this->middleware('auth');
 //        $this->middleware('validateroutes');
+        $this->middleware('checkiffap');
     }
 
     public function setMonth($month){

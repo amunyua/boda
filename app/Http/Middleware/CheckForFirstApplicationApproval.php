@@ -19,19 +19,22 @@ class CheckForFirstApplicationApproval
     public function handle($request, Closure $next)
     {
         // check if a user is logged in
-        if (Auth::check()) {
+        $is_logged_in = Auth::check();
+        if ($is_logged_in) {
             // get the logged in user(Rider)
             $user = $request->user();
 
-            // check and ensure that it's first time login for the rider
+            // check and ensure that it's first application was approved
             if (empty($user->masterfile_id)) {
                 // check if first application has been approved
                 $fap = FirstApplication::where('phone_no', $user->phone_no)->first();
 
                 if ($fap->approval_status) {
+                    // load the second application form for the user
                     return redirect('/second-application');
                 }
             }
+            return $next($request);
         }
 
         return $next($request);

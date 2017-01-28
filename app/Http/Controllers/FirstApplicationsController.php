@@ -43,7 +43,7 @@ class FirstApplicationsController extends Controller
                 $user = new User();
                 $user->name = $request->surname.' '.$request->firstname;
                 $user->email = $request->email;
-                $user->password = 123456;
+                $user->password = bcrypt(123456);
                 $user->status = 1;
                 $user->phone_no = $phone_no;
                 $user->save();

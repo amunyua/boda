@@ -20,7 +20,7 @@ class CreateFirstApplicationsTable extends Migration
             $table->string('surname')->nullable();
             $table->string('gender');
             $table->string('email')->nullable();
-            $table->string('phone_no')->unique();
+            $table->bigInteger('phone_no')->unique();
             $table->boolean('approval_status')->default(0);
             $table->timestamps();
         });

@@ -1,7 +1,7 @@
 <aside id="left-panel">
     @php
         $user = Auth::user();
-        $image_path = \App\Masterfile::find($user->masterfile_id)->image_path;
+        $image_path = (!empty($user->masterfile_id)) ? \App\Masterfile::find($user->masterfile_id)->image_path : '';
         $user_prof_pic = (!empty($image_path)) ? $image_path : 'img/avatars/photo.jpg';
     @endphp
     <!-- User info -->
