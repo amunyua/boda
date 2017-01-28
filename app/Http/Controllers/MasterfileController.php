@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
 use Yajra\Datatables\Facades\Datatables;
+use App\MyHelpers\Fapps\FirstApplication as Fapps;
 
 class MasterfileController extends Controller
 {
@@ -629,6 +630,9 @@ class MasterfileController extends Controller
                 }
 
                 // send sms
+
+                // create rider's profile
+                Fapps::CreateRidersMasterfile($candidate);
             }
 
             $return = [

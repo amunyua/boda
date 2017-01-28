@@ -25,7 +25,7 @@ class CreateMasterfileTable extends Migration
             $table->string('user_role', 50);
             $table->boolean('gender');
             $table->boolean('status')->default(1);
-            $table->bigInteger('phone_no');
+            $table->bigInteger('phone_no')->unique();
             $table->timestamps();
         });
     }

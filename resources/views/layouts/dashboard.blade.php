@@ -177,7 +177,7 @@ you can add as many as you like
     }
 </script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="{{ URL::asset('js/libs/jqueryui/1.10.3/jquery-ui.min.js') }}"></script>
 <script>
     if (!window.jQuery.ui) {
         document.write('<script src="{{ URL::asset('js/libs/jquery-ui-1.10.3.min.js') }}"><\/script>');
@@ -935,7 +935,7 @@ you can add as many as you like
     })();
 
 </script>
-
+@stack('js')
 </body>
 
 </html>
