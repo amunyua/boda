@@ -18,6 +18,12 @@ class FirstApplication
     const b_role = 'Client';
     const user_role = 'CLIENT';
 
+    /**
+     * Creates a Masterfile on First application's approval as well
+     * as updates the masterfile id on the rider's user login account
+     * @param $candidate
+     * @return array|mixed
+     */
     public static function CreateRidersMasterfile($candidate){
         try{
             $mf = new Masterfile();
@@ -32,10 +38,14 @@ class FirstApplication
             $mf->phone_no = $candidate->phone_no;
             $mf->save();
 
-            self::createUserFromMfId($mf->id);
+            User::where('phone_no', $candidate->phone_no)
+                ->update([
+                    'masterfile_id' => $mf->id
+                ]);
+
             return $mf->id;
         } catch (QueryException $qe){
-            Log::error($qe->getMessage());
+//            Log::error($qe->getMessage());
             return [
                 'status' => false,
                 'error' => $qe->getMessage()
@@ -43,15 +53,20 @@ class FirstApplication
         }
     }
 
+    /**
+     * Creates a new User Login account from a created Masterfile
+     * @param $mf_id
+     * @return array|mixed
+     */
     public static function createUserFromMfId($mf_id){
         $mf = Masterfile::find($mf_id);
-        $email = \App\FirstApplication::where('phone_no', $mf->phone_no)->first()->email;
+//        $email = \App\FirstApplication::where('phone_no', $mf->phone_no)->first()->email;
 
         try {
             $user = new User();
             $user->name = $mf->surname . ' ' . $mf->firstname;
-            // $user->email = $mf->email;
-            $user->email = $email;
+             $user->email = $mf->email;
+//            $user->email = $email;
             $user->password = bcrypt(123456);
             $user->status = 1;
             $user->phone_no = $mf->phone_no;
