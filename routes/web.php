@@ -13,11 +13,15 @@
 
 Route::get('/', 'DashboardController@index');
 Route::get('/home', 'DashboardController@index');
+Route::get('/second-application', function (){
+    echo 'Please fill in the second application...';
+});
 
 Auth::routes();
 
 // Dashboard
 Route::get('/dashboard', 'DashboardController@index');
+Route::get('/daily-cash-collection', 'DashboardController@dailyCollection');
 
 // Registration Module
 Route::get('/registration', 'MasterfileController@index');

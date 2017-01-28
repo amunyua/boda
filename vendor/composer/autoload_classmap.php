@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddBillId' => $baseDir . '/database/migrations/2017_01_25_204018_add_bill_id.php',
     'AddBillingStartDate' => $baseDir . '/database/migrations/2016_12_14_074542_addBillingStartDate.php',
     'AddColumnInventotyItems' => $baseDir . '/database/migrations/2016_12_06_150751_add_columnInventotyItems.php',
     'AddColumnStockTransactions' => $baseDir . '/database/migrations/2016_12_07_092347_add_columnStockTransactions.php',
@@ -33,6 +34,7 @@ return array(
     'CreateAddressesTable' => $baseDir . '/database/migrations/2016_11_26_145922_create_addresses_table.php',
     'CreateAuditTrailsTable' => $baseDir . '/database/migrations/2016_11_01_180922_create_audit_trails_table.php',
     'CreateBikesTable' => $baseDir . '/database/migrations/2016_12_06_115701_create_bikes_table.php',
+    'CreateBillDataView' => $baseDir . '/database/migrations/2017_01_23_161254_create_bill_data_view.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2016_10_13_180726_create_categories_table.php',
     'CreateClientAccountsTable' => $baseDir . '/database/migrations/2016_12_07_110805_create_client_accounts_table.php',
     'CreateClientWalletsTable' => $baseDir . '/database/migrations/2016_12_11_101431_create_client_wallets_table.php',
@@ -64,7 +66,6 @@ return array(
     'CreateTransactionsTable' => $baseDir . '/database/migrations/2016_12_11_100826_create_transactions_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateWalletJournalsTable' => $baseDir . '/database/migrations/2016_12_29_105035_create_wallet_journals_table.php',
-    'CreateWalletsProfileView' => $baseDir . '/database/migrations/2017_01_16_133745_create_wallets_profile_view.php',
     'CreateWalletsView' => $baseDir . '/database/migrations/2017_01_16_124419_create_wallets_view.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

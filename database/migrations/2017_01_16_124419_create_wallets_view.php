@@ -13,7 +13,7 @@ class CreateWalletsView extends Migration
      */
     public function up()
     {
-        Schema::table('wallets_view', function (Blueprint $table) {
+        Schema::table('wallet_view', function (Blueprint $table) {
             \Illuminate\Support\Facades\DB::statement(
                 "create or replace view wallets_view as
                     select

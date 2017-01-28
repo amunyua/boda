@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckForFirstApplicationApproval;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\ValidateRoutes;
 
@@ -16,6 +17,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        CheckForFirstApplicationApproval::class
     ];
 
     /**
