@@ -2,7 +2,7 @@
     <ul>
         @php
             $user = Auth::user();
-            $b_role = \App\Masterfile::find($user->masterfile_id)->b_role;
+            $b_role = (!empty($user->masterfile_id)) ? \App\Masterfile::find($user->masterfile_id)->b_role : '';
         @endphp
         <li>
             <a href="{{ url('mf-profile/'.$user->id) }}" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>

@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddBillId' => $baseDir . '/database/migrations/2017_01_25_204018_add_bill_id.php',
     'AddBillingStartDate' => $baseDir . '/database/migrations/2016_12_14_074542_addBillingStartDate.php',
     'AddColumnInventotyItems' => $baseDir . '/database/migrations/2016_12_06_150751_add_columnInventotyItems.php',
     'AddColumnStockTransactions' => $baseDir . '/database/migrations/2016_12_07_092347_add_columnStockTransactions.php',
@@ -34,6 +35,7 @@ return array(
     'CreateAuditTrailsTable' => $baseDir . '/database/migrations/2016_11_01_180922_create_audit_trails_table.php',
     'CreateBikeModelsTable' => $baseDir . '/database/migrations/2017_01_18_082526_create_bike_models_table.php',
     'CreateBikesTable' => $baseDir . '/database/migrations/2016_12_06_115701_create_bikes_table.php',
+    'CreateBillDataView' => $baseDir . '/database/migrations/2017_01_23_161254_create_bill_data_view.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2016_10_13_180726_create_categories_table.php',
     'CreateClientAccountsTable' => $baseDir . '/database/migrations/2016_12_07_110805_create_client_accounts_table.php',
     'CreateClientWalletsTable' => $baseDir . '/database/migrations/2016_12_11_101431_create_client_wallets_table.php',

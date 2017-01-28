@@ -29,11 +29,12 @@ class FirstApplicationsController extends Controller
             );
         }else{
             try{
+                $phone_no = "254".$request->phone_no;
                 $fa = new FirstApplication();
                 $fa->surname = $request->surname;
                 $fa->firstname = $request->firstname;
                 $fa->middlename = $request->middlename;
-                $fa->phone_no = $request->phone_no;
+                $fa->phone_no = $phone_no;
                 $fa->gender = $request->gender;
                 $fa->email = $request->email;
                 $fa->save();
@@ -42,9 +43,9 @@ class FirstApplicationsController extends Controller
                 $user = new User();
                 $user->name = $request->surname.' '.$request->firstname;
                 $user->email = $request->email;
-                $user->password = 123456;
+                $user->password = bcrypt(123456);
                 $user->status = 1;
-                $user->phone_no = $request->phone_no;
+                $user->phone_no = $phone_no;
                 $user->save();
 
                 if(!empty($request->email)){

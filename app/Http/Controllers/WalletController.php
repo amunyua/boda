@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ClearBillsWithBalance;
 use App\SystemConfig;
 use App\WalletJournal;
 use GuzzleHttp\Client;
@@ -33,14 +34,14 @@ class WalletController extends Controller
         } else {
             $deposit_amount = $request->deposit_amount;
             $user = Auth::user();
-            $cw_data = DB::table('wallet_view')->where('masterfile_id', $user->masterfile)->first();
+            $cw_data = DB::table('wallet_view')->where('masterfile_id', $user->masterfile_id)->first();
 
             // get company paybill no
-            $paybill_no = SystemConfig::find(1)->paybill_no;
-            $response = mpesa($deposit_amount, $user->phone_no)->usingReferenceId($paybill_no)->transact();
-            dd($response);
+//            $paybill_no = SystemConfig::find(1)->paybill_no;
+//            $response = mpesa($deposit_amount, $user->phone_no)->usingReferenceId($paybill_no)->transact();
+//            dd($response);
 
-            // get current client's wallet
+            // get current client's wallet balance
             $current_balance = DB::table('wallet_view')
                 ->where('masterfile_id', $user->masterfile_id)
                 ->first()
@@ -49,11 +50,14 @@ class WalletController extends Controller
 
             // deposit the funds to client Wallets
             try{
-                ClientWallet::where('masterfile_id', $user->masterfile_id)
+                Log::info('Trying to update wallet balance...');
+                ClientWallet::where('client_account_id', $cw_data->client_account_id)
                     ->update([
                         'wallet_balance' => $new_balance
                     ]);
+                Log::info('Client wallet has been successfully updated!');
             } catch (QueryException $qe) {
+                Log::error('Failed to update wallet balance!'.$qe->getMessage());
                 $return = [
                     'success' => false,
                     'response' => $qe->getMessage(),
@@ -74,7 +78,7 @@ class WalletController extends Controller
 
                 $return = [
                     'success' => true,
-                    'response' => $response,
+                    'response' => 'sldfjlds',
                     'type' => 'success'
                 ];
             } catch (QueryException $qe) {
@@ -85,6 +89,10 @@ class WalletController extends Controller
                 ];
             }
         }
+
+        // initiate clearing of any pending bills attached to the user
+        $this->dispatch(new ClearBillsWithBalance($user->phone_no));
+
         return Response::json($return);
     }
 }
