@@ -114,6 +114,11 @@ Route::get('/bikes','BikeController@index');
 Route::post('/store-bike','BikeController@store');
 Route::get('/load-bikes','BikeController@getBikes');
 Route::post('/delete-bike','BikeController@destroy');
+Route::get('/bikes-model','BikeController@allBikeModel');
+Route::post('/add-bike-model','BikeController@addModel');
+Route::post('/edit-bike-model','BikeController@editBikeModel');
+Route::get('/get-bike-model-details/{id}','BikeController@getEditDetails');
+Route::post('/delete-bike-model','BikeController@destroyBikeModel');
 
 //stock transactions
 Route::get('/stock-transactions','InventoryController@stockTransactions');

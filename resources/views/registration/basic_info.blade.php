@@ -19,7 +19,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                <input class="form-control" placeholder="ID/Phone No." type="number" name="id_no" id="adm_no" value="{{ old('id_no') }}">
+                <input class="form-control" placeholder="ID Number." type="number" name="id_no" id="id_no" value="{{ old('id_no') }}">
             </div>
         </div>
     </div>

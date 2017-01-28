@@ -116,14 +116,6 @@ class MenuSeeder extends Seeder
         $item->parent_menu = $inventory->id;
         $item->sequence = 1;
         $item->save();
-        //stock allocations
-
-        $item_route = Route::where('route_name', 'Inventory Allocation')->first();
-        $item = new Menu();
-        $item->route_id = $item_route->id;
-        $item->parent_menu = $inventory->id;
-        $item->sequence = 5;
-        $item->save();
 
         $category_route = Route::where('route_name', 'Manage Categories')->first();
         $category = new Menu();
@@ -139,12 +131,26 @@ class MenuSeeder extends Seeder
         $category->sequence = 3;
         $category->save();
 
-        $category_route = Route::where('route_name', 'All Motorbikes')->first();
+        $category_route = Route::where('route_name', 'Manage Motorbikes')->first();
         $category = new Menu();
         $category->route_id = $category_route->id;
         $category->parent_menu = $inventory->id;
         $category->sequence = 4;
         $category->save();
+
+        $model_route = Route::where('route_name', 'Manage Motorbikes Models')->first();
+        $model = new Menu();
+        $model->route_id = $model_route->id;
+        $model->parent_menu = $inventory->id;
+        $model->sequence = 5;
+        $model->save();
+
+        $item_route = Route::where('route_name', 'Inventory Allocation')->first();
+        $item = new Menu();
+        $item->route_id = $item_route->id;
+        $item->parent_menu = $inventory->id;
+        $item->sequence = 6;
+        $item->save();
 
         #### clients
         $clients_route = Route::where('route_name', 'Client')->first();
@@ -192,12 +198,59 @@ class MenuSeeder extends Seeder
         $manage_service->sequence = 2;
         $manage_service->save();
 
+
+        #### Bills and Payments
+        $cb_route = Route::where('route_name', 'Bills And Payments')->first();
+        $bps = new Menu();
+        $bps->fa_icon = 'fa-money';
+        $bps->route_id = $cb_route->id;
+        $bps->sequence = 7;
+        $bps->save();
+
+        $cb_route = Route::where('route_name', 'Customer Bills')->first();
+        $menu = new Menu();
+        $menu->route_id = $cb_route->id;
+        $menu->parent_menu = $bps->id;
+        $menu->sequence = 1;
+        $menu->save();
+
+        #### user management
+        $user_mngt_route = Route::where('route_name', 'User Management')->first();
+        $user_mngt = new Menu();
+        $user_mngt->fa_icon = 'fa-group';
+        $user_mngt->route_id = $user_mngt_route->id;
+        $user_mngt->sequence = 8;
+        $user_mngt->save();
+        $user_mngt_id = $user_mngt->id;
+
+        $all_user_route = Route::where('route_name', 'All Users')->first();
+        $all_user = new Menu();
+        $all_user->route_id = $all_user_route->id;
+        $all_user->parent_menu = $user_mngt->id;
+        $all_user->sequence = 1;
+        $all_user->save();
+
+        $role_route = Route::where('route_name', 'User Roles')->first();
+        $role = new Menu();
+        $role->route_id = $role_route->id;
+        $role->parent_menu = $user_mngt->id;
+        $role->sequence = 2;
+        $role->save();
+        $all_user->save();
+
+        $audit_trail_route = Route::where('route_name', 'Audit Trail')->first();
+        $audit_trail = new Menu();
+        $audit_trail->route_id = $audit_trail_route->id;
+        $audit_trail->parent_menu = $user_mngt->id;
+        $audit_trail->sequence = 3;
+        $audit_trail->save();
+
         #### system
         $system_route = Route::where('route_name', 'System')->first();
         $system = new Menu();
         $system->fa_icon = 'fa-cogs';
         $system->route_id = $system_route->id;
-        $system->sequence = 8;
+        $system->sequence = 9;
         $system->save();
         $system_id = $system->id;
 
@@ -236,50 +289,5 @@ class MenuSeeder extends Seeder
         $backup->sequence = 5;
         $backup->save();
 
-        #### user management
-        $user_mngt_route = Route::where('route_name', 'User Management')->first();
-        $user_mngt = new Menu();
-        $user_mngt->fa_icon = 'fa-group';
-        $user_mngt->route_id = $user_mngt_route->id;
-        $user_mngt->sequence = 7;
-        $user_mngt->save();
-        $user_mngt_id = $user_mngt->id;
-
-        $all_user_route = Route::where('route_name', 'All Users')->first();
-        $all_user = new Menu();
-        $all_user->route_id = $all_user_route->id;
-        $all_user->parent_menu = $user_mngt->id;
-        $all_user->sequence = 1;
-        $all_user->save();
-
-        $role_route = Route::where('route_name', 'User Roles')->first();
-        $role = new Menu();
-        $role->route_id = $role_route->id;
-        $role->parent_menu = $user_mngt->id;
-        $role->sequence = 2;
-        $role->save();
-        $all_user->save();
-
-        $audit_trail_route = Route::where('route_name', 'Audit Trail')->first();
-        $audit_trail = new Menu();
-        $audit_trail->route_id = $audit_trail_route->id;
-        $audit_trail->parent_menu = $user_mngt->id;
-        $audit_trail->sequence = 3;
-        $audit_trail->save();
-
-        #### Bills and Payments
-        $cb_route = Route::where('route_name', 'Bills And Payments')->first();
-        $bps = new Menu();
-        $bps->fa_icon = 'fa-money';
-        $bps->route_id = $cb_route->id;
-        $bps->sequence = 8;
-        $bps->save();
-
-        $cb_route = Route::where('route_name', 'Customer Bills')->first();
-        $menu = new Menu();
-        $menu->route_id = $cb_route->id;
-        $menu->parent_menu = $bps->id;
-        $menu->sequence = 8;
-        $menu->save();
     }
 }

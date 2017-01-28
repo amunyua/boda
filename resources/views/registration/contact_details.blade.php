@@ -75,7 +75,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-mobile-phone fa-fw"></i></span>
-                <input class="form-control" placeholder="Mobile Number" type="number" name="phone_no" id="phone_no" value="{{ old('phone_no') }}">
+                <input class="form-control" placeholder="Mobile Number Format. 254700000000" type="number" name="phone_no" id="phone_no" value="{{ old('phone_no') }}">
             </div>
         </div>
     </div>

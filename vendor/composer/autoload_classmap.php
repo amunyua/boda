@@ -33,6 +33,7 @@ return array(
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2016_11_26_145922_create_addresses_table.php',
     'CreateAuditTrailsTable' => $baseDir . '/database/migrations/2016_11_01_180922_create_audit_trails_table.php',
+    'CreateBikeModelsTable' => $baseDir . '/database/migrations/2017_01_18_082526_create_bike_models_table.php',
     'CreateBikesTable' => $baseDir . '/database/migrations/2016_12_06_115701_create_bikes_table.php',
     'CreateBillDataView' => $baseDir . '/database/migrations/2017_01_23_161254_create_bill_data_view.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2016_10_13_180726_create_categories_table.php',
