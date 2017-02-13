@@ -158,6 +158,7 @@
                                     <!-- widget content -->
                                     <div class="widget-body">
                                         <ul id="myTab1" class="nav nav-tabs bordered">
+                                            {{--gets the user role of logged in user--}}
                                             @php
                                                 $user = Auth::user();
                                                 $b_role = \App\Masterfile::find($user->masterfile_id)->b_role;
@@ -169,19 +170,19 @@
                                                 <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-envelope"></i> Manage Addresses</a>
                                             </li>
                                             @php
-                                                if($b_role == 'Client'){
+                                                if($mf->b_role == 'Client'){
                                             @endphp
                                             <li class="dropdown">
                                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Accounts Info <b class="caret"></b></a>
                                                 <ul class="dropdown-menu">
                                                     <li>
-                                                        <a href="#s3" data-toggle="tab">@Bills</a>
+                                                        <a href="#s3" data-toggle="tab">Bills</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#s4" data-toggle="tab">@Transaction</a>
+                                                        <a href="#s4" data-toggle="tab">Transaction</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#s5" data-toggle="tab">@Statement</a>
+                                                        <a href="#s5" data-toggle="tab">Statement</a>
                                                     </li>
                                                 </ul>
                                             </li>

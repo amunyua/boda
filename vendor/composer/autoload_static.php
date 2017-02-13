@@ -473,6 +473,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
     );
 
     public static $classMap = array (
+        'AddBillId' => __DIR__ . '/../..' . '/database/migrations/2017_01_25_204018_add_bill_id.php',
         'AddBillingStartDate' => __DIR__ . '/../..' . '/database/migrations/2016_12_14_074542_addBillingStartDate.php',
         'AddColumnInventotyItems' => __DIR__ . '/../..' . '/database/migrations/2016_12_06_150751_add_columnInventotyItems.php',
         'AddColumnStockTransactions' => __DIR__ . '/../..' . '/database/migrations/2016_12_07_092347_add_columnStockTransactions.php',
@@ -492,6 +493,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'AddressTypes' => __DIR__ . '/../..' . '/database/migrations/2016_12_06_123945_addressTypes.php',
         'AllMfs' => __DIR__ . '/../..' . '/database/migrations/2016_11_29_195201_all_mfs.php',
         'AllUsers' => __DIR__ . '/../..' . '/database/migrations/2016_12_07_104829_all_users.php',
+        'BikeInsurance' => __DIR__ . '/../..' . '/database/migrations/2017_02_02_162449_bikeInsurance.php',
         'CategorySeeder' => __DIR__ . '/../..' . '/database/seeds/CategorySeeder.php',
         'ChangeDatesToDatetimeOnCustomerBills' => __DIR__ . '/../..' . '/database/migrations/2017_01_11_151126_change_dates_to_datetime_on_customer_bills.php',
         'ContactTypeSeeder' => __DIR__ . '/../..' . '/database/seeds/ContactTypeSeeder.php',
@@ -501,6 +503,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'CreateAuditTrailsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_180922_create_audit_trails_table.php',
         'CreateBikeModelsTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_18_082526_create_bike_models_table.php',
         'CreateBikesTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_06_115701_create_bikes_table.php',
+        'CreateBillDataView' => __DIR__ . '/../..' . '/database/migrations/2017_01_23_161254_create_bill_data_view.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_13_180726_create_categories_table.php',
         'CreateClientAccountsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_07_110805_create_client_accounts_table.php',
         'CreateClientWalletsTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_11_101431_create_client_wallets_table.php',
