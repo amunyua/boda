@@ -26,6 +26,7 @@ return array(
     'AddressTypes' => $baseDir . '/database/migrations/2016_12_06_123945_addressTypes.php',
     'AllMfs' => $baseDir . '/database/migrations/2016_11_29_195201_all_mfs.php',
     'AllUsers' => $baseDir . '/database/migrations/2016_12_07_104829_all_users.php',
+    'BikeInsurance' => $baseDir . '/database/migrations/2017_02_02_162449_bikeInsurance.php',
     'CategorySeeder' => $baseDir . '/database/seeds/CategorySeeder.php',
     'ChangeDatesToDatetimeOnCustomerBills' => $baseDir . '/database/migrations/2017_01_11_151126_change_dates_to_datetime_on_customer_bills.php',
     'ContactTypeSeeder' => $baseDir . '/database/seeds/ContactTypeSeeder.php',

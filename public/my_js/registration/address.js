@@ -41,7 +41,6 @@ $('.edit_address').on('click', function(){
 });
 
 $('.del-btn').on('click', function(){
-    alert('ok');
     if(confirm('Are you sure you want to delete the selected Address?')){
         return true;
     }else{

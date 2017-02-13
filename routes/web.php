@@ -124,6 +124,7 @@ Route::post('/add-bike-model', 'BikeController@addModel');
 Route::post('/edit-bike-model', 'BikeController@editBikeModel');
 Route::get('/get-bike-model-details/{id}', 'BikeController@getEditDetails');
 Route::post('/delete-bike-model', 'BikeController@destroyBikeModel');
+Route::post('/attach-bike-insurance', 'BikeController@attachBikeInsurance');
 
 //stock transactions
 Route::get('/stock-transactions', 'InventoryController@stockTransactions');
