@@ -59,7 +59,8 @@ class FirstApplicationsController extends Controller
                 $user->roles()->attach($client_role);
 
                 if(!empty($request->email)){
-                    // send an email with info tracking application progress
+                    // send confirmation email
+                    
                 }
 
                 // send an welcome sms with info for tracking application progress

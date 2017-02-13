@@ -20,4 +20,4 @@ Route::get('/user', function (Request $request) {
 Route::post('/first-applications', 'FirstApplicationsController@store');
 
 Route::get('/credit-wallet/{client_account_id}', 'WalletController@creditWallet');
-Route::get('/credit-wallet', 'WalletController@creditWallet');
+Route::any('/credit-wallet', 'WalletController@creditWallet');
