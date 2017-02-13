@@ -17,7 +17,8 @@
 
 @section('content')
     @include('layouts.includes._messages')
-    <table id="table1" class="table table-striped table-bordered table-hover">
+    @section('table-id', '#dt_basic')
+    <table id="dt_basic" class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
             <th>Reg#</th>

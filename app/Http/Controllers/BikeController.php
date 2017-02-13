@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bike;
+use App\BikeModel;
 use App\Category;
 use Illuminate\Database\QueryException as e;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class BikeController extends Controller
      */
     public function index()
     {
-        $mk = Category::where('category_name','Motorbike')->first();
+        $mk = Category::where('code','BIKE')->first();
         $categories = Category::where('parent_category','=',$mk->id)->get();
         return view('inventory.bikes',array(
             'categories'=>$categories
@@ -146,5 +147,117 @@ class BikeController extends Controller
             @endif
             ')
             ->make(true);
+    }
+
+    public function allBikeModel(){
+        $models = BikeModel::all();
+        return view('inventory.bike_model',array(
+            'model'=>$models
+        ));
+    }
+
+    public function addModel(Request $request){
+//        var_dump($_POST);die;
+        $this->validate($request,array(
+            'model'=>'required',
+            'status'=>'required'
+        ));
+
+        $model = new BikeModel();
+        $model->model = $request->model;
+        $model->status = $request->status;
+            try {
+                $model->save();
+            } catch (QueryException $e) {
+                Session::flash('error', $e->getMessage());
+            }
+
+        return redirect()->back();
+    }
+
+    public function editBikeModel(Request $request){
+//        var_dump($_POST);die;
+        $this->validate($request, array(
+            'model'=>'required',
+            'status'=>'required'
+        ));
+
+        $record = BikeModel::find($request->edit_id);
+
+        $results_set = BikeModel::where([
+            ['id',$record->id]
+        ])->get();
+        $results = $results_set->toArray();
+
+//        var_dump($results);die;
+        if($results){
+            Session::flash('failed','Bike Model details not updated!');
+        }else {
+            $record->model = $request->model;
+            $record->status = $request->status;
+
+            try {
+                $this->recordAuditTrail();
+                $record->save();
+                Session::flash('success', 'The Bike Model has been updated');
+            } catch (e $e) {
+                Session::flash('failed', 'Encountered an error');
+            }
+        }
+        return redirect()->back();
+    }
+
+    public function getEditDetails($id){
+        $records = BikeModel::find($id);
+        return Response::json($records);
+    }
+
+    public function destroyBikeModel(Request $request){
+        $delete_ids = [$request->edit_ids];
+        try{
+            BikeModel::destroy($delete_ids);
+            Session::flash('success','The Bike Model has been deleted');
+        }catch (e $e){
+            $this->handleException2($e);
+        }
+        return redirect()->back();
+    }
+
+    public function attachBikeInsurance(Request $request){
+       // var_dump($_POST);die;
+        $this->validate($request, array(
+            'insurance_name'=>'required',
+            'insurance_company_name'=>'required',
+            'issue_date'=>'required',
+            'expiry_date'=>'required',
+            'status'=>'required'
+        ));
+
+        $record = BikeModel::find($request->edit_id);
+
+        $results_set = BikeModel::where([
+            ['id',$record->id]
+        ])->get();
+        $results = $results_set->toArray();
+
+        var_dump($results);die;
+        if($results){
+            Session::flash('failed','Failed to Attach Insurance to a Bike!');
+        }else {
+            $record->insurance_name = $request->insurance_name;
+            $record->insurance_company_name = $request->insurance_company_name;
+            $record->issue_date = $request->issue_date;
+            $record->expiry_date = $request->expiry_date;
+            $record->status = $request->status;
+
+            try {
+                $this->recordAuditTrail();
+                $record->save();
+                Session::flash('success', 'The Bike Insurance has been attached');
+            } catch (e $e) {
+                Session::flash('failed', 'Encountered an error');
+            }
+        }
+        return redirect()->back();
     }
 }

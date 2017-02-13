@@ -116,14 +116,6 @@ class MenuSeeder extends Seeder
         $item->parent_menu = $inventory->id;
         $item->sequence = 1;
         $item->save();
-        //stock allocations
-
-        $item_route = Route::where('route_name', 'Inventory Allocation')->first();
-        $item = new Menu();
-        $item->route_id = $item_route->id;
-        $item->parent_menu = $inventory->id;
-        $item->sequence = 5;
-        $item->save();
 
         $category_route = Route::where('route_name', 'Manage Categories')->first();
         $category = new Menu();
@@ -139,12 +131,26 @@ class MenuSeeder extends Seeder
         $category->sequence = 3;
         $category->save();
 
-        $category_route = Route::where('route_name', 'All Motorbikes')->first();
+        $category_route = Route::where('route_name', 'Manage Motorbikes')->first();
         $category = new Menu();
         $category->route_id = $category_route->id;
         $category->parent_menu = $inventory->id;
         $category->sequence = 4;
         $category->save();
+
+        $model_route = Route::where('route_name', 'Manage Motorbikes Models')->first();
+        $model = new Menu();
+        $model->route_id = $model_route->id;
+        $model->parent_menu = $inventory->id;
+        $model->sequence = 5;
+        $model->save();
+
+        $item_route = Route::where('route_name', 'Inventory Allocation')->first();
+        $item = new Menu();
+        $item->route_id = $item_route->id;
+        $item->parent_menu = $inventory->id;
+        $item->sequence = 6;
+        $item->save();
 
         #### clients
         $clients_route = Route::where('route_name', 'Client')->first();
@@ -192,56 +198,28 @@ class MenuSeeder extends Seeder
         $manage_service->sequence = 2;
         $manage_service->save();
 
-        #### system
-        $system_route = Route::where('route_name', 'System')->first();
-        $system = new Menu();
-        $system->fa_icon = 'fa-cogs';
-        $system->route_id = $system_route->id;
-        $system->sequence = 8;
-        $system->save();
-        $system_id = $system->id;
 
-        $routes_route = Route::where('route_name', 'System Routes')->first();
-        $routes = new Menu();
-        $routes->route_id = $routes_route->id;
-        $routes->parent_menu = $system->id;
-        $routes->sequence = 1;
-        $routes->save();
+        #### Bills and Payments
+        $cb_route = Route::where('route_name', 'Bills And Payments')->first();
+        $bps = new Menu();
+        $bps->fa_icon = 'fa-money';
+        $bps->route_id = $cb_route->id;
+        $bps->sequence = 7;
+        $bps->save();
 
-        $menu_route = Route::where('route_name', 'System Menu')->first();
+        $cb_route = Route::where('route_name', 'Customer Bills')->first();
         $menu = new Menu();
-        $menu->route_id = $menu_route->id;
-        $menu->parent_menu = $system->id;
-        $menu->sequence = 2;
+        $menu->route_id = $cb_route->id;
+        $menu->parent_menu = $bps->id;
+        $menu->sequence = 1;
         $menu->save();
-
-        $sys_config_route = Route::where('route_name', 'System Config')->first();
-        $sys_config = new Menu();
-        $sys_config->route_id = $sys_config_route->id;
-        $sys_config->parent_menu = $system->id;
-        $sys_config->sequence = 3;
-        $sys_config->save();
-
-        $theme_route = Route::where('route_name', 'Theme Configuration')->first();
-        $theme_config = new Menu();
-        $theme_config->route_id = $theme_route->id;
-        $theme_config->parent_menu = $system->id;
-        $theme_config->sequence = 4;
-        $theme_config->save();
-
-        $backup_route = Route::where('route_name', 'Backup')->first();
-        $backup = new Menu();
-        $backup->route_id = $backup_route->id;
-        $backup->parent_menu = $system->id;
-        $backup->sequence = 4;
-        $backup->save();
 
         #### user management
         $user_mngt_route = Route::where('route_name', 'User Management')->first();
         $user_mngt = new Menu();
         $user_mngt->fa_icon = 'fa-group';
         $user_mngt->route_id = $user_mngt_route->id;
-        $user_mngt->sequence = 7;
+        $user_mngt->sequence = 8;
         $user_mngt->save();
         $user_mngt_id = $user_mngt->id;
 
@@ -267,19 +245,49 @@ class MenuSeeder extends Seeder
         $audit_trail->sequence = 3;
         $audit_trail->save();
 
-        #### Bills and Payments
-        $cb_route = Route::where('route_name', 'Bills And Payments')->first();
-        $bps = new Menu();
-        $bps->fa_icon = 'fa-money';
-        $bps->route_id = $cb_route->id;
-        $bps->sequence = 8;
-        $bps->save();
+        #### system
+        $system_route = Route::where('route_name', 'System')->first();
+        $system = new Menu();
+        $system->fa_icon = 'fa-cogs';
+        $system->route_id = $system_route->id;
+        $system->sequence = 9;
+        $system->save();
+        $system_id = $system->id;
 
-        $cb_route = Route::where('route_name', 'Customer Bills')->first();
+        $routes_route = Route::where('route_name', 'System Routes')->first();
+        $routes = new Menu();
+        $routes->route_id = $routes_route->id;
+        $routes->parent_menu = $system->id;
+        $routes->sequence = 1;
+        $routes->save();
+
+        $menu_route = Route::where('route_name', 'System Menu')->first();
         $menu = new Menu();
-        $menu->route_id = $cb_route->id;
-        $menu->parent_menu = $bps->id;
-        $menu->sequence = 8;
+        $menu->route_id = $menu_route->id;
+        $menu->parent_menu = $system->id;
+        $menu->sequence = 2;
         $menu->save();
+
+        $config_route = Route::where('route_name', 'Load System Configuration')->first();
+        $sys_config = new Menu();
+        $sys_config->route_id = $config_route->id;
+        $sys_config->parent_menu = $system->id;
+        $sys_config->sequence = 3;
+        $sys_config->save();
+
+        $theme_route = Route::where('route_name', 'Theme Configuration')->first();
+        $theme_config = new Menu();
+        $theme_config->route_id = $theme_route->id;
+        $theme_config->parent_menu = $system->id;
+        $theme_config->sequence = 4;
+        $theme_config->save();
+
+        $backup_route = Route::where('route_name', 'Backup')->first();
+        $backup = new Menu();
+        $backup->route_id = $backup_route->id;
+        $backup->parent_menu = $system->id;
+        $backup->sequence = 5;
+        $backup->save();
+
     }
 }

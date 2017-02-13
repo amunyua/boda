@@ -39,6 +39,7 @@
         <thead>
             <tr>
                 <th>Service#</th>
+                <th>Name</th>
                 <th>Category</th>
                 <th>Service Code</th>
                 <th>Price</th>
@@ -55,10 +56,11 @@
                     @endphp
                     <tr>
                         <td>{{ $service->id }}</td>
+                        <td>{{ $service->service_name }}</td>
                         <td>{{ $sc_name }}</td>
                         <td>{{ $service->service_code }}</td>
                         <td>{{ $service->price }}</td>
-                        <td>{{ $service->parent_service }}</td>
+                        <td>{{ $parent_service }}</td>
                         <td>{{ ($service->service_status) ? 'Active' : 'Inactive' }}</td>
                     </tr>
                 @endforeach

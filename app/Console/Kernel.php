@@ -2,14 +2,11 @@
 
 namespace App\Console;
 
-use App\ClientAccount;
-use App\CustomerBill;
-use App\Journal;
-use App\Service;
+use App\Jobs\GenerateCustomerBills;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -31,15 +28,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')
-        //          ->hourly();
+//                  ->hourly();
 
         //schedule for database backup
-        // $this->databaseBackup($schedule);
-
-//        $schedule->command()
+        $this->databaseBackup($schedule);
 
 
         $schedule->call(function () {
+<<<<<<< HEAD
             DB::transaction(function (){
                 // get all client accounts
                 $accounts = ClientAccount::where('client_account_status', 1)->get();
@@ -76,6 +72,12 @@ class Kernel extends ConsoleKernel
                 }
             });
         })->daily();
+=======
+            Log::info('Dipatching the job to a queue!');
+            dispatch(new GenerateCustomerBills());
+        })->dailyAt('16:20');
+//        })->everyFiveMinutes();
+>>>>>>> 6aad3868112687545718654b86dbcb853cd932cb
     }
 
     /**
@@ -95,6 +97,6 @@ class Kernel extends ConsoleKernel
             "db:backup --database=mysql --destination=local --destinationPath=`date +\%Y/%d-%m-%Y`.sql --compression=gzip
 "
             // "db:backup --database=mysql --destination=local --destinationPath=/{$environment}/projectname_{$environment}_{$date} --compression=sql"
-        )->everyMinute();
+        )->dailyAt('22:00');
     }
 }

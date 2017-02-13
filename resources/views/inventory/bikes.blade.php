@@ -6,7 +6,7 @@
 @section('table-title', 'Motorbikes')
 
 @push('js')
-<script src="{{ URL::asset('my_js/inventory/inventory_items.js') }}"></script>
+    <script src="{{ URL::asset('my_js/inventory/inventory_items.js') }}"></script>
 @endpush
 
 @section('breadcrumb')
@@ -26,6 +26,9 @@
     </a>
     <a href="#delete-inventory-item" id="delete-inventory-btn" class="btn btn-danger btn-sm header-btn hidden-mobile">
         <i class="fa fa-trash"></i> Delete Bike
+    </a>
+    <a href="#attach-insurance" data-toggle="modal" id="attach-insurance-btn" class="btn btn-primary btn-sm header-btn hidden-mobile">
+        <i class="fa fa-paperclip"></i> Attach Insurance
     </a>
     {{--</span>--}}
 @endsection
@@ -51,14 +54,12 @@
 @endsection
 
 @section('modals')
-    <!-- Modal -->
+    <!-- add bike Modal -->
     <div class="modal fade" id="create-inventory" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">
                         Create inventory item
                     </h4>
@@ -90,9 +91,8 @@
                                 <div class="row">
                                     <label class="label col col-2">Model</label>
                                     <div class="col col-10">
-                                        <label class="input">
-                                            <select name="model" class="form-control" id="inventory-model">
-                                            </select>
+                                        <label class="input"><i class="icon-append fa fa-gears"></i>
+                                            <input type="text" name="model" value="{{ old('model') }}">
                                         </label>
                                     </div>
                                 </div>
@@ -121,15 +121,12 @@
                                 <div class="row">
                                     <label class="label col col-2">Cost price</label>
                                     <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
+                                        <label class="input"> <i class="icon-append fa fa-money"></i>
                                             <input type="number" name="cost_price" autocomplete="off" value="{{ old('cost_price') }}">
                                         </label>
                                     </div>
                                 </div>
                             </section>
-
-
-
                         </fieldset>
 
                         <footer>
@@ -139,19 +136,15 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">
                                 <i class="fa fa-remove"></i> Cancel
                             </button>
-
                         </footer>
                     </form>
-
-
                 </div>
-
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
 
-    <!-- Modal -->
+    <!-- Edit Bike Modal -->
     <div class="modal fade" id="edit-inventory" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -254,10 +247,7 @@
 
                         </footer>
                     </form>
-
-
                 </div>
-
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
@@ -299,4 +289,92 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+
+    <!-- Attach Insurance  bike Modal -->
+    <div class="modal fade" id="attach-insurance" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        Attach Insurance To A Bike
+                    </h4>
+                </div>
+                <div class="modal-body no-padding">
+
+                    <form id="attach-insurance" class="smart-form" action="{{ url('attach-bike-insurance') }}" method="post">
+                        {{ csrf_field() }}
+                        <fieldset>
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Insurance Name</label>
+                                    <div class="col col-10">
+                                        <label class="input"><i class="icon-append fa fa-keyboard-o"></i>
+                                            <input type="text" name="insurance_name" value="{{ old('insurance_name') }}">
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Insurance Company Name</label>
+                                    <div class="col col-10">
+                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
+                                            <input type="text" name="insurance_company_name" autocomplete="off"  value="{{ old('insurance_company_name') }}">
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Issue Date</label>
+                                    <div class="col col-10">
+                                        <label class="input"> <i class="icon-append fa fa-calendar"></i>
+                                            <input type="text" name="issue_date" id="startdate" placeholder="Issue Date" value="">
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Expiry Date</label>
+                                    <div class="col col-10">
+                                        <label class="input"> <i class="icon-append fa fa-calendar"></i>
+                                            <input type="text" name="expiry_date" id="finishdate" placeholder="Expiry Date" value="">
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-2">Status</label>
+                                    <div class="col col-10">
+                                        <label class="select">
+                                            <select name="status" required>
+                                                <option value="">--select status--</option>
+                                                <option value="1">Active</option>
+                                                <option value="0">Inactive</option>
+                                            </select><i></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+                        </fieldset>
+
+                        <footer>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i> Save
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                <i class="fa fa-remove"></i> Cancel
+                            </button>
+                        </footer>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 @endsection
+

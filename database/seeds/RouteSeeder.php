@@ -146,6 +146,14 @@ class RouteSeeder extends Seeder
         $del_addr->save();
         $del_addr->roles()->attach($admin);
 
+        ### adding a new address for a user
+        $add_addr = new Route();
+        $add_addr->route_name = 'Add New Address Details';
+        $add_addr->url = 'add-address/{id}';
+        $add_addr->parent_route = $reg_id;
+        $add_addr->save();
+        $add_addr->roles()->attach($admin);
+
         #### Application
         $app = new Route();
         $app->route_name = 'First Applications';
@@ -245,7 +253,6 @@ class RouteSeeder extends Seeder
         $item->save();
         $item->roles()->attach($admin);
 
-
         $category = new Route();
         $category->route_name = 'Inventory Allocation';
         $category->url = 'all-allocations';
@@ -273,14 +280,20 @@ class RouteSeeder extends Seeder
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
-        //bikes
+
         $category = new Route();
-        $category->route_name = 'All Motorbikes';
+        $category->route_name = 'Manage Motorbikes';
         $category->url = '/bikes';
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
 
+        $model = new Route();
+        $model->route_name = 'Manage Motorbikes Models';
+        $model->url = '/bikes-model';
+        $model->parent_route = $inventory_id;
+        $model->save();
+        $model->roles()->attach($admin);
 
         $category = new Route();
         $category->route_name = 'Stock Transactions';
@@ -288,6 +301,14 @@ class RouteSeeder extends Seeder
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
+
+        $insurance = new Route();
+        $insurance->route_name = 'Attach Insurance Bike';
+        $insurance->url = '/attach-bike-insurance';
+        $insurance->parent_route = $inventory_id;
+        $insurance->save();
+        $insurance->roles()->attach($admin);
+
         #### client
         $client = new Route();
         $client->route_name = 'Client';
@@ -322,6 +343,14 @@ class RouteSeeder extends Seeder
         $service_category->parent_route = $service_id;
         $service_category->save();
         $service_category->roles()->attach($admin);
+
+        ### rider wallet Profile
+        $wallet = new Route();
+        $wallet->route_name = 'Manage My Wallet';
+        $wallet->url = 'my-wallet';
+        $wallet->parent_route = $reg_id;
+        $wallet->save();
+        $wallet->roles()->attach($admin);
 
         $route = new Route();
         $route->route_name = 'Add Service Category';
@@ -471,8 +500,15 @@ class RouteSeeder extends Seeder
         $menu->roles()->attach($admin);
 
         $system_config = new Route();
-        $system_config->route_name = 'System Config';
-        $system_config->url = 'system-config';
+        $system_config->route_name = 'System Configuration';
+        $system_config->url = 'sys-config';
+        $system_config->parent_route = $system_id;
+        $system_config->save();
+        $system_config->roles()->attach($admin);
+
+        $system_config = new Route();
+        $system_config->route_name = 'System Settings';
+        $system_config->url = 'load-config';
         $system_config->parent_route = $system_id;
         $system_config->save();
         $system_config->roles()->attach($admin);
@@ -487,6 +523,13 @@ class RouteSeeder extends Seeder
         $system_config = new Route();
         $system_config->route_name = 'Update Route';
         $system_config->url = 'edit-route';
+        $system_config->parent_route = $system_id;
+        $system_config->save();
+        $system_config->roles()->attach($admin);
+
+        $system_config = new Route();
+        $system_config->route_name = 'Load System Configuration';
+        $system_config->url = 'load-config';
         $system_config->parent_route = $system_id;
         $system_config->save();
         $system_config->roles()->attach($admin);
@@ -549,14 +592,14 @@ class RouteSeeder extends Seeder
 
         $role = new Route();
         $role->route_name = 'Block User';
-        $role->url = 'block-user/{id}';
+        $role->url = 'all_users/block-user';
         $role->parent_route = $user_mngt_id;
         $role->save();
         $role->roles()->attach($admin);
 
         $role = new Route();
         $role->route_name = 'Unblock User';
-        $role->url = 'unblock-user/{id}';
+        $role->url = 'all_users/unblock-user';
         $role->parent_route = $user_mngt_id;
         $role->save();
         $role->roles()->attach($admin);

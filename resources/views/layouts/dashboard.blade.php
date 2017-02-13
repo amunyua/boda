@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-    <title> @yield('title') | JEDA </title>
+    <title> @yield('title') | Boda Squared Ltd. </title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::asset('css/smartadmin-production.min.css') }}">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::asset('css/smartadmin-skins.min.css') }}">
 
-    <!-- SmartAdmin RTL Support  -->
+    <!-- SmartAdmin RTL Support -->
     <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::asset('css/smartadmin-rtl.min.css') }}">
 
     <!-- We recommend you use "your_style.css') }}" to override SmartAdmin
@@ -30,27 +30,28 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::asset('css/demo.min.css') }}">
 
     <!-- FAVICONS -->
-    <link rel="shortcut icon" href="{{ URL::asset('img/favicon/favicon.ico') }}" type="image/x-icon">
-    <link rel="icon" href="{{ URL::asset('img/favicon/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
 
     <!-- GOOGLE FONT -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 
     <!-- Specifying a Webpage Icon for Web Clip
          Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-    <link rel="apple-touch-icon" href="{{ URL::asset('img/splash/sptouch-icon-iphone.png') }}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ URL::asset('img/splash/touch-icon-ipad.png') }}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ URL::asset('img/splash/touch-icon-iphone-retina.png') }}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ URL::asset('img/splash/touch-icon-ipad-retina.png') }}">
+    <link rel="apple-touch-icon" href="img/splash/sptouch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/splash/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/splash/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/splash/touch-icon-ipad-retina.png">
 
     <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- Startup image for web apps -->
-    <link rel="apple-touch-startup-image" href="{{ URL::asset('img/splash/ipad-landscape.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-    <link rel="apple-touch-startup-image" href="{{ URL::asset('img/splash/ipad-portrait.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-    <link rel="apple-touch-startup-image" href="{{ URL::asset('img/splash/iphone.png') }}" media="screen and (max-device-width: 320px)">
+    <link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+
     @stack('css')
 </head>
 
@@ -98,7 +99,7 @@ Use search to find needed section.
     * 'fixed-page-footer' - Fixes footer
     * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 -->
-<body class="smart-style-1">
+<body class="">
 
 <!-- HEADER -->
 @include('layouts.includes.header')
@@ -123,7 +124,7 @@ Use search to find needed section.
 
         <!-- breadcrumb -->
         <ol class="breadcrumb">
-            @yield('breadcrumb')
+            <li>Home</li><li>Dashboard</li>
         </ol>
         <!-- end breadcrumb -->
 
@@ -169,14 +170,14 @@ you can add as many as you like
 <script data-pace-options='{ "restartOnRequestAfter": true }' src="{{ URL::asset('js/plugin/pace/pace.min.js') }}"></script>
 
 <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js') }}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
     if (!window.jQuery) {
         document.write('<script src="{{ URL::asset('js/libs/jquery-2.1.1.min.js') }}"><\/script>');
     }
 </script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js') }}"></script>
+<script src="{{ URL::asset('js/libs/jqueryui/1.10.3/jquery-ui.min.js') }}"></script>
 <script>
     if (!window.jQuery.ui) {
         document.write('<script src="{{ URL::asset('js/libs/jquery-ui-1.10.3.min.js') }}"><\/script>');
@@ -247,570 +248,657 @@ you can add as many as you like
 <!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
 <script src="{{ URL::asset('js/plugin/flot/jquery.flot.cust.min.js') }}"></script>
 <script src="{{ URL::asset('js/plugin/flot/jquery.flot.resize.min.js') }}"></script>
+<script src="{{ URL::asset('js/plugin/flot/jquery.flot.fillbetween.min.js') }}"></script>
+<script src="{{ URL::asset('js/plugin/flot/jquery.flot.orderBar.min.js') }}"></script>
+<script src="{{ URL::asset('js/plugin/flot/jquery.flot.pie.min.js') }}"></script>
 <script src="{{ URL::asset('js/plugin/flot/jquery.flot.time.min.js') }}"></script>
 <script src="{{ URL::asset('js/plugin/flot/jquery.flot.tooltip.min.js') }}"></script>
 
-<!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
-<script src="{{ URL::asset('js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
-<script src="{{ URL::asset('js/plugin/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+<script type="text/javascript">
+    // PAGE RELATED SCRIPTS
 
-<!-- Full Calendar -->
-<script src="{{ URL::asset('js/plugin/moment/moment.min.js') }}"></script>
-<script src="{{ URL::asset('js/plugin/fullcalendar/jquery.fullcalendar.min.js') }}"></script>
+    /* chart colors default */
+    var $chrt_border_color = "#efefef";
+    var $chrt_grid_color = "#DDD"
+    var $chrt_main = "#E24913";
+    /* red       */
+    var $chrt_second = "#6595b4";
+    /* blue      */
+    var $chrt_third = "#FF9F01";
+    /* orange    */
+    var $chrt_fourth = "#7e9d3a";
+    /* green     */
+    var $chrt_fifth = "#BD362F";
+    /* dark red  */
+    var $chrt_mono = "#000";
 
-<script>
     $(document).ready(function() {
 
         // DO NOT REMOVE : GLOBAL FUNCTIONS!
         pageSetUp();
 
-        /*
-         * PAGE RELATED SCRIPTS
-         */
+        /* sales chart */
 
-        $(".js-status-update a").click(function() {
-            var selText = $(this).text();
-            var $this = $(this);
-            $this.parents('.btn-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
-            $this.parents('.dropdown-menu').find('li').removeClass('active');
-            $this.parent().addClass('active');
-        });
+        if ($("#saleschart").length) {
+            var d = [[1196463600000, 0], [1196550000000, 0], [1196636400000, 0], [1196722800000, 77], [1196809200000, 3636], [1196895600000, 3575], [1196982000000, 2736], [1197068400000, 1086], [1197154800000, 676], [1197241200000, 1205], [1197327600000, 906], [1197414000000, 710], [1197500400000, 639], [1197586800000, 540], [1197673200000, 435], [1197759600000, 301], [1197846000000, 575], [1197932400000, 481], [1198018800000, 591], [1198105200000, 608], [1198191600000, 459], [1198278000000, 234], [1198364400000, 1352], [1198450800000, 686], [1198537200000, 279], [1198623600000, 449], [1198710000000, 468], [1198796400000, 392], [1198882800000, 282], [1198969200000, 208], [1199055600000, 229], [1199142000000, 177], [1199228400000, 374], [1199314800000, 436], [1199401200000, 404], [1199487600000, 253], [1199574000000, 218], [1199660400000, 476], [1199746800000, 462], [1199833200000, 500], [1199919600000, 700], [1200006000000, 750], [1200092400000, 600], [1200178800000, 500], [1200265200000, 900], [1200351600000, 930], [1200438000000, 1200], [1200524400000, 980], [1200610800000, 950], [1200697200000, 900], [1200783600000, 1000], [1200870000000, 1050], [1200956400000, 1150], [1201042800000, 1100], [1201129200000, 1200], [1201215600000, 1300], [1201302000000, 1700], [1201388400000, 1450], [1201474800000, 1500], [1201561200000, 546], [1201647600000, 614], [1201734000000, 954], [1201820400000, 1700], [1201906800000, 1800], [1201993200000, 1900], [1202079600000, 2000], [1202166000000, 2100], [1202252400000, 2200], [1202338800000, 2300], [1202425200000, 2400], [1202511600000, 2550], [1202598000000, 2600], [1202684400000, 2500], [1202770800000, 2700], [1202857200000, 2750], [1202943600000, 2800], [1203030000000, 3245], [1203116400000, 3345], [1203202800000, 3000], [1203289200000, 3200], [1203375600000, 3300], [1203462000000, 3400], [1203548400000, 3600], [1203634800000, 3700], [1203721200000, 3800], [1203807600000, 4000], [1203894000000, 4500]];
 
-        /*
-         * TODO: add a way to add more todo's to list
-         */
+            for (var i = 0; i < d.length; ++i)
+                d[i][0] += 60 * 60 * 1000;
 
-        // initialize sortable
-        $(function() {
-            $("#sortable1, #sortable2").sortable({
-                handle : '.handle',
-                connectWith : ".todo",
-                update : countTasks
-            }).disableSelection();
-        });
+            function weekendAreas(axes) {
+                var markings = [];
+                var d = new Date(axes.xaxis.min);
+                // go to the first Saturday
+                d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 1) % 7))
+                d.setUTCSeconds(0);
+                d.setUTCMinutes(0);
+                d.setUTCHours(0);
+                var i = d.getTime();
+                do {
+                    // when we don't set yaxis, the rectangle automatically
+                    // extends to infinity upwards and downwards
+                    markings.push({
+                        xaxis : {
+                            from : i,
+                            to : i + 2 * 24 * 60 * 60 * 1000
+                        }
+                    });
+                    i += 7 * 24 * 60 * 60 * 1000;
+                } while (i < axes.xaxis.max);
 
-        // check and uncheck
-        $('.todo .checkbox > input[type="checkbox"]').click(function() {
-            var $this = $(this).parent().parent().parent();
-
-            if ($(this).prop('checked')) {
-                $this.addClass("complete");
-
-                // remove this if you want to undo a check list once checked
-                //$(this).attr("disabled", true);
-                $(this).parent().hide();
-
-                // once clicked - add class, copy to memory then remove and add to sortable3
-                $this.slideUp(500, function() {
-                    $this.clone().prependTo("#sortable3").effect("highlight", {}, 800);
-                    $this.remove();
-                    countTasks();
-                });
-            } else {
-                // insert undo code here...
+                return markings;
             }
 
-        })
-        // count tasks
-        function countTasks() {
+            var options = {
+                xaxis : {
+                    mode : "time",
+                    tickLength : 5
+                },
+                series : {
+                    lines : {
+                        show : true,
+                        lineWidth : 1,
+                        fill : true,
+                        fillColor : {
+                            colors : [{
+                                opacity : 0.1
+                            }, {
+                                opacity : 0.15
+                            }]
+                        }
+                    },
+                    //points: { show: true },
+                    shadowSize : 0
+                },
+                selection : {
+                    mode : "x"
+                },
+                grid : {
+                    hoverable : true,
+                    clickable : true,
+                    tickColor : $chrt_border_color,
+                    borderWidth : 0,
+                    borderColor : $chrt_border_color,
+                },
+                tooltip : true,
+                tooltipOpts : {
+                    content : "Your sales for <b>%x</b> was <span>$%y</span>",
+                    dateFormat : "%y-%0m-%0d",
+                    defaultTheme : false
+                },
+                colors : [$chrt_second],
 
-            $('.todo-group-title').each(function() {
-                var $this = $(this);
-                $this.find(".num-of-tasks").text($this.next().find("li").size());
+            };
+
+            var plot = $.plot($("#saleschart"), [d], options);
+        };
+
+        /* end sales chart */
+
+        /* Sin chart */
+
+        if ($("#sin-chart").length) {
+            var cash_collection = [];
+
+            $.ajax({
+                url: 'daily-cash-collection',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    var count = data.collections.length;
+                    for(var i = 0; i < count; i++){
+                        cash_collection.push([data.collections[i][0], data.collections[i][1]]);
+                    }
+
+                    var plot = $.plot($("#sin-chart"), [{
+                        data : cash_collection,
+                        label : "Amount Collected"
+                    }], {
+                        series : {
+                            lines : {
+                                show : true
+                            },
+                            points : {
+                                show : true
+                            }
+                        },
+                        grid : {
+                            hoverable : true,
+                            clickable : true,
+                            tickColor : $chrt_border_color,
+                            borderWidth : 0,
+                            borderColor : $chrt_border_color,
+                        },
+                        tooltip : true,
+                        tooltipOpts : {
+                            //content : "Value <b>$x</b> Value <span>$y</span>",
+                            defaultTheme : false
+                        },
+                        colors : [$chrt_second, $chrt_fourth],
+                        yaxis : {
+                            min : 0
+//                    max : 1.1
+                        },
+                        xaxis : {
+                            min : 1,
+                            max : 31
+                        }
+                    });
+
+                    $("#sin-chart").bind("plotclick", function(event, pos, item) {
+                        if (item) {
+                            $("#clickdata").text("You clicked point " + item.dataIndex + " in " + item.series.label + ".");
+                            plot.highlight(item.series, item.datapoint);
+                        }
+                    });
+                }
+            });
+        }
+
+        /* end sin chart */
+
+        /* bar chart */
+        if ($("#bar-chart").length) {
+
+            $.ajax({
+                url: 'daily-cash-collection',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var count = data.collections.length,
+                            data1 = [];
+                    for (var i = 0; i < count; i++) {
+                        data1.push([data.collections[i][0], data.collections[i][1]]);
+                    }
+
+                    var ds = new Array();
+
+                    ds.push({
+                        data: data1,
+                        bars: {
+                            show: true,
+                            barWidth: 0.2,
+                            order: 1,
+                        }
+                    });
+
+                    //Display graph
+                    $.plot($("#bar-chart"), ds, {
+                        colors: [$chrt_second, $chrt_fourth, "#666", "#BBB"],
+                        grid: {
+                            show: true,
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: $chrt_border_color,
+                            borderWidth: 0,
+                            borderColor: $chrt_border_color,
+                        },
+                        legend: true,
+                        tooltip: true,
+                        tooltipOpts: {
+                            content: "<b>%x</b> = <span>%y</span>",
+                            defaultTheme: false
+                        }
+
+                    });
+                }
+            });
+
+        }
+        /* end bar chart */
+
+        /* bar-chart-h */
+        if ($("#bar-chart-h").length) {
+            //Display horizontal graph
+            var d1_h = [];
+            for (var i = 0; i <= 3; i += 1)
+                d1_h.push([parseInt(Math.random() * 30), i]);
+
+            var d2_h = [];
+            for (var i = 0; i <= 3; i += 1)
+                d2_h.push([parseInt(Math.random() * 30), i]);
+
+            var d3_h = [];
+            for (var i = 0; i <= 3; i += 1)
+                d3_h.push([parseInt(Math.random() * 30), i]);
+
+            var ds_h = new Array();
+            ds_h.push({
+                data : d1_h,
+                bars : {
+                    horizontal : true,
+                    show : true,
+                    barWidth : 0.2,
+                    order : 1,
+                }
+            });
+            ds_h.push({
+                data : d2_h,
+                bars : {
+                    horizontal : true,
+                    show : true,
+                    barWidth : 0.2,
+                    order : 2
+                }
+            });
+            ds_h.push({
+                data : d3_h,
+                bars : {
+                    horizontal : true,
+                    show : true,
+                    barWidth : 0.2,
+                    order : 3
+                }
+            });
+
+            // display graph
+            $.plot($("#bar-chart-h"), ds_h, {
+                colors : [$chrt_second, $chrt_fourth, "#666", "#BBB"],
+                grid : {
+                    show : true,
+                    hoverable : true,
+                    clickable : true,
+                    tickColor : $chrt_border_color,
+                    borderWidth : 0,
+                    borderColor : $chrt_border_color,
+                },
+                legend : true,
+                tooltip : true,
+                tooltipOpts : {
+                    content : "<b>%x</b> = <span>%y</span>",
+                    defaultTheme : false
+                }
             });
 
         }
 
-        /*
-         * RUN PAGE GRAPHS
-         */
+        /* end bar-chart-h
 
-        /* TAB 1: UPDATING CHART */
-        // For the demo we use generated data, but normally it would be coming from the server
+         /* fill chart */
 
-        var data = [], totalPoints = 200, $UpdatingChartColors = $("#updating-chart").css('color');
+        if ($("#fill-chart").length) {
+            var males = {
+                '15%' : [[2, 88.0], [3, 93.3], [4, 102.0], [5, 108.5], [6, 115.7], [7, 115.6], [8, 124.6], [9, 130.3], [10, 134.3], [11, 141.4], [12, 146.5], [13, 151.8], [14, 159.9], [15, 165.4], [16, 167.8], [17, 168.7], [18, 169.5], [19, 168.0]],
+                '90%' : [[2, 96.8], [3, 105.2], [4, 113.9], [5, 120.8], [6, 127.0], [7, 133.1], [8, 139.1], [9, 143.9], [10, 151.3], [11, 161.1], [12, 164.8], [13, 173.5], [14, 179.0], [15, 182.0], [16, 186.9], [17, 185.2], [18, 186.3], [19, 186.6]],
+                '25%' : [[2, 89.2], [3, 94.9], [4, 104.4], [5, 111.4], [6, 117.5], [7, 120.2], [8, 127.1], [9, 132.9], [10, 136.8], [11, 144.4], [12, 149.5], [13, 154.1], [14, 163.1], [15, 169.2], [16, 170.4], [17, 171.2], [18, 172.4], [19, 170.8]],
+                '10%' : [[2, 86.9], [3, 92.6], [4, 99.9], [5, 107.0], [6, 114.0], [7, 113.5], [8, 123.6], [9, 129.2], [10, 133.0], [11, 140.6], [12, 145.2], [13, 149.7], [14, 158.4], [15, 163.5], [16, 166.9], [17, 167.5], [18, 167.1], [19, 165.3]],
+                'mean' : [[2, 91.9], [3, 98.5], [4, 107.1], [5, 114.4], [6, 120.6], [7, 124.7], [8, 131.1], [9, 136.8], [10, 142.3], [11, 150.0], [12, 154.7], [13, 161.9], [14, 168.7], [15, 173.6], [16, 175.9], [17, 176.6], [18, 176.8], [19, 176.7]],
+                '75%' : [[2, 94.5], [3, 102.1], [4, 110.8], [5, 117.9], [6, 124.0], [7, 129.3], [8, 134.6], [9, 141.4], [10, 147.0], [11, 156.1], [12, 160.3], [13, 168.3], [14, 174.7], [15, 178.0], [16, 180.2], [17, 181.8], [18, 181.3], [19, 182.5]],
+                '85%' : [[2, 96.2], [3, 103.8], [4, 111.8], [5, 119.6], [6, 125.6], [7, 131.5], [8, 138.0], [9, 143.3], [10, 149.3], [11, 159.8], [12, 162.5], [13, 171.3], [14, 177.5], [15, 180.2], [16, 183.8], [17, 183.4], [18, 183.5], [19, 185.5]],
+                '50%' : [[2, 91.9], [3, 98.2], [4, 106.8], [5, 114.6], [6, 120.8], [7, 125.2], [8, 130.3], [9, 137.1], [10, 141.5], [11, 149.4], [12, 153.9], [13, 162.2], [14, 169.0], [15, 174.8], [16, 176.0], [17, 176.8], [18, 176.4], [19, 177.4]]
+            };
 
-        function getRandomData() {
-            if (data.length > 0)
-                data = data.slice(1);
+            var females = {
+                '15%' : [[2, 84.8], [3, 93.7], [4, 100.6], [5, 105.8], [6, 113.3], [7, 119.3], [8, 124.3], [9, 131.4], [10, 136.9], [11, 143.8], [12, 149.4], [13, 151.2], [14, 152.3], [15, 155.9], [16, 154.7], [17, 157.0], [18, 156.1], [19, 155.4]],
+                '90%' : [[2, 95.6], [3, 104.1], [4, 111.9], [5, 119.6], [6, 127.6], [7, 133.1], [8, 138.7], [9, 147.1], [10, 152.8], [11, 161.3], [12, 166.6], [13, 167.9], [14, 169.3], [15, 170.1], [16, 172.4], [17, 169.2], [18, 171.1], [19, 172.4]],
+                '25%' : [[2, 87.2], [3, 95.9], [4, 101.9], [5, 107.4], [6, 114.8], [7, 121.4], [8, 126.8], [9, 133.4], [10, 138.6], [11, 146.2], [12, 152.0], [13, 153.8], [14, 155.7], [15, 158.4], [16, 157.0], [17, 158.5], [18, 158.4], [19, 158.1]],
+                '10%' : [[2, 84.0], [3, 91.9], [4, 99.2], [5, 105.2], [6, 112.7], [7, 118.0], [8, 123.3], [9, 130.2], [10, 135.0], [11, 141.1], [12, 148.3], [13, 150.0], [14, 150.7], [15, 154.3], [16, 153.6], [17, 155.6], [18, 154.7], [19, 153.1]],
+                'mean' : [[2, 90.2], [3, 98.3], [4, 105.2], [5, 112.2], [6, 119.0], [7, 125.8], [8, 131.3], [9, 138.6], [10, 144.2], [11, 151.3], [12, 156.7], [13, 158.6], [14, 160.5], [15, 162.1], [16, 162.9], [17, 162.2], [18, 163.0], [19, 163.1]],
+                '75%' : [[2, 93.2], [3, 101.5], [4, 107.9], [5, 116.6], [6, 122.8], [7, 129.3], [8, 135.2], [9, 143.7], [10, 148.7], [11, 156.9], [12, 160.8], [13, 163.0], [14, 165.0], [15, 165.8], [16, 168.7], [17, 166.2], [18, 167.6], [19, 168.0]],
+                '85%' : [[2, 94.5], [3, 102.8], [4, 110.4], [5, 119.0], [6, 125.7], [7, 131.5], [8, 137.9], [9, 146.0], [10, 151.3], [11, 159.9], [12, 164.0], [13, 166.5], [14, 167.5], [15, 168.5], [16, 171.5], [17, 168.0], [18, 169.8], [19, 170.3]],
+                '50%' : [[2, 90.2], [3, 98.1], [4, 105.2], [5, 111.8], [6, 118.2], [7, 125.6], [8, 130.5], [9, 138.3], [10, 143.7], [11, 151.4], [12, 156.7], [13, 157.7], [14, 161.0], [15, 162.0], [16, 162.8], [17, 162.2], [18, 162.8], [19, 163.3]]
+            };
 
-            // do a random walk
-            while (data.length < totalPoints) {
-                var prev = data.length > 0 ? data[data.length - 1] : 50;
-                var y = prev + Math.random() * 10 - 5;
-                if (y < 0)
-                    y = 0;
-                if (y > 100)
-                    y = 100;
-                data.push(y);
-            }
+            var dataset = [{
+                label : 'female mean',
+                data : females['mean'],
+                lines : {
+                    show : true
+                },
+                color : "rgb(255,50,50)"
+            }, {
+                id : 'f15%',
+                data : females['15%'],
+                lines : {
+                    show : true,
+                    lineWidth : 0,
+                    fill : false
+                },
+                color : "rgb(255,50,50)"
+            }, {
+                id : 'f25%',
+                data : females['25%'],
+                lines : {
+                    show : true,
+                    lineWidth : 0,
+                    fill : 0.2
+                },
+                color : "rgb(255,50,50)",
+                fillBetween : 'f15%'
+            }, {
+                id : 'f50%',
+                data : females['50%'],
+                lines : {
+                    show : true,
+                    lineWidth : 0.5,
+                    fill : 0.4,
+                    shadowSize : 0
+                },
+                color : "rgb(255,50,50)",
+                fillBetween : 'f25%'
+            }, {
+                id : 'f75%',
+                data : females['75%'],
+                lines : {
+                    show : true,
+                    lineWidth : 0,
+                    fill : 0.4
+                },
+                color : "rgb(255,50,50)",
+                fillBetween : 'f50%'
+            }, {
+                id : 'f85%',
+                data : females['85%'],
+                lines : {
+                    show : true,
+                    lineWidth : 0,
+                    fill : 0.2
+                },
+                color : "rgb(255,50,50)",
+                fillBetween : 'f75%'
+            }, {
+                label : 'male mean',
+                data : males['mean'],
+                lines : {
+                    show : true
+                },
+                color : "rgb(50,50,255)"
+            }, {
+                id : 'm15%',
+                data : males['15%'],
+                lines : {
+                    show : true,
+                    lineWidth : 0,
+                    fill : false
+                },
+                color : "rgb(50,50,255)"
+            }, {
+                id : 'm25%',
+                data : males['25%'],
+                lines : {
+                    show : true,
+                    lineWidth : 0,
+                    fill : 0.2
+                },
+                color : "rgb(50,50,255)",
+                fillBetween : 'm15%'
+            }, {
+                id : 'm50%',
+                data : males['50%'],
+                lines : {
+                    show : true,
+                    lineWidth : 0.5,
+                    fill : 0.4,
+                    shadowSize : 0
+                },
+                color : "rgb(50,50,255)",
+                fillBetween : 'm25%'
+            }, {
+                id : 'm75%',
+                data : males['75%'],
+                lines : {
+                    show : true,
+                    lineWidth : 0,
+                    fill : 0.4
+                },
+                color : "rgb(50,50,255)",
+                fillBetween : 'm50%'
+            }, {
+                id : 'm85%',
+                data : males['85%'],
+                lines : {
+                    show : true,
+                    lineWidth : 0,
+                    fill : 0.2
+                },
+                color : "rgb(50,50,255)",
+                fillBetween : 'm75%'
+            }]
 
-            // zip the generated y values with the x values
-            var res = [];
-            for (var i = 0; i < data.length; ++i)
-                res.push([i, data[i]])
-            return res;
+            $.plot($("#fill-chart"), dataset, {
+
+                xaxis : {
+                    tickDecimals : 0
+                },
+
+                yaxis : {
+                    tickFormatter : function(v) {
+                        return v + " cm";
+                    }
+                },
+
+            });
         }
 
-        // setup control widget
-        var updateInterval = 1500;
-        $("#updating-chart").val(updateInterval).change(function() {
+        /* end fill chart */
 
-            var v = $(this).val();
-            if (v && !isNaN(+v)) {
-                updateInterval = +v;
-                $(this).val("" + updateInterval);
-            }
+        /* pie chart */
 
-        });
+        if ($('#pie-chart').length) {
 
-        // setup plot
-        var options = {
-            yaxis : {
-                min : 0,
-                max : 100
-            },
-            xaxis : {
-                min : 0,
-                max : 100
-            },
-            colors : [$UpdatingChartColors],
-            series : {
-                lines : {
-                    lineWidth : 1,
-                    fill : true,
-                    fillColor : {
-                        colors : [{
-                            opacity : 0.4
-                        }, {
-                            opacity : 0
-                        }]
-                    },
-                    steps : false
-
+            var data_pie = [];
+            var series = Math.floor(Math.random() * 10) + 1;
+            for (var i = 0; i < series; i++) {
+                data_pie[i] = {
+                    label : "Series" + (i + 1),
+                    data : Math.floor(Math.random() * 100) + 1
                 }
             }
-        };
 
-        var plot = $.plot($("#updating-chart"), [getRandomData()], options);
-
-        /* live switch */
-        $('input[type="checkbox"]#start_interval').click(function() {
-            if ($(this).prop('checked')) {
-                $on = true;
-                updateInterval = 1500;
-                update();
-            } else {
-                clearInterval(updateInterval);
-                $on = false;
-            }
-        });
-
-        function update() {
-            if ($on == true) {
-                plot.setData([getRandomData()]);
-                plot.draw();
-                setTimeout(update, updateInterval);
-
-            } else {
-                clearInterval(updateInterval)
-            }
+            $.plot($("#pie-chart"), data_pie, {
+                series : {
+                    pie : {
+                        show : true,
+                        innerRadius : 0.5,
+                        radius : 1,
+                        label : {
+                            show : false,
+                            radius : 2 / 3,
+                            formatter : function(label, series) {
+                                return '<div style="font-size:11px;text-align:center;padding:4px;color:white;">' + label + '<br/>' + Math.round(series.percent) + '%</div>';
+                            },
+                            threshold : 0.1
+                        }
+                    }
+                },
+                legend : {
+                    show : true,
+                    noColumns : 1, // number of colums in legend table
+                    labelFormatter : null, // fn: string -> string
+                    labelBoxBorderColor : "#000", // border color for the little label boxes
+                    container : null, // container (as jQuery object) to put legend in, null means default on top of graph
+                    position : "ne", // position of default legend container within plot
+                    margin : [5, 10], // distance from grid edge to default legend container within plot
+                    backgroundColor : "#efefef", // null means auto-detect
+                    backgroundOpacity : 1 // set to 0 to avoid background
+                },
+                grid : {
+                    hoverable : true,
+                    clickable : true
+                },
+            });
 
         }
 
-        var $on = false;
+        /* end pie chart */
+
+        /* site stats chart */
+
+        if ($("#site-stats").length) {
+
+            var pageviews = [[1, 75], [3, 87], [4, 93], [5, 127], [6, 116], [7, 137], [8, 135], [9, 130], [10, 167], [11, 169], [12, 179], [13, 185], [14, 176], [15, 180], [16, 174], [17, 193], [18, 186], [19, 177], [20, 153], [21, 149], [22, 130], [23, 100], [24, 50]];
+            var visitors = [[1, 65], [3, 50], [4, 73], [5, 100], [6, 95], [7, 103], [8, 111], [9, 97], [10, 125], [11, 100], [12, 95], [13, 141], [14, 126], [15, 131], [16, 146], [17, 158], [18, 160], [19, 151], [20, 125], [21, 110], [22, 100], [23, 85], [24, 37]];
+            //console.log(pageviews)
+            var plot = $.plot($("#site-stats"), [{
+                data : pageviews,
+                label : "Your pageviews"
+            }, {
+                data : visitors,
+                label : "Site visitors"
+            }], {
+                series : {
+                    lines : {
+                        show : true,
+                        lineWidth : 1,
+                        fill : true,
+                        fillColor : {
+                            colors : [{
+                                opacity : 0.1
+                            }, {
+                                opacity : 0.15
+                            }]
+                        }
+                    },
+                    points : {
+                        show : true
+                    },
+                    shadowSize : 0
+                },
+                xaxis : {
+                    mode : "time",
+                    tickLength : 10
+                },
+
+                yaxes : [{
+                    min : 20,
+                    tickLength : 5
+                }],
+                grid : {
+                    hoverable : true,
+                    clickable : true,
+                    tickColor : $chrt_border_color,
+                    borderWidth : 0,
+                    borderColor : $chrt_border_color,
+                },
+                tooltip : true,
+                tooltipOpts : {
+                    content : "%s for <b>%x:00 hrs</b> was %y",
+                    dateFormat : "%y-%0m-%0d",
+                    defaultTheme : false
+                },
+                colors : [$chrt_main, $chrt_second],
+                xaxis : {
+                    ticks : 15,
+                    tickDecimals : 2
+                },
+                yaxis : {
+                    ticks : 15,
+                    tickDecimals : 0
+                },
+            });
+
+        }
+
+        /* end site stats */
+
+        /* updating chart */
+
+        if ($('#updating-chart').length) {
+
+            // For the demo we use generated data, but normally it would be coming from the server
+            var data = [], totalPoints = 200;
+            function getRandomData() {
+                if (data.length > 0)
+                    data = data.slice(1);
+
+                // do a random walk
+                while (data.length < totalPoints) {
+                    var prev = data.length > 0 ? data[data.length - 1] : 50;
+                    var y = prev + Math.random() * 10 - 5;
+                    if (y < 0)
+                        y = 0;
+                    if (y > 100)
+                        y = 100;
+                    data.push(y);
+                }
+
+                // zip the generated y values with the x values
+                var res = [];
+                for (var i = 0; i < data.length; ++i)
+                    res.push([i, data[i]])
+                return res;
+            }
+
+            // setup control widget
+            var updateInterval = 1000;
+            $("#updating-chart").val(updateInterval).change(function() {
+                var v = $(this).val();
+                if (v && !isNaN(+v)) {
+                    updateInterval = +v;
+                    if (updateInterval < 1)
+                        updateInterval = 1;
+                    if (updateInterval > 2000)
+                        updateInterval = 2000;
+                    $(this).val("" + updateInterval);
+                }
+            });
+
+            // setup plot
+            var options = {
+                yaxis : {
+                    min : 0,
+                    max : 100
+                },
+                xaxis : {
+                    min : 0,
+                    max : 100
+                },
+                colors : [$chrt_fourth],
+                series : {
+                    lines : {
+                        lineWidth : 1,
+                        fill : true,
+                        fillColor : {
+                            colors : [{
+                                opacity : 0.4
+                            }, {
+                                opacity : 0
+                            }]
+                        },
+                        steps : false
+
+                    }
+                }
+            };
+            var plot = $.plot($("#updating-chart"), [getRandomData()], options);
+
+            function update() {
+                plot.setData([getRandomData()]);
+                // since the axes don't change, we don't need to call plot.setupGrid()
+                plot.draw();
+
+                setTimeout(update, updateInterval);
+            }
+
+            update();
+
+        }
 
         /*end updating chart*/
 
-        /* TAB 2: Social Network  */
-
-        $(function() {
-            // jQuery Flot Chart
-            var twitter = [[1, 27], [2, 34], [3, 51], [4, 48], [5, 55], [6, 65], [7, 61], [8, 70], [9, 65], [10, 75], [11, 57], [12, 59], [13, 62]], facebook = [[1, 25], [2, 31], [3, 45], [4, 37], [5, 38], [6, 40], [7, 47], [8, 55], [9, 43], [10, 50], [11, 47], [12, 39], [13, 47]], data = [{
-                label : "Twitter",
-                data : twitter,
-                lines : {
-                    show : true,
-                    lineWidth : 1,
-                    fill : true,
-                    fillColor : {
-                        colors : [{
-                            opacity : 0.1
-                        }, {
-                            opacity : 0.13
-                        }]
-                    }
-                },
-                points : {
-                    show : true
-                }
-            }, {
-                label : "Facebook",
-                data : facebook,
-                lines : {
-                    show : true,
-                    lineWidth : 1,
-                    fill : true,
-                    fillColor : {
-                        colors : [{
-                            opacity : 0.1
-                        }, {
-                            opacity : 0.13
-                        }]
-                    }
-                },
-                points : {
-                    show : true
-                }
-            }];
-
-            var options = {
-                grid : {
-                    hoverable : true
-                },
-                colors : ["#568A89", "#3276B1"],
-                tooltip : true,
-                tooltipOpts : {
-                    //content : "Value <b>$x</b> Value <span>$y</span>",
-                    defaultTheme : false
-                },
-                xaxis : {
-                    ticks : [[1, "JAN"], [2, "FEB"], [3, "MAR"], [4, "APR"], [5, "MAY"], [6, "JUN"], [7, "JUL"], [8, "AUG"], [9, "SEP"], [10, "OCT"], [11, "NOV"], [12, "DEC"], [13, "JAN+1"]]
-                },
-                yaxes : {
-
-                }
-            };
-
-            var plot3 = $.plot($("#statsChart"), data, options);
-        });
-
-        // END TAB 2
-
-        // TAB THREE GRAPH //
-        /* TAB 3: Revenew  */
-
-        $(function() {
-
-            var trgt = [[1354586000000, 153], [1364587000000, 658], [1374588000000, 198], [1384589000000, 663], [1394590000000, 801], [1404591000000, 1080], [1414592000000, 353], [1424593000000, 749], [1434594000000, 523], [1444595000000, 258], [1454596000000, 688], [1464597000000, 364]], prft = [[1354586000000, 53], [1364587000000, 65], [1374588000000, 98], [1384589000000, 83], [1394590000000, 980], [1404591000000, 808], [1414592000000, 720], [1424593000000, 674], [1434594000000, 23], [1444595000000, 79], [1454596000000, 88], [1464597000000, 36]], sgnups = [[1354586000000, 647], [1364587000000, 435], [1374588000000, 784], [1384589000000, 346], [1394590000000, 487], [1404591000000, 463], [1414592000000, 479], [1424593000000, 236], [1434594000000, 843], [1444595000000, 657], [1454596000000, 241], [1464597000000, 341]], toggles = $("#rev-toggles"), target = $("#flotcontainer");
-
-            var data = [{
-                label : "Target Profit",
-                data : trgt,
-                bars : {
-                    show : true,
-                    align : "center",
-                    barWidth : 30 * 30 * 60 * 1000 * 80
-                }
-            }, {
-                label : "Actual Profit",
-                data : prft,
-                color : '#3276B1',
-                lines : {
-                    show : true,
-                    lineWidth : 3
-                },
-                points : {
-                    show : true
-                }
-            }, {
-                label : "Actual Signups",
-                data : sgnups,
-                color : '#71843F',
-                lines : {
-                    show : true,
-                    lineWidth : 1
-                },
-                points : {
-                    show : true
-                }
-            }]
-
-            var options = {
-                grid : {
-                    hoverable : true
-                },
-                tooltip : true,
-                tooltipOpts : {
-                    //content: '%x - %y',
-                    //dateFormat: '%b %y',
-                    defaultTheme : false
-                },
-                xaxis : {
-                    mode : "time"
-                },
-                yaxes : {
-                    tickFormatter : function(val, axis) {
-                        return "$" + val;
-                    },
-                    max : 1200
-                }
-
-            };
-
-            plot2 = null;
-
-            function plotNow() {
-                var d = [];
-                toggles.find(':checkbox').each(function() {
-                    if ($(this).is(':checked')) {
-                        d.push(data[$(this).attr("name").substr(4, 1)]);
-                    }
-                });
-                if (d.length > 0) {
-                    if (plot2) {
-                        plot2.setData(d);
-                        plot2.draw();
-                    } else {
-                        plot2 = $.plot(target, d, options);
-                    }
-                }
-
-            };
-
-            toggles.find(':checkbox').on('change', function() {
-                plotNow();
-            });
-            plotNow()
-
-        });
-
-        /*
-         * VECTOR MAP
-         */
-
-        data_array = {
-            "US" : 4977,
-            "AU" : 4873,
-            "IN" : 3671,
-            "BR" : 2476,
-            "TR" : 1476,
-            "CN" : 146,
-            "CA" : 134,
-            "BD" : 100
-        };
-
-        $('#vector-map').vectorMap({
-            map : 'world_mill_en',
-            backgroundColor : '#fff',
-            regionStyle : {
-                initial : {
-                    fill : '#c4c4c4'
-                },
-                hover : {
-                    "fill-opacity" : 1
-                }
-            },
-            series : {
-                regions : [{
-                    values : data_array,
-                    scale : ['#85a8b6', '#4d7686'],
-                    normalizeFunction : 'polynomial'
-                }]
-            },
-            onRegionLabelShow : function(e, el, code) {
-                if ( typeof data_array[code] == 'undefined') {
-                    e.preventDefault();
-                } else {
-                    var countrylbl = data_array[code];
-                    el.html(el.html() + ': ' + countrylbl + ' visits');
-                }
-            }
-        });
-
-        /*
-         * FULL CALENDAR JS
-         */
-
-        if ($("#calendar").length) {
-            var date = new Date();
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
-
-            var calendar = $('#calendar').fullCalendar({
-
-                editable : true,
-                draggable : true,
-                selectable : false,
-                selectHelper : true,
-                unselectAuto : false,
-                disableResizing : false,
-                height: "auto",
-
-                header : {
-                    left : 'title', //,today
-                    center : 'prev, next, today',
-                    right : 'month, agendaWeek, agenDay' //month, agendaDay,
-                },
-
-                select : function(start, end, allDay) {
-                    var title = prompt('Event Title:');
-                    if (title) {
-                        calendar.fullCalendar('renderEvent', {
-                                    title : title,
-                                    start : start,
-                                    end : end,
-                                    allDay : allDay
-                                }, true // make the event "stick"
-                        );
-                    }
-                    calendar.fullCalendar('unselect');
-                },
-
-                events : [{
-                    title : 'All Day Event',
-                    start : new Date(y, m, 1),
-                    description : 'long description',
-                    className : ["event", "bg-color-greenLight"],
-                    icon : 'fa-check'
-                }, {
-                    title : 'Long Event',
-                    start : new Date(y, m, d - 5),
-                    end : new Date(y, m, d - 2),
-                    className : ["event", "bg-color-red"],
-                    icon : 'fa-lock'
-                }, {
-                    id : 999,
-                    title : 'Repeating Event',
-                    start : new Date(y, m, d - 3, 16, 0),
-                    allDay : false,
-                    className : ["event", "bg-color-blue"],
-                    icon : 'fa-clock-o'
-                }, {
-                    id : 999,
-                    title : 'Repeating Event',
-                    start : new Date(y, m, d + 4, 16, 0),
-                    allDay : false,
-                    className : ["event", "bg-color-blue"],
-                    icon : 'fa-clock-o'
-                }, {
-                    title : 'Meeting',
-                    start : new Date(y, m, d, 10, 30),
-                    allDay : false,
-                    className : ["event", "bg-color-darken"]
-                }, {
-                    title : 'Lunch',
-                    start : new Date(y, m, d, 12, 0),
-                    end : new Date(y, m, d, 14, 0),
-                    allDay : false,
-                    className : ["event", "bg-color-darken"]
-                }, {
-                    title : 'Birthday Party',
-                    start : new Date(y, m, d + 1, 19, 0),
-                    end : new Date(y, m, d + 1, 22, 30),
-                    allDay : false,
-                    className : ["event", "bg-color-darken"]
-                }, {
-                    title : 'Smartadmin Open Day',
-                    start : new Date(y, m, 28),
-                    end : new Date(y, m, 29),
-                    className : ["event", "bg-color-darken"]
-                }],
-
-
-                eventRender : function(event, element, icon) {
-                    if (!event.description == "") {
-                        element.find('.fc-title').append("<br/><span class='ultra-light'>" + event.description + "</span>");
-                    }
-                    if (!event.icon == "") {
-                        element.find('.fc-title').append("<i class='air air-top-right fa " + event.icon + " '></i>");
-                    }
-                }
-            });
-
-        };
-
-        /* hide default buttons */
-        $('.fc-toolbar .fc-right, .fc-toolbar .fc-center').hide();
-
-        // calendar prev
-        $('#calendar-buttons #btn-prev').click(function() {
-            $('.fc-prev-button').click();
-            return false;
-        });
-
-        // calendar next
-        $('#calendar-buttons #btn-next').click(function() {
-            $('.fc-next-button').click();
-            return false;
-        });
-
-        // calendar today
-        $('#calendar-buttons #btn-today').click(function() {
-            $('.fc-button-today').click();
-            return false;
-        });
-
-        // calendar month
-        $('#mt').click(function() {
-            $('#calendar').fullCalendar('changeView', 'month');
-        });
-
-        // calendar agenda week
-        $('#ag').click(function() {
-            $('#calendar').fullCalendar('changeView', 'agendaWeek');
-        });
-
-        // calendar agenda day
-        $('#td').click(function() {
-            $('#calendar').fullCalendar('changeView', 'agendaDay');
-        });
-
-        /*
-         * CHAT
-         */
-
-        $.filter_input = $('#filter-chat-list');
-        $.chat_users_container = $('#chat-container > .chat-list-body')
-        $.chat_users = $('#chat-users')
-        $.chat_list_btn = $('#chat-container > .chat-list-open-close');
-        $.chat_body = $('#chat-body');
-
-        /*
-         * LIST FILTER (CHAT)
-         */
-
-        // custom css expression for a case-insensitive contains()
-        jQuery.expr[':'].Contains = function(a, i, m) {
-            return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
-        };
-
-        function listFilter(list) {// header is any element, list is an unordered list
-            // create and add the filter form to the header
-
-            $.filter_input.change(function() {
-                var filter = $(this).val();
-                if (filter) {
-                    // this finds all links in a list that contain the input,
-                    // and hide the ones not containing the input while showing the ones that do
-                    $.chat_users.find("a:not(:Contains(" + filter + "))").parent().slideUp();
-                    $.chat_users.find("a:Contains(" + filter + ")").parent().slideDown();
-                } else {
-                    $.chat_users.find("li").slideDown();
-                }
-                return false;
-            }).keyup(function() {
-                // fire the above change event after every letter
-                $(this).change();
-
-            });
-
-        }
-
-        // on dom ready
-        listFilter($.chat_users);
-
-        // open chat list
-        $.chat_list_btn.click(function() {
-            $(this).parent('#chat-container').toggleClass('open');
-        })
-
-        $.chat_body.animate({
-            scrollTop : $.chat_body[0].scrollHeight
-        }, 500);
-
     });
+
+    /* end flot charts */
 
 </script>
 

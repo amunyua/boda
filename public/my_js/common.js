@@ -11,7 +11,7 @@ var Common = {
                 html += '<strong>Success!</strong> '+message;
                 html += '</div>';
                 $('div#feedback').html(html);
-                // Common.closeModal(modal);
+                Common.closeModal(modal);
                 break;
 
             case 'warnings':
@@ -32,7 +32,7 @@ var Common = {
                 html += '<strong>Error!</strong> '+message;
                 html += '</div>';
                 $('div#feedback').html(html);
-                // Common.closeModal(modal);
+                Common.closeModal(modal);
                 break;
         }
     },
@@ -62,5 +62,9 @@ var Common = {
             alert('You must select at least one record!');
             return false;
         }
+    },
+    closeModal: function (modal) {
+        if(modal != '')
+            $(modal).modal('show');
     }
 }

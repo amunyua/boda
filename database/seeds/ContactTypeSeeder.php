@@ -12,6 +12,8 @@ class ContactTypeSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('contact_types')->delete();
+
         $main = new ContactTypes();
         $main->contact_type_name = 'Main';
         $main->contact_type_code = 'MAIN';

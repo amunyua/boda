@@ -16,7 +16,7 @@ class AddPhoneandvinTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone_no');
             $table->string('vin')->nullable();
-            $table->integer('masterfile_id')->unsigned();
+            $table->integer('masterfile_id')->nullable()->unsigned();
             $table->foreign('masterfile_id')
                 ->references('id')
                 ->on('masterfiles')

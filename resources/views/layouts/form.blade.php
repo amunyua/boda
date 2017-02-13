@@ -227,12 +227,17 @@ Use search to find needed section.
 <div class="page-footer">
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> © 2014-2015</span>
+            <span class="txt-color-white">JEDA 1.0.0 <span class="hidden-xs"> - Boda Squared</span> © 2016</span>
         </div>
 
         <div class="col-xs-6 col-sm-6 text-right hidden-xs">
             <div class="txt-color-white inline-block">
-                <i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
+                @php
+                    use Carbon\Carbon;
+                    $current = Carbon::now();
+                @endphp
+                <i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>{{ $current }} &nbsp;</strong> </i>
+
                 <div class="btn-group dropup">
                     <button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown">
                         <i class="fa fa-link"></i> <span class="caret"></span>
@@ -282,28 +287,7 @@ Use search to find needed section.
 Note: These tiles are completely responsive,
 you can add as many as you like
 -->
-<div id="shortcut">
-    <ul>
-        <li>
-            <a href="inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
-        </li>
-        <li>
-            <a href="calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
-        </li>
-        <li>
-            <a href="gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
-        </li>
-        <li>
-            <a href="invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
-        </li>
-        <li>
-            <a href="gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
-        </li>
-        <li>
-            <a href="profile.html" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
-        </li>
-    </ul>
-</div>
+@include('layouts.includes.shortcut_area')
 <!-- END SHORTCUT AREA -->
 
 <!--================================================== -->
@@ -420,6 +404,7 @@ you can add as many as you like
 
 </script>
 
+@stack('js')
 </body>
 
 </html>

@@ -36,7 +36,7 @@
                                             {{--<a href="javascript:void(0);" class="btn txt-color-white bg-color-teal btn-sm"><i class="fa fa-check"></i> Follow</a>&nbsp; <a href="javascript:void(0);" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-link"></i> Connect</a>--}}
                                         </div>
                                         <div class="air air-top-left padding-10">
-                                            <h4 class="txt-color-white font-md"><?php echo date('j M Y')?></h4>
+                                            <h4 class="txt-color-white font-md"><?php echo date('j M Y'); ?></h4>
                                         </div>
                                         <ol class="carousel-indicators">
                                             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -76,19 +76,20 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <h1>{{ $mf->surname }} <span class="semi-bold">{{ $mf->firstname }}</span>
+                                            <h1>{{ $mf->surname }} <span class="semi-bold">{{ $mf->firstname }}</span> {{ $mf->middlename }}
                                                 <br>
-                                                <small> {{ $mf->b_role }}</small></h1>
+                                                <small class="semi-bold"> {{ $mf->b_role }}</small>
+                                            </h1>
 
                                             <ul class="list-unstyled">
                                                 <li>
                                                     <p class="text-muted">
-                                                        <i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken">{{ $ad->phone_no }}</span>
+                                                        <i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken">{{ $addr->phone_no }}</span>
                                                     </p>
                                                 </li>
                                                 <li>
                                                     <p class="text-muted">
-                                                        <i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:simmons@smartadmin">{{ $ad->email }}</a>
+                                                        <i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:simmons@smartadmin">{{ $addr->email }}</a>
                                                     </p>
                                                 </li>
                                                 {{--<li>--}}
@@ -103,20 +104,17 @@
                                                     </p>
                                                 </li>
                                             </ul>
-                                            <br>
-                                            <p class="font-md">
-                                                <i>A little about me...</i>
-                                            </p>
-                                            <p>
-
-                                                Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-                                                cumque nihil impedit quo minus id quod maxime placeat facere
-
-                                            </p>
-                                            <br>
+                                            {{--<br>--}}
+                                            {{--<p class="font-md">--}}
+                                                {{--<i>A little about me...</i>--}}
+                                            {{--</p>--}}
+                                            {{--<p>--}}
+                                                {{--Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio--}}
+                                                {{--cumque nihil impedit quo minus id quod maxime placeat facere--}}
+                                            {{--</p>--}}
+                                            {{--<br>--}}
                                             {{--<a href="javascript:void(0);" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i> Send Message</a>--}}
-                                            <br>
-                                            <br>
+                                            {{--<br>--}}
 
                                         </div>
                                         <div class="col-sm-3">
@@ -160,26 +158,35 @@
                                     <!-- widget content -->
                                     <div class="widget-body">
                                         <ul id="myTab1" class="nav nav-tabs bordered">
+                                            {{--gets the user role of logged in user--}}
+                                            @php
+                                                $user = Auth::user();
+                                                $b_role = \App\Masterfile::find($user->masterfile_id)->b_role;
+                                            @endphp
                                             <li class="active">
                                                 <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-user"></i>Basic Details</a>
                                             </li>
                                             <li>
                                                 <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-envelope"></i> Manage Addresses</a>
                                             </li>
+                                            @php
+                                                if($mf->b_role == 'Client'){
+                                            @endphp
                                             <li class="dropdown">
                                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Accounts Info <b class="caret"></b></a>
                                                 <ul class="dropdown-menu">
                                                     <li>
-                                                        <a href="#s3" data-toggle="tab">@Bills</a>
+                                                        <a href="#s3" data-toggle="tab">Bills</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#s4" data-toggle="tab">@Transaction</a>
+                                                        <a href="#s4" data-toggle="tab">Transaction</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#s5" data-toggle="tab">@Statement</a>
+                                                        <a href="#s5" data-toggle="tab">Statement</a>
                                                     </li>
                                                 </ul>
                                             </li>
+                                            @php } @endphp
                                             <li class="pull-right">
                                                 <a href="javascript:void(0);">
                                                     <div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7">

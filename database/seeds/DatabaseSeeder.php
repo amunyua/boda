@@ -11,7 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
 //        $this->call(RolesSeeder::class);
         $this->call(MasterfileSeeder::class);
 //        $this->call(ContactTypeSeeder::class);
@@ -21,7 +20,9 @@ class DatabaseSeeder extends Seeder
 //        $this->call(MenuSeeder::class);
 //        $this->call(CountyTableSeeder::class);
 //        $this->call(InventoryCategorySeeder::class);
-
-
+//        $this->call(ServiceCategorySeeder::class);
+//        $this->call(ServiceSeeder::class);
+//        $this->call(CategorySeeder::class);
+//        $this->call(SystemConfigSeeder::class);
     }
 }

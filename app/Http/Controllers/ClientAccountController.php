@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Bike;
 use App\ClientAccount;
+use App\ClientWallet;
 use App\Masterfile;
 use Illuminate\Database\QueryException as e;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
@@ -102,9 +104,21 @@ class ClientAccountController extends Controller
             $account->billing_start_date = $request->billing_start_date;
             try {
                 $account->save();
-                Session::flash('success', 'The Client Account has been created');
             } catch (QueryException $e) {
-                $this->handleException2($e);
+                Session::flash('error', $e->getMessage());
+            }
+
+            // create client wallet
+            try{
+                $wallet = new ClientWallet();
+                $wallet->client_account_id = $account->id;
+                $wallet->wallet_balance = 0;
+                $wallet->status = 1;
+                $wallet->save();
+
+                Session::flash('success', 'The Client Account has been created');
+            } catch (QueryException $qe){
+                Session::flash('error', $qe->getMessage());
             }
         }
         return redirect()->back();
@@ -195,5 +209,22 @@ class ClientAccountController extends Controller
             ['client_account_status',true]
         ])->get();
         return $account;
+    }
+
+    public function clientWallets(){
+        return view('client_accounts.client_wallets');
+    }
+
+    public function loadClientWallets(){
+        $wallets = DB::table('wallets_view');
+        return Datatables::of($wallets)
+            ->editColumn('wallet_balance', function ($wallet){
+                return number_format(round($wallet->wallet_balance, 2), 2);
+            })
+            ->make(true);
+    }
+
+    public function myWallet(){
+        return view('client_accounts.wallet_profile');
     }
 }
