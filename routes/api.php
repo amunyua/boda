@@ -18,3 +18,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 Route::post('/first-applications', 'FirstApplicationsController@store');
+
+Route::get('/credit-wallet/{client_account_id}', 'WalletController@creditWallet');
