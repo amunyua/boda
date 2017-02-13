@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-    <title> @yield('title') </title>
+    <title> @yield('title') | Boda Squared Ltd. </title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -372,7 +372,7 @@ you can add as many as you like
 
                     var plot = $.plot($("#sin-chart"), [{
                         data : cash_collection,
-                        label : "sin(x)"
+                        label : "Amount Collected"
                     }], {
                         series : {
                             lines : {
@@ -418,70 +418,53 @@ you can add as many as you like
         /* end sin chart */
 
         /* bar chart */
-
         if ($("#bar-chart").length) {
 
-            var data1 = [];
-            for (var i = 0; i <= 12; i += 1)
-                data1.push([i, parseInt(Math.random() * 30)]);
+            $.ajax({
+                url: 'daily-cash-collection',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var count = data.collections.length,
+                            data1 = [];
+                    for (var i = 0; i < count; i++) {
+                        data1.push([data.collections[i][0], data.collections[i][1]]);
+                    }
 
-            var data2 = [];
-            for (var i = 0; i <= 12; i += 1)
-                data2.push([i, parseInt(Math.random() * 30)]);
+                    var ds = new Array();
 
-            var data3 = [];
-            for (var i = 0; i <= 12; i += 1)
-                data3.push([i, parseInt(Math.random() * 30)]);
+                    ds.push({
+                        data: data1,
+                        bars: {
+                            show: true,
+                            barWidth: 0.2,
+                            order: 1,
+                        }
+                    });
 
-            var ds = new Array();
+                    //Display graph
+                    $.plot($("#bar-chart"), ds, {
+                        colors: [$chrt_second, $chrt_fourth, "#666", "#BBB"],
+                        grid: {
+                            show: true,
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: $chrt_border_color,
+                            borderWidth: 0,
+                            borderColor: $chrt_border_color,
+                        },
+                        legend: true,
+                        tooltip: true,
+                        tooltipOpts: {
+                            content: "<b>%x</b> = <span>%y</span>",
+                            defaultTheme: false
+                        }
 
-            ds.push({
-                data : data1,
-                bars : {
-                    show : true,
-                    barWidth : 0.2,
-                    order : 1,
+                    });
                 }
-            });
-            ds.push({
-                data : data2,
-                bars : {
-                    show : true,
-                    barWidth : 0.2,
-                    order : 2
-                }
-            });
-            ds.push({
-                data : data3,
-                bars : {
-                    show : true,
-                    barWidth : 0.2,
-                    order : 3
-                }
-            });
-
-            //Display graph
-            $.plot($("#bar-chart"), ds, {
-                colors : [$chrt_second, $chrt_fourth, "#666", "#BBB"],
-                grid : {
-                    show : true,
-                    hoverable : true,
-                    clickable : true,
-                    tickColor : $chrt_border_color,
-                    borderWidth : 0,
-                    borderColor : $chrt_border_color,
-                },
-                legend : true,
-                tooltip : true,
-                tooltipOpts : {
-                    content : "<b>%x</b> = <span>%y</span>",
-                    defaultTheme : false
-                }
-
             });
 
         }
-
         /* end bar chart */
 
         /* bar-chart-h */

@@ -25,6 +25,17 @@ class FirstApplication
      * @return array|mixed
      */
     public static function CreateRidersMasterfile($candidate){
+        // check if masterfile exists and update it
+        $mf_item = Masterfile::where('phone_no', $candidate->phone_no);
+        $mf_exists = $mf_item->count();
+        if($mf_exists){
+            $mf_item->update(['status' => 1]);
+
+            // activate login account
+            User::where('phone_no', $candidate->phone_no)
+                ->update(['status' => 1]);
+        }
+
         try{
             $mf = new Masterfile();
             $mf->surname = $candidate->surname;
@@ -45,11 +56,12 @@ class FirstApplication
 
             return $mf->id;
         } catch (QueryException $qe){
-//            Log::error($qe->getMessage());
-            return [
-                'status' => false,
-                'error' => $qe->getMessage()
-            ];
+            Log::error($qe->getMessage());
+            return false;
+//            return [
+//                'status' => false,
+//                'error' => $qe->getMessage()
+//            ];
         }
     }
 

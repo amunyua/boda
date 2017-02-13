@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="ride@localhost">
+<dataSource name="MySQL - ride@localhost">
   <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
     <schema id="1" name="ride">
       <visible>1</visible>
     </schema>
     <schema id="2" name="collab12_hsnmbrugu"/>
     <schema id="3" name="db_new_rms"/>
-    <schema id="4" name="entrytest"/>
-    <schema id="5" name="information_schema"/>
-    <schema id="6" name="mysql"/>
-    <schema id="7" name="performance_schema"/>
-    <schema id="8" name="phpmyadmin"/>
-    <schema id="9" name="sys"/>
-    <schema id="10" name="dopays_base"/>
-    <schema id="11" name="dp_dopays_base"/>
+    <schema id="4" name="dopays_base"/>
+    <schema id="5" name="dp_dopays_base"/>
+    <schema id="6" name="entrytest"/>
+    <schema id="7" name="information_schema"/>
+    <schema id="8" name="mysql"/>
+    <schema id="9" name="performance_schema"/>
+    <schema id="10" name="phpmyadmin"/>
+    <schema id="11" name="sys"/>
     <table id="12" parent="1" name="addresses"/>
     <table id="13" parent="1" name="audit_trails"/>
     <table id="14" parent="1" name="bike_models"/>
