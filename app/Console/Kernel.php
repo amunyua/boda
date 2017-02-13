@@ -35,49 +35,9 @@ class Kernel extends ConsoleKernel
 
 
         $schedule->call(function () {
-<<<<<<< HEAD
-            DB::transaction(function (){
-                // get all client accounts
-                $accounts = ClientAccount::where('client_account_status', 1)->get();
-
-                // get service required for billing
-                $service = Service::where('service_code', 'BRCIC')->first();
-
-                // bill them all
-                if(count($accounts)){
-                    foreach ($accounts as $acc){
-                        if($service) {
-                            // raise a bill for each account
-                            $cb = new CustomerBill();
-                            $cb->client_account_id = $acc->id;
-                            $cb->bill_amount = $service->price;
-                            $cb->bill_balance = $service->price;
-                            $cb->masterfile_id = $acc->masterfile_id;
-                            $cb->service_id = $service->id;
-                            $cb->bill_date = date('Y-m-d'); // should change to timestamp
-                            $cb->bill_due_date = date('Y-m-d'); // should change to timestamp
-                            $cb->save();
-
-                            // raise a debit journal
-                            $journal = new Journal();
-                            $journal->client_account_id = $acc->id;
-                            $journal->particulars = $service->service_name;
-                            $journal->masterfile_id = $acc->masterfile_id;
-                            $journal->amount = $service->price;
-                            $journal->dr_cr = 'DR';
-                            $journal->customer_bill_id = $cb->id;
-                            $journal->save();
-                        }
-                    }
-                }
-            });
-        })->daily();
-=======
             Log::info('Dipatching the job to a queue!');
             dispatch(new GenerateCustomerBills());
-        })->dailyAt('16:20');
-//        })->everyFiveMinutes();
->>>>>>> 6aad3868112687545718654b86dbcb853cd932cb
+        })->dailyAt('11:30');
     }
 
     /**
