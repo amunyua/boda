@@ -37,8 +37,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             Log::info('Dipatching the job to a queue!');
             dispatch(new GenerateCustomerBills());
-        })->dailyAt('16:20');
-//        })->everyFiveMinutes();
+        })->dailyAt('11:30');
     }
 
     /**

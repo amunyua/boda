@@ -222,4 +222,42 @@ class BikeController extends Controller
         }
         return redirect()->back();
     }
+
+    public function attachBikeInsurance(Request $request){
+       // var_dump($_POST);die;
+        $this->validate($request, array(
+            'insurance_name'=>'required',
+            'insurance_company_name'=>'required',
+            'issue_date'=>'required',
+            'expiry_date'=>'required',
+            'status'=>'required'
+        ));
+
+        $record = BikeModel::find($request->edit_id);
+
+        $results_set = BikeModel::where([
+            ['id',$record->id]
+        ])->get();
+        $results = $results_set->toArray();
+
+        var_dump($results);die;
+        if($results){
+            Session::flash('failed','Failed to Attach Insurance to a Bike!');
+        }else {
+            $record->insurance_name = $request->insurance_name;
+            $record->insurance_company_name = $request->insurance_company_name;
+            $record->issue_date = $request->issue_date;
+            $record->expiry_date = $request->expiry_date;
+            $record->status = $request->status;
+
+            try {
+                $this->recordAuditTrail();
+                $record->save();
+                Session::flash('success', 'The Bike Insurance has been attached');
+            } catch (e $e) {
+                Session::flash('failed', 'Encountered an error');
+            }
+        }
+        return redirect()->back();
+    }
 }

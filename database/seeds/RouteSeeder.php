@@ -253,7 +253,6 @@ class RouteSeeder extends Seeder
         $item->save();
         $item->roles()->attach($admin);
 
-
         $category = new Route();
         $category->route_name = 'Inventory Allocation';
         $category->url = 'all-allocations';
@@ -282,7 +281,6 @@ class RouteSeeder extends Seeder
         $category->save();
         $category->roles()->attach($admin);
 
-        //bikes
         $category = new Route();
         $category->route_name = 'Manage Motorbikes';
         $category->url = '/bikes';
@@ -290,7 +288,6 @@ class RouteSeeder extends Seeder
         $category->save();
         $category->roles()->attach($admin);
 
-        //bikes models
         $model = new Route();
         $model->route_name = 'Manage Motorbikes Models';
         $model->url = '/bikes-model';
@@ -304,6 +301,13 @@ class RouteSeeder extends Seeder
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
+
+        $insurance = new Route();
+        $insurance->route_name = 'Attach Insurance Bike';
+        $insurance->url = '/attach-bike-insurance';
+        $insurance->parent_route = $inventory_id;
+        $insurance->save();
+        $insurance->roles()->attach($admin);
 
         #### client
         $client = new Route();

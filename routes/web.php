@@ -124,6 +124,7 @@ Route::post('/add-bike-model', 'BikeController@addModel');
 Route::post('/edit-bike-model', 'BikeController@editBikeModel');
 Route::get('/get-bike-model-details/{id}', 'BikeController@getEditDetails');
 Route::post('/delete-bike-model', 'BikeController@destroyBikeModel');
+Route::post('/attach-bike-insurance', 'BikeController@attachBikeInsurance');
 
 //stock transactions
 Route::get('/stock-transactions', 'InventoryController@stockTransactions');
@@ -164,9 +165,13 @@ Route::get('/customer-bills', 'CustomerBillsController@index');
 Route::get('/load-customer-bills', 'CustomerBillsController@loadBills');
 
 #### Broadcast messages
+Route::get('send-sms','BroadcastController@sendSms');
+Route::get('message','BroadcastController@addJob');
+Route::get('mpesa','UserManagerController@mpesaPayment');
 Route::get('send-sms', 'BroadcastController@sendSms');
 Route::get('message', 'BroadcastController@addJob');
 Route::get('mpesa', 'UserManagerController@mpesaPayment');
+
 
 #### second application
 Route::get('second-application','SecondApplicationController@index');

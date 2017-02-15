@@ -88,6 +88,7 @@ $('#delete-inventory-btn').on('click',function () {
 
     }
 });
+
 $('#edit-inventory-btn').on('click',function () {
     var edit_id = Common.onEditValidateSelection();
 
@@ -145,4 +146,49 @@ var DT = $('#stock-transactions').DataTable({
         { data: 'new_level', name: 'new_level'},
         { data: 'created_by', name: 'created_by'}
     ]
+});
+
+$('#attach-insurance-btn').on('click',function () {
+    var edit_id = Common.onEditValidateSelection();
+
+    if(edit_id != false) {
+        // open modal
+        $('#attach-insurance').modal('show');
+        $.ajax({
+            url: 'get-inventory-edit-details/'+edit_id,
+            dataType: 'json',
+            // success: function (data) {
+            //     var type = data.type;
+            //     if(type == 'motorbike'){
+            //         show_hide(type);
+            //         $('#mk-cat').val(data.inventory_details.parent_category_id);
+            //         $('#e-model').val(data.inventory_details.subcategory_id);
+            //         $('#vin').val(data.inventory_details.vin);
+            //         $('#chassis_number').val(data.inventory_details.chassis_number);
+            //         $('#quantity').val(data.inventory_details.quantity);
+            //         $('#cost_price').val(data.inventory_details.cost_price);
+            //         $('#inventory-status').val(data.inventory_details.status);
+            //     }
+            // }
+        });
+    }
+});
+
+// ISSUE AND EXPIRY DATE
+var DT = $('#startdate').datepicker({
+    dateFormat : 'dd-mm-yy',
+    prevText : '<i class="fa fa-chevron-left"></i>',
+    nextText : '<i class="fa fa-chevron-right"></i>',
+    onSelect : function(selectedDate) {
+        $('#finishdate').datepicker('option', 'minDate', selectedDate);
+    }
+});
+
+var DT = $('#finishdate').datepicker({
+    dateFormat : 'dd-mm-yy',
+    prevText : '<i class="fa fa-chevron-left"></i>',
+    nextText : '<i class="fa fa-chevron-right"></i>',
+    onSelect : function(selectedDate) {
+        $('#startdate').datepicker('option', 'maxDate', selectedDate);
+    }
 });

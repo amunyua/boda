@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
 use Yajra\Datatables\Facades\Datatables;
+use App\MyHelpers\Fapps\FirstApplication as Fapps;
 
 class MasterfileController extends Controller
 {
@@ -629,6 +630,9 @@ class MasterfileController extends Controller
                 }
 
                 // send sms
+
+                // create rider's profile
+                Fapps::CreateRidersMasterfile($candidate);
             }
 
             $return = [
@@ -657,6 +661,15 @@ class MasterfileController extends Controller
                     ]);
 
                 $candidate = FirstApplication::find($id);
+
+                // check if $candidate has a masterfile and deactivate it if it exists
+                $mf = Masterfile::where('phone_no', $candidate->phone_no);
+                if($mf->count())
+                    $mf->update(['status' => 0]);
+
+                // deactivate login account
+                User::where('phone_no', $candidate->phone_no)
+                    ->update(['status' => 0]);
 
                 // send a email
                 if(!empty($candidate->email)){

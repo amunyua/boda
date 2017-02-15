@@ -17,6 +17,9 @@ class DashboardController extends Controller
         $this->middleware('auth');
 //        $this->middleware('validateroutes');
         $this->middleware('checkiffap');
+
+        $this->month = date('m');
+        $this->year = date('Y');
     }
 
     public function setMonth($month){
@@ -40,9 +43,6 @@ class DashboardController extends Controller
     }
 
     public function dailyCollection(){
-        $this->setMonth(date('m'));
-        $this->setYear(date('Y'));
-
         $days_in_month = cal_days_in_month(CAL_GREGORIAN, $this->getMonth(), $this->getYear());
 
         // get the cash collected for each day in the month
@@ -57,5 +57,15 @@ class DashboardController extends Controller
         return Response::json([
             'collections' => $collections
         ]);
+    }
+
+    public function weeklyCollection(){
+        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $this->getMonth(), $this->getYear());
+
+        $collections = [];
+    }
+
+    public function getWeeksInMonth(){
+        
     }
 }
