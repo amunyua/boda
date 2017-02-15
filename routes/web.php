@@ -50,9 +50,9 @@ Route::get('approved_applications', 'MasterfileController@approvedApps');
 Route::get('approved_applications/approved', 'MasterfileController@loadApprovedApps');
 Route::post('/approve-applications', 'MasterfileController@approveApplication');
 Route::post('/reject-applications', 'MasterfileController@rejectApplication');
-Route::get('/second-application', function () {
-    echo 'Please fill in the second application...';
-});
+//Route::get('/second-application', function () {
+//    echo 'Please fill in the second application...';
+//});
 
 // Contact Types Module
 Route::resource('contact_types', 'ContactTypesController');
@@ -167,3 +167,7 @@ Route::get('/load-customer-bills', 'CustomerBillsController@loadBills');
 Route::get('send-sms', 'BroadcastController@sendSms');
 Route::get('message', 'BroadcastController@addJob');
 Route::get('mpesa', 'UserManagerController@mpesaPayment');
+
+#### second application
+Route::get('second-application','SecondApplicationController@index');
+Route::get('unapproved-application','SecondApplicationController@unApprovedFirstApplicationIndex');
