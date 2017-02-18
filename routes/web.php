@@ -171,3 +171,7 @@ Route::get('mpesa','UserManagerController@mpesaPayment');
 Route::get('send-sms', 'BroadcastController@sendSms');
 Route::get('message', 'BroadcastController@addJob');
 Route::get('mpesa', 'UserManagerController@mpesaPayment');
+
+#### second application
+Route::get('second-application','SecondApplicationController@index');
+Route::get('unapproved-application','SecondApplicationController@unApprovedFirstApplicationIndex');
