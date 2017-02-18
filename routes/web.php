@@ -24,6 +24,8 @@ Auth::routes();
 // Home/Dashboard
 Route::get('/dashboard', 'DashboardController@index');
 Route::get('/daily-cash-collection', 'DashboardController@dailyCollection');
+Route::get('/weekly-cash-collection', 'DashboardController@weeklyCollection');
+Route::get('/monthly-cash-collection', 'DashboardController@monthlyCollection');
 
 // Registration Module
 Route::get('/registration', 'MasterfileController@index');

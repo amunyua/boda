@@ -34,6 +34,7 @@ class CreateTransactionsTable extends Migration
                 ->on('services')
                 ->onUpdate('cascade')
                 ->onDelete('no action');
+            $table->date('transaction_date');
             $table->boolean('reversed')->default(0);
             $table->text('description')->nullable();
             $table->timestamps();

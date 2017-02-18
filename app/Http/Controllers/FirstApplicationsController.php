@@ -48,15 +48,15 @@ class FirstApplicationsController extends Controller
                 $fa->save();
 
                 // create rider's login account for the candidate to track and complete the appliation
-                $user = new User();
-                $user->name = $request->surname.' '.$request->firstname;
-                $user->email = $request->email;
-                $user->password = bcrypt(123456);
-                $user->status = 1;
-                $user->phone_no = $phone_no;
-                $user->save();
-                $client_role = Role::where('role_code', self::client_role)->first();
-                $user->roles()->attach($client_role);
+//                $user = new User();
+//                $user->name = $request->surname.' '.$request->firstname;
+//                $user->email = $request->email;
+//                $user->password = bcrypt(123456);
+//                $user->status = 1;
+//                $user->phone_no = $phone_no;
+//                $user->save();
+//                $client_role = Role::where('role_code', self::client_role)->first();
+//                $user->roles()->attach($client_role);
 
                 if(!empty($request->email)){
                     // send confirmation email

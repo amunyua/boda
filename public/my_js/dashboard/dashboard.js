@@ -20,7 +20,7 @@ var DashboardGraphs = {
         var d = new Date();
         return {
             curr_month: d.getMonth(),
-            curr_year: d.getYear()
+            curr_year: d.getFullYear()
         };
     },
     loadMonths: function (selector) {
@@ -30,18 +30,35 @@ var DashboardGraphs = {
         }
         $(selector).html(li);
     },
+    loadYears: function(selector){
+        var d = new Date();
+        var li = '';
+        for (var i = 2010; i <= 2017; i++){
+            li += '<li><a href="javascript:void(0);" year="'+ i +'">' + i + '</a></li>';
+        }
+        $(selector).html(li);
+    },
     setCurrentMonth: function (selector, curr_month) {
-        var curr =  '<i class="fa fa-calendar"></i> '+ this.months[curr_month] +' <span class="caret">';
+        var curr =  '<i class="fa fa-calendar"></i> '+ this.months[curr_month] +' <span class="caret"></span>';
         if(selector == '')
             $('a.month').html(curr);
          else
-            selector.html(curr);
+            $(selector).html(curr);
+    },
+    setCurrentYear: function (selector, curr_year) {
+        var curr =  '<i class="fa fa-calendar"></i> '+ curr_year +' <span class="caret"></span>';
+        if(selector == '')
+            $('a.year').html(curr);
+        else
+            $(selector).html(curr);
     }
 };
 
 // defaults
-DashboardGraphs.setCurrentMonth('', DashboardGraphs.curr_date().curr_month);
+DashboardGraphs.setCurrentMonth('a.month', DashboardGraphs.curr_date().curr_month);
+DashboardGraphs.setCurrentYear('a.year', DashboardGraphs.curr_date().curr_year);
 DashboardGraphs.loadMonths('ul.months');
+DashboardGraphs.loadYears('ul.select-years');
 
 // on selection of a month filter
 $('ul.months > li > a').on('click', function () {
@@ -53,13 +70,4 @@ $('ul.months > li > a').on('click', function () {
 
 $('a[href="#s2"]').on('click', function () {
 
-});
-
-$.ajax({
-    url: '/weekly-cash-collection',
-    type: 'GET',
-    dataType: 'json',
-    success: function (data) {
-        
-    }
 });

@@ -6,6 +6,7 @@
 @endsection
 
 @push('js')
+    <script src="{{ URL::asset('my_js/dashboard/charts.js') }}"></script>
     <script src="{{ URL::asset('my_js/dashboard/dashboard.js') }}"></script>
 @endpush
 @section('content')
@@ -76,13 +77,13 @@
                                     <div class="row no-space">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="btn-group hidden-phone pull-right">
-                                                {{--months--}}
+                                                months
                                                 <a class="btn dropdown-toggle btn-xs btn-default daily month"
                                                    data-toggle="dropdown"> </a>
                                                 <ul class="dropdown-menu pull-right months"></ul>
                                             </div>
 
-                                            <div id="bar-chart" class="chart has-legend"></div>
+                                            <div id="daily-chart" class="chart has-legend"></div>
 
                                         </div>
                                     </div>
@@ -102,7 +103,7 @@
                                                 <ul class="dropdown-menu pull-right months"></ul>
                                             </div>
 
-                                            <div id="sin-chart" class="chart chart-large"></div>
+                                            <div id="weekly-chart" class="chart chart-large"></div>
 
                                         </div>
                                     </div>
@@ -110,38 +111,18 @@
                                 <!-- end s2 tab pane -->
 
                                 <div class="tab-pane fade" id="s3">
+                                    <div class="row no-space">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="btn-group hidden-phone pull-right">
+                                                 year
+                                                <a class="btn dropdown-toggle btn-xs btn-default monthly year"
+                                                   data-toggle="dropdown"> </a>
+                                                <ul class="dropdown-menu pull-right select-years"></ul>
+                                            </div>
 
-                                    <div class="widget-body-toolbar bg-color-white smart-form" id="rev-toggles">
+                                            <div id="monthly-chart" class="chart chart-large"></div>
 
-                                        <div class="inline-group">
-
-                                            <label for="gra-0" class="checkbox">
-                                                <input type="checkbox" name="gra-0" id="gra-0" checked="checked">
-                                                <i></i> Target </label>
-                                            <label for="gra-1" class="checkbox">
-                                                <input type="checkbox" name="gra-1" id="gra-1" checked="checked">
-                                                <i></i> Actual </label>
-                                            <label for="gra-2" class="checkbox">
-                                                <input type="checkbox" name="gra-2" id="gra-2" checked="checked">
-                                                <i></i> Signups </label>
                                         </div>
-
-                                        <div class="btn-group hidden-phone pull-right">
-                                            <a class="btn dropdown-toggle btn-xs btn-default" data-toggle="dropdown"><i class="fa fa-cog"></i> More <span class="caret"> </span> </a>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li>
-                                                    <a href="javascript:void(0);"><i class="fa fa-file-text-alt"></i> Export to PDF</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0);"><i class="fa fa-question-sign"></i> Help</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="padding-10">
-                                        <div id="flotcontainer" class="chart-large has-legend-unique"></div>
                                     </div>
                                 </div>
                                 <!-- end s3 tab pane -->
