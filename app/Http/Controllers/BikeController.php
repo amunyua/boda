@@ -146,7 +146,11 @@ class BikeController extends Controller
             {{ App\Category::find($model)->category_name}}
             @endif
             ')
+            ->addColumn('attach_insurance', function($result){
+                return '<a href="'.url('bikes/bike_insurance/'.$result->id).'" class="btn btn-primary"><i class="fa fa-paperclip"></i> Attach Insurance</a>';
+            })
             ->make(true);
+
     }
 
     public function allBikeModel(){
@@ -154,6 +158,14 @@ class BikeController extends Controller
         return view('inventory.bike_model',array(
             'model'=>$models
         ));
+    }
+
+    public function loadBikeInsurance(Request $request){
+        $ins_id = $request->id;
+        $ins = Bike::find($ins_id);
+        return view('inventory.bike_insurance', [
+            'ins' => $ins
+        ]);
     }
 
     public function addModel(Request $request){

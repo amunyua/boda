@@ -127,7 +127,8 @@ var DT = $('#motorbikes').DataTable({
         { data: 'make', name: 'make'},
         { data: 'model', name: 'model'},
         { data: 'status', name: 'status'},
-        { data: 'price', name: 'price'}
+        { data: 'price', name: 'price'},
+        { data: 'attach_insurance', name: 'attach_insurance'}
     ]
 });
 

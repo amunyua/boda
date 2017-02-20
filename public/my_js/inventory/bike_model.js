@@ -1,8 +1,8 @@
-var DT = $('#bike-model').DataTable({
+var DT = $('#bikes-model').DataTable({
     serverSide: true,
     processing: true,
     "aaSorting": [[ 0, 'desc' ]],
-    ajax: 'load-models',
+    ajax: 'bike-model',
     columns: [
         { data: 'id', name: 'id'},
         { data: 'model', name: 'model'},

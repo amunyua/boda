@@ -27,9 +27,6 @@
     <a href="#delete-inventory-item" id="delete-inventory-btn" class="btn btn-danger btn-sm header-btn hidden-mobile">
         <i class="fa fa-trash"></i> Delete Bike
     </a>
-    <a href="#attach-insurance" data-toggle="modal" id="attach-insurance-btn" class="btn btn-primary btn-sm header-btn hidden-mobile">
-        <i class="fa fa-paperclip"></i> Attach Insurance
-    </a>
     {{--</span>--}}
 @endsection
 
@@ -39,15 +36,16 @@
 
 <table id="motorbikes" class="table table-striped table-bordered table-hover">
     <thead>
-    <tr>
-        <th>Id#</th>
-        <th>VIN</th>
-        <th>Chassis Number</th>
-        <th>Make</th>
-        <th>Model</th>
-        <th>Status</th>
-        <th>Cost Price</th>
-    </tr>
+        <tr>
+            <th>Id#</th>
+            <th>VIN</th>
+            <th>Chassis Number</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Status</th>
+            <th>Cost Price</th>
+            <th>Attach</th>
+        </tr>
     </thead>
 </table>
 

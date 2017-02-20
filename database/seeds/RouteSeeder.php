@@ -303,8 +303,8 @@ class RouteSeeder extends Seeder
         $category->roles()->attach($admin);
 
         $insurance = new Route();
-        $insurance->route_name = 'Attach Insurance Bike';
-        $insurance->url = '/attach-bike-insurance';
+        $insurance->route_name = 'Bike Insurance';
+        $insurance->url = '/bike-insurance/{id}';
         $insurance->parent_route = $inventory_id;
         $insurance->save();
         $insurance->roles()->attach($admin);

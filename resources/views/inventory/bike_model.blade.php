@@ -35,9 +35,9 @@
 
 @section('content')
     @include('layouts.includes._messages')
-@section('table-id', '#bike-model')
+@section('table-id', '#bikes-model')
 
-<table id="bike-model" class="table table-striped table-bordered table-hover">
+<table id="bikes-model" class="table table-striped table-bordered table-hover">
     <thead>
     <tr>
         <th>Id#</th>
