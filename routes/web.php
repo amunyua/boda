@@ -24,6 +24,8 @@ Auth::routes();
 // Home/Dashboard
 Route::get('/dashboard', 'DashboardController@index');
 Route::get('/daily-cash-collection', 'DashboardController@dailyCollection');
+Route::get('/weekly-cash-collection', 'DashboardController@weeklyCollection');
+Route::get('/monthly-cash-collection', 'DashboardController@monthlyCollection');
 
 // Registration Module
 Route::get('/registration', 'MasterfileController@index');
@@ -166,6 +168,13 @@ Route::get('/customer-bills', 'CustomerBillsController@index');
 Route::get('/load-customer-bills', 'CustomerBillsController@loadBills');
 
 #### Broadcast messages
+Route::get('send-sms','BroadcastController@sendSms');
+Route::get('message','BroadcastController@addJob');
+Route::get('mpesa','UserManagerController@mpesaPayment');
 Route::get('send-sms', 'BroadcastController@sendSms');
 Route::get('message', 'BroadcastController@addJob');
 Route::get('mpesa', 'UserManagerController@mpesaPayment');
+
+#### second application
+Route::get('second-application','SecondApplicationController@index');
+Route::get('unapproved-application','SecondApplicationController@unApprovedFirstApplicationIndex');

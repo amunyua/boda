@@ -131,6 +131,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         ),
         'C' => 
         array (
+            'Cron\\' => 5,
             'Collective\\Html\\' => 16,
             'ClassPreloader\\' => 15,
             'Carbon\\' => 7,
@@ -366,6 +367,10 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+        'Cron\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
+        ),
         'Collective\\Html\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravelcollective/html/src',
@@ -463,13 +468,6 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
                 0 => __DIR__ . '/..' . '/doctrine/collections/lib',
             ),
         ),
-        'C' => 
-        array (
-            'Cron' => 
-            array (
-                0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src',
-            ),
-        ),
     );
 
     public static $classMap = array (
@@ -482,6 +480,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'AddCountyStatusToCountiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_03_061623_add_county_status_to_counties_table.php',
         'AddFaIconsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_085709_add_fa_icons_table.php',
         'AddFaiconColumn' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_093918_add_faicon_column.php',
+        'AddFirstApplicationIdToUsersTble' => __DIR__ . '/../..' . '/database/migrations/2017_02_14_120613_addFirstApplicationIdToUsersTble.php',
         'AddFksMenu' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_163211_add_fks_menu.php',
         'AddParentmenuFieldTomenus' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_093059_add_parentmenu_field_tomenus.php',
         'AddPhoneandvinTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_093615_add_phoneandvin_table.php',
@@ -708,7 +707,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'PHPUnit_Framework_Constraint_TraversableContains' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/TraversableContains.php',
         'PHPUnit_Framework_Constraint_TraversableContainsOnly' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/TraversableContainsOnly.php',
         'PHPUnit_Framework_Constraint_Xor' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Constraint/Xor.php',
-        'PHPUnit_Framework_CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/PHPUnit_Framework_CoveredCodeNotExecutedException.php',
+        'PHPUnit_Framework_CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/CoveredCodeNotExecutedException.php',
         'PHPUnit_Framework_Error' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Error.php',
         'PHPUnit_Framework_Error_Deprecated' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Error/Deprecated.php',
         'PHPUnit_Framework_Error_Notice' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Error/Notice.php',
@@ -720,7 +719,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'PHPUnit_Framework_IncompleteTestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/IncompleteTestCase.php',
         'PHPUnit_Framework_IncompleteTestError' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/IncompleteTestError.php',
         'PHPUnit_Framework_InvalidCoversTargetException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/InvalidCoversTargetException.php',
-        'PHPUnit_Framework_MissingCoversAnnotationException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/PHPUnit_Framework_MissingCoversAnnotationException.php',
+        'PHPUnit_Framework_MissingCoversAnnotationException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/MissingCoversAnnotationException.php',
         'PHPUnit_Framework_MockObject_BadMethodCallException' => __DIR__ . '/..' . '/phpunit/phpunit-mock-objects/src/Framework/MockObject/Exception/BadMethodCallException.php',
         'PHPUnit_Framework_MockObject_Builder_Identity' => __DIR__ . '/..' . '/phpunit/phpunit-mock-objects/src/Framework/MockObject/Builder/Identity.php',
         'PHPUnit_Framework_MockObject_Builder_InvocationMocker' => __DIR__ . '/..' . '/phpunit/phpunit-mock-objects/src/Framework/MockObject/Builder/InvocationMocker.php',

@@ -35,10 +35,9 @@ class Kernel extends ConsoleKernel
 
 
         $schedule->call(function () {
-            Log::info('Dipatching the job to a queue!');
+            Log::info('Generating Rider Bills');
             dispatch(new GenerateCustomerBills());
-        })->dailyAt('16:20');
-//        })->everyFiveMinutes();
+        })->dailyAt('23:30');
     }
 
     /**
@@ -51,6 +50,9 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
 
+    /**
+     * @param $schedule
+     */
     public function databaseBackup($schedule){
         $date = Carbon::now()->toW3cString();
         $environment = env('APP_ENV');
