@@ -52,6 +52,9 @@
     <link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)">
 
+    {{--Addtional Bootstrap components--}}
+    <link rel="stylesheet" href="{{ URL::asset('bootstrap-datepicker/css/bootstrap-datepicker.css') }}"/>
+    {{--<link href="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/a549aa8780dbda16f6cff545aeabc3d71073911e/build/css/bootstrap-datetimepicker.css" rel="stylesheet"/>--}}
     @stack('css')
 </head>
 
@@ -177,11 +180,11 @@ you can add as many as you like
     }
 </script>
 
-<script src="{{ URL::asset('js/libs/jqueryui/1.10.3/jquery-ui.min.js') }}"></script>
+<script src="{{ URL::asset('js/libs/jquery-ui-1.10.3.min.js') }}"></script>
 <script>
-    if (!window.jQuery.ui) {
-        document.write('<script src="{{ URL::asset('js/libs/jquery-ui-1.10.3.min.js') }}"><\/script>');
-    }
+    {{--if (!window.jQuery.ui) {--}}
+        {{--document.write('<script src="{{ URL::asset('js/libs/jquery-ui-1.10.3.min.js') }}"><\/script>');--}}
+    {{--}--}}
 </script>
 
 <!-- IMPORTANT: APP CONFIG -->
@@ -253,6 +256,11 @@ you can add as many as you like
 <script src="{{ URL::asset('js/plugin/flot/jquery.flot.pie.min.js') }}"></script>
 <script src="{{ URL::asset('js/plugin/flot/jquery.flot.time.min.js') }}"></script>
 <script src="{{ URL::asset('js/plugin/flot/jquery.flot.tooltip.min.js') }}"></script>
+
+{{--Additional Bootstrap Components--}}
+<script src="{{ URL::asset('bootstrap-datepicker/js/moment.js')  }}"></script>
+<script src="{{ URL::asset('bootstrap-datepicker/js/bootstrap-datepicker.js')  }}"></script>
+{{--<script src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/a549aa8780dbda16f6cff545aeabc3d71073911e/src/js/bootstrap-datetimepicker.js"></script>--}}
 
 @stack('js')
 </body>

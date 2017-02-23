@@ -51,6 +51,53 @@ var DashboardGraphs = {
             $('a.year').html(curr);
         else
             $(selector).html(curr);
+    },
+    filterByMonth: function(month){
+        $.ajax({
+            url: 'daily-cash-collection?month_yr=' + month_yr,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var count = data.collections.length,
+                    data1 = [];
+                for (var i = 0; i < count; i++) {
+                    data1.push([data.collections[i][0], data.collections[i][1]]);
+                }
+
+                var ds = new Array();
+
+                ds.push({
+                    data: data1,
+                    bars: {
+                        show: true,
+                        barWidth: 0.2,
+                        order: 1,
+                    }
+                });
+
+                //Display graph
+                DashboardGraphs.dailyGraph(ds);
+            }
+        });
+    },
+    dailyGraph: function(ds){
+        $.plot($("#daily-chart"), ds, {
+            colors: [$chrt_second, $chrt_fourth, "#666", "#BBB"],
+            grid: {
+                show: true,
+                hoverable: true,
+                clickable: true,
+                tickColor: $chrt_border_color,
+                borderWidth: 0,
+                borderColor: $chrt_border_color,
+            },
+            legend: true,
+            tooltip: true,
+            tooltipOpts: {
+                content: "<b>%x</b> = <span>%y</span>",
+                defaultTheme: false
+            }
+        });
     }
 };
 
@@ -60,14 +107,21 @@ DashboardGraphs.setCurrentYear('a.year', DashboardGraphs.curr_date().curr_year);
 DashboardGraphs.loadMonths('ul.months');
 DashboardGraphs.loadYears('ul.select-years');
 
+// initialize datepicker
+$(function () {
+    $(document).find('.datepicker79').datetimepicker({
+        viewMode: 'years',
+        format: 'YYYY-MM'
+    });
+});
+
+// filtering
+
+
 // on selection of a month filter
 $('ul.months > li > a').on('click', function () {
     var month = $(this).attr('month');
     var selector = $(this).parent().parent().parent().find('a.month');
 
     DashboardGraphs.setCurrentMonth(selector, month);
-});
-
-$('a[href="#s2"]').on('click', function () {
-
 });

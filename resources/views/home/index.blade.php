@@ -6,8 +6,8 @@
 @endsection
 
 @push('js')
-    <script src="{{ URL::asset('my_js/dashboard/charts.js') }}"></script>
     <script src="{{ URL::asset('my_js/dashboard/dashboard.js') }}"></script>
+    <script src="{{ URL::asset('my_js/dashboard/charts.js') }}"></script>
 @endpush
 @section('content')
     <div class="row">
@@ -77,10 +77,8 @@
                                     <div class="row no-space">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="btn-group hidden-phone pull-right">
-                                                months
-                                                <a class="btn dropdown-toggle btn-xs btn-default daily month"
-                                                   data-toggle="dropdown"> </a>
-                                                <ul class="dropdown-menu pull-right months"></ul>
+                                                Month
+                                                <input type="text" class="datepicker79"/>
                                             </div>
 
                                             <div id="daily-chart" class="chart has-legend"></div>
@@ -110,11 +108,11 @@
                                 </div>
                                 <!-- end s2 tab pane -->
 
-                                <div class="tab-pane fade" id="s3">
+                                <div class="tab-pane fade in padding-10 no-padding-bottom" id="s3">
                                     <div class="row no-space">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="btn-group hidden-phone pull-right">
-                                                 year
+                                                  year
                                                 <a class="btn dropdown-toggle btn-xs btn-default monthly year"
                                                    data-toggle="dropdown"> </a>
                                                 <ul class="dropdown-menu pull-right select-years"></ul>

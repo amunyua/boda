@@ -500,6 +500,7 @@ class ComposerStaticInit05b41feeb90e17d3afadcf1ca8c5a337
         'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'CreateAddressesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_26_145922_create_addresses_table.php',
         'CreateAuditTrailsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_01_180922_create_audit_trails_table.php',
+        'CreateBikeInsurancesTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_13_191236_create_bike_insurances_table.php',
         'CreateBikeModelsTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_18_082526_create_bike_models_table.php',
         'CreateBikesTable' => __DIR__ . '/../..' . '/database/migrations/2016_12_06_115701_create_bikes_table.php',
         'CreateBillDataView' => __DIR__ . '/../..' . '/database/migrations/2017_01_23_161254_create_bill_data_view.php',
