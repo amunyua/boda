@@ -101,6 +101,23 @@ class MenuSeeder extends Seeder
         $approved_application->sequence = 4;
         $approved_application->save();
 
+        #### Second application
+        $application_route = Route::where('route_name', 'Second Applications')->first();
+        $application = new Menu();
+        $application->fa_icon = 'fa-folder';
+        $application->route_id = $application_route->id;
+        $application->sequence = 4;
+        $application->save();
+        $s_application_id = $application->id;
+
+        //second application children
+        $second_application_route = Route::where('route_name', 'All Second Applications')->first();
+        $second_application = new Menu();
+        $second_application->route_id = $second_application_route->id;
+        $second_application->parent_menu = $s_application_id;
+        $second_application->sequence = 4;
+        $second_application->save();
+
         #### inventory
         $inventory_route = Route::where('route_name', 'Inventory')->first();
         $inventory = new Menu();

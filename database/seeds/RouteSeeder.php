@@ -232,6 +232,20 @@ class RouteSeeder extends Seeder
         $appr_app->save();
         $appr_app->roles()->attach($admin);
 
+        #### Second Application
+        $app = new Route();
+        $app->route_name = 'Second Applications';
+        $app->save();
+        $s_app_id = $app->id;
+
+        //second application childeren
+        $canc_app = new Route();
+        $canc_app->route_name = 'All Second Applications';
+        $canc_app->url = 'list-second-application';
+        $canc_app->parent_route = $s_app_id;
+        $canc_app->save();
+        $canc_app->roles()->attach($admin);
+
         #### inventory
         $inventory = new Route();
         $inventory->route_name = 'Inventory';

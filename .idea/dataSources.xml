@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-<<<<<<< HEAD
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ride@localhost" uuid="49a75498-a258-4753-8bf1-9176d9b9183f">
-=======
-  <component name="DataSourceManagerImpl" format="xml" hash="1916569513">
-    <data-source source="LOCAL" name="MySQL - ride@localhost" uuid="e6340146-0701-488a-9a61-7fe44b6aca06">
->>>>>>> fa693ebd4145833f8d8086a9287edc35ed279e04
+    <data-source source="LOCAL" name="fcs@localhost" uuid="062b0c1b-a352-4d71-a766-1f745ddc7dee">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://localhost\ALEXSERVER;databaseName=fcs</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="ride@localhost" uuid="46c1c128-76a9-4f7b-8c5c-0f64215a1c78">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
@@ -20,14 +21,5 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
-<<<<<<< HEAD
-    <data-source source="LOCAL" name="fcsmw2@localhost" uuid="eb9ccc2c-40ce-4445-b31a-288d71f8d4d1">
-      <driver-ref>sqlserver.ms</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://localhost\ALEXSERVER;databaseName=fcsmw2</jdbc-url>
-    </data-source>
-=======
->>>>>>> fa693ebd4145833f8d8086a9287edc35ed279e04
   </component>
 </project>

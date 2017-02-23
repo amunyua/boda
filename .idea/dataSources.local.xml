@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-<<<<<<< HEAD
-    <data-source name="ride@localhost" uuid="49a75498-a258-4753-8bf1-9176d9b9183f">
+    <data-source name="fcs@localhost" uuid="062b0c1b-a352-4d71-a766-1f745ddc7dee">
+      <database-info product="Microsoft SQL Server" version="11.00.6020" jdbc-version="4.0" driver-name="Microsoft JDBC Driver 4.0 for SQL Server" driver-version="4.0.2206.100">
+        <extra-name-characters>$#@</extra-name-characters>
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>sa</user-name>
+      <resolve-scope>fcs:*</resolve-scope>
+    </data-source>
+    <data-source name="ride@localhost" uuid="46c1c128-76a9-4f7b-8c5c-0f64215a1c78">
       <database-info product="MySQL" version="5.5.5-10.1.19-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -11,21 +20,6 @@
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
       <resolve-scope>ride:</resolve-scope>
-    </data-source>
-    <data-source name="fcsmw2@localhost" uuid="eb9ccc2c-40ce-4445-b31a-288d71f8d4d1">
-      <database-info product="Microsoft SQL Server" version="11.00.6020" jdbc-version="4.0" driver-name="Microsoft JDBC Driver 4.0 for SQL Server" driver-version="4.0.2206.100">
-        <extra-name-characters>$#@</extra-name-characters>
-        <identifier-quote-string>&quot;</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
-      <secret-storage>master_key</secret-storage>
-      <user-name>sa</user-name>
-      <resolve-scope>fcsmw2:*</resolve-scope>
-=======
-    <data-source name="MySQL - ride@localhost" uuid="e6340146-0701-488a-9a61-7fe44b6aca06">
-      <secret-storage>master_key</secret-storage>
-      <user-name>root</user-name>
->>>>>>> fa693ebd4145833f8d8086a9287edc35ed279e04
     </data-source>
   </component>
 </project>

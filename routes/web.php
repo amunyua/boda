@@ -175,4 +175,6 @@ Route::get('mpesa', 'UserManagerController@mpesaPayment');
 
 #### second application
 Route::get('second-application','SecondApplicationController@index');
+Route::get('list-second-application','SecondApplicationController@listSecondApplications');
 Route::get('unapproved-application','SecondApplicationController@unApprovedFirstApplicationIndex');
+Route::post('upload-documents','SecondApplicationController@uploadDocuments');

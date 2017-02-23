@@ -34,15 +34,13 @@
                                 </div>
                                 <div class="navbar-collapse collapse">
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li class="active"><a class="smoth-scroll" href="#home">Home <div class="ripple-wrapper"></div></a>
-                                        </li>
                                         <li><a class="smoth-scroll" href="#about">Upload Documents</a>
                                         </li>
 
                                         {{--<div class="dropdown">--}}
                                         <li>
                                             <a class="   dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                <?php echo \Illuminate\Support\Facades\Auth::user()->name;      ?>
+                                                <?php  $user_name = \Illuminate\Support\Facades\Auth::user();echo $user_name->name;      ?>
                                                 <span class="caret"></span>
                                             </a>
 
@@ -63,24 +61,6 @@
             </div>
         </div>
     </header>
-    <!-- Menu Section End -->
-    <section class="home-section">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-sm-offset-2 col-md-4 col-sm-6 margin-left-setting">
-                    <div class="margin-top-150">
-                        <div class="panel-blue">
-                            welcome alex please select the button below to upload photos
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- Home Section End -->
-
 
 
 
@@ -90,11 +70,21 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="section-title">
-                        <h2>Uploa .</h2>
+                        <h2>Welcome <?php echo (isset($user_name->name))? $user_name->name: ''; ?> </h2>
                         <div class="divider dark">
-                            <i class="icon-emotsmile"></i>
+                            <i class="icon-emotsmile fa-spin"></i>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                        @include('layouts.includes._messages')
+                        <?php $status = \App\SecondApplication::where('first_application_id',$user_name->id)->get();
+                        if(count($status)>0){
+                            $upload_status = true;
+                        }else{
+                            $upload_status = false;
+                            ?>
+                        <p>Please click on the button below to upload photocopies of the required documents as stated</p>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -105,11 +95,25 @@
 
 
                 <div class="col-md-6 col-md-offset-3">
-                    <div class="about-me-text pattern-bg margin-top-50 margin-bottom-50">
-                        <div class="text-center">
-                            <a class="button button-style button-style-dark button-style-color-2" data-toggle="modal" data-target="#subscribemodal" href="#">Upload Documents</a>
+                    <?php if($upload_status){
+                        ?>
+                        <p>Thank you for stopping by, your application is still being processed. We will let you know once it gets approved</p>
+
+
+                    <?php
+                    }else{
+                        ?>
+
+                        <div class="about-me-text pattern-bg margin-top-50 margin-bottom-50">
+                            <div class="text-center">
+
+                                <a class="button button-style button-style-dark button-style-color-2" data-toggle="modal" data-target="#subscribemodal" href="#">Upload Documents</a>
+                            </div>
                         </div>
-                    </div>
+
+
+                    <?php
+                    } ?>
 
                 </div>
 
@@ -127,36 +131,59 @@
 
 
             <div class="modal-content">
+                <form id="" method="post" action="{{ url('upload-documents') }}" enctype="multipart/form-data">
+
+                    {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="">
                             <div class="section-title margin-top-30">
                                 <button type="button" class="btn pull-right" data-dismiss="modal"><i class="fa fa-close"></i></button>
-                                <h2>Subscribe.</h2>
-                                <div class="divider dark">
-                                    <i class="icon-envelope-letter"></i>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                <h2>Upload Documents.</h2>
+                                <p>Upload Character reference documents from the following institutions.</p>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-sm-offset-2 col-xs-offset-0 col-md-8 col-sm-8">
-
-                            <div class="margin-bottom-50">
-                                <form id="mc-form" method="post" action="http://uipasta.us14.list-manage.com/subscribe/post?u=854825d502cdc101233c08a21&amp;id=86e84d44b7">
-
-                                    <div class="subscribe-form">
-                                        <input id="mc-email" type="email" placeholder="Email Address" class="text-input">
-                                        <button class="submit-btn" type="submit">Submit</button>
-                                    </div>
-                                    <label for="mc-email" class="mc-label"></label>
-                                </form>
-                            </div>
+                 <div class= row-fluid">
+                        <label for="school-cert" class="control-label">Last School Attended </label>
+                        <div class="controls">
+                                    <input type="file" name="school_cert" class="form-control" >
                         </div>
+                    </div>
+                 <div class= row-fluid">
+                        <label for="school-cert" class="control-label">Religious Leader</label>
+                        <div class="controls">
+                                    <input type="file" name="religious_reference" class="form-control" >
+                        </div>
+                    </div>
+                 <div class= row-fluid">
+                        <label for="school-cert" class="control-label">Government Official</label>
+                        <div class="controls">
+                                    <input type="file" name="government_character_reference" class="form-control" >
+                        </div>
+                    </div>
+                 <div class= row-fluid">
+                        <label for="school-cert" class="control-label">Identification Card</label>
+                        <div class="controls">
+                                    <input type="file" name="identification_card" class="form-control" >
+                        </div>
+                    </div>
+                  <div class= row-fluid">
+                        <label for="school-cert" class="control-label">Good Conduct from CID</label>
+                        <div class="controls">
+                                    <input type="file" name="good_conduct" class="form-control" >
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="actions">
+                        <input type="submit" class="btn btn-primary">
                     </div>
                 </div>
+
+                </form>
+
             </div>
         </div>
     </div>
