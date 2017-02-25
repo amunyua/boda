@@ -70,48 +70,7 @@ $(document).ready(function() {
                     cash_collection.push([data.collections[i][0], data.collections[i][1]]);
                 }
 
-                var plot = $.plot($("#weekly-chart"), [{
-                    data : cash_collection,
-                    label : "Amount Collected"
-                }], {
-                    series : {
-                        lines : {
-                            show : true
-                        },
-                        points : {
-                            show : true
-                        }
-                    },
-                    grid : {
-                        hoverable : true,
-                        clickable : true,
-                        tickColor : $chrt_border_color,
-                        borderWidth : 0,
-                        borderColor : $chrt_border_color,
-                    },
-                    tooltip : true,
-                    tooltipOpts : {
-                        content : "Week <b>%x</b> Amount Collected <span>%y</span>",
-                        defaultTheme : false
-                    },
-                    colors : [$chrt_second, $chrt_fourth],
-                    yaxis : {
-                        min : 0,
-//                    max : 1.1
-                    },
-                    xaxis : {
-                        min : 1,
-                        max : count,
-                        minTickSize: 1
-                    }
-                });
-
-                $("#weekly-chart").bind("plotclick", function(event, pos, item) {
-                    if (item) {
-                        $("#clickdata").text("You clicked point " + item.dataIndex + " in " + item.series.label + ".");
-                        plot.highlight(item.series, item.datapoint);
-                    }
-                });
+                DashboardGraphs.weeklyGraph(cash_collection);
             }
         });
     }
@@ -133,48 +92,7 @@ $(document).ready(function() {
                     cash_collection.push([data.collections[i][0], data.collections[i][1]]);
                 }
 
-                var plot = $.plot($("#monthly-chart"), [{
-                    data : cash_collection,
-                    label : "Amount Collected"
-                }], {
-                    series : {
-                        lines : {
-                            show : true
-                        },
-                        points : {
-                            show : true
-                        }
-                    },
-                    grid : {
-                        hoverable : true,
-                        clickable : true,
-                        tickColor : $chrt_border_color,
-                        borderWidth : 0,
-                        borderColor : $chrt_border_color,
-                    },
-                    tooltip : true,
-                    tooltipOpts : {
-                        content : "Month <b>%x</b> Amount Collected <span>%y</span>",
-                        defaultTheme : false
-                    },
-                    colors : [$chrt_second, $chrt_fourth],
-                    yaxis : {
-                        min : 0,
-//                    max : 1.1
-                    },
-                    xaxis : {
-                        min : 1,
-                        max : count,
-                        minTickSize: 1
-                    }
-                });
-
-                $("#monthly-chart").bind("plotclick", function(event, pos, item) {
-                    if (item) {
-                        $("#clickdata").text("You clicked point " + item.dataIndex + " in " + item.series.label + ".");
-                        plot.highlight(item.series, item.datapoint);
-                    }
-                });
+                DashboardGraphs.monthlyGraph(cash_collection);
             }
         });
     }
