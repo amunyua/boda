@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\FirstApplication;
+use App\Masterfile;
+use App\Role;
 use App\SecondApplication;
+use App\User;
+use Carbon\Carbon;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Yajra\Datatables\Datatables;
 
 class SecondApplicationController extends Controller
 {
+    private $return;
     public function __construct()
     {
         $this->middleware('auth');
@@ -73,6 +81,86 @@ class SecondApplicationController extends Controller
     }
 
     public function getList(){
-        return Datatables::of(SecondApplication::all())->make(true);
+        $sas = SecondApplication::all();
+        return Datatables::of($sas)
+            ->editColumn('status', function ($sa){
+                if($sa->status == 0){
+                    return '<span class="label label-warning">Pending</span>' ;
+                }else{
+                    return'<span class="label label-success">Approved</span>';
+                }
+            })
+            ->editColumn('first_application_id',function ($app_name){
+                $app_details = FirstApplication::find($app_name->id);
+                return $app_details->surname.' '.$app_details->firstname.' '.$app_details->middlename;
+            })
+            ->make(true);
+    }
+
+    public function approveSecondApplication(Request $request){
+        $ids = $request->app_no;
+        DB::transaction(function () {
+            $ids = Input::get('app_no');
+
+            foreach ($ids as $id) {
+//                    $status =SecondApplication::Where('id', $id)->first()->status;
+//                    echo $status;die;
+                if (SecondApplication::Where('id', $id)->first()->status == 1) {
+                    $this->return = [
+                        'success' => false,
+                        'message' => "Application already approved",
+                        'type' => 'error'
+                    ];
+                } else {
+
+
+                    SecondApplication::where('id', $id)
+                        ->update([
+                            'status' => 1
+                        ]);
+                    $applicant_id = SecondApplication::find($id)->first_application_id;
+                    $applicant_details = FirstApplication::find($applicant_id);
+                    $masterfile = new Masterfile();
+                    $masterfile->surname = $applicant_details->surname;
+                    $masterfile->firstname = $applicant_details->firstname;
+                    $masterfile->middlename = $applicant_details->middlename;
+//                    $masterfile->id_no = $applicant_details->id_no;
+                    $masterfile->registration_date = (!empty($applicant_details->created_at))? $applicant_details->created_at: NULL;
+                    $masterfile->b_role = 'Client';
+                    $user_role = Role::where('role_code', 'CLIENT')->first();
+                    $masterfile->user_role = $user_role->id;
+                    $masterfile->gender = $applicant_details->gender;
+                    $masterfile->status = true;
+                    $masterfile->phone_no = $applicant_details->phone_no;
+                    $masterfile->documents_id = $id;
+                    try {
+
+                        $masterfile->save();
+                        $masterfile_id = $masterfile->id;
+
+                        //update user account details
+                        $user_account = User::where('phone_no', $applicant_details->phone_no)
+                            ->update(['masterfile_id'=>$masterfile_id]);
+
+                        $this->return = [
+                            'success' => true,
+                            'message' => 'The Application has been approved',
+                            'type' => 'success'
+                        ];
+                    } catch (QueryException $exception) {
+
+                        $this->return = [
+                            'success' => false,
+                            'message' => $exception->getMessage(),
+                            'type' => 'error'
+                        ];
+                    }
+                }
+            }
+        }
+
+                );
+
+        return Response::json($this->return);
     }
 }

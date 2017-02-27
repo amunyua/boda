@@ -78,6 +78,7 @@ class ClearBillsWithBalance implements ShouldQueue
                         $transaction->reversed = 0;
                         $transaction->description = "Payment of pending bill";
                         $transaction->customer_bill_id = $pending_bill->id;
+                        $transaction->date = date('Y-m-d');
                         $transaction->save();
                     } else {
 

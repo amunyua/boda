@@ -24,6 +24,8 @@ Auth::routes();
 // Home/Dashboard
 Route::get('/dashboard', 'DashboardController@index');
 Route::get('/daily-cash-collection', 'DashboardController@dailyCollection');
+Route::get('/weekly-cash-collection', 'DashboardController@weeklyCollection');
+Route::get('/monthly-cash-collection', 'DashboardController@monthlyCollection');
 
 // Registration Module
 Route::get('/registration', 'MasterfileController@index');
@@ -50,9 +52,9 @@ Route::get('approved_applications', 'MasterfileController@approvedApps');
 Route::get('approved_applications/approved', 'MasterfileController@loadApprovedApps');
 Route::post('/approve-applications', 'MasterfileController@approveApplication');
 Route::post('/reject-applications', 'MasterfileController@rejectApplication');
-//Route::get('/second-application', function () {
-//    echo 'Please fill in the second application...';
-//});
+Route::get('/second-application', function () {
+    echo 'Please fill in the second application...';
+});
 
 // Contact Types Module
 Route::resource('contact_types', 'ContactTypesController');
@@ -124,7 +126,8 @@ Route::post('/add-bike-model', 'BikeController@addModel');
 Route::post('/edit-bike-model', 'BikeController@editBikeModel');
 Route::get('/get-bike-model-details/{id}', 'BikeController@getEditDetails');
 Route::post('/delete-bike-model', 'BikeController@destroyBikeModel');
-Route::post('/attach-bike-insurance', 'BikeController@attachBikeInsurance');
+Route::get('/bike-insurance/{id}', 'BikeController@loadBikeInsurance');
+Route::post('/attach_bike-insurance/{id}', 'BikeController@attachBikeInsurance');
 
 //stock transactions
 Route::get('/stock-transactions', 'InventoryController@stockTransactions');
@@ -172,9 +175,11 @@ Route::get('send-sms', 'BroadcastController@sendSms');
 Route::get('message', 'BroadcastController@addJob');
 Route::get('mpesa', 'UserManagerController@mpesaPayment');
 
-
 #### second application
 Route::get('second-application','SecondApplicationController@index');
 Route::get('list-second-application','SecondApplicationController@listSecondApplications');
 Route::get('unapproved-application','SecondApplicationController@unApprovedFirstApplicationIndex');
 Route::post('upload-documents','SecondApplicationController@uploadDocuments');
+Route::get('unapproved-application','SecondApplicationController@unApprovedFirstApplicationIndex');
+Route::get('get-second-application','SecondApplicationController@getList');
+Route::post('approve-second-applications','SecondApplicationController@approveSecondApplication');

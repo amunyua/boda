@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Str;
 use Yajra\Datatables\Helper;
 use Yajra\Datatables\Request;
@@ -101,11 +102,6 @@ class QueryBuilderEngine extends BaseEngine
             $myQuery->select($this->connection->raw("'1' as {$row_count}"));
         }
 
-        // check for select soft deleted records
-        if (! $this->withTrashed && $this->modelUseSoftDeletes()) {
-            $myQuery->whereNull($myQuery->getModel()->getTable() . '.deleted_at');
-        }
-
         return $this->connection->table($this->connection->raw('(' . $myQuery->toSql() . ') count_row_table'))
                                 ->setBindings($myQuery->getBindings())->count();
     }
@@ -119,20 +115,6 @@ class QueryBuilderEngine extends BaseEngine
     protected function wrap($column)
     {
         return $this->connection->getQueryGrammar()->wrap($column);
-    }
-
-    /**
-     * Check if model use SoftDeletes trait
-     *
-     * @return boolean
-     */
-    private function modelUseSoftDeletes()
-    {
-        if ($this->query_type == 'eloquent') {
-            return in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this->query->getModel()));
-        }
-
-        return false;
     }
 
     /**
@@ -342,10 +324,10 @@ class QueryBuilderEngine extends BaseEngine
          */
         foreach ($relationChunk as $relation => $chunk) {
             // Prepare variables
-            $builder      = $chunk['builder'];
-            $relationType = $chunk['relationType'];
-            $query        = $chunk['query'];
-            $builder      = "({$builder->toSql()}) >= 1";
+            $builder  = $chunk['builder'];
+            $query    = $chunk['query'];
+            $bindings = $builder->getBindings();
+            $sql      = "({$builder->toSql()}) >= 1";
 
             // Check if it last relation we will use orWhereRaw
             if ($lastRelation == $relation) {
@@ -356,11 +338,7 @@ class QueryBuilderEngine extends BaseEngine
                 $relationMethod = "whereRaw";
             }
 
-            if ($relationType instanceof MorphToMany) {
-                $query->{$relationMethod}($builder, [$relationType->getMorphClass(), $this->prepareKeyword($keyword)]);
-            } else {
-                $query->{$relationMethod}($builder, [$this->prepareKeyword($keyword)]);
-            }
+            $query->{$relationMethod}($sql, $bindings);
         }
     }
 
@@ -374,35 +352,9 @@ class QueryBuilderEngine extends BaseEngine
      */
     protected function compileQuerySearch($query, $column, $keyword, $relation = 'or')
     {
+        $column = $this->addTablePrefix($query, $column);
         $column = $this->castColumn($column);
         $sql    = $column . ' LIKE ?';
-
-        /**
-         * Patch for fix about ambiguous field
-         * Ambiguous field error will appear
-         * when query use join table and search with keyword.
-         */
-        // Remove delimiter of column that appear from MYSQL query.
-        $column = str_replace(['`', '"', '[', ']'], '', $column);
-
-        // check . in field name for protect don't add table again
-        // but as far as I tested, this function has single field name only.
-        if (strpos($column, '.') === false) {
-            // Alternative method to check
-            // instanceof \Illuminate\Database\Eloquent\Builder
-            if (method_exists($query, 'getQuery')) {
-                $q = $query->getQuery();
-            } else {
-                $q = $query;
-            }
-
-            // get table from query and add it.
-            $column = $q->from . '.' . $column;
-        }
-        // Add wrap cover table and field name.
-        $column = $this->wrap($column);
-
-        /* end fix */
 
         if ($this->isCaseInsensitive()) {
             $sql = 'LOWER(' . $column . ') LIKE ?';
@@ -412,14 +364,41 @@ class QueryBuilderEngine extends BaseEngine
     }
 
     /**
+     * Patch for fix about ambiguous field.
+     * Ambiguous field error will appear when query use join table and search with keyword.
+     *
+     * @param mixed $query
+     * @param string $column
+     * @return string
+     */
+    protected function addTablePrefix($query, $column)
+    {
+        // Check if field does not have a table prefix
+        if (strpos($column, '.') === false) {
+            // Alternative method to check instanceof \Illuminate\Database\Eloquent\Builder
+            if (method_exists($query, 'getQuery')) {
+                $q = $query->getQuery();
+            } else {
+                $q = $query;
+            }
+
+            if (! $q->from instanceof Expression) {
+                // Get table from query and add it.
+                $column = $q->from . '.' . $column;
+            }
+        }
+
+        return $this->wrap($column);
+    }
+
+    /**
      * Wrap a column and cast in pgsql.
      *
      * @param  string $column
      * @return string
      */
-    public function castColumn($column)
+    protected function castColumn($column)
     {
-        $column = $this->wrap($column);
         if ($this->database === 'pgsql') {
             $column = 'CAST(' . $column . ' as TEXT)';
         } elseif ($this->database === 'firebird') {
@@ -602,6 +581,9 @@ class QueryBuilderEngine extends BaseEngine
     {
         if ($this->isOracleSql()) {
             $sql = ! $this->isCaseInsensitive() ? 'REGEXP_LIKE( ' . $column . ' , ? )' : 'REGEXP_LIKE( LOWER(' . $column . ') , ?, \'i\' )';
+            $this->query->whereRaw($sql, [$keyword]);
+        } elseif ($this->database == 'pgsql') {
+            $sql = ! $this->isCaseInsensitive() ? $column . ' ~ ?' : $column . ' ~* ? ';
             $this->query->whereRaw($sql, [$keyword]);
         } else {
             $sql = ! $this->isCaseInsensitive() ? $column . ' REGEXP ?' : 'LOWER(' . $column . ') REGEXP ?';

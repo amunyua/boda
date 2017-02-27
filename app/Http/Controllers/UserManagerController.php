@@ -26,15 +26,7 @@ class UserManagerController extends Controller
 //        $this->middleware('validateroutes');
     }
 
-<<<<<<< HEAD
-    public function mpesaPayment(){
-        $response = mpesa(10, 254718513948)->usingReferenceId(115445)->transact();
-        dd($response);
-        return Response::json($response);
-    }
 
-=======
->>>>>>> 6aad3868112687545718654b86dbcb853cd932cb
     public function getAllUsers(){
         $mfs = DB::table('all_users')->get();
         return view('user_manager.all_users', ['mfs' => $mfs]);

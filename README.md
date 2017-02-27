@@ -1,2 +1,0 @@
-# boda
-boda squired ltd
