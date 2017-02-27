@@ -37,8 +37,8 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             Log::info('Generating Rider Bills');
             dispatch(new GenerateCustomerBills());
-        })->dailyAt('23:30');
-    }
+        })->dailyAt('22:30');
+}
 
     /**
      * Register the Closure based commands for the application.

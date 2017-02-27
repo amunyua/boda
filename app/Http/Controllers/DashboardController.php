@@ -41,6 +41,10 @@ class DashboardController extends Controller
     }
 
     public function dailyCollection(){
+        if(isset($_GET['month'])){
+            $this->month = $_GET['month'];
+            $this->year = $_GET['year'];
+        }
         $days_in_month = cal_days_in_month(CAL_GREGORIAN, $this->month, $this->year);
 
         // get the cash collected for each day in the month
@@ -58,7 +62,12 @@ class DashboardController extends Controller
     }
 
     public function weeklyCollection(){
+        if(isset($_GET['month'])){
+            $this->month = $_GET['month'];
+            $this->year = $_GET['year'];
+        }
         $days_in_month = cal_days_in_month(CAL_GREGORIAN, $this->month, $this->year);
+
         $no_of_weeks = (ceil(intval($days_in_month)/7));
 
         $collections = [];
