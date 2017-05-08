@@ -29,6 +29,6 @@ class FirstApplicationConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.main');
+        return $this->view('mails.mail');
     }
 }
