@@ -77,8 +77,10 @@
                                     <div class="row no-space">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="btn-group hidden-phone pull-right">
-                                                Month
-                                                <input type="text" class="datepicker79"/>
+                                                <div class="btn-group hidden-phone pull-right">
+                                                    <select class="months daily-months"></select>
+                                                    <select class="select-years daily-select-years"></select>
+                                                </div>
                                             </div>
 
                                             <div id="daily-chart" class="chart has-legend"></div>
@@ -95,10 +97,8 @@
                                     <div class="row no-space">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="btn-group hidden-phone pull-right">
-                                                months
-                                                <a class="btn dropdown-toggle btn-xs btn-default daily month"
-                                                   data-toggle="dropdown"> </a>
-                                                <ul class="dropdown-menu pull-right months"></ul>
+                                                <select class="months monthly-months"></select>
+                                                <select class="select-years monthly-select-years"></select>
                                             </div>
 
                                             <div id="weekly-chart" class="chart chart-large"></div>
@@ -112,10 +112,7 @@
                                     <div class="row no-space">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="btn-group hidden-phone pull-right">
-                                                  year
-                                                <a class="btn dropdown-toggle btn-xs btn-default monthly year"
-                                                   data-toggle="dropdown"> </a>
-                                                <ul class="dropdown-menu pull-right select-years"></ul>
+                                                <select class="select-years yearly-select-years"></select>
                                             </div>
 
                                             <div id="monthly-chart" class="chart chart-large"></div>

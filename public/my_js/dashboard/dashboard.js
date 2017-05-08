@@ -24,37 +24,33 @@ var DashboardGraphs = {
         };
     },
     loadMonths: function (selector) {
-        var li = '';
+        var option = '';
+
         for (var i = 0; i <= 11; i++){
-            li += '<li><a href="javascript:void(0);" month="'+ i +'">' + this.months[i] + '</a></li>';
+            var selected = '';
+            if(i == this.curr_date().curr_month)
+                var selected = 'selected';
+
+            option += '<option value="' + i + '" '+ selected +'>' + this.months[i] + '</option>';
         }
-        $(selector).html(li);
+        $(selector).html(option);
     },
     loadYears: function(selector){
         var d = new Date();
-        var li = '';
+        var option = '';
+
         for (var i = 2010; i <= 2017; i++){
-            li += '<li><a href="javascript:void(0);" year="'+ i +'">' + i + '</a></li>';
+            var selected = '';
+            if(i == this.curr_date().curr_year)
+                var selected = 'selected';
+
+            option += '<option value="'+ i +'" ' + selected + '>' + i + '</option>';
         }
-        $(selector).html(li);
+        $(selector).html(option);
     },
-    setCurrentMonth: function (selector, curr_month) {
-        var curr =  '<i class="fa fa-calendar"></i> '+ this.months[curr_month] +' <span class="caret"></span>';
-        if(selector == '')
-            $('a.month').html(curr);
-         else
-            $(selector).html(curr);
-    },
-    setCurrentYear: function (selector, curr_year) {
-        var curr =  '<i class="fa fa-calendar"></i> '+ curr_year +' <span class="caret"></span>';
-        if(selector == '')
-            $('a.year').html(curr);
-        else
-            $(selector).html(curr);
-    },
-    filterByMonth: function(month){
+    filterByMonth: function(month_yr){
         $.ajax({
-            url: 'daily-cash-collection?month_yr=' + month_yr,
+            url: 'daily-cash-collection?month=' + month_yr['month'] + '&year=' + month_yr['year'],
             type: 'GET',
             dataType: 'json',
             success: function (data) {
@@ -98,25 +94,182 @@ var DashboardGraphs = {
                 defaultTheme: false
             }
         });
+    },
+    filterWeeklyGraph: function (month_yr) {
+        $.ajax({
+            url: 'weekly-cash-collection?month=' + month_yr['month'] + '&year=' + month_yr['year'],
+            type: 'GET',
+            dataType: 'json',
+            success: function(data){
+                var count = data.collections.length;
+                for(var i = 0; i < count; i++){
+                    cash_collection.push([data.collections[i][0], data.collections[i][1]]);
+                }
+
+                DashboardGraphs.weeklyGraph(cash_collection, count);
+            }
+        });
+    },
+    weeklyGraph: function (cash_collection, count) {
+        var plot = $.plot($("#weekly-chart"), [{
+            data : cash_collection,
+            label : "Amount Collected"
+        }], {
+            series : {
+                lines : {
+                    show : true
+                },
+                points : {
+                    show : true
+                }
+            },
+            grid : {
+                hoverable : true,
+                clickable : true,
+                tickColor : $chrt_border_color,
+                borderWidth : 0,
+                borderColor : $chrt_border_color,
+            },
+            tooltip : true,
+            tooltipOpts : {
+                content : "Week <b>%x</b> Amount Collected <span>%y</span>",
+                defaultTheme : false
+            },
+            colors : [$chrt_second, $chrt_fourth],
+            yaxis : {
+                min : 0,
+//                    max : 1.1
+            },
+            xaxis : {
+                min : 1,
+                max : count,
+                minTickSize: 1
+            }
+        });
+
+        $("#weekly-chart").bind("plotclick", function(event, pos, item) {
+            if (item) {
+                $("#clickdata").text("You clicked point " + item.dataIndex + " in " + item.series.label + ".");
+                plot.highlight(item.series, item.datapoint);
+            }
+        });
+    },
+    filterMonthlyGraph: function (year) {
+        $.ajax({
+            url: 'monthly-cash-collection?year=' + year,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data){
+                var count = data.collections.length;
+                for(var i = 0; i < count; i++){
+                    cash_collection.push([data.collections[i][0], data.collections[i][1]]);
+                }
+
+                DashboardGraphs.monthlyGraph(cash_collection);
+            }
+        });
+    },
+    monthlyGraph: function (cash_collection, count) {
+        var plot = $.plot($("#monthly-chart"), [{
+            data : cash_collection,
+            label : "Amount Collected"
+        }], {
+            series : {
+                lines : {
+                    show : true
+                },
+                points : {
+                    show : true
+                }
+            },
+            grid : {
+                hoverable : true,
+                clickable : true,
+                tickColor : $chrt_border_color,
+                borderWidth : 0,
+                borderColor : $chrt_border_color,
+            },
+            tooltip : true,
+            tooltipOpts : {
+                content : "Month <b>%x</b> Amount Collected <span>%y</span>",
+                defaultTheme : false
+            },
+            colors : [$chrt_second, $chrt_fourth],
+            yaxis : {
+                min : 0,
+//                    max : 1.1
+            },
+            xaxis : {
+                min : 1,
+                max : count,
+                minTickSize: 1
+            }
+        });
+
+        $("#monthly-chart").bind("plotclick", function(event, pos, item) {
+            if (item) {
+                $("#clickdata").text("You clicked point " + item.dataIndex + " in " + item.series.label + ".");
+                plot.highlight(item.series, item.datapoint);
+            }
+        });
     }
 };
 
 // defaults
-DashboardGraphs.setCurrentMonth('a.month', DashboardGraphs.curr_date().curr_month);
-DashboardGraphs.setCurrentYear('a.year', DashboardGraphs.curr_date().curr_year);
-DashboardGraphs.loadMonths('ul.months');
-DashboardGraphs.loadYears('ul.select-years');
+DashboardGraphs.loadMonths('select.months');
+DashboardGraphs.loadYears('select.select-years');
 
-// initialize datepicker
-$(function () {
-    $(document).find('.datepicker79').datetimepicker({
-        viewMode: 'years',
-        format: 'YYYY-MM'
-    });
+// filter daily chart
+$('select.daily-months').on('change', function(){
+    var selected_month = $(this).val();
+    var selected_yr = $('select.daily-select-years').val();
+    var month_yr = [];
+
+    month_yr['month'] = selected_month;
+    month_yr['year'] = selected_yr;
+
+    DashboardGraphs.filterByMonth(month_yr);
 });
 
-// filtering
+$('select.daily-select-years').on('change', function(){
+    var selected_yr = $(this).val();
+    var selected_month = $('select.daily-months').val();
+    var month_yr = [];
 
+    month_yr['month'] = selected_month;
+    month_yr['year'] = selected_yr;
+
+    DashboardGraphs.filterByMonth(month_yr);
+});
+
+// filter monthly chart
+$('select.monthly-months').on('change', function(){
+    var selected_month = $(this).val();
+    var selected_yr = $('select.monthly-select-years').val();
+    var month_yr = [];
+
+    month_yr['month'] = selected_month;
+    month_yr['year'] = selected_yr;
+
+    DashboardGraphs.filterWeeklyGraph(month_yr);
+});
+
+$('select.monthly-select-years').on('change', function(){
+    var selected_yr = $(this).val();
+    var selected_month = $('select.daily-months').val();
+    var month_yr = [];
+
+    month_yr['month'] = selected_month;
+    month_yr['year'] = selected_yr;
+
+    DashboardGraphs.filterWeeklyGraph(month_yr);
+});
+
+// filter yearly chart
+$('select.yearly-select-years').on('change', function(){
+    var selected_yr = $(this).val();
+    DashboardGraphs.filterMonthlyGraph(selected_yr);
+});
 
 // on selection of a month filter
 $('ul.months > li > a').on('click', function () {
