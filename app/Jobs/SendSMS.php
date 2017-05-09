@@ -6,12 +6,15 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
 use infobip;
 
-class SendSMS implements ShouldQueue
+
+class SendSms implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
-    protected $phone_number, $message, $from;
+    protected $phone_number, $message;
     /**
      * Create a new job instance.
      *
@@ -30,21 +33,22 @@ class SendSMS implements ShouldQueue
      */
     public function handle()
     {
-        $data = "'$this->phone_number'";
+        $phone_number = "'$this->phone_number'";
         Log::info('qued now for '.$this->phone_number);
-        $client = new infobip\api\client\SendSingleTextualSms(new infobip\api\configuration\BasicAuthConfiguration('bodasquared', 'boda12!@'));
+        Log::info('qued now message '.$this->message);
+        $client = new infobip\api\client\SendSingleTextualSms(new infobip\api\configuration\BasicAuthConfiguration("bodasquaredltd", "bodasquared"));
         $requestBody = new infobip\api\model\sms\mt\send\textual\SMSTextualRequest();
-        $requestBody->setFrom('Voomsms');
+        $requestBody->setFrom("Voomsms");
 //            $requestBody->setTo("'$this->phone_number'");
         $requestBody->setText($this->message);
 //            $requestBody->setFrom("VoomSms");
-        $requestBody->setTo($data);
+        $requestBody->setTo($phone_number);
 //            $requestBody->setText("hello");
 
 
         $response = $client->execute($requestBody);
-        var_dump($response);die;
+//        var_dump($response);
+//        die;
 
     }
-    
 }

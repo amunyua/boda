@@ -4,7 +4,7 @@ namespace infobip\api\configuration;
 
 abstract class Configuration {
 
-    public $baseUrl = 'https://api.infobip.com/';
+    public $baseUrl = 'http://api.infobip.com/';
 
     public function __construct($baseUrl)
     {
