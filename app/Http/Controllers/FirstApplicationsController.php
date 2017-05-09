@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\FirstApplication;
+use App\Mail\FirstApplicationConfirmation;
 use App\Role;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
@@ -48,19 +50,21 @@ class FirstApplicationsController extends Controller
                 $fa->save();
 
                 // create rider's login account for the candidate to track and complete the appliation
-//                $user = new User();
-//                $user->name = $request->surname.' '.$request->firstname;
-//                $user->email = $request->email;
-//                $user->password = bcrypt(123456);
-//                $user->status = 1;
-//                $user->phone_no = $phone_no;
-//                $user->save();
-//                $client_role = Role::where('role_code', self::client_role)->first();
-//                $user->roles()->attach($client_role);
+                $user = new User();
+                $user->name = $request->surname.' '.$request->firstname;
+                $user->email = $request->email;
+                $user->password = bcrypt(123456);
+                $user->status = 0;
+                $user->phone_no = $phone_no;
+                $user->save();
+                $client_role = Role::where('role_code', self::client_role)->first();
+                $user->roles()->attach($client_role);
 
                 if(!empty($request->email)){
                     // send confirmation email
-                    
+                    $user = User::find($user->id);
+                    // send confirmation email
+                    Mail::to($user)->send(new FirstApplicationConfirmation($user));
                 }
 
                 // send an welcome sms with info for tracking application progress
