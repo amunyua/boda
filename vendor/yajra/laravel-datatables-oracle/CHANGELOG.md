@@ -8,6 +8,25 @@
 
 ##Change Log
 
+### v6.28.1 - 2017-05-05
+- Fixed: Formatting the attributes for Editor buttons. #1105, credits to @karmendra.
+
+### v6.28.0 - 2017-04-19
+- Display url and A balise as hyperlink in excel export.
+- PR #1074, credits to @julianfox.
+
+### v6.27.0 - 2017-03-08
+- Add a fluent way to send route variables to DataTable service class. PR  #1071.
+- Fix #1069.
+
+### v6.26.0 - 2017-03-03
+- Remove dompdf dependency and let the developers decide on which version they want to use.
+> Note: This is possible breaking change for some users but needed to move forward. See https://github.com/yajra/laravel-datatables/pull/1026 for details. Thanks!
+
+### v6.25.0 - 2017-02-23
+- Add support ordering when search in nested relations. #850
+- Credits to @ethaizone.
+
 ### v6.24.4 - 2017-02-09
 - Fix collection case insensitive ordering.
 - Fix [#945](https://github.com/yajra/laravel-datatables/issues/945).

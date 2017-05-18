@@ -630,7 +630,10 @@ class MasterfileController extends Controller
                 }
 
                 // send sms
-
+                if(!empty($candidate->phone_no)){
+                    $broadcast = new BroadcastController();
+                    $broadcast->sendSms($candidate->phone_no,"application accepted");
+                }
                 // create rider's profile
 //                Fapps::CreateRidersMasterfile($candidate);
             }
