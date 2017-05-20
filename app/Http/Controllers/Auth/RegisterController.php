@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,5 +69,22 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    protected function verify($user_id, $token){
+        $user_id = decrypt($user_id);
+
+        try {
+            // verify account
+            User::where([
+                ['id', '=', $user_id],
+                ['confirmation_token', '=', $token],
+            ])->firstOrFail()->verifyAccount();
+
+            // allow user to login
+            return redirect('login?status=success');
+        } catch (ModelNotFoundException $nf){
+            return redirect('login?status=danger');
+        }
     }
 }

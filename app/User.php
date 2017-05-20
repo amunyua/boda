@@ -55,4 +55,9 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function verifyAccount(){
+        $this->verified = 1;
+        $this->save();
+    }
 }

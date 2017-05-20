@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
 
         $admin = new \App\User();
         $admin->name = 'Admin Admin';
-        $admin->email = 'admin@admin.com';
+        $admin->email = 'admin@bodasquared.co.ke';
         $admin->password = bcrypt(123456);
         $admin->phone_no = '700000000';
         $admin->masterfile_id = $admin_mf->id;

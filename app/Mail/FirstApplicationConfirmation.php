@@ -12,14 +12,17 @@ class FirstApplicationConfirmation extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
+    public $plain_pass;
+
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param $user
      */
-    public function __construct($user)
+    public function __construct($user, $plain_pass)
     {
         $this->user = $user;
+        $this->plain_pass = $plain_pass;
     }
 
     /**

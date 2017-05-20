@@ -18,6 +18,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 Route::post('/first-applications', 'FirstApplicationsController@store');
-
+Route::group(['middleware' => ['web']], function (){
+    Route::get('/verify/email/{user_id}/{token}', 'Auth\RegisterController@verify');
+});
 Route::get('/credit-wallet/{client_account_id}', 'WalletController@creditWallet');
 Route::any('/credit-wallet', 'WalletController@creditWallet');
