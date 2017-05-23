@@ -76,9 +76,9 @@ class FirstApplicationsController extends Controller
                     // send sms with login credentials
                     $bc = new BroadcastController();
 
-                    $message = 'Dear '.$request->firstname.'.';
-                    $message .= 'Welcome to the Boda Squared family.';
-                    $message .= 'Your login credentials are as follows: Email: '.$request->email.', Password: '.$plain_pass;
+                    $message = 'Dear '.$request->firstname.'. ';
+                    $message .= 'Welcome to the Boda Squared family. ';
+                    $message .= 'Your login credentials are as follows: Email: '.$request->email.', Password: '.$plain_pass.' ';
                     $message .= 'After successful verification. ';
                     $message .= 'Go to http://bodasquared.co.ke/boda/public and login to complete your application!';
                     $bc->sendSms($phone_no, $message);
