@@ -631,11 +631,11 @@ class MasterfileController extends Controller
 
                 // send sms
                 if(!empty($candidate->phone_no)){
-                    $broadcast = new BroadcastController();
-                    $message = "Dear ".$candidate->firstname;
-                    $message .= "Your first application has been approved!";
-                    $message .= "Login to http://bodasquared.co.ke/boda/public to complete the application process!";
-                    $broadcast->sendSms($candidate->phone_no,$message);
+//                    $broadcast = new BroadcastController();
+//                    $message = "Dear ".$candidate->firstname. ", ";
+//                    $message .= "Your first application has been approved! ";
+//                    $message .= "Login to http://bodasquared.co.ke/boda/public to complete the application process!";
+//                    $broadcast->sendSms($candidate->phone_no,$message);
                 }
 
                 // create rider's profile

@@ -74,14 +74,14 @@ class FirstApplicationsController extends Controller
                         ->queue(new FirstApplicationConfirmation($user, $plain_pass));
 
                     // send sms with login credentials
-                    $bc = new BroadcastController();
+//                    $bc = new BroadcastController();
 
-                    $message = 'Dear '.$request->firstname.'. ';
-                    $message .= 'Welcome to the Boda Squared family. ';
-                    $message .= 'Your login credentials are as follows: Email: '.$request->email.', Password: '.$plain_pass.'. ';
-                    $message .= 'After successful verification, ';
-                    $message .= 'visit http://bodasquared.co.ke/boda/public and login to complete your application!';
-                    $bc->sendSms($phone_no, $message);
+//                    $message = 'Dear '.$request->firstname.'. ';
+//                    $message .= 'Welcome to the Boda Squared family. ';
+//                    $message .= 'Your login credentials are as follows: Email: '.$request->email.', Password: '.$plain_pass.'. ';
+//                    $message .= 'After successful verification, ';
+//                    $message .= 'visit http://bodasquared.co.ke/boda/public and login to complete your application!';
+//                    $bc->sendSms($phone_no, $message);
                 }
 
                 // inform the admin of the new application
