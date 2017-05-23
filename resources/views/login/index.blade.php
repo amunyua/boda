@@ -3,32 +3,44 @@
 @section('system_name', 'BODA SQUARED')
 
 @section('content')
-<div class="hero">
-    <div class="pull-left login-desc-box-l">
-        <h4 class="paragraph-header">Boda Squared Management Information System for Bike Riders.</h4>
-        <div class="login-app-icons">
-            <a href="javascript:void(0);" class="btn btn-danger btn-sm">Boda Squared</a>
-            <a href="javascript:void(0);" class="btn btn-danger btn-sm">Find out more</a>
+    @if(isset($_GET['status']) && request('status') == 'success')
+        <div class="alert alert-{{ request('status') }}">
+            <button class="close" data-dismiss="alert">&times;</button>
+            <strong>Success!</strong> Your account has been successfully verified! Please login to proceed to the second application.
+        </div>
+    @endif
+    @if(isset($_GET['status']) && request('status') == 'danger')
+        <div class="alert alert-{{ request('status') }}">
+            <button class="close" data-dismiss="alert">&times;</button>
+            <strong>Whoops!</strong> Account NOT found! Please contact the admin at <b>admin@bodasquared.co.ke.</b>
+        </div>
+    @endif
+    <div class="hero">
+        <div class="pull-left login-desc-box-l">
+            <h4 class="paragraph-header">Boda Squared Management Information System for Bike Riders.</h4>
+            <div class="login-app-icons">
+                <a href="javascript:void(0);" class="btn btn-danger btn-sm">Boda Squared</a>
+                <a href="javascript:void(0);" class="btn btn-danger btn-sm">Find out more</a>
+            </div>
+        </div>
+
+        <img src="{{ URL::asset('img/demo/bike.jpg') }}" class="pull-right display-image" alt="" style="width:350px; height: 200px; margin-top: 50px;">
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <h5 class="about-heading">About Boda - Are you up to date?</h5>
+            <p>
+                We provide motorcycles on lease terms basis to our clients.
+            </p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <h5 class="about-heading">Not just boda boda!</h5>
+            <p>
+                We provide motorcycles on lease terms to our clients
+            </p>
         </div>
     </div>
-
-    <img src="{{ URL::asset('img/demo/bike.jpg') }}" class="pull-right display-image" alt="" style="width:350px; height: 200px; margin-top: 50px;">
-</div>
-
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        <h5 class="about-heading">About Boda - Are you up to date?</h5>
-        <p>
-            We provide motorcycles on lease terms basis to our clients.
-        </p>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        <h5 class="about-heading">Not just boda boda!</h5>
-        <p>
-            We provide motorcycles on lease terms to our clients
-        </p>
-    </div>
-</div>
 @endsection
 
 @section('login-form')

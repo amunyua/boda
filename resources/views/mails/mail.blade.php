@@ -64,15 +64,18 @@
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" align="center" style="width:600px;">
         <tr>
             <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-    <![endif]--><div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 0px;padding-bottom:20px;padding-top:30px;"><!--[if mso | IE]>
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:undefined;width:600px;">
+    <![endif]-->
+    <div style="margin:0px auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 0px;padding-bottom:20px;padding-top:30px;"><!--[if mso | IE]>
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="vertical-align:undefined;width:600px;">
                     <![endif]--><div class="" style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;text-align:center;">
-                        <a href="#" class="ks-logo" style="font-size: 18px; text-decoration: none; color: #3a529b; font-weight: bold;">
-                            {{ config('app.name') }}
-                        </a>
-                    </div><!--[if mso | IE]>
-                    </td></tr></table>
-                    <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
+        <a href="#" class="ks-logo" style="font-size: 18px; text-decoration: none; color: #3a529b; font-weight: bold;">
+            {{ config('app.name') }}
+        </a>
+    </div><!--[if mso | IE]>
+    </td></tr></table>
+    <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>
     </td></tr></table>
     <![endif]-->
     <!--[if mso | IE]>
@@ -80,9 +83,9 @@
         <tr>
             <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
     <![endif]--><!--[if mso | IE]>
-    <v:image xmlns:v="urn:schemas-microsoft-com:vml" croptop="0" cropbottom="0" style="width:435pt;height:180pt;position:absolute;top:0;mso-position-horizontal:center;border:0;z-index:-3;" src="../admin/default-primary/assets/img/placeholders/placeholder-640x480.png" />
+    <v:image xmlns:v="urn:schemas-microsoft-com:vml" croptop="0" cropbottom="0" style="width:435pt;height:180pt;position:absolute;top:0;mso-position-horizontal:center;border:0;z-index:-3;" src="{{ URL::asset('logos/official_logo.jpg') }}" />
     <![endif]-->
-        <div style="margin:0 auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;"><tbody><tr style="vertical-align:top;"><td height="240" style="background-repeat:no-repeat;vertical-align:top;background-size:cover;background:#fff url(../admin/default-primary/assets/img/placeholders/placeholder-640x480.png) no-repeat center center / cover;padding-top:0;padding-left:0;padding-right:0;padding-bottom:0;background-position:center center;" background="../admin/default-primary/assets/img/placeholders/placeholder-640x480.png"><!--[if mso | IE]>
+        <div style="margin:0 auto;max-width:600px;"><table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;"><tbody><tr style="vertical-align:top;">
             <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="width:100%;"><tr><td style="padding:0;background-color:transparent;">
                 <![endif]-->
                 <div class="mj-hero-content" style="float:center;margin:0px auto;width:100%;background-color:transparent;"><table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;margin:0px;"><tbody><tr><td style="padding-top:0;padding-left:0;padding-right:0;padding-bottom:0;"><table role="presentation" style="width:100%;margin:0px;"><tbody></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]>
@@ -106,7 +109,10 @@
                     <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:600px;">
                         <![endif]-->
                         <div class="mj-column-per-100 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
-                            <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody><tr><td style="word-break:break-word;font-size:0px;padding:10px 25px;" align="center"><div class="" style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;text-align:center;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0"><tbody>
+                                <tr>
+                                    <td style="word-break:break-word;font-size:0px;padding:10px 25px;" align="center">
+                                        <div class="" style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;text-align:center;">
                             <h2 class="ks-header-h2" style="font-size: 30px; font-weight: 500; color: #333; margin-top: 0; margin-bottom: 0;">
                                 Welcome to the Boda Squared family!
                             </h2>
@@ -116,7 +122,7 @@
                     <tr>
                         <td style="word-break:break-word;font-size:0px;padding:10px 25px;" align="left"><div class="" style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;text-align:left;">
                             <p style="font-size: 14px; color: #333; margin: 5px 0;">
-                                Hi {{ $user->name }}, welcome to Boda Squared Ltd. Great to have you on board.
+                                Hi {{ $user->name }}, welcome to Boda Squared Ltd!
                             </p>
                         </div>
                         </td>
@@ -127,23 +133,38 @@
                             <td style="word-break:break-word;font-size:0px;padding:10px 25px;padding-bottom:0px;" align="left">
                                 <div class="" style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;text-align:left;">
                                     <h3 class="ks-header-h3" style="font-size: 24px; font-weight: 500; color: #333; margin-top: 0; margin-bottom: 10px;">
-                                        1. Verify your account
+                                        Verify your account
                                     </h3>
                                     <p style="font-size: 14px; color: #333; margin: 5px 0;">
-                                        To ensure you’re legitimate and not some fake person, please verify your account by clicking the buttow below, to complete the application process.
+                                        To ensure you’re legitimate and not some fake person,
+                                        please verify your account by clicking the buttow below, to complete the application process.
                                     </p>
+                                    <p style="font-size: 14px; color: #333; margin: 5px 0;">
+                                        After successfull verification of your account,
+                                        your will be required to login to proceed with the second application. All the best!!!</p>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td style="word-break:break-word;font-size:0px;padding:10px 25px;padding-bottom:30px;" align="left"><table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="left" border="0"><tbody><tr><td style="border:none;border-radius:2px;color:#fff;cursor:auto;padding:12px 30px;" align="center" valign="middle" bgcolor="#3a529b">
-                                    <a href="#" style="text-decoration:none;line-height:100%;background:#3a529b;color:#fff;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:14px;font-weight:500;text-transform:none;margin:0px;" target="_blank">
+                                    <a href="{{ url('api/verify/email/'. encrypt($user->id) .'/'. $user->confirmation_token) }}" style="text-decoration:none;line-height:100%;background:#3a529b;color:#fff;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:14px;font-weight:500;text-transform:none;margin:0px;" target="_blank">
                                         Verify my account
                                     </a>
                                 </td>
                                 </tr>
                                 </tbody>
                             </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="word-break:break-word;font-size:0px;padding:10px 25px;padding-bottom:0px;" align="left">
+                                <div class="" style="cursor:auto;color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;text-align:left;">
+                                    <b>Your login credentials are as follows:</b>
+                                    <ul>
+                                        <li>Username: <strong>{{ $user->email }}</strong></li>
+                                        <li>Password: <strong>{{ $plain_pass }}</strong></li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -164,7 +185,7 @@
     <![endif]--><div style="margin:0px auto;max-width:600px;background:#2ecc71;"><table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;background:#2ecc71;" align="center" border="0"><tbody><tr><td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;padding:20px 0px;"><!--[if mso | IE]>
                     <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:undefined;width:600px;">
                     <![endif]--><div class="" style="cursor:auto;color:#fff;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:18px;line-height:22px;text-align:center;">
-                        Great to have you on board {{ $user->name }}
+                        Great to have you on board!
                     </div><!--[if mso | IE]>
                     </td></tr></table>
                     <![endif]--></td></tr></tbody></table></div><!--[if mso | IE]>

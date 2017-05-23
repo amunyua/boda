@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\FirstApplication;
+use App\Http\Controllers\Auth\LoginController;
 use App\Mail\FirstApplicationConfirmation;
+use App\Mail\FirstApplicationNotification;
 use App\Role;
 use App\User;
 use Illuminate\Database\QueryException;
@@ -17,7 +19,7 @@ class FirstApplicationsController extends Controller
 {
     const client_role = 'CLIENT';
 
-    public function store(Request $request){
+    public function store(Request $request, LoginController $loginCtrl){
         $validator = Validator::make($request->all(),[
             'firstname' => 'required',
             'surname' => 'required',
@@ -34,6 +36,8 @@ class FirstApplicationsController extends Controller
                 'type' => 'warnings'
             );
         }else{
+            $plain_pass = $loginCtrl->generatePassword();
+
             try{
                 $area_code = 254;
                 $ph_no = ltrim($request->phone_no, 0);
@@ -53,9 +57,10 @@ class FirstApplicationsController extends Controller
                 $user = new User();
                 $user->name = $request->surname.' '.$request->firstname;
                 $user->email = $request->email;
-                $user->password = bcrypt(123456);
+                $user->password = bcrypt($plain_pass);
                 $user->status = 0;
                 $user->phone_no = $phone_no;
+                $user->confirmation_token = str_random(30);
                 $user->save();
                 $client_role = Role::where('role_code', self::client_role)->first();
                 $user->roles()->attach($client_role);
@@ -64,10 +69,14 @@ class FirstApplicationsController extends Controller
                     // send confirmation email
                     $user = User::find($user->id);
                     // send confirmation email
-                    Mail::to($user)->send(new FirstApplicationConfirmation($user));
+                    Mail::to($user)
+                        ->queue(new FirstApplicationConfirmation($user, $plain_pass));
                 }
 
-                // send an welcome sms with info for tracking application progress
+                // inform the admin of the new application
+                $admin = User::where('email', 'admin@bodasquared.co.ke')->first();
+                Mail::to($admin)
+                    ->queue(new FirstApplicationNotification($user));
 
                 $return = [
                     'success' => true,

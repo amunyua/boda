@@ -24,17 +24,19 @@ class CheckForFirstApplicationApproval
             // get the logged in user(Rider)
             $user = Auth::user();
 
-            // check and ensure that it's first application was approved
-            if (empty($user->masterfile_id)) {
-                // check if first application has been approved
-                $fap = FirstApplication::where('email', $user->email)->first();
+            // ensure it's a rider
+            if(!empty($user->confirmation_token)) {
+                // check and ensure that it's first application was approved
+                if (empty($user->masterfile_id)) {
+                    // check if first application has been approved
+                    $fap = FirstApplication::where('email', $user->email)->first();
 
-//            print_r($fap);die;
-                if ($fap->approval_status) {
-                    // load the second application form for the user
-                    return redirect('/second-application');
-                }else{
-                    return redirect('unapproved-application');
+                    if ($fap->approval_status) {
+                        // load the second application form for the user
+                        return redirect('/second-application');
+                    } else {
+                        return redirect('unapproved-application');
+                    }
                 }
             }
             return $next($request);

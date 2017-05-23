@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'emurinyo@yahoo.com',
-        'name' => 'Eric Murimi',
+        'address' => 'info@bodasquared.co.ke',
+        'name' => 'Boda Squared',
     ],
 
     /*
