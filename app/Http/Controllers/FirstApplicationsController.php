@@ -97,8 +97,8 @@ class FirstApplicationsController extends Controller
             } catch (QueryException $qe){
                 $return = array(
                     'success' => false,
-//                    'message' => $qe->getMessage(),
-                    'message' => 'Phone number already exists! Please use a different phone no!',
+                    'message' => $qe->getMessage(),
+//                    'message' => 'Phone number already exists! Please use a different phone no!',
                     'type' => 'error'
                 );
             }
