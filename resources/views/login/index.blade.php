@@ -19,8 +19,7 @@
         <div class="pull-left login-desc-box-l">
             <h4 class="paragraph-header">Boda Squared Management Information System for Bike Riders.</h4>
             <div class="login-app-icons">
-                <a href="javascript:void(0);" class="btn btn-danger btn-sm">Boda Squared</a>
-                <a href="javascript:void(0);" class="btn btn-danger btn-sm">Find out more</a>
+                <a href="http://bodasquared.co.ke/ride-web" class="btn btn-danger btn-sm">Boda Squared</a>
             </div>
         </div>
 
@@ -31,13 +30,13 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <h5 class="about-heading">About Boda - Are you up to date?</h5>
             <p>
-                We provide motorcycles on lease terms basis to our clients.
+                We provide motorcycles on lease terms basis to our rides.
             </p>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <h5 class="about-heading">Not just boda boda!</h5>
             <p>
-                We provide motorcycles on lease terms to our clients
+                We provide motorcycles on lease terms to our riders.
             </p>
         </div>
     </div>
