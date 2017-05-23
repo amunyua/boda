@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Response;
 use infobip;
 
 
-class SendSms implements ShouldQueue
+class SendSMS implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
     protected $phone_number, $message;
