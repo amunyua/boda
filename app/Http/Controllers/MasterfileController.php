@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use App\FirstApplication;
+use App\Mail\FapMail;
 use Illuminate\Database\QueryException;
 use App\ContactTypes;
 use App\County;
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
@@ -637,6 +639,10 @@ class MasterfileController extends Controller
 //                    $message .= "Login to http://bodasquared.co.ke/boda/public to complete the application process!";
 //                    $broadcast->sendSms($candidate->phone_no,$message);
                 }
+
+                // send email to approved user
+                $user = User::where('email', $candidate->email)->first();
+                Mail::to($user)->queue(new FapMail($user));
 
                 // create rider's profile
                 Fapps::CreateRidersMasterfile($candidate);
