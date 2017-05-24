@@ -642,7 +642,9 @@ class MasterfileController extends Controller
 
                 // send email to approved user
                 $user = User::where('email', $candidate->email)->first();
-                Mail::to($user)->queue(new FapMail($user));
+                Mail::to($user)
+                    ->subject('First Application Approval')
+                    ->queue(new FapMail($user));
 
                 // create rider's profile
                 Fapps::CreateRidersMasterfile($candidate);
