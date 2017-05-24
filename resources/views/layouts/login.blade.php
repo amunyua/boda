@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>@yield('title') | {{ config('app.name') }}</title>
-    <meta name="description" content="">
+    <meta name="description" content="This is the Admin Section for Boda Squared Riders and Administrators">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
