@@ -34,34 +34,35 @@ class FirstApplication
             // activate login account
             User::where('phone_no', $candidate->phone_no)
                 ->update(['status' => 1]);
-        }
 
-        try{
-            $mf = new Masterfile();
-            $mf->surname = $candidate->surname;
-            $mf->firstname = $candidate->firstname;
-            $mf->middlename = $candidate->middlename;
-            $mf->registration_date = date('Y-m-d');
-            $mf->b_role = self::b_role;
-            $mf->user_role = self::getUserRoleByRoleCode(self::user_role)->id;
-            $mf->gender = ($candidate->gender == 'Male') ? 1 : 0;
-            $mf->status = 1;
-            $mf->phone_no = $candidate->phone_no;
-            $mf->save();
+            return true;
+        } else {
+            try {
+                $mf = new Masterfile();
+                $mf->surname = $candidate->surname;
+                $mf->firstname = $candidate->firstname;
+                $mf->middlename = $candidate->middlename;
+                $mf->registration_date = date('Y-m-d');
+                $mf->b_role = self::b_role;
+                $mf->user_role = self::getUserRoleByRoleCode(self::user_role)->id;
+                $mf->gender = ($candidate->gender == 'Male') ? 1 : 0;
+                $mf->status = 1;
+                $mf->phone_no = $candidate->phone_no;
+                $mf->save();
 
-            User::where('phone_no', $candidate->phone_no)
-                ->update([
-                    'masterfile_id' => $mf->id
-                ]);
+                User::where('phone_no', $candidate->phone_no)
+                    ->update([
+                        'masterfile_id' => $mf->id
+                    ]);
 
-            return $mf->id;
-        } catch (QueryException $qe){
-            Log::error($qe->getMessage());
-            return false;
-//            return [
-//                'status' => false,
-//                'error' => $qe->getMessage()
-//            ];
+                return $mf->id;
+            } catch (QueryException $qe) {
+                return false;
+                //            return [
+                //                'status' => false,
+                //                'error' => $qe->getMessage()
+                //            ];
+            }
         }
     }
 

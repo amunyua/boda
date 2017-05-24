@@ -10,9 +10,9 @@
     <p>A <b>first application</b> has just been filled.</p>
     <strong>These are the candidate's contact details:</strong>
     <ul>
-        <li>Rider's Name: <strong>{{ $candidate->name }}</strong></li>
-        <li>Rider's Phone No: <strong>{{ $candidate->phone_no }}</strong></li>
-        <li>Rider's Email Address: <strong>{{ $candidate->email }}</strong></li>
+        <li>Rider's Name: <strong>{{ $name }}</strong></li>
+        <li>Rider's Phone No: <strong>{{ $phone_no }}</strong></li>
+        <li>Rider's Email Address: <strong>{{ $email }}</strong></li>
     </ul>
     </body>
 </html>

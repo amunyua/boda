@@ -86,8 +86,13 @@ class FirstApplicationsController extends Controller
 
                 // inform the admin of the new application
                 $admin = User::where('email', 'admin@bodasquared.co.ke')->first();
-                Mail::to($admin)
-                    ->queue(new FirstApplicationNotification($user));
+                Mail::queue('mails.fapnotice', [
+                    'name' => $user->name,
+                    'phone_no' => $user->phone_no,
+                    'email' => $user->email
+                ], function ($message) use ($admin) {
+                    $message->to($admin->email, $admin->name)->subject('First Application Notification');
+                });
 
                 $return = [
                     'success' => true,
