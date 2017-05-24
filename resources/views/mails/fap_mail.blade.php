@@ -1,4 +1,4 @@
-<p>Dear <b>{{ $user->name }}</b>,</p>
+<p>Dear <b>{{ $name }}</b>,</p>
 <p>Congratulations, your <b>First Application</b> has been successfully approved.</p>
 <p>Please login to proceed to the <b>Second Application</b>
     (<i>this is actually the second last step in the application process</i>).</p>

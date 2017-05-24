@@ -642,7 +642,9 @@ class MasterfileController extends Controller
 
                 // send email to approved user
                 $user = User::where('email', $candidate->email)->first();
-                Mail::queue('mails.fap_mail', $user, function ($message) use ($user) {
+                Mail::queue('mails.fap_mail', [
+                    'name' => $user->name
+                ], function ($message) use ($user) {
                     $message->to($user->email, $user->name)->subject('First Application Approval');
                 });
 
