@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\SendSms;
+use App\Jobs\SendSMS;
 
 class BroadcastController extends Controller
 {

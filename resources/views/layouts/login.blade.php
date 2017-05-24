@@ -2,7 +2,7 @@
 <html lang="en-us" id="extr-page">
 <head>
     <meta charset="utf-8">
-    <title>@yield('title')</title>
+    <title>@yield('title') | {{ config('app.name') }}</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -32,7 +32,8 @@
     <link rel="icon" href="{{ URL::asset('img/favicon/favicon.ico') }}" type="image/x-icon">
 
     <!-- #GOOGLE FONT -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+    {{--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">--}}
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
     <!-- #APP SCREEN / ICONS -->
     <!-- Specifying a Webpage Icon for Web Clip 
