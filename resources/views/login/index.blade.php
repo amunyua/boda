@@ -7,7 +7,7 @@
         <div class="pull-left login-desc-box-l">
             <h4 class="paragraph-header">Boda Squared Management Information System for Bike Riders.</h4>
             <div class="login-app-icons">
-                <a href="http://bodasquared.co.ke/ride-web" class="btn btn-danger btn-sm">Boda Squared</a>
+                <a href="http://bodasquared.co.ke" class="btn btn-danger btn-sm">Boda Squared</a>
             </div>
         </div>
         <img src="{{ URL::asset('img/demo/bike.jpg') }}" class="pull-right display-image" alt="" style="width:350px; height: 200px; margin-top: 50px;">
