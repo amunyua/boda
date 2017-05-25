@@ -113,9 +113,7 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="{{ url('login') }}" class="padding-10 padding-top-5 padding-bottom-5"
-                           onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+                        <a href="{{ url('login') }}" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
                     </li>
                 </ul>
             </li>
@@ -124,9 +122,9 @@
         <!-- logout button -->
         <div id="logout" class="btn-header transparent pull-right">
             <span> <a href="{{ url('/logout') }}" id="logout-link" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a>
-            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
             </span>
         </div>
         <!-- end logout button -->
@@ -243,7 +241,7 @@
 
 @push('js')
     <script>
-        $('body').on('click', '#bot2-Msg1', function(e){
+        $(document).on('click', '#bot2-Msg1', function(e){
             $('#logout-form').submit();
         });
     </script>
