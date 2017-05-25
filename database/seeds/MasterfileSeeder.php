@@ -24,7 +24,7 @@ class MasterfileSeeder extends Seeder
         $admin->registration_date = date('Y-m-d H:i:s');
         $admin->b_role = 'System Administrator';
         $admin->user_role = $user_role->id;
-        $admin->phone_no = 254718513948;
+        $admin->phone_no = 254718503948;
         $admin->gender = 1;
         $admin->save();
     }

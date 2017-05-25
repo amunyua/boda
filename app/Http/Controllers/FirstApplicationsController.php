@@ -80,14 +80,19 @@ class FirstApplicationsController extends Controller
 //                    $message .= 'Welcome to the Boda Squared family. ';
 //                    $message .= 'Your login credentials are as follows: Email: '.$request->email.', Password: '.$plain_pass.'. ';
 //                    $message .= 'After successful verification, ';
-//                    $message .= 'visit http://bodasquared.co.ke/boda/public and login to complete your application!';
+//                    $message .= 'you will have to login to complete your application!';
 //                    $bc->sendSms($phone_no, $message);
                 }
 
                 // inform the admin of the new application
                 $admin = User::where('email', 'admin@bodasquared.co.ke')->first();
-                Mail::to($admin)
-                    ->queue(new FirstApplicationNotification($user));
+                Mail::queue('mails.fapnotice', [
+                    'name' => $user->name,
+                    'phone_no' => $user->phone_no,
+                    'email' => $user->email
+                ], function ($message) use ($admin) {
+                    $message->to($admin->email, $admin->name)->subject('First Application Notification');
+                });
 
                 $return = [
                     'success' => true,

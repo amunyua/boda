@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use App\FirstApplication;
+use App\Mail\FapMail;
 use Illuminate\Database\QueryException;
 use App\ContactTypes;
 use App\County;
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
@@ -639,14 +641,24 @@ class MasterfileController extends Controller
                 }
 
                 // create rider's profile
-                Fapps::CreateRidersMasterfile($candidate);
-            }
+                if(Fapps::CreateRidersMasterfile($candidate)) {
+                    // send email to approved user
+                    $user = User::where('email', $candidate->email)->first();
 
-            $return = [
-                'success' => true,
-                'message' => 'The Application has been approved',
-                'type' => 'success'
-            ];
+                    // send fap approval
+                    Mail::queue('mails.fap_mail', [
+                        'name' => $user->name
+                    ], function ($message) use ($user) {
+                        $message->to($user->email, $user->name)->subject('First Application Approval');
+                    });
+
+                    $return = [
+                        'success' => true,
+                        'message' => 'The Application has been approved',
+                        'type' => 'success'
+                    ];
+                }
+            }
         } catch (QueryException $qe){
             $return = [
                 'success' => false,
