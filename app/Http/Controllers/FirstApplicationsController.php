@@ -68,15 +68,31 @@ class FirstApplicationsController extends Controller
                 if(!empty($request->email)){
                     // send confirmation email
                     $user = User::find($user->id);
+
                     // send confirmation email
                     Mail::to($user)
                         ->queue(new FirstApplicationConfirmation($user, $plain_pass));
+
+                    // send sms with login credentials
+//                    $bc = new BroadcastController();
+
+//                    $message = 'Dear '.$request->firstname.'. ';
+//                    $message .= 'Welcome to the Boda Squared family. ';
+//                    $message .= 'Your login credentials are as follows: Email: '.$request->email.', Password: '.$plain_pass.'. ';
+//                    $message .= 'After successful verification, ';
+//                    $message .= 'you will have to login to complete your application!';
+//                    $bc->sendSms($phone_no, $message);
                 }
 
                 // inform the admin of the new application
                 $admin = User::where('email', 'admin@bodasquared.co.ke')->first();
-                Mail::to($admin)
-                    ->queue(new FirstApplicationNotification($user));
+                Mail::queue('mails.fapnotice', [
+                    'name' => $user->name,
+                    'phone_no' => $user->phone_no,
+                    'email' => $user->email
+                ], function ($message) use ($admin) {
+                    $message->to($admin->email, $admin->name)->subject('First Application Notification');
+                });
 
                 $return = [
                     'success' => true,
@@ -86,8 +102,8 @@ class FirstApplicationsController extends Controller
             } catch (QueryException $qe){
                 $return = array(
                     'success' => false,
-//                    'message' => $qe->getMessage(),
-                    'message' => 'Phone number already exists! Please use a different phone no!',
+                    'message' => $qe->getMessage(),
+//                    'message' => 'Phone number already exists! Please use a different phone no!',
                     'type' => 'error'
                 );
             }

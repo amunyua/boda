@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use App\FirstApplication;
+use App\Mail\FapMail;
 use Illuminate\Database\QueryException;
 use App\ContactTypes;
 use App\County;
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
@@ -638,18 +640,32 @@ class MasterfileController extends Controller
 
                 // send sms
                 if(!empty($candidate->phone_no)){
-                    $broadcast = new BroadcastController();
-                    $broadcast->sendSms($candidate->phone_no,"application accepted");
+//                    $broadcast = new BroadcastController();
+//                    $message = "Dear ".$candidate->firstname. ", ";
+//                    $message .= "Your first application has been approved! ";
+//                    $message .= "Login to http://bodasquared.co.ke/boda/public to complete the application process!";
+//                    $broadcast->sendSms($candidate->phone_no,$message);
                 }
-                // create rider's profile
-//                Fapps::CreateRidersMasterfile($candidate);
-            }
 
-            $return = [
-                'success' => true,
-                'message' => 'The Application has been approved',
-                'type' => 'success'
-            ];
+                // create rider's profile
+                if(Fapps::CreateRidersMasterfile($candidate)) {
+                    // send email to approved user
+                    $user = User::where('email', $candidate->email)->first();
+
+                    // send fap approval
+                    Mail::queue('mails.fap_mail', [
+                        'name' => $user->name
+                    ], function ($message) use ($user) {
+                        $message->to($user->email, $user->name)->subject('First Application Approval');
+                    });
+
+                    $return = [
+                        'success' => true,
+                        'message' => 'The Application has been approved',
+                        'type' => 'success'
+                    ];
+                }
+            }
         } catch (QueryException $qe){
             $return = [
                 'success' => false,
