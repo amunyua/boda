@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\InventoryItem;
 use Illuminate\Database\QueryException as e;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\Types\Null_;
@@ -60,24 +62,16 @@ class InventoryController extends Controller
 
     public function storeCategory(Request $request){
         $this->validate($request, array(
-            'parent_category'=>'required',
+//            'parent_category'=>'required',
             'category_name'=>'required|unique:categories,category_name',
             'code'=>'required|unique:categories,code'
         ));
 
-        if($request->parent_category == 'Null'){
-            $parent_category = Null;
-            $parent_code = '';
-        }else{
-            $parent_category = $request->parent_category;
-            $parent_code_d = Category::find($parent_category);
-//            print_r($parent_code_d);die;
-            $parent_code = $parent_code_d->code.'-';
-        }
+
         $category = new Category();
-        $category->parent_category = $parent_category;
+        $category->parent_category = Null;
         $category->category_name = $request->category_name;
-        $category->code = strtoupper($parent_code.$request->code);
+        $category->code = strtoupper($request->code);
         $category->status = '1';
         try{
             $category->save();
@@ -91,15 +85,14 @@ class InventoryController extends Controller
 
     }
     public function allInventoryItems(){
-        $mk = Category::where('category_name','Motorbike')->first();
-        $non_bikes_cats = Category::where([
-            ['parent_category','=',Null],
-            ['category_name','!=','Motorbike']
-        ])->get();
-        $categories = Category::where('parent_category','=',$mk->id)->get();
+//        $mk = Category::where('category_name','Motorbike')->first();
+//        $non_bikes_cats = Category::where([
+//            ['parent_category','=',Null],
+//            ['category_name','!=','Motorbike']
+//        ])->get();
+        $categories = Category::where('status','=',true)->get();
         return view('inventory.all_inventory_items',array(
-            'categories'=>$categories,
-            'non_bikes_cats'=>$non_bikes_cats
+            'categories'=> $categories
         ));
     }
 
@@ -242,5 +235,53 @@ class InventoryController extends Controller
         return view('inventory.stock_transactions',array(
             'items'=>$items
         ));
+    }
+
+    public function loadInventoryCategories(){
+        $cats = Category::all();
+        return Datatables::of($cats)
+            ->editColumn('status', function ($sa){
+                if($sa->status == 0){
+                    return '<span class="label label-warning">Inactive</span>' ;
+                }else{
+                    return'<span class="label label-success">Active</span>';
+                }
+            })
+
+            ->make(true);
+    }
+    public function deleteInventoryCategory(Request $request){
+
+        try{
+            $dest = Category::destroy($request->CategoryId);
+            Session::flash('success','The category has been deleted');
+        }catch (QueryException $e){
+            Session::flash('warning',"Failed to delete, this record is reffered somewhere else");
+        }
+       return redirect()->back();
+
+    }
+    public function getCatEdit($id){
+        $cat = Category::find($id);
+        return Response::json($cat);
+    }
+
+    public function editInventoryCat(Request $request){
+        $this->validate($request, [
+            'category_name' => 'required',
+            'status' => 'required',
+            'code' => 'required',
+            'edit_id' => 'required|numeric'
+        ]);
+
+        Category::where('id', $request->edit_id)
+            ->update([
+                'category_name' => $request->category_name,
+                'status' => $request->status,
+                'code' => $request->code
+            ]);
+
+        Session::flash('success','Category has been updated');
+        return redirect()->back();
     }
 }

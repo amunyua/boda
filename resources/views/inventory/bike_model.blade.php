@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-@extends('layouts.dt')
+<<<<<<< HEAD@extends('layouts.dt')
 @section('title', 'Inventory')
 @section('page-title', 'Inventory')
 @section('widget-title', 'Inventory')
@@ -396,5 +395,5 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
->>>>>>> fda170f547844b75c095121892d572251e1379b6
+
 @endsection

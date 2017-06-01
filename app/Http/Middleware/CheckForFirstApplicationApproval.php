@@ -25,7 +25,7 @@ class CheckForFirstApplicationApproval
             $user = Auth::user();
 
             // ensure it's a rider
-            if(!empty($user->confirmation_token)) {
+            if(!empty($user->first_application_id)) {
                 // check and ensure that it's first application was approved
                 if (empty($user->masterfile_id)) {
                     // check if first application has been approved

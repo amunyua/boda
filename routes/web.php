@@ -20,6 +20,7 @@ Route::get('/access-denied', function () {
 });
 
 Auth::routes();
+//Route::get('/logout','Auht@logout');
 
 // Home/Dashboard
 Route::get('/dashboard', 'DashboardController@index');
@@ -129,7 +130,7 @@ Route::post('/delete-bike-model', 'BikeController@destroyBikeModel');
 Route::get('/bike-insurance/{id}', 'BikeController@loadBikeInsurance');
 Route::post('/attach_bike-insurance/{id}', 'BikeController@attachBikeInsurance');
 
-//stock transactions
+//inventory management
 Route::get('/stock-transactions', 'InventoryController@stockTransactions');
 Route::post('/create-transaction', 'StockTransactionController@createTransaction');
 Route::get('/load-stock-transactions', 'StockTransactionController@loadTransactions');
@@ -146,8 +147,11 @@ Route::post('/add-service', 'ServiceController@store');
 Route::post('/delete-service', 'ServiceController@destroy');
 Route::post('/update-service', 'ServiceController@update');
 Route::get('/get-service/{id}', 'ServiceController@getService');
+Route::get('/load-inv-cats','InventoryController@loadInventoryCategories');
+Route::post('/delete-inventory-cat','InventoryController@deleteInventoryCategory');
+Route::get("/get-cat-edit/{id}","InventoryController@getCatEdit");
+Route::post('/edit-inventory-cat',"InventoryController@editInventoryCat");
 
-//inventory allocation
 Route::get('/all-allocations', 'InventoryAllocationController@inventoryAllocations');
 
 
@@ -180,6 +184,6 @@ Route::get('second-application','SecondApplicationController@index');
 Route::get('list-second-application','SecondApplicationController@listSecondApplications');
 Route::get('unapproved-application','SecondApplicationController@unApprovedFirstApplicationIndex');
 Route::post('upload-documents','SecondApplicationController@uploadDocuments');
-Route::get('unapproved-application','SecondApplicationController@unApprovedFirstApplicationIndex');
+//Route::get('unapproved-application','SecondApplicationController@unApprovedFirstApplicationIndex');
 Route::get('get-second-application','SecondApplicationController@getList');
 Route::post('approve-second-applications','SecondApplicationController@approveSecondApplication');

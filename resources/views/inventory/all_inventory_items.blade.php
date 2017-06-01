@@ -30,10 +30,10 @@
 
     {{--</span>--}}
 @endsection
+@section('table-id', '#inventory-items')
 
 @section('content')
 @include('layouts.includes._messages')
-@section('table-id', '#inventory-items')
 
 <table id="inventory-items" class="table table-striped table-bordered table-hover">
     <thead>
@@ -67,45 +67,15 @@
 
                     <form id="create-inventory" class="smart-form" action="{{ url('create-inventory-item') }}" method="post">
                         {{ csrf_field() }}
+
                         <fieldset>
+
                             <section>
                                 <div class="row">
-                                    <label class="label col col-2">Inventory Type</label>
-                                    <div class="col col-10">
-                                        <label class="input">
-                                            <select name="inventory_type" class="form-control" id="inventory_type" required>
-                                                <option value="">Please select inventory type</option>
-                                                @if(count($non_bikes_cats))
-                                                    @foreach($non_bikes_cats as $non_bikes_cat)
-                                                        <option value="{{ $non_bikes_cat->id }}">{{ $non_bikes_cat->category_name }}</option>
-                                                        @endforeach
-                                                    @endif
-
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="row others">
                                     <label class="label col col-2">Category</label>
                                     <div class="col col-10">
                                         <label class="input">
-                                            <select name="parent_category" class="form-control" id="other-inventory-cats">
-                                                <option value="">Please select a category</option>
-
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">Make</label>
-                                    <div class="col col-10">
-                                        <label class="input">
-                                            <select name="make" class="form-control" id="inventory-make">
+                                            <select name="category_id" class="form-control select2" id="cat-id">
                                                 <option value="">Please select a category</option>
                                                 @if(count($categories))
                                                     @foreach($categories as $category)
@@ -119,67 +89,27 @@
                             </section>
 
                             <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">Model</label>
+                                <div class="row ">
+                                    <label class="label col col-2">Item Name</label>
                                     <div class="col col-10">
                                         <label class="input">
-                                            <select name="model" class="form-control" id="inventory-model">
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">VIN</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="vin" autocomplete="off"  value="{{ old('item_name') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">Chassis Number</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="chassis_number" autocomplete="off"  value="{{ old('item_name') }}">
+                                           <input name="item_name" id="item-name" class="form-control">
                                         </label>
                                     </div>
                                 </div>
                             </section>
 
                             <section>
-                                <div class="row others">
-                                    <label class="label col col-2">Item Code</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="code" autocomplete="off"  value="{{ old('code') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <div class="row others">
-                                    <label class="label col col-2">Quantity</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="number" name="quantity" autocomplete="off" value="{{ old('quantity') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
                                 <div class="row ">
-                                    <label class="label col col-2">Cost price</label>
+                                    <label class="label col col-2">Item Name</label>
                                     <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="number" name="cost_price" autocomplete="off" value="{{ old('cost_price') }}">
+                                        <label class="input">
+                                            <input name="item_name" id="item-name" class="form-control">
                                         </label>
                                     </div>
                                 </div>
                             </section>
+
 
 
 
@@ -221,23 +151,23 @@
                     <form id="create-inventory" class="smart-form" action="{{ url('edit-inventory-item') }}" method="post">
                         {{ csrf_field() }}
                         <fieldset>
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">Make</label>
-                                    <div class="col col-10">
-                                        <label class="input">
-                                            <select name="make" class="form-control inventory-make" id="mk-cat">
-                                                <option value="">Please select a category</option>
-                                                @if(count($categories))
-                                                    @foreach($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
+                            {{--<section>--}}
+                                {{--<div class="row motorbike">--}}
+                                    {{--<label class="label col col-2">Make</label>--}}
+                                    {{--<div class="col col-10">--}}
+                                        {{--<label class="input">--}}
+                                            {{--<select name="make" class="form-control inventory-make" id="mk-cat">--}}
+                                                {{--<option value="">Please select a category</option>--}}
+                                                {{--@if(count($categories))--}}
+                                                    {{--@foreach($categories as $category)--}}
+                                                        {{--<option value="{{ $category->id }}">{{ $category->category_name }}</option>--}}
+                                                    {{--@endforeach--}}
+                                                {{--@endif--}}
+                                            {{--</select>--}}
+                                        {{--</label>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</section>--}}
 
                             <section>
                                 <div class="row motorbike">
