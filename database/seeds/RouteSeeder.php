@@ -303,7 +303,7 @@ class RouteSeeder extends Seeder
         $category->roles()->attach($admin);
 
         $model = new Route();
-        $model->route_name = 'Manage Motorbikes Models';
+        $model->route_name = 'Motorbikes Models';
         $model->url = '/bikes-model';
         $model->parent_route = $inventory_id;
         $model->save();

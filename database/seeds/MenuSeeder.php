@@ -152,14 +152,14 @@ class MenuSeeder extends Seeder
         $category = new Menu();
         $category->route_id = $category_route->id;
         $category->parent_menu = $inventory->id;
-        $category->sequence = 4;
+        $category->sequence = 5;
         $category->save();
 
-        $model_route = Route::where('route_name', 'Manage Motorbikes Models')->first();
+        $model_route = Route::where('route_name', 'Motorbikes Models')->first();
         $model = new Menu();
         $model->route_id = $model_route->id;
         $model->parent_menu = $inventory->id;
-        $model->sequence = 5;
+        $model->sequence = 4;
         $model->save();
 
         $item_route = Route::where('route_name', 'Inventory Allocation')->first();

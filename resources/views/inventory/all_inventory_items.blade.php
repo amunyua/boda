@@ -17,16 +17,23 @@
 
 @section('button')
     {{--<span class="actions">--}}
-    <a data-toggle="modal" href="#create-inventory" id="add-route-btn" class="btn btn-success btn-sm header-btn hidden-mobile">
-        <i class="fa fa-plus"></i> Add Inventory
-    </a>
-
-    <a href="#edit-inventory" id="edit-inventory-btn" class="btn btn-warning btn-sm header-btn hidden-mobile">
-        <i class="fa fa-edit"></i> Edit Inventory
-    </a>
-    <a href="#delete-inventory-item" id="delete-inventory-btn" class="btn btn-danger btn-sm header-btn hidden-mobile">
-        <i class="fa fa-trash"></i> Delete Inventory
-    </a>
+    <ul class="list-unstyled list-inline pull-right">
+        <li>
+            <a data-toggle="modal" href="#create-inventory" id="add-route-btn" class="btn btn-success btn-sm header-btn hidden-mobile">
+                <i class="fa fa-plus"></i> Add Inventory
+            </a>
+        </li>
+        <li>
+            <a href="#edit-inventory" id="edit-inventory-btn" class="btn btn-warning btn-sm header-btn hidden-mobile">
+                <i class="fa fa-edit"></i> Edit Inventory
+            </a>
+        </li>
+        <li>
+            <a href="#delete-inventory-item" id="delete-inventory-btn" class="btn btn-danger btn-sm header-btn hidden-mobile">
+                <i class="fa fa-trash"></i> Delete Inventory
+            </a>
+        </li>
+    </ul>
 
     {{--</span>--}}
 @endsection
@@ -39,11 +46,10 @@
     <thead>
     <tr>
         <th>Id#</th>
-        <th>Inventory type</th>
-        <th>Inventory Name</th>
-        <th>Status</th>
-        <th>Quantity</th>
-        <th>Cost Price</th>
+        <th>Item Name</th>
+        <th>Item Code</th>
+        <th>Item category</th>
+
     </tr>
     </thead>
 </table>
@@ -101,10 +107,10 @@
 
                             <section>
                                 <div class="row ">
-                                    <label class="label col col-2">Item Name</label>
+                                    <label class="label col col-2">Item Code</label>
                                     <div class="col col-10">
                                         <label class="input">
-                                            <input name="item_name" id="item-name" class="form-control">
+                                            <input name="item_code" id="item-code" class="form-control">
                                         </label>
                                     </div>
                                 </div>
@@ -148,94 +154,47 @@
                 </div>
                 <div class="modal-body no-padding">
 
-                    <form id="create-inventory" class="smart-form" action="{{ url('edit-inventory-item') }}" method="post">
+                    <form id="edit-inventory" class="smart-form" action="{{ url('edit-inventory-item') }}" method="post">
                         {{ csrf_field() }}
                         <fieldset>
-                            {{--<section>--}}
-                                {{--<div class="row motorbike">--}}
-                                    {{--<label class="label col col-2">Make</label>--}}
-                                    {{--<div class="col col-10">--}}
-                                        {{--<label class="input">--}}
-                                            {{--<select name="make" class="form-control inventory-make" id="mk-cat">--}}
-                                                {{--<option value="">Please select a category</option>--}}
-                                                {{--@if(count($categories))--}}
-                                                    {{--@foreach($categories as $category)--}}
-                                                        {{--<option value="{{ $category->id }}">{{ $category->category_name }}</option>--}}
-                                                    {{--@endforeach--}}
-                                                {{--@endif--}}
-                                            {{--</select>--}}
-                                        {{--</label>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</section>--}}
-
                             <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">Model</label>
+                                <div class="row">
+                                    <label class="label col col-2">Inventory Category</label>
                                     <div class="col col-10">
                                         <label class="input">
-                                            <select name="model" class="form-control inventory-model" id="e-model">
+                                            <select name="category_id" class="form-control inventory-make" id="category-id-edit">
+                                                <option value="">Please select a category</option>
+                                                @if(count($categories))
+                                                    @foreach($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                                    @endforeach
+                                                @endif
                                             </select>
                                         </label>
                                     </div>
                                 </div>
                             </section>
                             <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">VIN</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="vin" autocomplete="off"  id="vin" value="{{ old('item_name') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
-                                <div class="row motorbike">
-                                    <label class="label col col-2">Chassis Number</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="text" name="chassis_number" id="chassis_number" autocomplete="off"  value="{{ old('item_name') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="row others">
-                                    <label class="label col col-2">Quantity</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="number" name="quantity" id="quantity" autocomplete="off" value="{{ old('quantity') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-                            <section>
                                 <div class="row ">
-                                    <label class="label col col-2">Cost price</label>
-                                    <div class="col col-10">
-                                        <label class="input"> <i class="icon-append fa fa-keyboard-o"></i>
-                                            <input type="number" name="cost_price" id="cost_price" autocomplete="off" value="{{ old('cost_price') }}">
-                                        </label>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section>
-                                <div class="row ">
-                                    <label class="label col col-2">status</label>
+                                    <label class="label col col-2">Item Name</label>
                                     <div class="col col-10">
                                         <label class="input">
-                                            <select name="status" class="form-control" id="inventory-status">
-                                                <option value="1">Active</option>
-                                                <option value="0">Inactive</option>
-                                            </select>
+                                            <input name="item_name" id="item-name-edit" class="form-control">
                                         </label>
                                     </div>
                                 </div>
                             </section>
-
+                            <section>
+                                <div class="row ">
+                                    <label class="label col col-2">Item Code</label>
+                                    <div class="col col-10">
+                                        <label class="input">
+                                            <input name="item_code" id="item-code-edit" class="form-control">
+                                        </label>
+                                    </div>
+                                </div>
+                                <input type="text" name="edit_id" id="edit-item-id">
+                            </section>
                         </fieldset>
 
                         <footer>
@@ -271,11 +230,16 @@
                 </div>
                 <div class="modal-body no-padding">
                     <form class="smart-form" action="{{ url('delete-inventory-item') }}" method="post">
-                        <p>Are you sure you want to delete the selected records?</p>
+                       <fieldset>
+                        <section>
+                        <p>Are you sure you want to delete the selected record?</p>
                         {{ csrf_field() }}
 
                         {{--hidden fields--}}
+
                         <input type="hidden" id="edit_ids" name="edit_ids"/>
+                        </section>
+                       </fieldset>
                         <footer>
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-save"></i> Yes
