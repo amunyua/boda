@@ -18,7 +18,8 @@ class AddColumnsToInventoryItemsTable extends Migration
             $table->integer('parent_category_id')->unsigned()->index()->nullable();
             $table->foreign('parent_category_id')
                 ->references('id')
-                ->on('categories');
+                ->on('categories')
+                ->onUpdate('cascade')->onDelete('no action');
             $table->integer('subcategory_id')->nullable()->index()->unsigned;
             $table->string('vin',255)->nullable();
             $table->string('chassis_number')->nullable();
