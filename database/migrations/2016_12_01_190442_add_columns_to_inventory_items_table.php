@@ -22,7 +22,6 @@ class AddColumnsToInventoryItemsTable extends Migration
             $table->integer('subcategory_id')->nullable()->index()->unsigned;
             $table->string('vin',255)->nullable();
             $table->string('chassis_number')->nullable();
-            $table->string('item_name')->nullable();
             $table->string('code')->nullable();
             $table->double('cost_price')->nullable();
             $table->boolean('status')->default(true);
