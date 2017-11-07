@@ -15,6 +15,14 @@ class CreateInventoryItemsTable extends Migration
     {
         Schema::create('inventory_items', function (Blueprint $table) {
             $table->increments('id');
+            $table->string("item_name");
+            $table->integer("category_id")->unsigned()->index();
+            $table->foreign("category_id")
+                ->references('id')
+                ->on("categories")
+                ->onUpdate("cascade")
+                ->onDelete("cascade");
+            $table->string("item_code");
             $table->timestamps();
         });
     }

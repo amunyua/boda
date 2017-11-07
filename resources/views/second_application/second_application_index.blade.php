@@ -47,7 +47,12 @@
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                                 <li><a href="#">Action</a></li>
                                                 <li role="separator" class="divider"></li>
-                                                <li><a href="#">Sign Out</a></li>
+                                                <li><form method="post" action="{{ url('/logout') }}">
+                                                        {{ csrf_field() }}
+                                                        <input type="submit" value="logout">
+                                                        {{--<a id="logout-btn" href="">Sign Out</a>--}}
+                                                    </form></li>
+                                                <li><a id="logout-btn" href="">Sign Out</a></li>
                                             </ul>
                                         </li>
                                         {{--</div>--}}
@@ -192,3 +197,11 @@
 
 
 @endsection
+<script>
+//    $(document).ready(function () {
+//alert("clicked");
+        $("#logout-btn").on("click",function () {
+            alert("clicked");
+        })
+//    })
+</script>

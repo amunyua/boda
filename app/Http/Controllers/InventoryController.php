@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\InventoryItem;
 use Illuminate\Database\QueryException as e;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\Types\Null_;
@@ -23,61 +25,20 @@ class InventoryController extends Controller
             'parent_categories'=>$parent_categories
         ));
     }
-    public function loadCategories($parent_id){
-        $categories = (is_null($parent_id) || empty($parent_id)) ? Category::whereNull('parent_category')->where([['status', '=', 1]])->get() : Category::where([['parent_category', '=', $parent_id], ['status', '=', 1]])->get();
-        echo '<ul>';
-//        echo '<li href="#"><span><i class="fa fa-lg fa-folder-open"></i>Add Category</span></li>';
-        if(count($categories)){
-            foreach ($categories as $category) {
-                echo '<li><span><i class="fa fa-lg fa-folder-open"></i>'.$category->category_name.'</span>';
-                echo '<ul>';
-                $this->loadSubCategories($category->id);
-                echo '</ul>';
-                echo '</li>';
-            }
-        }
-            echo '</ul>';
-    }
-    public function arrangeTree($parent_id){
-        echo '<ul><li><span><i class="fa fa-lg fa-folder-open"></i> All Inventory Categories</span>';
-        $this->loadCategories($parent_id);
 
-        echo '</li></ul>';
-    }
-
-    public function loadSubCategories($parent_id){
-        $sub_categories = (is_null($parent_id) || empty($parent_id)) ? Category::whereNull('parent_category')->where([['status', '=', 1]])->get() : Category::where([['parent_category', '=', $parent_id], ['status', '=', 1]])->get();
-
-//        echo '<li><span><i class=""></i>Add subcategory</span></li>';
-        if(count($sub_categories)){
-            foreach ($sub_categories as $sub_category) {
-                echo '<li><span><i class=""></i>'.$sub_category->category_name.'</span></li>';
-            }
-
-        }
-
-    }
 
     public function storeCategory(Request $request){
         $this->validate($request, array(
-            'parent_category'=>'required',
+//            'parent_category'=>'required',
             'category_name'=>'required|unique:categories,category_name',
             'code'=>'required|unique:categories,code'
         ));
 
-        if($request->parent_category == 'Null'){
-            $parent_category = Null;
-            $parent_code = '';
-        }else{
-            $parent_category = $request->parent_category;
-            $parent_code_d = Category::find($parent_category);
-//            print_r($parent_code_d);die;
-            $parent_code = $parent_code_d->code.'-';
-        }
+
         $category = new Category();
-        $category->parent_category = $parent_category;
+        $category->parent_category = Null;
         $category->category_name = $request->category_name;
-        $category->code = strtoupper($parent_code.$request->code);
+        $category->code = strtoupper($request->code);
         $category->status = '1';
         try{
             $category->save();
@@ -91,28 +52,31 @@ class InventoryController extends Controller
 
     }
     public function allInventoryItems(){
-        $mk = Category::where('category_name','Motorbike')->first();
-        $non_bikes_cats = Category::where([
-            ['parent_category','=',Null],
-            ['category_name','!=','Motorbike']
-        ])->get();
-        $categories = Category::where('parent_category','=',$mk->id)->get();
+        $categories = Category::where('status','=',true)->get();
         return view('inventory.all_inventory_items',array(
-            'categories'=>$categories,
-            'non_bikes_cats'=>$non_bikes_cats
+            'categories'=> $categories
         ));
     }
 
     public function storeInventory(Request $request){
 
         $this->validate($request,array(
-            'inventory_type'=> 'required'));
+            'item_name'=>'required|unique:inventory_items,item_name',
+            'category_id'=>'required',
+            'item_code'=>'required'
+        ));
 
-            if($request->inventory_type == 'motorbike'){
-                $this->storeMotorbikeDetails($request);
-            }else{
-                $this->storeOtherInventory($request);
-            }
+           $item = new InventoryItem();
+           $item->item_name = $request->item_name;
+           $item->category_id = $request->category_id;
+           $item->item_code = $request->item_code;
+
+           try{
+               $item->save();
+               Session::flash('success','Inventory Item has been added');
+           }catch (QueryException $e){
+               Session::flash("warning",$e->errorInfo[2]);
+           }
 
 
         return redirect('manage_inventory');
@@ -170,7 +134,7 @@ class InventoryController extends Controller
 
             try {
                 $item->save();
-                Session::flash('success', 'Inventory Item has been added');
+                Session::flash('success','Inventory Item has been added');
             } catch (e $e) {
                 $this->handleException2($e);
             }
@@ -182,30 +146,13 @@ class InventoryController extends Controller
     public function loadInventoryItems(){
         $inventory = InventoryItem::all();
         return Datatables::of($inventory)
-            ->editColumn('inventory_type',
-            '@if(!empty($inventory_type))
-            {{ App\Category::find($inventory_type)->category_name}}
+
+            ->editColumn('category_id',
+                '@if(!empty($category_id))
+            {{ App\Category::find($category_id)->category_name}}
             @endif
             ')
-            ->editColumn('parent_category_id',
-                '@if(!empty($parent_category_id))
-            {{ App\Category::find($parent_category_id)->category_name}}
-            @endif
-            ')
-            ->editColumn('subcategory_id',
-                '@if(!empty($subcategory_id))
-            {{ App\Category::find($subcategory_id)->category_name}}
-            @endif
-            ')
-            ->editColumn('status',
-                '@if($status)
-                    Active 
-                @else
-                    Inactive
-                @endif')
-            ->editColumn('cost_price','
-                {{ number_format($cost_price,2)}}
-            ')
+
             ->make(true);
     }
 
@@ -222,12 +169,8 @@ class InventoryController extends Controller
 
     public function getIEditDetails($id){
         $inv = InventoryItem::find($id);
-        $type = Category::find($inv->inventory_type)->category_name;
-        if($type == 'Motorbike'){
-            $type = 'motorbike';
-        }else{
-            $type = 'others';
-        }
+        $type = Category::find($inv->category_id)->category_name;
+
 
         $response = array(
             'type'=>$type,
@@ -242,5 +185,72 @@ class InventoryController extends Controller
         return view('inventory.stock_transactions',array(
             'items'=>$items
         ));
+    }
+
+    public function loadInventoryCategories(){
+        $cats = Category::all();
+        return Datatables::of($cats)
+            ->editColumn('status', function ($sa){
+                if($sa->status == 0){
+                    return '<span class="label label-warning">Inactive</span>' ;
+                }else{
+                    return'<span class="label label-success">Active</span>';
+                }
+            })
+
+            ->make(true);
+    }
+    public function deleteInventoryCategory(Request $request){
+
+        try{
+            $dest = Category::destroy($request->CategoryId);
+            Session::flash('success','The category has been deleted');
+        }catch (QueryException $e){
+            Session::flash('warning',"Failed to delete, this record is reffered somewhere else");
+        }
+       return redirect()->back();
+
+    }
+    public function getCatEdit($id){
+        $cat = Category::find($id);
+        return Response::json($cat);
+    }
+
+    public function editInventoryCat(Request $request){
+        $this->validate($request, [
+            'category_name' => 'required',
+            'status' => 'required',
+            'code' => 'required',
+            'edit_id' => 'required|numeric'
+        ]);
+
+        Category::where('id', $request->edit_id)
+            ->update([
+                'category_name' => $request->category_name,
+                'status' => $request->status,
+                'code' => $request->code
+            ]);
+
+        Session::flash('success','Category has been updated');
+        return redirect()->back();
+    }
+
+    public function editInventoryItem(Request $request){
+        $this->validate($request,array(
+           'item_code'=>'required',
+            'category_id'=>'required',
+            'item_name'=>'required'
+        ));
+
+        InventoryItem::where('id',$request->edit_id)
+            ->update([
+                'item_code'=>$request->item_code,
+                'item_name'=>$request->item_name,
+                'category_id'=> $request->category_id
+            ]);
+
+        Session::flash('success','Inventory Item has been updated');
+        return redirect()->back();
+
     }
 }

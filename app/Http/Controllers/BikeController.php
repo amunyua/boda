@@ -21,97 +21,37 @@ class BikeController extends Controller
      */
     public function index()
     {
-        $mk = Category::where('code','BIKE')->first();
-        $categories = Category::where('parent_category','=',$mk->id)->get();
+        $models = BikeModel::all();
         return view('inventory.bikes',array(
-            'categories'=>$categories
+            'models'=>$models
         ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-//        var_dump($_POST);die;
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 //        var_dump($_POST);die;
         $this->validate($request,array(
-           'make'=>'required',
-//            'model'=>'required',
-            'vin'=>'required',
-            'chassis_number'=>'required',
+            'model'=>'required',
+            'vin'=>'required|unique:bikes,vin',
+            'chassis_number'=>'required|unique:bikes,chassis_number',
             'cost_price'=>'required'
         ));
         $bike = new Bike();
         $bike->vin = strtoupper($request->vin);
         $bike->price = $request->cost_price;
-        $bike->model = $request->make;
-        $bike->make = $request->make;
+        $bike->model = $request->model;
         $bike->chassis_number = $request->chassis_number;
 
         try{
             $bike->save();
             Session::flash('success','The bike('.$request->vin.') has been added');
         }catch (e $e){
-            $this->handleException2($e);
+            Session::flash('warning',$e->errorInfo[2]);
         }
         return redirect()->back();
     }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request)
     {
         $delete_ids = [$request->edit_ids];
@@ -136,16 +76,12 @@ class BikeController extends Controller
             ')
             ->editColumn('price',
                 '{{number_format($price,2)}}')
-            ->editColumn('make',
-                '@if(!empty($make))
-            {{ App\Category::find($make)->category_name}}
-            @endif
-            ')
-            ->editColumn('model',
-                '@if(!empty($model))
-            {{ App\Category::find($model)->category_name}}
-            @endif
-            ')
+
+//            ->editColumn('model',
+//                '@if(!empty($model))
+//            {{ App\BikeModel::find($model)->model}}
+//            @endif
+//            ')
             ->addColumn('attach_insurance', function($result){
                 return '<a href="'.url('bikes/bike_insurance/'.$result->id).'" class="btn btn-primary"><i class="fa fa-paperclip"></i> Attach Insurance</a>';
             })
@@ -195,21 +131,14 @@ class BikeController extends Controller
         ));
 
         $record = BikeModel::find($request->edit_id);
-
-        $results_set = BikeModel::where([
-            ['id',$record->id]
-        ])->get();
-        $results = $results_set->toArray();
-
-//        var_dump($results);die;
-        if($results){
+        if(empty($record)){
             Session::flash('failed','Bike Model details not updated!');
         }else {
             $record->model = $request->model;
             $record->status = $request->status;
 
             try {
-                $this->recordAuditTrail();
+//                $this->recordAuditTrail();
                 $record->save();
                 Session::flash('success', 'The Bike Model has been updated');
             } catch (e $e) {
@@ -234,6 +163,18 @@ class BikeController extends Controller
         }
         return redirect()->back();
     }
+    public function getAllBikeModels(){
+        $model = BikeModel::all();
+        return Datatables::of($model)
+            ->editColumn('status','
+            @if($status == 1)
+                Active
+                @else
+                Inactive
+            @endif
+            ')
+            ->make(true);
+    }
 
     public function attachBikeInsurance(Request $request){
        // var_dump($_POST);die;
@@ -252,7 +193,7 @@ class BikeController extends Controller
         ])->get();
         $results = $results_set->toArray();
 
-        var_dump($results);die;
+//        var_dump($results);die;
         if($results){
             Session::flash('failed','Failed to Attach Insurance to a Bike!');
         }else {
@@ -271,5 +212,10 @@ class BikeController extends Controller
             }
         }
         return redirect()->back();
+    }
+
+    public function getBikeEditDetails($id){
+        $details = Bike::find($id);
+        return Response::json($details);
     }
 }

@@ -101,29 +101,29 @@ class MenuSeeder extends Seeder
         $approved_application->sequence = 4;
         $approved_application->save();
 
-//        #### Second application
-//        $application_route = Route::where('route_name', 'Second Applications')->first();
-//        $application = new Menu();
-//        $application->fa_icon = 'fa-folder';
-//        $application->route_id = $application_route->id;
-//        $application->sequence = 4;
-//        $application->save();
-//        $s_application_id = $application->id;
-//
-//        //second application children
-//        $second_application_route = Route::where('route_name', 'All Second Applications')->first();
-//        $second_application = new Menu();
-//        $second_application->route_id = $second_application_route->id;
-//        $second_application->parent_menu = $s_application_id;
-//        $second_application->sequence = 4;
-//        $second_application->save();
+        #### Second application
+        $application_route = Route::where('route_name', 'Second Applications')->first();
+        $application = new Menu();
+        $application->fa_icon = 'fa-folder';
+        $application->route_id = $application_route->id;
+        $application->sequence = 4;
+        $application->save();
+        $s_application_id = $application->id;
+
+        //second application children
+        $second_application_route = Route::where('route_name', 'All Second Applications')->first();
+        $second_application = new Menu();
+        $second_application->route_id = $second_application_route->id;
+        $second_application->parent_menu = $s_application_id;
+        $second_application->sequence = 1;
+        $second_application->save();
 
         #### inventory
         $inventory_route = Route::where('route_name', 'Inventory')->first();
         $inventory = new Menu();
         $inventory->fa_icon = 'fa-book';
         $inventory->route_id = $inventory_route->id;
-        $inventory->sequence = 4;
+        $inventory->sequence = 5;
         $inventory->save();
         $inventory_id = $inventory->id;
 
@@ -131,14 +131,14 @@ class MenuSeeder extends Seeder
         $item = new Menu();
         $item->route_id = $item_route->id;
         $item->parent_menu = $inventory->id;
-        $item->sequence = 1;
+        $item->sequence = 2;
         $item->save();
 
         $category_route = Route::where('route_name', 'Manage Categories')->first();
         $category = new Menu();
         $category->route_id = $category_route->id;
         $category->parent_menu = $inventory->id;
-        $category->sequence = 2;
+        $category->sequence = 1;
         $category->save();
 
         $category_route = Route::where('route_name', 'Stock Transactions')->first();
@@ -152,14 +152,14 @@ class MenuSeeder extends Seeder
         $category = new Menu();
         $category->route_id = $category_route->id;
         $category->parent_menu = $inventory->id;
-        $category->sequence = 4;
+        $category->sequence = 5;
         $category->save();
 
-        $model_route = Route::where('route_name', 'Manage Motorbikes Models')->first();
+        $model_route = Route::where('route_name', 'Motorbikes Models')->first();
         $model = new Menu();
         $model->route_id = $model_route->id;
         $model->parent_menu = $inventory->id;
-        $model->sequence = 5;
+        $model->sequence = 4;
         $model->save();
 
         $item_route = Route::where('route_name', 'Inventory Allocation')->first();

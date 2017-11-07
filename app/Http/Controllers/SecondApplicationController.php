@@ -10,6 +10,7 @@ use App\User;
 use Carbon\Carbon;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
@@ -47,7 +48,9 @@ class SecondApplicationController extends Controller
 //            echo $key;
             $this->uploadFileDocument($key,$second_app);
         }
-        $second_app->first_application_id = $this->user()->id;
+        //get first application id of the current user
+        $second_app->first_application_id = Auth::user()->first_application_id;
+
         try{
             $second_app->save();
             Session::flash('success','Details have been uploaded');
@@ -91,7 +94,7 @@ class SecondApplicationController extends Controller
                 }
             })
             ->editColumn('first_application_id',function ($app_name){
-                $app_details = FirstApplication::find($app_name->id);
+                $app_details = FirstApplication::find($app_name->first_application_id);
                 return $app_details->surname.' '.$app_details->firstname.' '.$app_details->middlename;
             })
             ->make(true);
@@ -163,4 +166,5 @@ class SecondApplicationController extends Controller
 
         return Response::json($this->return);
     }
+
 }

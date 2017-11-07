@@ -234,7 +234,17 @@ class RouteSeeder extends Seeder
 
 
         ##second applications
-
+        $app = new Route();
+        $app->route_name = 'Second Applications';
+        $app->save();
+        $app_id = $app->id;
+        //all second applications
+        $all_app = new Route();
+        $all_app->route_name = 'All Second Applications';
+        $all_app->url = 'list-second-application';
+        $all_app->parent_route = $app_id;
+        $all_app->save();
+        $all_app->roles()->attach($admin);
 
         #### inventory
         $inventory = new Route();
@@ -293,7 +303,7 @@ class RouteSeeder extends Seeder
         $category->roles()->attach($admin);
 
         $model = new Route();
-        $model->route_name = 'Manage Motorbikes Models';
+        $model->route_name = 'Motorbikes Models';
         $model->url = '/bikes-model';
         $model->parent_route = $inventory_id;
         $model->save();

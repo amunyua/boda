@@ -20,6 +20,7 @@ Route::get('/access-denied', function () {
 });
 
 Auth::routes();
+//Route::get('/logout','Auht@logout');
 
 // Home/Dashboard
 Route::get('/dashboard', 'DashboardController@index');
@@ -128,8 +129,11 @@ Route::get('/get-bike-model-details/{id}', 'BikeController@getEditDetails');
 Route::post('/delete-bike-model', 'BikeController@destroyBikeModel');
 Route::get('/bike-insurance/{id}', 'BikeController@loadBikeInsurance');
 Route::post('/attach_bike-insurance/{id}', 'BikeController@attachBikeInsurance');
+Route::get('/load-all-bike-models','BikeController@getAllBikeModels');
+Route::get('/edit-bike-details',"BikeController@getBikeEditDetails");
 
-//stock transactions
+
+//inventory management
 Route::get('/stock-transactions', 'InventoryController@stockTransactions');
 Route::post('/create-transaction', 'StockTransactionController@createTransaction');
 Route::get('/load-stock-transactions', 'StockTransactionController@loadTransactions');
@@ -147,8 +151,14 @@ Route::post('/delete-service', 'ServiceController@destroy');
 Route::post('/update-service', 'ServiceController@update');
 Route::get('/get-service/{id}', 'ServiceController@getService');
 
-//inventory allocation
+
+Route::get('/load-inv-cats','InventoryController@loadInventoryCategories');
+Route::post('/delete-inventory-cat','InventoryController@deleteInventoryCategory');
+Route::get("/get-cat-edit/{id}","InventoryController@getCatEdit");
+Route::post('/edit-inventory-cat',"InventoryController@editInventoryCat");
+//Route::post('/')
 Route::get('/all-allocations', 'InventoryAllocationController@inventoryAllocations');
+Route::post('/edit-inventory-item',"InventoryController@editInventoryItem");
 
 
 #### Client Accounts
@@ -180,6 +190,6 @@ Route::get('second-application','SecondApplicationController@index');
 Route::get('list-second-application','SecondApplicationController@listSecondApplications');
 Route::get('unapproved-application','SecondApplicationController@unApprovedFirstApplicationIndex');
 Route::post('upload-documents','SecondApplicationController@uploadDocuments');
-Route::get('unapproved-application','SecondApplicationController@unApprovedFirstApplicationIndex');
+//Route::get('unapproved-application','SecondApplicationController@unApprovedFirstApplicationIndex');
 Route::get('get-second-application','SecondApplicationController@getList');
 Route::post('approve-second-applications','SecondApplicationController@approveSecondApplication');

@@ -626,9 +626,16 @@ class MasterfileController extends Controller
 
                 $candidate = FirstApplication::find($id);
 
-                // send a email
+                //seed the user details into user login table and send a email
                 if(!empty($candidate->email)){
-
+                    $user = new User();
+                    $user->email = $candidate->email;
+                    $user->password = bcrypt("123456");
+                    $user->first_application_id = $candidate->id;
+                    $user->status = 1;
+                    $user->phone_no = $candidate->phone_no;
+                    $user->name = $candidate->firstname." ".$candidate->surname;
+                    $user->save();
                 }
 
                 // send sms
