@@ -18,10 +18,10 @@ class CreateBikesTable extends Migration
             $table->string('vin',250);
             $table->double('price');
             $table->integer('model')->unsigned()->index();
-            $table->foreign('model')
-                ->references('id')
-                ->on('bike_models')
-                ->onUpdate('cascade');
+//            $table->foreign('model')
+//                ->references('id')
+//                ->on('bike_models')
+//                ->onUpdate('cascade');
 //            $table->integer('make')->unsigned()->index()->nullable();
             $table->string('chassis_number');
             $table->boolean('status')->default('1');
