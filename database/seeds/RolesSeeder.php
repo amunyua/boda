@@ -31,5 +31,11 @@ class RolesSeeder extends Seeder
         $client->role_code = 'CLIENT';
         $client->role_status = 1;
         $client->save();
+
+        $client = new Role();
+        $client->role_name = 'Client Admin';
+        $client->role_code = 'CLIENTADMIN';
+        $client->role_status = 1;
+        $client->save();
     }
 }

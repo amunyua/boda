@@ -20,7 +20,12 @@ Route::get('/access-denied', function () {
 });
 
 Auth::routes();
-//Route::get('/logout','Auht@logout');
+
+Route::get('register', 'RegistrationController@index');
+
+Route::group(['prefix' => 'client', 'middleware' => 'guest'], function() {
+    Route::post('register', 'RegistrationController@store');
+});
 
 // Home/Dashboard
 Route::get('/dashboard', 'DashboardController@index');

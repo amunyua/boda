@@ -6,10 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Masterfile extends Model
 {
-    protected $fillable = array(
-        'surname', 'firstname', 'middlename', 'gender', 'id_no', 'user_role', 'b_role', 'registration_date',
-        'image_path', 'status'
-    );
+    protected $guarded = ['id'];
 
     public function address(){
         return $this->belongsTo('App\Address');

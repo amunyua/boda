@@ -17,4 +17,8 @@ class Role extends Model
     public function users(){
         return $this->belongsToMany('App\User');
     }
+
+    public static function userRole($code) {
+        return self::where('role_code', $code)->first();
+    }
 }

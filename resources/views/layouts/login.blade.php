@@ -61,7 +61,8 @@
         $sys = \App\SystemConfig::whereNotNull('id')->first();
     @endphp
     <div id="logo-group">
-        {{--<span id="logo"> <img src="{{ URL::asset($sys->company_logo) }}" style="width: 246px; height: 52px; margin-top: -16px;" alt="BODA SQUARED"> </span>--}}
+        {{--<span id="logo"> <img src="{{ asset($sys->company_logo) }}" style="width: 246px; height: 52px; margin-top: -16px;" alt="BODA SQUARED"> </span>--}}
+        <span id="logo"> Boda Squared Ltd. </span>
     </div>
 
     {{--<span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Need an account?</span> <a href="register.html" class="btn btn-danger">Create account</a> </span>--}}

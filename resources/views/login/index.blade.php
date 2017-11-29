@@ -15,15 +15,15 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <h5 class="about-heading">About Boda - Are you up to date?</h5>
+            <h5 class="about-heading">Do you have boda bodas of your own?</h5>
             <p>
-                We provide motorcycles on lease terms basis to our rides.
+                <a href="{{ url('register') }}">Register</a> as a client and provide boda bodas to riders.
             </p>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <h5 class="about-heading">Not just boda boda!</h5>
             <p>
-                We provide motorcycles on lease terms to our riders.
+                We provide motorcycles to our riders.
             </p>
         </div>
     </div>
@@ -39,6 +39,7 @@
                 </header>
 
                 <fieldset>
+                    @include('common.success')
                     @if(isset($_GET['status']) && request('status') == 'success')
                         <div class="alert alert-{{ request('status') }}">
                             <button class="close" data-dismiss="alert">&times;</button>
