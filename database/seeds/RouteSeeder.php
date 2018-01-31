@@ -3,9 +3,12 @@
 use Illuminate\Database\Seeder;
 use App\Route;
 use App\Role;
+use Illuminate\Support\Facades\DB;
 
 class RouteSeeder extends Seeder
 {
+    const SystemAdmin = 'SYS_ADMIN';
+    const ClientAdmin = 'CLIENTADMIN';
     /**
      * Run the database seeds.
      *
@@ -15,7 +18,8 @@ class RouteSeeder extends Seeder
     {
         DB::table('routes')->delete();
 
-        $admin = Role::where('role_code', 'SYS_ADMIN')->first();
+        $admin = Role::userRole(self::SystemAdmin);
+        $client_admin = Role::userRole(self::ClientAdmin);
         #### Dashboard
         $dashboard = new Route();
         $dashboard->route_name = 'Dashboard';
@@ -28,6 +32,7 @@ class RouteSeeder extends Seeder
         $home->parent_route = $dashboard_id;
         $home->save();
         $home->roles()->attach($admin);
+        $home->roles()->attach($client_admin);
 
         $home = new Route();
         $home->route_name = 'Home';
@@ -35,6 +40,7 @@ class RouteSeeder extends Seeder
         $home->parent_route = $dashboard_id;
         $home->save();
         $home->roles()->attach($admin);
+        $home->roles()->attach($client_admin);
 
         #### Dashboard child
         $analytics_dash = new Route();
@@ -43,6 +49,7 @@ class RouteSeeder extends Seeder
         $analytics_dash->parent_route = $dashboard_id;
         $analytics_dash->save();
         $analytics_dash->roles()->attach($admin);
+        $analytics_dash->roles()->attach($client_admin);
 
         #### registration
         $reg = new Route();
@@ -57,6 +64,7 @@ class RouteSeeder extends Seeder
         $registration->parent_route = $reg_id;
         $registration->save();
         $registration->roles()->attach($admin);
+        $registration->roles()->attach($client_admin);
 
         //all Registration
         $all_mfs = new Route();
@@ -65,6 +73,7 @@ class RouteSeeder extends Seeder
         $all_mfs->parent_route = $reg_id;
         $all_mfs->save();
         $all_mfs->roles()->attach($admin);
+        $all_mfs->roles()->attach($client_admin);
 
         //all staff
         $all_staff = new Route();
@@ -73,6 +82,7 @@ class RouteSeeder extends Seeder
         $all_staff->parent_route = $reg_id;
         $all_staff->save();
         $all_staff->roles()->attach($admin);
+        $all_staff->roles()->attach($client_admin);
 
         //all clients
         $all_clients = new Route();
@@ -81,6 +91,7 @@ class RouteSeeder extends Seeder
         $all_clients->parent_route = $reg_id;
         $all_clients->save();
         $all_clients->roles()->attach($admin);
+        $all_clients->roles()->attach($client_admin);
 
         // adding a user
         $add_reg = new Route();
@@ -89,6 +100,7 @@ class RouteSeeder extends Seeder
         $add_reg->parent_route = $reg_id;
         $add_reg->save();
         $add_reg->roles()->attach($admin);
+        $add_reg->roles()->attach($client_admin);
 
         // edit user
         $edit_user = new Route();
@@ -97,6 +109,7 @@ class RouteSeeder extends Seeder
         $edit_user->parent_route = $reg_id;
         $edit_user->save();
         $edit_user->roles()->attach($admin);
+        $edit_user->roles()->attach($client_admin);
 
         ### soft delete user registration
         $soft_del = new Route();
@@ -105,6 +118,7 @@ class RouteSeeder extends Seeder
         $soft_del->parent_route = $reg_id;
         $soft_del->save();
         $soft_del->roles()->attach($admin);
+        $soft_del->roles()->attach($client_admin);
 
         ### inactive users
         $inactive_users = new Route();
@@ -113,6 +127,7 @@ class RouteSeeder extends Seeder
         $inactive_users->parent_route = $reg_id;
         $inactive_users->save();
         $inactive_users->roles()->attach($admin);
+        $inactive_users->roles()->attach($client_admin);
 
         ### permanently delete user
         $delete = new Route();
@@ -121,6 +136,7 @@ class RouteSeeder extends Seeder
         $delete->parent_route = $reg_id;
         $delete->save();
         $delete->roles()->attach($admin);
+        $delete->roles()->attach($client_admin);
 
         ### restore inactive users
         $restore = new Route();
@@ -129,6 +145,7 @@ class RouteSeeder extends Seeder
         $restore->parent_route = $reg_id;
         $restore->save();
         $restore->roles()->attach($admin);
+        $restore->roles()->attach($client_admin);
 
         ### users profile
         $profile = new Route();
@@ -137,6 +154,7 @@ class RouteSeeder extends Seeder
         $profile->parent_route = $reg_id;
         $profile->save();
         $profile->roles()->attach($admin);
+        $profile->roles()->attach($client_admin);
 
         ### permanently delete user address
         $del_addr = new Route();
@@ -145,6 +163,7 @@ class RouteSeeder extends Seeder
         $del_addr->parent_route = $reg_id;
         $del_addr->save();
         $del_addr->roles()->attach($admin);
+        $del_addr->roles()->attach($client_admin);
 
         ### adding a new address for a user
         $add_addr = new Route();
@@ -153,6 +172,7 @@ class RouteSeeder extends Seeder
         $add_addr->parent_route = $reg_id;
         $add_addr->save();
         $add_addr->roles()->attach($admin);
+        $add_addr->roles()->attach($client_admin);
 
         #### Application
         $app = new Route();
@@ -167,6 +187,7 @@ class RouteSeeder extends Seeder
         $all_app->parent_route = $app_id;
         $all_app->save();
         $all_app->roles()->attach($admin);
+        $all_app->roles()->attach($client_admin);
 
         $all_app = new Route();
         $all_app->route_name = 'Approve Applications';
@@ -174,6 +195,7 @@ class RouteSeeder extends Seeder
         $all_app->parent_route = $app_id;
         $all_app->save();
         $all_app->roles()->attach($admin);
+        $all_app->roles()->attach($client_admin);
 
         $all_app = new Route();
         $all_app->route_name = 'Reject Applications';
@@ -181,6 +203,7 @@ class RouteSeeder extends Seeder
         $all_app->parent_route = $app_id;
         $all_app->save();
         $all_app->roles()->attach($admin);
+        $all_app->roles()->attach($client_admin);
 
         $all_app = new Route();
         $all_app->route_name = 'Load All Applications';
@@ -188,6 +211,7 @@ class RouteSeeder extends Seeder
         $all_app->parent_route = $app_id;
         $all_app->save();
         $all_app->roles()->attach($admin);
+        $all_app->roles()->attach($client_admin);
 
         $pend_app = new Route();
         $pend_app->route_name = 'Pending Application';
@@ -195,6 +219,7 @@ class RouteSeeder extends Seeder
         $pend_app->parent_route = $app_id;
         $pend_app->save();
         $pend_app->roles()->attach($admin);
+        $pend_app->roles()->attach($client_admin);
 
         $pend_app = new Route();
         $pend_app->route_name = 'Loading Pending Application';
@@ -202,6 +227,7 @@ class RouteSeeder extends Seeder
         $pend_app->parent_route = $app_id;
         $pend_app->save();
         $pend_app->roles()->attach($admin);
+        $pend_app->roles()->attach($client_admin);
 
         $canc_app = new Route();
         $canc_app->route_name = 'Cancelled Application';
@@ -209,6 +235,7 @@ class RouteSeeder extends Seeder
         $canc_app->parent_route = $app_id;
         $canc_app->save();
         $canc_app->roles()->attach($admin);
+        $canc_app->roles()->attach($client_admin);
 
         $canc_app = new Route();
         $canc_app->route_name = 'Cancelled Application';
@@ -216,6 +243,7 @@ class RouteSeeder extends Seeder
         $canc_app->parent_route = $app_id;
         $canc_app->save();
         $canc_app->roles()->attach($admin);
+        $canc_app->roles()->attach($client_admin);
 
         $appr_app = new Route();
         $appr_app->route_name = 'Approved Application';
@@ -223,6 +251,7 @@ class RouteSeeder extends Seeder
         $appr_app->parent_route = $app_id;
         $appr_app->save();
         $appr_app->roles()->attach($admin);
+        $appr_app->roles()->attach($client_admin);
 
 
         $appr_app = new Route();
@@ -231,6 +260,7 @@ class RouteSeeder extends Seeder
         $appr_app->parent_route = $app_id;
         $appr_app->save();
         $appr_app->roles()->attach($admin);
+        $appr_app->roles()->attach($client_admin);
 
 
         ##second applications
@@ -245,6 +275,7 @@ class RouteSeeder extends Seeder
         $all_app->parent_route = $app_id;
         $all_app->save();
         $all_app->roles()->attach($admin);
+        $all_app->roles()->attach($client_admin);
 
         #### inventory
         $inventory = new Route();
@@ -259,6 +290,7 @@ class RouteSeeder extends Seeder
         $item->parent_route = $inventory_id;
         $item->save();
         $item->roles()->attach($admin);
+        $item->roles()->attach($client_admin);
 
         $item = new Route();
         $item->route_name = 'Manage Categories';
@@ -266,6 +298,7 @@ class RouteSeeder extends Seeder
         $item->parent_route = $inventory_id;
         $item->save();
         $item->roles()->attach($admin);
+        $item->roles()->attach($client_admin);
 
         $category = new Route();
         $category->route_name = 'Inventory Allocation';
@@ -273,6 +306,7 @@ class RouteSeeder extends Seeder
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
+        $category->roles()->attach($client_admin);
 
         $category = new Route();
         $category->route_name = 'Arrange Menu';
@@ -280,6 +314,7 @@ class RouteSeeder extends Seeder
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
+        $category->roles()->attach($client_admin);
 
         $category = new Route();
         $category->route_name = 'Get Menu Menu';
@@ -287,6 +322,7 @@ class RouteSeeder extends Seeder
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
+        $category->roles()->attach($client_admin);
 
         $category = new Route();
         $category->route_name = 'get make';
@@ -294,6 +330,7 @@ class RouteSeeder extends Seeder
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
+        $category->roles()->attach($client_admin);
 
         $category = new Route();
         $category->route_name = 'Manage Motorbikes';
@@ -301,6 +338,7 @@ class RouteSeeder extends Seeder
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
+        $category->roles()->attach($client_admin);
 
         $model = new Route();
         $model->route_name = 'Motorbikes Models';
@@ -308,6 +346,7 @@ class RouteSeeder extends Seeder
         $model->parent_route = $inventory_id;
         $model->save();
         $model->roles()->attach($admin);
+        $model->roles()->attach($client_admin);
 
         $category = new Route();
         $category->route_name = 'Stock Transactions';
@@ -315,6 +354,7 @@ class RouteSeeder extends Seeder
         $category->parent_route = $inventory_id;
         $category->save();
         $category->roles()->attach($admin);
+        $category->roles()->attach($client_admin);
 
         $insurance = new Route();
         $insurance->route_name = 'Bike Insurance';
@@ -322,6 +362,7 @@ class RouteSeeder extends Seeder
         $insurance->parent_route = $inventory_id;
         $insurance->save();
         $insurance->roles()->attach($admin);
+        $insurance->roles()->attach($client_admin);
 
         #### client
         $client = new Route();
@@ -336,6 +377,7 @@ class RouteSeeder extends Seeder
         $acc->parent_route = $client_id;
         $acc->save();
         $acc->roles()->attach($admin);
+        $acc->roles()->attach($client_admin);
 
         $wallet = new Route();
         $wallet->route_name = 'Client Wallet';
@@ -343,6 +385,7 @@ class RouteSeeder extends Seeder
         $wallet->parent_route = $client_id;
         $wallet->save();
         $wallet->roles()->attach($admin);
+        $wallet->roles()->attach($client_admin);
 
         #### service
         $service = new Route();
@@ -357,6 +400,7 @@ class RouteSeeder extends Seeder
         $service_category->parent_route = $service_id;
         $service_category->save();
         $service_category->roles()->attach($admin);
+        $service_category->roles()->attach($client_admin);
 
         ### rider wallet Profile
         $wallet = new Route();
@@ -365,6 +409,7 @@ class RouteSeeder extends Seeder
         $wallet->parent_route = $reg_id;
         $wallet->save();
         $wallet->roles()->attach($admin);
+        $wallet->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'Add Service Category';
@@ -372,6 +417,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $service_id;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'Get Service Category';
@@ -379,6 +425,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $service_id;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'Update Service Category';
@@ -386,6 +433,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $service_id;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'Delete Service Category';
@@ -393,6 +441,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $service_id;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         $manage_service = new Route();
         $manage_service->route_name = 'Manage Services';
@@ -400,6 +449,7 @@ class RouteSeeder extends Seeder
         $manage_service->parent_route = $service_id;
         $manage_service->save();
         $manage_service->roles()->attach($admin);
+        $manage_service->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'Add Service';
@@ -407,6 +457,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $service_id;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'Update Service';
@@ -414,6 +465,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $service_id;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'Get Service';
@@ -421,6 +473,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $service_id;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'Delete Service';
@@ -428,6 +481,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $service_id;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         #### bills and payments
         $bp = new Route();
@@ -442,6 +496,7 @@ class RouteSeeder extends Seeder
         $all_bills->parent_route = $bp_id;
         $all_bills->save();
         $all_bills->roles()->attach($admin);
+        $all_bills->roles()->attach($client_admin);
 
         $pending_bills = new Route();
         $pending_bills->route_name = 'Pending Bills';
@@ -449,6 +504,7 @@ class RouteSeeder extends Seeder
         $pending_bills->parent_route = $bp_id;
         $pending_bills->save();
         $pending_bills->roles()->attach($admin);
+        $pending_bills->roles()->attach($client_admin);
 
         $all_payments = new Route();
         $all_payments->route_name = 'All Payments';
@@ -456,6 +512,7 @@ class RouteSeeder extends Seeder
         $all_payments->parent_route = $bp_id;
         $all_payments->save();
         $all_payments->roles()->attach($admin);
+        $all_payments->roles()->attach($client_admin);
 
         #### reports
         $reports = new Route();
@@ -470,6 +527,7 @@ class RouteSeeder extends Seeder
         $daily->parent_route = $reports_id;
         $daily->save();
         $daily->roles()->attach($admin);
+        $daily->roles()->attach($client_admin);
 
         $weekly = new Route();
         $weekly->route_name = 'Weekly Summary Reports';
@@ -477,6 +535,7 @@ class RouteSeeder extends Seeder
         $weekly->parent_route = $reports_id;
         $weekly->save();
         $weekly->roles()->attach($admin);
+        $weekly->roles()->attach($client_admin);
 
         $monthly = new Route();
         $monthly->route_name = 'Monthly Summary Reports';
@@ -484,6 +543,7 @@ class RouteSeeder extends Seeder
         $monthly->parent_route = $reports_id;
         $monthly->save();
         $monthly->roles()->attach($admin);
+        $monthly->roles()->attach($client_admin);
 
         #### system
         $system = new Route();
@@ -498,6 +558,7 @@ class RouteSeeder extends Seeder
         $routes->parent_route = $system_id;
         $routes->save();
         $routes->roles()->attach($admin);
+        $routes->roles()->attach($client_admin);
 
         $routes = new Route();
         $routes->route_name = 'Load System Routes';
@@ -505,6 +566,7 @@ class RouteSeeder extends Seeder
         $routes->parent_route = $system_id;
         $routes->save();
         $routes->roles()->attach($admin);
+        $routes->roles()->attach($client_admin);
 
         $menu = new Route();
         $menu->route_name = 'System Menu';
@@ -512,6 +574,7 @@ class RouteSeeder extends Seeder
         $menu->parent_route = $system_id;
         $menu->save();
         $menu->roles()->attach($admin);
+        $menu->roles()->attach($client_admin);
 
         $system_config = new Route();
         $system_config->route_name = 'System Configuration';
@@ -519,6 +582,7 @@ class RouteSeeder extends Seeder
         $system_config->parent_route = $system_id;
         $system_config->save();
         $system_config->roles()->attach($admin);
+        $system_config->roles()->attach($client_admin);
 
         $system_config = new Route();
         $system_config->route_name = 'System Settings';
@@ -526,6 +590,7 @@ class RouteSeeder extends Seeder
         $system_config->parent_route = $system_id;
         $system_config->save();
         $system_config->roles()->attach($admin);
+        $system_config->roles()->attach($client_admin);
 
         $system_config = new Route();
         $system_config->route_name = 'Get Route Data';
@@ -533,6 +598,7 @@ class RouteSeeder extends Seeder
         $system_config->parent_route = $system_id;
         $system_config->save();
         $system_config->roles()->attach($admin);
+        $system_config->roles()->attach($client_admin);
 
         $system_config = new Route();
         $system_config->route_name = 'Update Route';
@@ -540,6 +606,7 @@ class RouteSeeder extends Seeder
         $system_config->parent_route = $system_id;
         $system_config->save();
         $system_config->roles()->attach($admin);
+        $system_config->roles()->attach($client_admin);
 
         $system_config = new Route();
         $system_config->route_name = 'Load System Configuration';
@@ -547,6 +614,7 @@ class RouteSeeder extends Seeder
         $system_config->parent_route = $system_id;
         $system_config->save();
         $system_config->roles()->attach($admin);
+        $system_config->roles()->attach($client_admin);
 
         $theme_config = new Route();
         $theme_config->route_name = 'Theme Configuration';
@@ -554,6 +622,7 @@ class RouteSeeder extends Seeder
         $theme_config->parent_route = $system_id;
         $theme_config->save();
         $theme_config->roles()->attach($admin);
+        $theme_config->roles()->attach($client_admin);
 
         $theme_config = new Route();
         $theme_config->route_name = 'Theme Select';
@@ -561,6 +630,7 @@ class RouteSeeder extends Seeder
         $theme_config->parent_route = $system_id;
         $theme_config->save();
         $theme_config->roles()->attach($admin);
+        $theme_config->roles()->attach($client_admin);
 
         $get_theme = new Route();
         $get_theme->route_name = 'Get Theme';
@@ -568,6 +638,7 @@ class RouteSeeder extends Seeder
         $get_theme->parent_route = $system_id;
         $get_theme->save();
         $get_theme->roles()->attach($admin);
+        $get_theme->roles()->attach($client_admin);
 
         $backup = new Route();
         $backup->route_name = 'Backup';
@@ -575,6 +646,7 @@ class RouteSeeder extends Seeder
         $backup->parent_route = $system_id;
         $backup->save();
         $backup->roles()->attach($admin);
+        $backup->roles()->attach($client_admin);
 
         #### user management
         $user_mngt = new Route();
@@ -589,6 +661,7 @@ class RouteSeeder extends Seeder
         $all_user->parent_route = $user_mngt_id;
         $all_user->save();
         $all_user->roles()->attach($admin);
+        $all_user->roles()->attach($client_admin);
 
         $roles = new Route();
         $roles->route_name = 'User Roles';
@@ -596,6 +669,7 @@ class RouteSeeder extends Seeder
         $roles->parent_route = $user_mngt_id;
         $roles->save();
         $roles->roles()->attach($admin);
+        $roles->roles()->attach($client_admin);
 
         $role = new Route();
         $role->route_name = 'Delete User';
@@ -603,6 +677,7 @@ class RouteSeeder extends Seeder
         $role->parent_route = $user_mngt_id;
         $role->save();
         $role->roles()->attach($admin);
+        $role->roles()->attach($client_admin);
 
         $role = new Route();
         $role->route_name = 'Block User';
@@ -610,6 +685,7 @@ class RouteSeeder extends Seeder
         $role->parent_route = $user_mngt_id;
         $role->save();
         $role->roles()->attach($admin);
+        $role->roles()->attach($client_admin);
 
         $role = new Route();
         $role->route_name = 'Unblock User';
@@ -617,7 +693,7 @@ class RouteSeeder extends Seeder
         $role->parent_route = $user_mngt_id;
         $role->save();
         $role->roles()->attach($admin);
-
+        $role->roles()->attach($client_admin);
 
         $audit_trail = new Route();
         $audit_trail->route_name = 'Audit Trail';
@@ -625,6 +701,7 @@ class RouteSeeder extends Seeder
         $audit_trail->parent_route = $user_mngt_id;
         $audit_trail->save();
         $audit_trail->roles()->attach($admin);
+        $audit_trail->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'Load Routes Allocation';
@@ -632,6 +709,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $system_id;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'is Route Allocated';
@@ -639,6 +717,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $system_id;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'Attach Route';
@@ -646,6 +725,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $system_id;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'Detach Route';
@@ -653,6 +733,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $system_id;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         #### Bills and Payments
 
@@ -667,6 +748,7 @@ class RouteSeeder extends Seeder
         $route->parent_route = $bps_parent;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
 
         $route = new Route();
         $route->route_name = 'Load Customer Bills';
@@ -674,5 +756,6 @@ class RouteSeeder extends Seeder
         $route->parent_route = $bps_parent;
         $route->save();
         $route->roles()->attach($admin);
+        $route->roles()->attach($client_admin);
     }
 }

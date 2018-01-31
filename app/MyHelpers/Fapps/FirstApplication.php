@@ -44,7 +44,7 @@ class FirstApplication
                 $mf->middlename = $candidate->middlename;
                 $mf->registration_date = date('Y-m-d');
                 $mf->b_role = self::b_role;
-                $mf->user_role = self::getUserRoleByRoleCode(self::user_role)->id;
+                $mf->user_role = Role::userRole(self::user_role)->id;
                 $mf->gender = ($candidate->gender == 'Male') ? 1 : 0;
                 $mf->status = 1;
                 $mf->phone_no = $candidate->phone_no;
@@ -94,10 +94,5 @@ class FirstApplication
                 'error' => $qe->getMessage()
             ];
         }
-    }
-
-    public static function getUserRoleByRoleCode($role_code){
-        $role = Role::where('role_code', $role_code)->first();
-        return $role;
     }
 }

@@ -137,7 +137,7 @@
                                     </h3>
                                     <p style="font-size: 14px; color: #333; margin: 5px 0;">
                                         To ensure you’re legitimate and not some fake person,
-                                        please verify your account by clicking the buttow below, to complete the application process.
+                                        please verify your account by clicking the button below, to complete the application process.
                                     </p>
                                     <p style="font-size: 14px; color: #333; margin: 5px 0;">
                                         After successfull verification of your account,

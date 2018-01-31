@@ -8,8 +8,7 @@
             <form action="{{ url('client/register') }}" id="login-form" class="smart-form client-form" method="post">
                 {{ csrf_field() }}
                 <header>
-                    Register below to start providing boda bodas to riders as well as have much more efficient way
-                    of monitoring their daily collections.
+                    Register below to start providing Boda Bodas to riders as well as monitor their daily collections.
                 </header>
 
                 <fieldset>
